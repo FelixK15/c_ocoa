@@ -1,0 +1,47 @@
+{
+    "files.associations": {
+        "vector": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp",
+        "initializer_list": "cpp",
+        "iosfwd": "cpp",
+        "atomic": "cpp",
+        "queue": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp",
+        "xlocnum": "cpp",
+        "xtr1common": "cpp",
+        "xmemory": "cpp",
+        "sstream": "cpp",
+        "xlocale": "cpp",
+        "ios": "cpp",
+        "xiosbase": "cpp",
+        "xmemory0": "cpp",
+        "shimmer_api_generator.h": "c"
+    },
+    "C_Cpp.intelliSenseEngineFallback": "Enabled",
+    "search.exclude": {
+        "*.exe": true,
+        "*.ilk": true,
+        "*.obj": true,
+        "*.pdb": true,
+        "*.ini": true,
+        "*.gb": true,
+        "*.sn1": true,
+        "*.k15_gb_state.bin": true,
+        ".vscode": true,
+        "k15_win32_gb_emulator_release_disassembly.asm": true
+    },
+    "files.exclude": {
+        "*.exe": true,
+        "*.ilk": true,
+        "*.obj": true,
+        "*.pdb": true,
+        "*.ini": true,
+        "*.gb": true,
+        "*.sn1": true,
+        "*.k15_gb_state.bin": true,
+        ".vscode": true,
+        "k15_win32_gb_emulator_release_disassembly.asm": true
+    }
+}

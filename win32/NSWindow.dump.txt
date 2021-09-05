@@ -1,0 +1,12712 @@
+Info dump of class NSWindow:
+	Method: _topWindow
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: hasFullScreenAppearance
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: hasFullScreenTiledAppearance
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: screenVisibleFrame
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: com_apple_addressBook_dumpResponderChain:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: cn_isSkyglowEnabled
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: ikSetupWhiteBackground
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: IKIPFrame:constrainedToScreen:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			@
+---
+	Method: IKIPSetFrame:constrainedToScreen:display:animate:
+	ReturnType: v
+		6 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			@
+			c
+			c
+---
+	Method: IKIPSetFrame:constrainedToScreen:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			@
+---
+	Method: _web_isWebInspectorWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _ql_windowNumberCreateIfNeeded
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: ql_isDesktopWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _qlControllerCandidateForPreviewPanel:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _qlIgnoreWindowForPreviewPanel:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: makeResponder:firstResponderIfDescendantOfView:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@
+---
+	Method: centerOverMainWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _web_borderView
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _sheetParentForService
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setSheetParentForService:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setSheetParentForHost:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _sheetParentForHost
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _sheetsForHost
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setSheetHost:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _sheetsForService
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _touchBarProviders
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: swizzledBackgroundColor
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: swizzledSetBackgroundColor:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: swizzledAddChildWindow:ordered:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			q
+---
+	Method: swizzledRemoveChildWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: swizzledDragWindowRelativeToMouseDown:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: swizzledSetFrameCommon:display:stashSize:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+			c
+---
+	Method: swizzledWindowForSheetMovementAndOrderingGroups
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: swizzledSetMouseMovedEventsEnabled:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: swizzledSetEventMask:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: swizzledOrderedDrawerAndWindowKeyLoopGroupingViews
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: swizzledSetHidesOnDeactivate:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: swizzledStyleMask
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: swizzledSetStyleMask:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: swizzledHierarchyDidChangeInView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: swizzledBeginCriticalSheet:completionHandler:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@?
+---
+	Method: swizzledBeginSheet:completionHandler:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@?
+---
+	Method: beginServiceSheet:completionHandler:isCritical:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			@
+			@?
+			c
+---
+	Method: _beginSheet:isCritical:completionHandler:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			@
+			c
+			@?
+---
+	Method: swizzledEndSheet:returnCode:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			q
+---
+	Method: endHostSheet:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: swizzledConstrainFrameRect:toScreen:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			@
+---
+	Method: _addViewServiceNameToTitleOfColorPanel:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: swizzledOrderWindow:relativeTo:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			q
+			q
+---
+	Method: swizzledAccessibilityIsIgnored
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: swizzledAccessibilityAttributeValue:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: swizzledSendEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: swizzledCanBecomeKeyWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: swizzledRegionForOpaqueViewsBlockingDraggableFrame:
+	ReturnType: ^{CGSRegionObject=}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: swizzledSetCursorForMouseLocation:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: swizzledResignKeyWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: swizzledBecomeKeyWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: swizzledIsKeyWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: swizzledHostWindowIsKey
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: swizzledMakeFirstResponder:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: swizzledBackingScaleFactor
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: swizzledIsEffectivelyVisible
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: swizzledSelectKeyViewPrecedingView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: swizzledSelectKeyViewFollowingView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: swizzledUpdateConstraintsIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: swizzledEndSheet:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _localizedInfoDictionaryObjectForKey:ifAvailableFromBundle:
+	ReturnType: @
+		4 Arguments:
+			@
+			:
+			@
+			@
+---
+	Method: swizzledShake
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityPresenterProcessIdentifier
+	ReturnType: i
+		2 Arguments:
+			@
+			:
+---
+	Method: scrollWheel:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: viewBridgeBecomingChild
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: viewBridgeHostProcessIdentifier
+	ReturnType: i
+		2 Arguments:
+			@
+			:
+---
+	Method: _lastDragRegionDataDescription
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setViewBridgeBecomingChild:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setViewBridgeHostProcessIdentifier:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			i
+---
+	Method: respondsToAction:fromTask:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			:
+			{?=[8I]}
+---
+	Method: init
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: .cxx_destruct
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: delegate
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setDelegate:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: release
+	ReturnType: Vv
+		2 Arguments:
+			@
+			:
+---
+	Method: retain
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: retainCount
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: description
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _inFullScreen
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: frame
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: _confirmSize:force:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			^{CGSize=dd}
+			c
+---
+	Method: setFrame:display:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+---
+	Method: _liveResizeOperation
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: minFullScreenContentSize
+	ReturnType: {CGSize=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: _setStartingSizeAndPosition
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: nextEventMatchingMask:untilDate:inMode:dequeue:
+	ReturnType: @
+		6 Arguments:
+			@
+			:
+			Q
+			@
+			@
+			c
+---
+	Method: _fullScreenContentController
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: windowNumber
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: postEvent:atStart:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: convertScreenToBase:
+	ReturnType: {CGPoint=dd}
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: screen
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _startLiveResize
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _endLiveResize
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _markStartOfLiveResizeForPerformanceMeasurement
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _markEndOfLiveResizeForPerformanceMeasurement
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _synthesizeEventsForLiveResize
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _automateLiveResize
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: setLevel:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: dealloc
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: setTitle:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: minSize
+	ReturnType: {CGSize=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: maxSize
+	ReturnType: {CGSize=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: title
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: effectiveAppearance
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: isVisible
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: initWithCoder:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: encodeWithCoder:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setForceIsOnActiveSpace:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: isOnActiveSpace
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _makeKeyRegardlessOfVisibility
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _refreshTilingConstraints:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setBackgroundColor:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: animator
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: backgroundColor
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: addObserver:forKeyPath:options:context:
+	ReturnType: v
+		6 Arguments:
+			@
+			:
+			@
+			@
+			Q
+			^v
+---
+	Method: observeValueForKeyPath:ofObject:change:context:
+	ReturnType: v
+		6 Arguments:
+			@
+			:
+			@
+			@
+			@
+			^v
+---
+	Method: contentView
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setUserInterfaceLayoutDirection:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: userInterfaceLayoutDirection
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: nextEventMatchingMask:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: setAnimations:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: mouseDown:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _hasActiveAppearance
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityFocusRingBounds
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityFocusedUIElement
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityWindowAttributeValueHelper
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityTopLevelUIElementAttributeValueHelper
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: convertRectToScreen:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: accessibilityHitTest:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: accessibilityVisibleArea
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityFrame
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsIgnored
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: identifier
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setIdentifier:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _presenterOnly
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: remoteUIElement
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: windowRef
+	ReturnType: ^v
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityAttributeNames
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityAttributeValue:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: accessibilityActionDescription:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: accessibilityWindowNumber
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: level
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: isTabOverviewVisible
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _toggleTabOverview:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _windowStackController
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: titleVisibility
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: tabbingIdentifier
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _storedTabbingIdentifier
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: windowController
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _titlebarDisplayIdentifier
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: canEnterFullScreenMode
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setTabbingIdentifier:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _aux
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: tabbingMode
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: setTabbingMode:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _tabBarAccessoryViewController
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _ensureStackControllerExists
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: tab
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _hasTabBarItem
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _implicitlyAllowsWindowTabbing
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: styleMask
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: _supportsTitlebarAccessoryViewControllers
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _borderViewCanAddWindowTabs
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: parentWindow
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: sheetParent
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: titlebarAppearsTransparent
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: isResizable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: isKeyWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: makeKeyAndOrderFront:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _supportsTabbing
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _canAutoParticipateInWindowTabs
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _ignoreWindowStackController
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _isInHiddenWindowTab
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _isPerformingRestoration
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldJoinTabbingStackOnOrderIn
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _doWindowTabSetupAttemptingToJoinExistingStack:makeIfNeeded:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			c
+			c
+---
+	Method: _setIgnoreWindowStackController:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _fixIgnoredKeyMainAppearancesIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _doWindowTabOrderAbove:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _doTabbedWindowOrderInWithWasVisible:mode:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			c
+			q
+---
+	Method: _setIsInHiddenWindowTab:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _unscheduleWindowForBatchOrdering
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _cgsWindow
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _doWindowTabOrderOut
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _isTabbedWithOtherWindows
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _canTabMergeWithIdentifier:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: isMiniaturized
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _canTabWithIdentifier:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: validateMenuItem:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: validateUserInterfaceItem:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _supportsNewTabButton
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _runningDocModal
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: selectNextTab:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _canSelectNextOrPreviousTab
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: selectPreviousTab:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: moveTabToNewWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _canMoveTabToNewWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: mergeAllWindows:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _canMergeWindows
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: toggleTabBar:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _validateToggleTabBarItem:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: toggleTabOverview:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _validateShowAllTabsMenuItem:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: performCloseOtherTabs:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _canCloseOtherTabs
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _nextResponderChainValidateUIItem:withResult:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: _attemptToCloseAllTabs:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: performClose:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: menu
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: isTabbed
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: performCloseTabbedWindowGroup:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _eventIsOldSelectNextPreviousTabKeyEquivalent:direction:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			@
+			^c
+---
+	Method: performKeyEquivalent:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setTemporarilyIgnoresMoves:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _prepareToMinimizeCore
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _finishMinimizeToDock
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _prepareToUnMinimizeFromDock:forceActivation:wantsToBeKey:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			c
+			c
+			c
+---
+	Method: _finishDeminiaturizeFromDock:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _currentlySelectedTabbedWindow
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: pinTab:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: unpinTab:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: tabGroup
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _toggleTabOverview:animated:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: _beforeTabPickerResponder
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _themeFrame
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setTabOverviewVisible:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _setTabBarAccessoryViewController:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _tabGroup
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setWindowStackController:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _tabBarItem
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _doTabbedWindowSyncTitleToTabBar
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _startingWindowForSendAction:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			:
+---
+	Method: _isFullScreenModal
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _fullScreenModalStackController
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _makeNewWindowInTab
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _makeTabStackActive
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _beginNextQueuedSheetInGroupIfNecessary
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _nextTabbedWindowToSelect
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _moveToModalStackController:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _tabRect
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: _tabBarIsVisible
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _willBecomeTabbedWithOtherWindows
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _doWindowTabCleanupForStyleMaskChange
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _doTabbedWindowCleanupForOrderOut
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _doTabbedWindowOrderFront
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _doTabbedWindowMadeKey
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _doTabbedWindowSyncToolbar
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _validateTabUserInterfaceItem:withResult:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: _tabbingPerformKeyEquivalent:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _temporarilyIgnoreMoves
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _prepareTabbedWindowMinimize
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _doNonVisibleTabMinimize
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _prepareTabbedWindowDeminimize
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _doNonVisibleTabDeminimize
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _tabsFinishDeminiaturizeFromDock
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _encodeTabbedWindowRestorableStateWithCoder:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _restoreTabbedWindowStateWithCoder:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setIsPerformingRestoration:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _windowForLayoutEncoding
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _tabbedWindowsWillEnterFullScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _tabbedWindowsDidEnterFullScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _tabbedWindowsDidExitFullScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _moveWindowToSpace:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _tabbedWindowsHandleEnterFullScreen
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _doTabbedWindowWillEnterVersionsEditor
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _doTabbedWindowWillExitVersionsEditor
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: orderOutTabbedWindowGroup:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _selectNextTab:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _selectPreviousTab:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _moveTabToNewWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _mergeAllWindows:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _toggleTabBar:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: windowDidBecomeTabbed
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _tabbedWindows
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _doTabbedWindowDidChangeToolbar
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _addTabbedWindow:ordered:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			q
+---
+	Method: set_beforeTabPickerResponder:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setTemporaryContentView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: supplementalTargetForAction:sender:
+	ReturnType: @
+		4 Arguments:
+			@
+			:
+			:
+			@
+---
+	Method: setReleasedWhenClosed:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: orderWindow:relativeTo:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			q
+			q
+---
+	Method: orderOut:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: setAlphaValue:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			d
+---
+	Method: initWithContentRect:styleMask:backing:defer:
+	ReturnType: @
+		6 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+			Q
+			c
+---
+	Method: setOpaque:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setContentView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: orderFront:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: display
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: flushWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityHelpStringForChild:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: accessibilityIsChildFocusable:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: accessibilityPositionOfChild:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: accessibilitySizeOfChild:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: accessibilityShouldUseUniqueId
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityRoleAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsRoleAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityRoleDescriptionAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsRoleDescriptionAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilitySubroleAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsSubroleAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityFocusedAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsFocusedAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityParentAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsParentAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityWindowAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsWindowAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityPositionAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsPositionAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilitySizeAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsSizeAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsAttributeSettable:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: accessibilitySetValue:forAttribute:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@
+---
+	Method: accessibilityActionNames
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityPerformAction:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: accessibilityParent
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: currentEvent
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: colorSpace
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilitySupportsOverriddenAttributes
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setValue:forKey:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@
+---
+	Method: _shouldDoLayerPerformanceUpdates
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityChildrenAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setMovable:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setCollectionBehavior:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _lockToAbsoluteSubLevel:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: setHidesOnDeactivate:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setIgnoresMouseEvents:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: backingScaleFactor
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldSnapWindowsClientSide
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _allowsSnapping
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _canBeSnappingTarget
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _allowsExteriorResizing
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: isMovable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _canMiniaturize
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: canBecomeKeyWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: canBecomeMainWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _ignoreForFullScreenTransition
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setWindowTag
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: graphicsPort
+	ReturnType: ^v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setFullScreenPresentationOptions:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: toolbar
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setToolbar:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: childWindows
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _ignoreForFullScreenTransitionSnapshot
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _displayChanged
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: attachedSheet
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateFullScreenSpaceDockTitle
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _supportsDockInitiatedFullScreen
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _frameForFullScreenModeInRect:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _layoutEngine
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: layoutIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _actualMinFullScreenContentSize
+	ReturnType: {CGSize=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: exitFullScreenMode:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _bestScreenByGeometry
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: disableCursorRects
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: enableCursorRects
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _saveUserFrame
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _saveTilePreferredSize
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _queryCanAddSiblingTileForWindow:responseHandler:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@?
+---
+	Method: _createSiblingTileForWindow:preferredPositions:responseHandler:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			@
+			Q
+			@?
+---
+	Method: stringWithSavedFrame
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _stringWithSavedFrame
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setRestorable:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setDefaultButtonCell:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: animationBehavior
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: setAnimationBehavior:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _orderOutAnimationType
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: _setOrderOutAnimationType:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: beginCriticalSheet:completionHandler:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@?
+---
+	Method: beginSheet:completionHandler:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@?
+---
+	Method: endSheet:returnCode:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			q
+---
+	Method: isSheet
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setInitialFirstResponder:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: setFrameOrigin:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: _setAvoidsActivation:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: initialFirstResponder
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _borderView
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setAnchorAttribute:forOrientation:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			q
+			q
+---
+	Method: setContentSize:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: animations
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _scheduleWindowForBatchOrdering:relativeTo:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			q
+			q
+---
+	Method: _updateButtonsForModeChanged
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _canAutoQuitQuietlyAndSafelyWithOptionalExplanation:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _closeForTermination
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: validRequestorForSendType:returnType:
+	ReturnType: @
+		4 Arguments:
+			@
+			:
+			@
+			@
+---
+	Method: graphicsContext
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: canHide
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _tempHide:relWin:
+	ReturnType: @
+		4 Arguments:
+			@
+			:
+			c
+			q
+---
+	Method: _tempHideHODWindow
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setVisible:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _tempUnhideHODWindow
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityPostNotification:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _getPositionFromServer
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: makeKeyWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _registerDragTypesIfNeeded
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setWindowDidExistAtLaunch:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: sendEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _resetDisableCounts
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _resetPostingCounts
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _hasWindowRef
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _wrapsCarbonWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setSheet:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: center
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: setFrameTopLeftPoint:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: _setModal:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _setUpFirstResponderBeforeBecomingVisible
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _doOrderWindow:relativeTo:findKey:forCounter:force:isModal:
+	ReturnType: v
+		8 Arguments:
+			@
+			:
+			q
+			q
+			c
+			c
+			c
+			c
+---
+	Method: _setSheetParent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: deminiaturize:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _realWindowNumber
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: _topmostDocWrapsCarbonWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _wantsUserAttention
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: hidesOnDeactivate
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setWantsHideOnDeactivate:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _blocksActionWhenModal:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			:
+---
+	Method: _clearModalWindowLevel
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: sheets
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: document
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _dismissModalForTerminate
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: encodeRestorableStateWithCoder:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: restoreStateWithCoder:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _persistentUIWindowID
+	ReturnType: I
+		2 Arguments:
+			@
+			:
+---
+	Method: _isNonactivatingPanel
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _bestScreenBySpaceAssignmentOrGeometry
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _visibleAndCanBecomeKey
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _isActiveAndOnScreen:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _sharesParentFirstResponder
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _canBecomeMainWindowRegardlessOfVisibility
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: makeMainWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateFrameToScreenConstraints
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _restoreModalWindowLevel
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _activateTrackingRectsForApplicationActivation
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _deactivateTrackingRectsForApplicationDeactivation
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _deferQuickLookIfPossible
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: quickLookPreviewItems:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _resignKeyFocus
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: becomeKeyWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setFrameNeedsDisplay:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _orderOutInProgress
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _documentWindow
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _isUtilityWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: dockTile
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: userInterfaceItemIdentifier
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _takeApplicationMenuIfNeeded:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: update
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _sendWindowWillMoveNoteWithEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _startWindowMoveWithEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _endWindowMoveWithEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _handleResignKeyAppearanceEvent
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _handleResignMainAppearanceEvent
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _toggleOrderedFrontMostWillOrderOut
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: doCommandBySelector:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			:
+---
+	Method: enterFullScreenMode:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _updateButtonsForFullScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: occlusionState
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: endSheet:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _persistentStateTerminationGeneration
+	ReturnType: I
+		2 Arguments:
+			@
+			:
+---
+	Method: _copyPublicPersistentUIInfo
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: rightMouseDown:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: quickLookPreviewItemsAtWindowLocation:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: setMenu:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setWindowMoveDisabled:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _windowMoveDisabled
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setCanEnterFullScreenMode:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: close
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: setUserInterfaceItemIdentifier:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: toggleFullScreen:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: setWindowController:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _restoreLevelAfterRunningModal
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _wantsHideOnDeactivate
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsChildOfApp
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityTitleAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsTitleAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityChildrenInNavigationOrderAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsChildrenAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityAuditIssuesAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: convertRectFromScreen:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _shouldAutoFlattenLayerTree
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: constrainFrameRect:toScreen:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			@
+---
+	Method: _hostsLayersInWindowServer
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _isImageCache
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: handlePrintScriptCommand:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: objectSpecifier
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: representedURL
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _bindingAdaptor
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setAppearance:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setBindingAdaptor:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: setFrameFromString:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _shadowOffset
+	ReturnType: {CGSize=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: _ultimateParentWindow
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _noteExteriorResizeMarginsMayHaveChanged
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _noteAllowedResizeDirectionsMayHaveChanged
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _unlockSublevel
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _fullScreenTileFillsScreen
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setColorSpace:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: isOpaque
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: displayIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateTitleTextField
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: backingAlignedRect:options:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+---
+	Method: _convertRectToIntegralizationSpace:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: convertRectToBacking:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _convertRectFromIntegralizationSpace:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: convertRectFromBacking:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: firstResponder
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityTitleUIElementAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: convertBaseToScreen:
+	ReturnType: {CGPoint=dd}
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: accessibilityIsTitleUIElementAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: hasKeyAppearance
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _newFirstResponderAfterResigning
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: makeFirstResponder:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: disableFlushWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: enableFlushWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: convertPointToBacking:
+	ReturnType: {CGPoint=dd}
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: keyDown:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _oldFirstResponderBeforeBecoming
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: inLiveResize
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: preservesContentDuringLiveResize
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _frame:resizedFromEdge:withDelta:withEvent:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		6 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+			{CGSize=dd}
+			@
+---
+	Method: dragImage:at:offset:event:pasteboard:source:slideBack:
+	ReturnType: v
+		9 Arguments:
+			@
+			:
+			@
+			{CGPoint=dd}
+			{CGSize=dd}
+			@
+			@
+			@
+			c
+---
+	Method: mouseLocationOutsideOfEventStream
+	ReturnType: {CGPoint=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: registerForDraggedTypes:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: unregisterDraggedTypes
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: animationForKey:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: resignKeyWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: draggingEntered:
+	ReturnType: Q
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: draggingUpdated:
+	ReturnType: Q
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: draggingExited:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: draggingEnded:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: performDragOperation:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: resetCursorRects
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _disableToolTipCreationAndDisplay
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _enableToolTipCreationAndDisplay
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: registeredDraggedTypes
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _lastLeftHit
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setViewsNeedDisplay:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: disableKeyEquivalentForDefaultButtonCell
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: enableKeyEquivalentForDefaultButtonCell
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _verifyDefaultButtonCell:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _effectiveAppearanceParent
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: performMnemonic:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setDefaultButtonCell:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _controlAppearanceChangesOnKeyStateChange
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _viewIsInContentBorder:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: convertPointFromBacking:
+	ReturnType: {CGPoint=dd}
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: _setDefaultButtonSuppressed:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _hasActiveControls
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _worksWhenModalOrChildOfModalWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _defaultButtonSuppressed
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: alphaValue
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: cancelOperation:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: depthLimit
+	ReturnType: i
+		2 Arguments:
+			@
+			:
+---
+	Method: gState
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: appearance
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _isHidden
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: areCursorRectsEnabled
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: deviceDescription
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _initContent:styleMask:backing:defer:contentView:
+	ReturnType: @
+		7 Arguments:
+			@
+			:
+			r^{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+			Q
+			c
+			@
+---
+	Method: _setWindowNumber:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _setFrame:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: setResizeIncrements:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: _oldPlaceWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _isDocWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _adjustWindowToScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _selectFirstKeyView
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _disableEnablingKeyEquivalentForDefaultButtonCell
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _postInvalidCursorRects
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _detachSheetWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _orderFrontRelativeToWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _orderOutRelativeToWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _orderOutAndCalcKeyWithCounter:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: isExcludedFromWindowsMenu
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _miniaturizedOrCanBecomeMain
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateFrameWidgets
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowMovedToRect:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: isMainWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: becomeMainWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: ignoresMouseEvents
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setEventMask:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: setStyleMask:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _cleanupAndRemoveFullScreenContentController
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: resignMainWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: isAutodisplay
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setAutodisplay:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _carbonWindowClass
+	ReturnType: I
+		2 Arguments:
+			@
+			:
+---
+	Method: startRectForSheet:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: redo:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: undo:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: print:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _allowsActiveInputContext
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _managesWindowRef
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _removeWindowRef
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setWindowRef:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			^{OpaqueWindowPtr=}
+---
+	Method: _cancelKey:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _commonAwake
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _destroyRealWindow:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _reallyDoOrderWindow:relativeTo:findKey:forCounter:force:isModal:
+	ReturnType: v
+		8 Arguments:
+			@
+			:
+			q
+			q
+			c
+			c
+			c
+			c
+---
+	Method: _termWindowIfOwner
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _resetDragMargins
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: setHasShadow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: worksWhenModal
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setModalWindowLevel
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowRef
+	ReturnType: ^{OpaqueWindowPtr=}
+		2 Arguments:
+			@
+			:
+---
+	Method: _setOrderOutInProgress:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _setMiniaturized:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: contentViewController
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: frameRectForContentRect:styleMask:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+---
+	Method: contentRectForFrameRect:styleMask:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+---
+	Method: minFrameSizeForMinContentSize:styleMask:
+	ReturnType: {CGSize=dd}
+		4 Arguments:
+			@
+			:
+			{CGSize=dd}
+			Q
+---
+	Method: _toolbarIsShown
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: dragRectForFrameRect:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _setNonactivatingPanel:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: resizeIncrements
+	ReturnType: {CGSize=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: setAspectRatio:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: aspectRatio
+	ReturnType: {CGSize=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: undoManager
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _hasActiveAppearanceIgnoringKeyFocus
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setNeedsToRemoveFieldEditor:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: invalidateCursorRectsForView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: setAccessibilitySections:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _viewDidChangeGeometryInWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _wantsHeartBeat
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: heartBeat:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			^{?=ddd{?=b1b31}}
+---
+	Method: setMinSize:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: setMaxSize:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: accessibilitySectionsAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: constraintsDidChangeInEngine:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _accessibilityTitleCell
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _invalidateAllRevealoversForView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: isMovableByWindowBackground
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setNeedsToResetDragMargins:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _inLiveResize
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _getRetainedLastFocusRingView:bleedRegion:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			^@
+			^@
+---
+	Method: _setNeedsDisplayInRegion:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _intersectBottomCornersWithRect:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _lockViewHierarchyForModificationWithExceptionHandler:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _unlockViewHierarchyForModification
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _copyNeedsDisplayRegionInRect:validateSubtractedRegion:
+	ReturnType: @
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+---
+	Method: _maskRoundedBottomCorners:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: keyViewSelectionDirection
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: contentRectForFrameRect:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: convertPointFromScreen:
+	ReturnType: {CGPoint=dd}
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: contentBorderThicknessForEdge:
+	ReturnType: d
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: canRepresentDisplayGamut:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: setRestorationClass:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			#
+---
+	Method: setFrame:display:animate:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+			c
+---
+	Method: recalculateKeyViewLoop
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setShowingModalFrame:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: frameAutosaveName
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: saveFrameUsingName:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setUtilityWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setFrameUsingName:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: setFrameAutosaveName:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: standardWindowButton:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _adjustedFrameFromDefaults:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _adjustedFrameForSaving:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _toolbarView
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _toggleOrderedFrontMost:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: selectNextKeyView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: selectPreviousKeyView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: miniwindowTitle
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _willEnterFullScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _frameForFullScreenMode
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: _didEnterFullScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _fullScreenUpdateUserSpaceSavedFrameIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setLocationTemporary:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _didFailToEnterFullScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _markAppropriateForAutomaticFullScreenMode:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _createFullScreenContentControllerIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _saveFrameBeforeFullScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: convertPointToScreen:
+	ReturnType: {CGPoint=dd}
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: _hasGradientBackground
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: endEditingFor:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: fieldEditor:forObject:
+	ReturnType: @
+		4 Arguments:
+			@
+			:
+			c
+			@
+---
+	Method: _semanticContext
+	ReturnType: i
+		2 Arguments:
+			@
+			:
+---
+	Method: setTitleVisibility:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: setTitlebarAppearsTransparent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _setForceActiveControls:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: canBecomeVisibleWithoutLogin
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: shadowOptions
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: hasShadow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _allowsImplicitRemovalFromMovementGroup
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setAppearanceParent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _enableFullScreenMenubarAutohiding
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _disableFullScreenMenubarAutohiding
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: addChildWindow:ordered:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			q
+---
+	Method: removeChildWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _contentViewControllerChanged
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _isEffectivelyVisible
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setViewsNeedUpdateLayoutDependentMetrics:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _finishedMakingConnections
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: shouldBeTreatedAsInkEvent:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _kitAppearance
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setRepresentedFilename:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _didRestoreUserActivity:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: discardEventsMatchingMask:beforeEvent:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			Q
+			@
+---
+	Method: isDocumentEdited
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setDocumentAutosavingError:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: editTitleWithCompletionHandler:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@?
+---
+	Method: _cancelTitleEditing
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _invalidateDocumentIcon
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setDocumentShowsPanelOnClose:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setDocumentEdited:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _documentEditingState
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: _setDocumentEditingState:animate:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			q
+			c
+---
+	Method: _documentShowsPanelOnClose
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setNonModalDocumentError:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _displayName
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _resetDragMarginsIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: isFloatingPanel
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _nextTrackingNum
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: _setTrackingRect:inside:owner:userData:useTrackingNum:install:
+	ReturnType: ^{?=q@@{CGRect={CGPoint=dd}{CGSize=dd}}dcc}
+		8 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+			@
+			^v
+			q
+			c
+---
+	Method: _synchronizeConfigurationForTrackingArea:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _didInstallTrackingRect:assumeInside:userData:trackingNum:
+	ReturnType: c
+		6 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+			^v
+			q
+---
+	Method: _setTrackingRect:inside:owner:userData:useTrackingNum:
+	ReturnType: q
+		7 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+			@
+			^v
+			q
+---
+	Method: _removeTrackingRects:count:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			^q
+			q
+---
+	Method: _removeTrackingRect:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _setTrackingAreasDirty
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _verifyTrackingRects
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setEventMask:forTrackingRect:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			Q
+			q
+---
+	Method: _resetClipForTrackingRect:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _trackingAreaIDForTrackingArea:
+	ReturnType: q
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setTrackingRects
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _clearTrackingRects
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setTrackingRects:insideList:owner:userDataList:trackingNums:count:
+	ReturnType: v
+		8 Arguments:
+			@
+			:
+			^{CGRect={CGPoint=dd}{CGSize=dd}}
+			^c
+			@
+			^^v
+			^q
+			q
+---
+	Method: _setTrackingRect:inside:owner:userData:
+	ReturnType: q
+		6 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+			@
+			^v
+---
+	Method: _discardTrackingRects:count:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			^q
+			q
+---
+	Method: _discardTrackingRect:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _disableTrackingRect:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _enableTrackingRect:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _containsTrackingRect:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _handleTrackingRectEnterExitEvent:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _disableTrackingArea:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _enableTrackingArea:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _moveTrackingArea:toRect:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _updateTrackingAreasDueToEndScrolling
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _recursiveResetTrackingAreasToPending
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldShowCursorRects
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setCursorRect:index:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			q
+---
+	Method: _discardCursorRect:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _updateEventMaskDueToDisableCursorRects
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateEventMaskDueToEnableCursorRects
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateStructuralRegionsOnNextDisplayCycle
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _invalidateCursorRectsForViewsWithNoTrackingAreas
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _hasCursorRectsForView:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _invalidateCursorRectsForView:force:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: allowsCursorRectsWhenInactive
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: discardCursorRects
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setCursorForMouseLocation:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: GDBDumpCursorRects
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _edgeResizingCursorUpdate:atLocation:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			@
+			{CGPoint=dd}
+---
+	Method: cursorUpdate:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _shouldResetCursorRects
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _isViewScrolling
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _addCursorRect:cursor:forView:
+	ReturnType: c
+		5 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			@
+			@
+---
+	Method: _removeCursorRect:cursor:forView:
+	ReturnType: c
+		5 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			@
+			@
+---
+	Method: _hasCursorRects
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setAllowsCursorRectsWhenInactive:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _discardCursorRectsForView:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _markCursorRectsForRemovedView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _deallocCursorRects
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _findCursorForView:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _updateCursorRectsDueToBecomingVisible
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateCursorRectsDueToBecomingKey
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateCursorRectsDueToResigningKey
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _titlebarContainerView
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: contentLayoutRect
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: _isDeallocating
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: handleSaveScriptCommand:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: handleCloseScriptCommand:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _screenChanged:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _isDocModal
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _isRunningADocModalAttachedSheet
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: hasKeyAppearanceIncludingSheets:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _windowForToolbar
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldUseTexturedAppearanceForSegmentedCellInView:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setFirstResponder:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _orderedDrawerAndWindowKeyLoopGroupingViews
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _findKeyLoopGroupingViewFollowingKeyLoopGroupingView:direction:
+	ReturnType: @
+		4 Arguments:
+			@
+			:
+			@
+			Q
+---
+	Method: _tileFrameForFullScreen
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: _performDividerDragWithEvent:forResizeDirection:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			@
+			q
+---
+	Method: _currentDividerResizeDirections
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _cursorForResizeDirection:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _startWindowDragWithEvent:options:animate:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			@
+			Q
+			c
+---
+	Method: _wantsFullScreenTileDropTargets
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateManagedDisplay
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _keyViewLoopsMayCrossWindows
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _childWindowOrderingPriority
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: _parentWindowForAddingToMovementGroupWithProposedParent:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _startClientSideMove
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _stopClientSideMove
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _getResizeEdgeAndCornerThicknesses:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			[8d]
+---
+	Method: _shouldStartWindowDragForEvent:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: performWindowDragWithEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _backdropBleedAmount
+	ReturnType: f
+		2 Arguments:
+			@
+			:
+---
+	Method: _fullScreenPresentationOptions
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: titlebarAccessoryViewControllers
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _titlebarFloatingWindow
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowMoved:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _positionSheetsConstrained:andDisplay:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			c
+			c
+---
+	Method: setMovableByWindowBackground:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _isOnActiveScreen
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: addTitlebarAccessoryViewController:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: flushWindowIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateContentLayoutGuideFrame
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _surrenderToolbarViewForFullScreenWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setSharesParentFirstResponder:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: updateDraggingItemsForDrag:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _dragTypes
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: prepareForDragOperation:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: concludeDragOperation:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: wantsPeriodicDraggingUpdates
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _findDragTargetFrom:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _openDrawers
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: drawers
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: openDrawers
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setParentWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _moveByOffset:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: setOneShot:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setCanHide:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: collectionBehavior
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: _invalidateScaledBackground
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _effectiveLevel
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: setCanBecomeVisibleWithoutLogin:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _changeKeyState
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _changeMainState
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _changeFirstResponderToParentsFirstResponder
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _keepChildrenAttached
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowDying
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setFrameCommon:display:stashSize:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+			c
+---
+	Method: tryToPerform:with:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			:
+			@
+---
+	Method: helpRequested:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setExcludedFromVisibleWindowList:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _setTexturedBackground:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _isDarkWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _changeKeyAndMainLimitedOK:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _isKeyWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _hiliteWindow:fromWindow:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			^{OpaqueWindowPtr=}
+			@
+---
+	Method: _getUndoManager:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: showToolbar:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: hideToolbar:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: toggleToolbarShown:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: runToolbarCustomizationPalette:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: performZoom:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: performMiniaturize:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _resetFirstResponder
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _cycleDrawersReversed:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _usesCustomDrawing
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _hideAttachedWindows:findKey:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			c
+			c
+---
+	Method: _minContentSizeForDrawers
+	ReturnType: {CGSize=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: _hideAllDrawers
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _unhideAllDrawers
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _moveAllDrawersByOffset:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: _displayAllDrawersIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _positionAllDrawers
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _sizeAllDrawers
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _sizeAllDrawersWithRect:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _standardFrameForDrawersInRect:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _minSizeForDrawers
+	ReturnType: {CGSize=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: _removeAllDrawersImmediately:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _registerAllDrawersForDraggedTypesIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _resetAllDrawersDisableCounts
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _resetAllDrawersPostingCounts
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _startLiveResizeForAllDrawers
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _endLiveResizeForAllDrawers
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setLevelForAllDrawers
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _changeAllDrawersKeyState
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _changeAllDrawersMainState
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _changeAllDrawersFirstResponder
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setVisibleWithoutLoginForAllDrawers
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilitySetSizeAttribute:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _parentSpaceID
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: _resizeWeighting
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: setContentViewController:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: appearanceParent
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _scaleFactor
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: _runningWindowTransformAnimation
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: restorationClass
+	ReturnType: #
+		2 Arguments:
+			@
+			:
+---
+	Method: inspectorBar
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _activeGestureRecognizers
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _lastDragRegionData
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _savedScreen
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: uniqueID
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: functionRow
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _unlockViewHierarchyForDrawing
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowDeviceRoundWithContext:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setKeyViewLoopNeedsRecalc:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setAppearanceSource:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: frameRectForContentRect:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _accessibilityTitleRect
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: representedFilename
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateEdgeResizingTrackingAreas
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _isSheet
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setShadowParameters
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _fromConstraintsGetWindowMinSize:maxSize:allowDynamicLayout:changingOnlySlightly:
+	ReturnType: v
+		6 Arguments:
+			@
+			:
+			^{CGSize=dd}
+			^{CGSize=dd}
+			c
+			c
+---
+	Method: anchorAttributeForOrientation:
+	ReturnType: q
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: updateConstraintsIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _isInSomeVisibleSpace
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _blocksKeyAndMainWindowTouchBarsWhenModal
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _wantsSnapshotProxyWindowForOrderOutAnimation
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _needsBehindWindowBlendingForFullScreenTitlebar
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _threadContext
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _toggleSelectAnyValidResponderOverride
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _handleFocusToolbarHotKey:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _cycleWindowsBackwards:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _cycleWindows:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _cycleDrawers:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _cycleDrawersBackwards:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: selectKeyViewFollowingView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: selectKeyViewPrecedingView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _makingFirstResponderForMouseDown
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: hasAmbiguousLayout
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: tabbedWindows
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _didExitFullScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setDoingCacheDisplayInRect:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _didFailToExitFullScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: animationResizeTime:
+	ReturnType: d
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _stashCollapsedOrigin:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: _collapsedOrigin
+	ReturnType: {CGPoint=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: _stashedOrigin
+	ReturnType: {CGPoint=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: _forceFlushWindowToScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _dragWindowRelativeToMouseDown:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: setBackingType:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _validateSizeUsingConstraints:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			^{CGSize=dd}
+---
+	Method: _validFrameForFrame:resizedFromEdge:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+---
+	Method: miniaturize:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _getEdgeResizingRects:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			^{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _close:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _resizeWithEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _remoteRenameSession
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _resizeDirectionForMouseLocation:
+	ReturnType: q
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: _lastRightHit
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _lockViewHierarchyForDrawingWithExceptionHandler:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _titlebarEditingDidEndNormally:title:editingRange:grantHandler:
+	ReturnType: v
+		6 Arguments:
+			@
+			:
+			c
+			@
+			{_NSRange=QQ}
+			@?
+---
+	Method: _renamingDidEndNormally:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: contentLayoutGuide
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _contextForLayerHosting
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: NS_touchBarProviders
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: NS_touchBarProvidersKeyPaths
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: preventsApplicationTerminationWhenModal
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _isKeyWindowIgnoringFocus
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setPreventsApplicationTerminationWhenModal:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: becomesKeyOnlyIfNeeded
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _showToolTip
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: allowsToolTipsWhenApplicationIsInactive
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _toggleFrameAutosaveEnabled:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setTempHidden:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _implicitlyAllowsFullScreenPrimary
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setPreventsActivation:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _containedMenusAreEligibleForKeyEquivalents
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setShowsToolbarButton:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setContentMinSize:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: setContentMaxSize:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: gestureEventMask
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: setGestureEventMask:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: quickLookWithEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _eventFirstResponderChainDescription
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setLastDragRegion:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			^v
+---
+	Method: setAutorecalculatesContentBorderThickness:forEdge:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			c
+			Q
+---
+	Method: setContentBorderThickness:forEdge:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			d
+			Q
+---
+	Method: setTitlebarAlphaValue:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			d
+---
+	Method: _setFrameAutosaveName:changeFrame:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: setAutorecalculatesKeyViewLoop:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _justOrderOut
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _contentSizeRespectsLayoutAnchors
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _isTitleHidden
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _allowsRootLayerBacking
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _preserveAnimatingFrames
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: titlebarViewController
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: deepestScreen
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: userSpaceScaleFactor
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldSuppressRolloversForSegmentedCellInView:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _positionSheet:constrained:andDisplay:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		5 Arguments:
+			@
+			:
+			@
+			c
+			c
+---
+	Method: _hasMetalSheetEffect
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _attachSheetWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setWasCGOrderingEnabled:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _setWasReshapingEnabled:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _xOffsetForSheetFrame:inParentFrame:
+	ReturnType: d
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _stashOrigin:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: _hasKeyAppearance
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _hideChildren
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _keepOnScreenSheetFrame:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _isConsideredOpenForPersistentState
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setRepresentedURL:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _cornerMaskChanged
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _effectiveCollectionBehavior
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: _setCanCycle:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _adjustMinAndMaxSizeForSheet:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _adjustEffectForSheet:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _windowForSheetMovementAndOrderingGroups
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _sheetEffect
+	ReturnType: ^v
+		2 Arguments:
+			@
+			:
+---
+	Method: _removeFromGroups:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _rebuildOrderingGroup:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _updateWindowIsFullScreenCapable
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _wasCGOrderingEnabled
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _wasReshapingEnabled
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _sheetEffectInset
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: sheetBehavior
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: _centerSheetFrame:inParentFrame:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _adjustFrame:constrained:forSheet:positioningFrame:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		6 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+			@
+			^{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _beginNextQueuedSheetIfNecessary
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setKeepChildrenAttached:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _topmostChild
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _isSheetOnModalWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _isSheetOnWindowWithWindowNumber:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _setDocModal:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _moveSheetByItself:delta:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			{CGPoint=dd}
+---
+	Method: _reparentSheetsToSelfOnFullScreenExit
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _detachSheetWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _attachedSheet
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setDocumentWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _adjustSheetEffect
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _hideSheet:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _unhideSheet
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _topBarHeight
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: allowsFontSmoothing
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _tryRetain
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _convertPointFromScreen:
+	ReturnType: {CGPoint=dd}
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: _registerBackdropView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _unregisterBackdropView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _doingCacheDisplayInRect
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _registeredBackdropViews
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldGetCornerMaskFromVisualEffectView
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _viewsNeedUpdateConstraints
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _resetSplitViewUserPreferredThicknessFromSetAlignmentFrames
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _measuringMinFullScreenContentSize
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setAllowsToolTipsWhenApplicationIsInactive:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _startWindowDragWithEvent:options:animate:completionHandler:
+	ReturnType: v
+		6 Arguments:
+			@
+			:
+			@
+			Q
+			c
+			@?
+---
+	Method: _lighterViewDetaching:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _orderForwardWithEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _cgsMoveWindow:moveGroup:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+---
+	Method: _viewAttaching:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: acceptsMouseMovedEvents
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _hasMouseMovedListeners
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _isChildOfWindowWithWindowNumber:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _allowsOrdering
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _lmouseUpPending
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _performKeyEquivalentConditionally:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _hostWindowIsKey
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _latchViewForScrollEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _acceptsSecondaryKey
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _forwardActionToParent:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			:
+---
+	Method: _isChildOfWindow:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _sharesParentKeyState
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _responderDebugDescription
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: bottomCornerRounded
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldRoundCornersForSurface
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _lockViewHierarchyForModification
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _copyAcquiredViewHierarchyLock
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: trackEventsMatchingMask:timeout:mode:handler:
+	ReturnType: v
+		6 Arguments:
+			@
+			:
+			Q
+			d
+			@
+			@?
+---
+	Method: _allowsAnyValidResponder
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateLayoutDependentMetricsIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: setAcceptsMouseMovedEvents:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _reallyIsVisible
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _postingDisabled
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _postWindowNeedsUpdateConstraintsUnlessPostingDisabled
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _postWindowNeedsLayoutUnlessPostingDisabled
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _postWindowNeedsDisplayUnlessPostingDisabled
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: autorecalculatesContentBorderThicknessForEdge:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _needsToResetDragMargins
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: disableScreenUpdatesUntilFlush
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _recalculateKeyViewLoopIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setKeyViewSelectionDirection:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _needsDisplayInRect:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: setInspectorBar:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _drawBackgroundForCellWithRect:inView:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			@
+---
+	Method: _bottomBarHeight
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: _movableByBottomBar
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _addKnownSubview:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: showsContentSeparatorForEdge:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _hasToolbar
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _hasMainAppearance
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _customTitleCell
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _hasBackgroundColor
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: allowsInteriorShadow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _themeBackgroundStyle
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: removeUnderTitlebarView:withAssociatedWithView:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@
+---
+	Method: _zoomButtonIsFullScreenButton
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: showsAutosaveButton
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: showsToolbarButton
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: showsLockButton
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: showsFullScreenButton
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _documentAutosavingError
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _nonModalDocumentError
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setContentRect:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _toolbarFrameSizeChanged:oldSize:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			{CGSize=dd}
+---
+	Method: _toolbarLeadingSpace
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: _setResizeWeighting:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: contentMinSize
+	ReturnType: {CGSize=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: contentMaxSize
+	ReturnType: {CGSize=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: _minXTitlebarButtonsWidth
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: _hitTestInResizeRegionShouldReturnNil
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _maxXTitlebarButtonsWidth
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: windowTitlebarLayoutDirection
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: _syncFrameMetrics
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _canMiniaturizeCheckingMask:forButtonEnabledState:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			c
+			c
+---
+	Method: _attemptToSnapWindowSizeWithEvent:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _attemptToModifyAlwaysOnTopWithEvent:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _doClientSideDraggingWithEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setMovableByBottomBar:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setBottomCornerRounded:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _cornerMask
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setDocumentButtonEnabled:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: addUnderTitlebarView:withAssociatedWithView:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@
+---
+	Method: _toolbarTrailingSpace
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: titlebarAlphaValue
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: _showToolbar:animate:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: _hideToolbar:animate:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: _hasQueuedSheets
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _validSize:forFullScreen:force:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			^{CGSize=dd}
+			c
+			c
+---
+	Method: disableSnapshotRestoration
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: enableSnapshotRestoration
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setFullScreenSavedFrameFromWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: snapshotFromRect:options:
+	ReturnType: @
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+---
+	Method: _doRestoreComingFromDock:forceActivation:wantsToBeKey:
+	ReturnType: i
+		5 Arguments:
+			@
+			:
+			c
+			c
+			c
+---
+	Method: _regularMinimizeToDock
+	ReturnType: i
+		2 Arguments:
+			@
+			:
+---
+	Method: topLeftPoint
+	ReturnType: {CGPoint=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: cascadeTopLeftFromPoint:
+	ReturnType: {CGPoint=dd}
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: _disablePosting
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _enablePosting
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setNeedsZoom:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: resizeFlags
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: toggleUsingSmallToolbarIcons:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _showingModalSheet
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _positionsToolbarInExternalWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowResolution
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: _setWindowResolution:displayIfChanged:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			d
+			c
+---
+	Method: acquireKeyAppearance
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: resignKeyAppearance
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _backingStoreResolution
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: _setBackingStoreResolution:
+	ReturnType: i
+		3 Arguments:
+			@
+			:
+			d
+---
+	Method: changeToolbarDisplayModeToNumber:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _evilHackToClearlastLeftHitInWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: changeToolbarDisplayMode:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _frameIsCurrentlyAnimating
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _findFirstKeyViewInDirection:forKeyLoopGroupingView:
+	ReturnType: @
+		4 Arguments:
+			@
+			:
+			Q
+			@
+---
+	Method: _pauseUIHeartBeatingInView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _resumeUIHeartBeatingInView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setAnyViewCanDrawConcurrently:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _removeAsSavedFirstResponder:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _viewDetaching:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _removeTouchListener:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _didEndViewScrolling
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _willBeginViewScrolling
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _resumeWindowServerLayerHosting
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _suspendWindowServerLayerHosting
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _addTouchListener:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setNeedsDisplayInRect:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _markDefaultButtonCellDirty
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _hasRegisteredForDragTypes
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _registerDragTypesLater
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _keyViewRedirectionDisabled
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setKeyViewRedirectionDisabled:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _setDisableInteraction:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _hierarchyDidChangeInView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _nsib_usesPointIntegralizationForLayout
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowValidForDrawing
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: backingType
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: _allowsCompositing
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _verifyDefaultButtonCellIfDirty
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _subtractFromNeedsDisplayRegion:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _needsDisplayForEntireRect:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _dirtyRegion
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setViewsNeedUpdateConstraints:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _refreshWindowResizeConstraintsWithSize:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: _setViewsNeedLayout:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: canStoreColor
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setKeyViewGroupBoundaryNeedsRecalc:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _hasWindowRefCreatedForCarbonControl
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowDidChangeAppearance
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setHasInvalidRestorableState:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _hasInvalidRestorableState
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _hasEverHadInvalidRestorableState
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: frameOrigin
+	ReturnType: {CGPoint=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: _nsib_setUsesPointIntegralizationForLayout:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _anyViewCanDrawConcurrently
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: allowsConcurrentViewDrawing
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _removeMouseMovedListener:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _addMouseMovedListener:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _shouldSyncSurfaceToView
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _synchronizeOverrideForActiveGestureRecognizers
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowDeviceRound
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _autoPositionMask
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: _withWindowLayoutsByScreenLayout:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@?
+---
+	Method: _withWindowLayoutsForScreen:performBlock:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@?
+---
+	Method: _isScreenLayoutAware
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _matchingWindowLayoutForScreen:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _saveWindowLayoutForScreen:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _saveWindowLayoutForScreenLayout
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _screenForWindowLayoutAdjustment
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _adjustWindowFrame:fromScreen:toScreen:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			^{CGRect={CGPoint=dd}{CGSize=dd}}
+			@
+			@
+---
+	Method: _applyWindowLayoutForScreen:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _restoreWindowLayoutsByScreenLayoutWithCoder:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _encodeWindowLayoutsByScreenLayoutWithCoder:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _isToolTipCreationAndDisplayEnabled
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setWantsToBeOnMainScreen:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _fromScreenCommonCode:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setBackingScaleFactor:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			d
+---
+	Method: _borderViewChanged
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: setDisplaysWhenScreenProfileChanges:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setPreservesContentDuringLiveResize:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _creationCallStackSymbols
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowResizeConstraints_borderViewChanged
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _commonInitFrame:styleMask:backing:defer:
+	ReturnType: v
+		6 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+			Q
+			c
+---
+	Method: _updateEventMaskDueToInit
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setOrderFrontAnimationType:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _initFromGlobalWindow:inRect:styleMask:
+	ReturnType: @
+		5 Arguments:
+			@
+			:
+			q
+			r^{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+---
+	Method: _unregisterDragTypes
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _cancelPerformSelectors
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _removeEventHandlers
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _unbindTitleIfNecessary
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setFirstResponderIvar:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _getActiveUndoManager
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _firstResponderIvar
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _changeAllAttachmentsFirstResponder
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _alwaysOnTop
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _preventsActivation
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _allowedInOtherAppsFullScreenSpaceWithCollectionBehavior:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _allowedInDashboardSpaceWithCollectionBehavior:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _canEnterTileMode
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: hasDynamicDepthLimit
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _adjustDynamicDepthLimit
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _adjustWindowResolution
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _adjustColorSpace:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _updateEventMaskDueToCommonAwake
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _registerWithDockIfNeeded
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _cornerMaskOrNil
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _backingType
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: _addToWindowsMenuIfNecessary
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _dosetTitle:andDefeatWrap:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: _setRepresentedURL:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _calcAndSetFilenameTitle
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: guessDockTitle:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _toolbarPillButtonClicked:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: lockButtonClicked:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _findOrMakeStandardWindowButton:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _needsToRemoveFieldEditor
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _overrideDefeatingConstrainFrameRect:toScreen:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			@
+---
+	Method: _setFrame:updateBorderViewSize:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+---
+	Method: _hasScaledBackground
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _scalesBackgroundHorizontally
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _scalesBackgroundVertically
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _invalidateCompositedBackground
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _checkForImplicitRemovalFromMovementGroupWhenMovingToFrame:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _cgsWindowRelativeMoveChildrenWithGroupWithDelta:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: _adjustChildWindowMovementOffsets
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: displaysWhenScreenProfileChanges
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateInheritedColorSpaceAndDisplayIfChanged:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _updateInheritedBackingScaleFactorAndDisplayIfChanged:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _postWindowDidChangeBackingPropertiesAndDisplayWindowForPreviousBackingScaleFactor:previousColorSpace:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			d
+			@
+---
+	Method: _canAdjustSizeForScreensHaveSeparateSpacesIfFillingSecondaryScreen
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _ownerOnly
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateSettingsSendingScreenChangeNotificationIfNeeded:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _setFrame:display:allowImplicitAnimation:stashSize:
+	ReturnType: v
+		6 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+			c
+			c
+---
+	Method: _adjustedOriginAroundAnchorPointForSize:
+	ReturnType: {CGPoint=dd}
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: _windowIsBeingMoved
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldIgnoreSetFrameOrigin
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _bestScreenBySpaceAssignment
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _adjustNeedsDisplayRegionForNewFrame:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _locationTemporary
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _persistFrame
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _cgsPlaceWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _setWindowResizeConstraintSize:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: _layoutViewTree
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _isEffectivelyTitled
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _hasCornerMask
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _fullScreenStatusChanged
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateCollectionBehavior
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setRegisteredBackdropViews:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _updateBackdropViewsIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _clearBackingStoreForBackdropViews
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: isFlushWindowDisabled
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _flushBackdropViews
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: shadowStyle
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: _forceInactiveShadow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: shadowParameters
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setShadowActiveState
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _viewsNeedLayout
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: viewsNeedDisplay
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _postWindowNeedsToResetDragMarginsUnlessPostingDisabled
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _lockFirstResponder
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _saveFirstResponder
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _unlockFirstResponder
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _makeParentWindowHaveFirstResponder:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _secondaryKeyMakeFirstResponder:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _realMakeFirstResponder:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _validateFirstResponder:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _drawKeyboardUILoopStartingAtResponder:validOnly:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: _drawKeyboardUIIndicationForView:debuggingIndex:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@
+---
+	Method: _shouldIncludeTitlebarAccessoryViewsInKeyViewLoop
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _performToggleToolbarShown:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: changeToolBarDisplayModeToDisplayMode:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _toolbarButtonIsClickable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _toggleToolbarConfigPanel:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setNextToolbarSizeAndDisplayMode:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setPreviousToolbarSizeAndDisplayMode:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _shouldDoClientSideDragging
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _beginWindowDragWithEvent:options:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			Q
+---
+	Method: _beginWindowDragWithEvent:options:completionHandler:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			@
+			Q
+			@?
+---
+	Method: _dragWindowRelativeToMouseDown:options:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			{CGPoint=dd}
+			Q
+---
+	Method: _isDraggable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowTransformAnimationForOrdering:animationType:interruptingAnimation:
+	ReturnType: @
+		5 Arguments:
+			@
+			:
+			q
+			q
+			@
+---
+	Method: _showDragBeginFeedback
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _tryWindowDragWithEvent:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _allowsMoving
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _startWindowDragWithEvent:animate:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: zoom:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _canEnterFullScreenOrTileMode
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _maximizeTileToFillScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: mouseConfinementRect
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: _setFrameOriginForDockMove:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: _moveChildrenByOffset:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: _bestScreenByGeometryOfFrame:respectingSpaceAssignment:
+	ReturnType: @
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+---
+	Method: _setFrameAfterMove:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _bestScreenByGeometryOfFrame:avoidingFullScreen:
+	ReturnType: @
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+---
+	Method: _updateSavedScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateSavedFrameForFullScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _displayChangedDepth
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _displayChangedSoAdjustWindows:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _displayResolutionChanged
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _colorSpaceIsInherited
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setColorSpace:sendNotification:displayIfChanged:
+	ReturnType: c
+		5 Arguments:
+			@
+			:
+			@
+			c
+			c
+---
+	Method: _displayProfileChanged
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldDockWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _attemptToShowDockWindowFeedbackWithEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _windowDockRectEdgesFromPoint:
+	ReturnType: Q
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: _updateWindowDockFeedbackAtRectEdges:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _rectEdgesForDocking
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowDockFeedbackWindow
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _attemptToDockWindowOnRectEdges:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _validSize:force:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			^{CGSize=dd}
+			c
+---
+	Method: setUnsnappedFrame:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _unsnapFrameWithEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setWindowDockFeedbackWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _makeGhostContentViewWithFrame:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _makeGhostFeedbackWindowWithFrame:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _windowDockingEventMonitor
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setWindowDockingEventMonitor:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _showDockFeedbackWindowAtRectEdges:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _makeSnappingInfo
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: unsnappedFrame
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: _attemptToUndockWindowWithEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _sendWindowWillStartDragging
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _attemptToDockWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _removeWindowDockingEventMonitor
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _unsnapCatchupAnimation
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setUnsnapCatchupAnimation:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _sendWindowDidEndDragging
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _frameFromMoveData:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _shouldSnapForEvent:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _makeCatchupAnimationWithMoveData:catchupSize:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			{CGSize=dd}
+---
+	Method: _internalHandleWindowMovedWithEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _attemptSnapFrameWithMoveData:event:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@
+---
+	Method: _windowExposed:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _hideMenu:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _handleWindowShouldCloseEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _doDockingForWindowMovementWithEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _addWindowDockingEventMonitorIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _startShowingWindowDockingFeedback
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setRectEdgesForDocking:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _hideDockFeedbackWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _cancelShowingDockWindowFeedback
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _scheduleShowingDockWindowFeedback
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _changeJustMain
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _childWindows
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _canBecomeSecondaryKeyWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _enableEnablingKeyEquivalentForDefaultButtonCell
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateEventMaskDueToBecomingKey
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: defaultButtonCell
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowWillBecomeFullScreen
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateEventMaskDueToResigningKey
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: resignMainAppearance
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateWindowsMenuItemIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _allowsActiveInputContextDuringMenuTracking
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: acquireMainAppearance
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _changeAllAttachmentsMainState
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setTransformForAnimation:anchorPoint:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			{CGAffineTransform=dddddd}
+			{CGPoint=dd}
+---
+	Method: _enumerateAnimatedGlobalWindowsUsingBlock:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@?
+---
+	Method: _orderFrontAnimationType
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: _effectiveAnimationBehaviorIfModal:
+	ReturnType: q
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _sendWindowChangedKeyStateIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _changeAllAttachmentsKeyState
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _commonPerformKeyEquivalent:conditionally:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: _processKeyboardUIKey:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setPreferredNextWindowToSelect:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setIsMinimized:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _finishClosingWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _close
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _hasSiblingSpaceWhenFullScreenPrefersModal
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _miniturizeFromFullScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _minimizeToDock
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _standardFrame
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: _generateCompositedBackground
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _compositedBackground
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateWindowCanServerSideDrag
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: setDepthLimit:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			i
+---
+	Method: _windowDepth
+	ReturnType: i
+		2 Arguments:
+			@
+			:
+---
+	Method: _resolveAutomaticEnterFullScreenFlags
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldParticipateInBatchOrdering:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _visibleAndCanBecomeKeyLimitedOK:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _preferredNextWindowToSelect
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _orderOutAndCalcKeyWithCounter:stillVisible:docWindow:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			c
+			c
+			@
+---
+	Method: _setUpFirstResponder
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _postWindowWillOrderOnScreenNotification
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _reallyNeedsWindowRef
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _installCarbonWindowEventHandlers
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _installCarbonAppDockHandlers
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _postWillOrderOffScreenNotification
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldReallyOrderWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: isRestorable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _positionWindowOnBestScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _doWindowWillBeVisibleAsSheet:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _preferredPositionForTileJoin
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: _joinActiveFullScreenSpaceUsingPosition:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _orderPanelIfActiveWithOrderingMode:otherWin:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			q
+			q
+---
+	Method: _enterAutomaticFullScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _doWindowWillBecomeHidden
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _orderOutWhenAppHiddenRelativeToWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _doWindowOrderOutWithWithKeyCalc:forCounter:orderingDone:docWindow:
+	ReturnType: v
+		6 Arguments:
+			@
+			:
+			c
+			c
+			c
+			@
+---
+	Method: _updateEventMaskDueToOrderedOut
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _doFullScreenCleanupForOrderOut
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _reallyDoOrderWindowAboveOrBelow:relativeTo:findKey:forCounter:force:isModal:
+	ReturnType: v
+		8 Arguments:
+			@
+			:
+			q
+			q
+			c
+			c
+			c
+			c
+---
+	Method: _reallyDoOrderWindowOutRelativeTo:findKey:forCounter:force:isModal:
+	ReturnType: v
+		7 Arguments:
+			@
+			:
+			q
+			c
+			c
+			c
+			c
+---
+	Method: _windowTransformAnimationDidEnd:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _shouldRemoveFromParentIfPossible
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldEnterFullScreenModeOnOrderIn
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _effectiveOrderFrontAnimationTypeIfModal:
+	ReturnType: q
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _effectiveOrderOutAnimationTypeIfModal:
+	ReturnType: q
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _removeFromParentIfPossible
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _doOrderWindowWithoutAnimation:relativeTo:findKey:forCounter:force:isModal:
+	ReturnType: v
+		8 Arguments:
+			@
+			:
+			q
+			q
+			c
+			c
+			c
+			c
+---
+	Method: _setRunningWindowTransformAnimation:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _applyWindowLevelWithTagUpdateNeeded:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _setAlwaysOnTop:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _unhideChildren
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: cacheMiniwindowTitle:guess:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: _setDocumentEdited:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _windowDidExistAtLaunch
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: timeMachineDelegate
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: __close
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _minimizeSucceeded:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _changeAllAttachmentsVisibleWithoutLogin
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _defaultCollectionBehavior
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: _implicitlyAllowsFullScreenAuxiliary
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _implicitlyDisallowTiling
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _implicitlyTileable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _allowsFullScreen
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _allowsTiling
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _cacheAndSetPropertiesForCollectionBehavior:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _validateCollectionBehavior:
+	ReturnType: Q
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _canEnterTileModeForBehavior:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: hasMainAppearance
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: dataWithEPSInsideRect:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: dataWithPDFInsideRect:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _invalidateWindowConstraintsMinMaxSizeCache
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _resolveAnySpaceMisassignmentByUpdatingManagedDisplay
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _stringWithFrame:onScreen:adjustingForToolbar:
+	ReturnType: @
+		5 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			@
+			c
+---
+	Method: _stringWithSavedFrameAdjustingForToolbar:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _convertAdjustedFrameFromDefaults:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _setFrameFromString:overrideTopLeft:preferActiveDisplay:constrainFullFrame:force:
+	ReturnType: c
+		7 Arguments:
+			@
+			:
+			@
+			r^{CGPoint=dd}
+			c
+			c
+			c
+---
+	Method: _setFrameUsingName:domain:force:
+	ReturnType: c
+		5 Arguments:
+			@
+			:
+			@
+			@
+			c
+---
+	Method: _wouldBeSufficientlyUnclippedOnSpace:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _enterFullScreenModeOnTileSpaceWithName:takeOwnership:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: _enterFullScreenModeWithTransition:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _minimizationSeed
+	ReturnType: I
+		2 Arguments:
+			@
+			:
+---
+	Method: _copyTileSpaceName
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _copyWorkspaceIdentifier
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _restorableStateRepresentedURL
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _fullScreenTileFrame
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: _shadowHiddenByDock
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _enforceFullScreenRestrictionForFrame:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _enforceMenuBarAvoidanceForFrame:onScreen:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			@
+---
+	Method: _handlingResizeInitiatedByDock
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _minFullScreenContentSizeForFrame:
+	ReturnType: {CGSize=dd}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: maxFullScreenContentSize
+	ReturnType: {CGSize=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: _tilePreferredSize
+	ReturnType: {CGSize=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: _setTileMinSize:tileMaxSize:tilePreferredSize:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			{CGSize=dd}
+			{CGSize=dd}
+			{CGSize=dd}
+---
+	Method: _defeatsOverrideOfFullScreenAvoidance
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _commonMinMaxSizeChanged
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _discardWindowResizeConstraintsAndMarkAsNeedingUpdate
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _getConstrainedWindowMinSize:maxSize:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			^{CGSize=dd}
+			^{CGSize=dd}
+---
+	Method: _doesOwnRealWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _runningDocModalOrFauxModal
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: editTitle:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _titleMightBeEditable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _userInterfaceItemIsTemporarilyDisabled:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _beginWindowBlockingModalSessionForSheet:service:completionHandler:isCritical:
+	ReturnType: v
+		6 Arguments:
+			@
+			:
+			@
+			@
+			@?
+			c
+---
+	Method: _beginSheet:completionHandler:isCritical:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			@
+			@?
+			c
+---
+	Method: _endWindowBlockingModalSession:returnCode:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
+			q
+---
+	Method: _endWindowBlockingModalSessionForShownService:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _addToGroups:ordered:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			q
+---
+	Method: _willRemoveChildWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _didAddChildWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setIsRemovingFromParentWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _didRemoveChildWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: animationForKeyPath:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: adjustLayoutForResolutionChangeToRetina:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: rebuildLayoutFromScratch
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setCGColorSpace:
+	ReturnType: i
+		3 Arguments:
+			@
+			:
+			^{CGColorSpace=}
+---
+	Method: _eventMonitorForRenaming
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _savedFirstResponderForRenaming
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _editingModeForTitle:editingRange:selectedRange:
+	ReturnType: Q
+		5 Arguments:
+			@
+			:
+			@
+			^{_NSRange=QQ}
+			^{_NSRange=QQ}
+---
+	Method: _titlebarRenamingShouldBeInWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _addTitlebarRenamingFloatingWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setSavedFirstResponderForRenaming:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setEventMonitorForRenaming:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _titleBarRenamingApplicationDidResignActive:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _windowForInlineTitleEditing
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setRemoteRenameSession:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _removeTitlebarRenamingFloatingWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _makeTitlebarRenamingFloatingWindow
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setTitlebarFloatingWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _endTitlebarRenamingPrecleanup
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _hideTitlebarFloatingWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _titlebarFloatingWindowFrame
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: _canEditTitle
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _internalEditTitleWithCompletionHandler:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@?
+---
+	Method: _bestFrameForScreenBasedOnFrame:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _bindTitleToContentViewController
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _initContent:styleMask:backing:defer:screen:contentView:
+	ReturnType: @
+		8 Arguments:
+			@
+			:
+			r^{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+			Q
+			c
+			@
+			@
+---
+	Method: _hasDarkShadow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: initWithContentRect:styleMask:backing:defer:screen:
+	ReturnType: @
+		7 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+			Q
+			c
+			@
+---
+	Method: _initFromGlobalWindow:inRect:
+	ReturnType: @
+		4 Arguments:
+			@
+			:
+			q
+			r^{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _pointRectInPixels:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _pixelRectInPoints:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _enableScreenUpdatesIfNeeded
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setOcclusionStateIsVisible:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _wantToBeModal
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _isFunctionRowWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setExcludedFromWindowsMenu:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _titleIsRepresentedFilename
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setTitleWithRepresentedFilename:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _titleFrameForEditingWithProposedFrame:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _customTitleFrame
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: addDocumentIconButton
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _globalWindowNum
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: _cachedGlobalWindowNum
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: _tryLockViewHierarchyForModification
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _tryLockViewHierarchyForModificationWithHandler:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _lockViewHierarchyForDrawing
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _canAddUnderTitlebarViews
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: insertTitlebarAccessoryViewController:atIndex:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			q
+---
+	Method: removeTitlebarAccessoryViewControllerAtIndex:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _titlebarBackdropGroupName
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _setHasActiveAppearance:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: titlebarBlurFiltersDisabled
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setTitlebarBlurFiltersDisabled:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _handleMouseDraggedEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: frameTopLeftPoint
+	ReturnType: {CGPoint=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: setContentResizeIncrements:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: contentResizeIncrements
+	ReturnType: {CGSize=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: setContentAspectRatio:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: contentAspectRatio
+	ReturnType: {CGSize=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: _hasAtLeastOneBackdropView
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: shadowOptionsForActiveAppearance:
+	ReturnType: Q
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _animationShouldCallFlushWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _disableDelayedWindowDisplay
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _enableDelayedWindowDisplay
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _delayedWindowDisplayEnabled
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: useOptimizedDrawing:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _drawKeyboardUILoopIfNeededForEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: setKeyView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _selectAnyValidResponderOverride
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _clearAnyValidResponderOverride
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: autorecalculatesKeyViewLoop
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: runToolbarConfigurationPalette:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setNextToolbarDisplayMode:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setNextToolbarSizeMode:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: setShowsLockButton:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setMouseConfinementRect:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _setAutoPositionMask:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _displayChangedWithoutAdjusting
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _internalHandleAppKitDefinedEvent:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _isResigningKeyFocusOnly
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _moveOffscreen
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _moveOnscreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _addGlobalWindowToAnimationsWithWindowNumber:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			I
+---
+	Method: _removeGlobalWindowFromAnimationsWithWindowNumber:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			I
+---
+	Method: _shake
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _sendForcedWindowChangedKeyState
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _absorbDeferredNeedsDisplayRegion
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setLastFocusRingView:bleedRegion:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@
+---
+	Method: _shouldCloseForTermination
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: isReleasedWhenClosed
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: isZoomed
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _texturePattern
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _gradientImage
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _generateScaledBackground
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _scaledBackground
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: contentSeparatorColor
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: contentInsetColor
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setShowsContentSeparator:forEdge:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			c
+			Q
+---
+	Method: _setModeDisablesServerSideDrag:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setDynamicDepthLimit:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _setWindowDepth:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			i
+---
+	Method: orderBack:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: orderFrontRegardless
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _doOrderWindow:relativeTo:findKey:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			q
+			q
+			c
+---
+	Method: _doOrderWindow:relativeTo:findKey:forCounter:force:
+	ReturnType: v
+		7 Arguments:
+			@
+			:
+			q
+			q
+			c
+			c
+			c
+---
+	Method: _windowTransformAnimationWillBegin:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setTransformDidCompleteHandler:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@?
+---
+	Method: _wantsToDestroyRealWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setWantsToDestroyRealWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _destroyRealWindowIfNotVisible:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _childLevel:
+	ReturnType: q
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: setMiniwindowImage:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: setMiniwindowTitle:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: miniwindowImage
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowCanBeRestored
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _batchClose
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _copyMinimizeDictionary
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _batchZoom
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: isOneShot
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _isTitledWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _wasModalAtSometime
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _cgsWindowSaysSupportsTiling
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _avoidsActivation
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldShowResizeCursor
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: cacheImageInRect:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: restoreCachedImage
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: discardCachedImage
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _saveFrameUsingName:domain:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@
+---
+	Method: _setFrameUsingName:domain:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			@
+			@
+---
+	Method: setFrameUsingName:force:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: _enterFullScreenModeOnTileSpaceWithName:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setFrameSavedUsingTitle:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: invalidateShadow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: canMoveToCurrentSpaceOnScreen:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: setMinFullScreenContentSize:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: setMaxFullScreenContentSize:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGSize=dd}
+---
+	Method: _setOwnsRealWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _termOneShotWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _isTerminating
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setAutofill:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: autofill
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setAutofillColor:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: autofillColor
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _effectiveAlphaValue
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: setShowsResizeIndicator:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: showsResizeIndicator
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _beginWindowBlockingModalSessionForShownService:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _beginFauxModalSession
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _endFauxModalSession
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateMovementGroup
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateFirstResponderForIgnoredChildWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: addChildWindow:ordered:shareKey:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			@
+			q
+			c
+---
+	Method: _excludedFromVisibleWindowList
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setSharingType:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: sharingType
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: setPreferredBackingLocation:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: preferredBackingLocation
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: backingLocation
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: setAllowsConcurrentViewDrawing:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _hasIncompatibleAppearanceOverride
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: appearanceSource
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: titleHidden
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setTitleHidden:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setTitleMode:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: titleMode
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: addTabbedWindow:ordered:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			q
+---
+	Method: canBeVisibleOnAllSpaces
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setCanBeVisibleOnAllSpaces:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: standardWindowTitleButtonsAlphaValue
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: setStandardWindowTitleButtonsAlphaValue:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			d
+---
+	Method: hasColorSensitiveUI
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setHasColorSensitiveUI:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: windowRefWithCompositedAttribute:andFrameworkScaledAttribute:
+	ReturnType: ^v
+		4 Arguments:
+			@
+			:
+			c
+			c
+---
+	Method: initWithWindowRef:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			^v
+---
+	Method: _cgImageScreenShot
+	ReturnType: ^{CGImage=}
+		2 Arguments:
+			@
+			:
+---
+	Method: _cgImageScreenShotIncludingShadow:clipRect:visualEffectViewWithDesktopBleedOnly:spaceID:
+	ReturnType: ^{CGImage=}
+		6 Arguments:
+			@
+			:
+			c
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+			Q
+---
+	Method: _hasDescendentThatSharesKeyStatusWithSelfAndHasKeyAppearanceIncludingSheets:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _sendAcquireKeyAppearanceChangeToResponder:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _sendResignKeyAppearanceChangeToResponder:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _sendAcquireMainAppearanceToResponder:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _draggableFrame
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: _regionForOpaqueViewsBlockingDraggableFrame:
+	ReturnType: ^{CGSRegionObject=}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _titlebarActivationRegion
+	ReturnType: ^{CGSRegionObject=}
+		2 Arguments:
+			@
+			:
+---
+	Method: _titlebarButtonsPreventingActivationRegion
+	ReturnType: ^{CGSRegionObject=}
+		2 Arguments:
+			@
+			:
+---
+	Method: _titlebarCommandModifierExclusionRegion
+	ReturnType: ^{CGSRegionObject=}
+		2 Arguments:
+			@
+			:
+---
+	Method: _acquireNextMinimizationSeed
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _prepareToMinimize
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _carbonMinimizeToDock
+	ReturnType: i
+		2 Arguments:
+			@
+			:
+---
+	Method: dockTitleIsGuess
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _sendDockFullScreenTitle:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: showDeminiaturizedWindow
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _enterFullScreenIfNeededAfterMiniturized
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _selectWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _prepareToRestoreFromDock:forceActivation:wantsToBeKey:
+	ReturnType: c
+		5 Arguments:
+			@
+			:
+			c
+			c
+			c
+---
+	Method: _prepareToRestoreRegularFromDock:forceActivation:wantsToBeKey:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			c
+			c
+			c
+---
+	Method: _cgImageInRect:options:
+	ReturnType: ^{CGImage=}
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			I
+---
+	Method: setShadowStyle:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _shadowOffsetForActiveAppearance:
+	ReturnType: {CGSize=dd}
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _setContentHasShadow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _contentHasShadow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setForceInactiveShadow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _setForceMainAppearance:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _forceMainAppearance
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _viewTreeDescription
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _dumpImage
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _cgImageScreenShotIncludingSpaceID:
+	ReturnType: ^{CGImage=}
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _hasActiveAppearanceForStandardWindowButton:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _customImageForStandardWindowButton:state:dirty:controlTint:
+	ReturnType: @
+		6 Arguments:
+			@
+			:
+			Q
+			Q
+			c
+			Q
+---
+	Method: _growBoxRect
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		2 Arguments:
+			@
+			:
+---
+	Method: _transparency
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: _dockItem
+	ReturnType: ^v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setHandlingResizeInitiatedByDock:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _setResizeEdgesManagedByDock:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _resizeEdgesManagedByDock
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setDockAllowedResizeEdges:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			Q
+---
+	Method: _dockAllowedResizeEdges
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: _setShadowHiddenByDock:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _setShouldSendResizeNotificationsToDock:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _shouldSendResizeNotificationsToDock
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _addHeartBeatClientView:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: restoreWindowOnDockDeath
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: restoreWindowOnDockReincarnation
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: updateInDock
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _createWindowsMenuEntryWithTitle:enabled:
+	ReturnType: r^{__CFDictionary=}
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: _setDefaultButtonPaused:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _defaultButtonPaused
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _installCocoaWindowEventHandlers
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowRefCreatedForCarbonApp
+	ReturnType: ^{OpaqueWindowPtr=}
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowRefCreatedForCarbonControl
+	ReturnType: ^{OpaqueWindowPtr=}
+		2 Arguments:
+			@
+			:
+---
+	Method: _setFrameworkScaleFactor:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			d
+---
+	Method: _frameworkScaleFactor
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: _setScaleFactor:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			d
+---
+	Method: _transformsDescription
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _baseTransform
+	ReturnType: {CGAffineTransform=dddddd}
+		2 Arguments:
+			@
+			:
+---
+	Method: setTimeMachineDelegate:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: setShowsAutosaveButton:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _isInactiveRevisionWindow
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setInactiveRevisionWindow:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _dropSharedFirstResponder
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _changeVisibleWithoutLogin
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _accessibilityTitleCellRemoved
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _accessibilitySetTitleCellRemoved:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _dumpLayer
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: hostsLayersInWindowServer
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: canHostLayersInWindowServer
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: setCanHostLayersInWindowServer:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _setShouldAutoFlattenLayerTree:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _switchDragRegistrationToRemoteContext:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			I
+---
+	Method: _accessibilityIsModal
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _accessibilitySheetParent
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _newAutoGeneratedSectionsWithSearchKeys:searchDepth:existingElements:
+	ReturnType: @
+		5 Arguments:
+			@
+			:
+			@
+			q
+			@
+---
+	Method: _sectionsForElement:keys:depth:allowMultiple:
+	ReturnType: @
+		6 Arguments:
+			@
+			:
+			@
+			@
+			q
+			c
+---
+	Method: _localizedDescriptionForSectionIdentifier:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _preliminaryUpdateSectionResult:element:keys:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			@
+			@
+			@
+---
+	Method: _filterDownPotentialSectionResult:keys:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@
+---
+	Method: _updateSectionSearchElements:keys:element:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			@
+			@
+			@
+---
+	Method: _largestElementInElements:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _newSectionCandidatesForSearchElements:depth:
+	ReturnType: @
+		4 Arguments:
+			@
+			:
+			@
+			q
+---
+	Method: _potentialCandidateKeyForSectionKey:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _finalUpdateSectionResult:withCandidates:element:keys:allowMultiple:
+	ReturnType: v
+		7 Arguments:
+			@
+			:
+			@
+			@
+			@
+			@
+			c
+---
+	Method: _isSearchField:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _accessibilityFrameForElement:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _closestElementToPosition:inElements:
+	ReturnType: @
+		4 Arguments:
+			@
+			:
+			{CGPoint=dd}
+			@
+---
+	Method: _accessibilityViewCorrectedForFieldEditor:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: accessibilityAddDeferredNotification:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: accessibilitySetPositionAttribute:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: accessibilityMainAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsMainAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilitySetMainAttribute:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: accessibilityMinimizedAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsMinimizedAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilitySetMinimizedAttribute:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: accessibilityCloseButtonAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsCloseButtonAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityZoomButtonAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsZoomButtonAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityMinimizeButtonAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsMinimizeButtonAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityToolbarButtonAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsToolbarButtonAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityFullScreenButtonAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsFullScreenButtonAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityFullScreenAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsFullScreenAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilitySetFullScreenAttribute:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: accessibilityProxyAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsProxyAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsGrowAreaAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityDefaultButtonAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsDefaultButtonAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityCancelButtonAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsCancelButtonAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityDocumentAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsDocumentAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityModalAttribute
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsModalAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: accessibilityIsSectionsAttributeSettable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: hasCloseBox
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: hasTitleBar
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: isMiniaturizable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: isModalPanel
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: isZoomable
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: orderedIndex
+	ReturnType: q
+		2 Arguments:
+			@
+			:
+---
+	Method: setIsMiniaturized:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setIsVisible:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setIsZoomed:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: setOrderedIndex:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: boundsAsQDRect
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setBoundsAsQDRect:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _registerDragTypes:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _beginDraggingSessionWithItems:clipRect:event:source:
+	ReturnType: @
+		6 Arguments:
+			@
+			:
+			@
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			@
+			@
+---
+	Method: _windowResizeEventHandlingRectForRect:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _setWindowDepth
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _installRootMetricsHandler
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _installCocoaWindowEventHandlersForCocoaSheetsAttachedToCarbonModalParent
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _removeCocoaWindowEventHandlersForCocoaSheetsAttachedToCarbonModalParent
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setMouseMovedEventsEnabled:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _sendEventToGestureRecognizers:requireAcceptsFirstMouse:
+	ReturnType: @
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: _reallySendEvent:isDelayedEvent:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: _keyboardUIActionForEvent:
+	ReturnType: :
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _cancelActionIfCmdDot:
+	ReturnType: :
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _shouldSnapSizeOnDoubleClick
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _hitTestWithHysteresisCheck:forEvent:allowWindowDragging:
+	ReturnType: @
+		5 Arguments:
+			@
+			:
+			{CGPoint=dd}
+			@
+			^c
+---
+	Method: view:acceptsFirstMouseEvent:initialKeyWindow:
+	ReturnType: c
+		5 Arguments:
+			@
+			:
+			@
+			@
+			@
+---
+	Method: _updateMouseMovedState
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _wantsMouseMoveEventsInBackground
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setWantsMouseMoveEventsInBackground:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _gestureRecognizersHaveDelayedEvents
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _handleMouseDownEvent:isDelayedEvent:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			c
+---
+	Method: _setIgnoresCurrentEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _eventWasFiltered:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _wasActiveBeforeCurrentEvent
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _gestureRecognizersStartingWithView:onEvent:requireAcceptsFirstMouse:
+	ReturnType: @
+		5 Arguments:
+			@
+			:
+			@
+			@
+			c
+---
+	Method: _removeActiveGestureRecognizer:withEvent:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			@
+---
+	Method: _gatheringActiveGestureRecognizers
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _beginATUWindowDragForGreenButtonPressAtLocation:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGPoint=dd}
+---
+	Method: _firstResponderCanBeWeak
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _contentsHaveInvalidRestorableState
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _setContentsHaveInvalidRestorableState:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			c
+---
+	Method: _shouldRecordPersistentState
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _isSnapshotRestorationEnabled
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _invalidateRestorableStateOfContents
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _persistentUIWindow
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _markAsEverHavingInvalidRestorableState
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _persistentUIIdentifier
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _copyPersistentUIChildren
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _fromConstraintsSetWindowFrame:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: exerciseAmbiguityInLayout
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _frameForVisualizedConstraintsWindow:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _visualizedConstraintsView
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateConstraintVisualization
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _teardownVisualizedConstraintsView
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: visualizeConstraints:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: accessibilitySendDeferredNotifications
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: setRemoteUIElement:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _resizableEdgesForGrowing:shrinking:
+	ReturnType: Q
+		4 Arguments:
+			@
+			:
+			^Q
+			^Q
+---
+	Method: _getEdgeResizingRects:allowedEdges:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			^{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+---
+	Method: _getConstrainedWindowMinSize:maxSize:changingOnlySlightly:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			^{CGSize=dd}
+			^{CGSize=dd}
+			c
+---
+	Method: _getExteriorResizeEdgeThicknesses:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			[8d]
+---
+	Method: _snapWindowSizeInDirection:withEvent:
+	ReturnType: c
+		4 Arguments:
+			@
+			:
+			q
+			@
+---
+	Method: _frame:resizedFromEdge:withDelta:withEvent:withState:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		7 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+			{CGSize=dd}
+			@
+			^{?=c{CGRect={CGPoint=dd}{CGSize=dd}}{CGRect={CGPoint=dd}{CGSize=dd}}{CGSize=dd}{CGPoint=dd}QcQ[64{CGRect={CGPoint=dd}{CGSize=dd}}][64{CGRect={CGPoint=dd}{CGSize=dd}}]dddd^{CGRect}Q@cQQQ}
+---
+	Method: _resizeSetFrame:withEvent:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			@
+---
+	Method: _stopSnappingToFrameTimer
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _resizingShouldSnapToWindows
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _opaqueAspectDimensionForDimension:isHorizontal:
+	ReturnType: d
+		4 Arguments:
+			@
+			:
+			d
+			c
+---
+	Method: _commonValidFrameForResizeFrame:fromResizeEdge:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+---
+	Method: _allowsSizeSnapping
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _doScreenSizeSnappingFromResizedEdge:frame:state:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		5 Arguments:
+			@
+			:
+			Q
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			^{?=c{CGRect={CGPoint=dd}{CGSize=dd}}{CGRect={CGPoint=dd}{CGSize=dd}}{CGSize=dd}{CGPoint=dd}QcQ[64{CGRect={CGPoint=dd}{CGSize=dd}}][64{CGRect={CGPoint=dd}{CGSize=dd}}]dddd^{CGRect}Q@cQQQ}
+---
+	Method: _sizeSnappedFrameForOppositeEdge:frame:state:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		5 Arguments:
+			@
+			:
+			Q
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			^{?=c{CGRect={CGPoint=dd}{CGSize=dd}}{CGRect={CGPoint=dd}{CGSize=dd}}{CGSize=dd}{CGPoint=dd}QcQ[64{CGRect={CGPoint=dd}{CGSize=dd}}][64{CGRect={CGPoint=dd}{CGSize=dd}}]dddd^{CGRect}Q@cQQQ}
+---
+	Method: _startSnappingToFrameTimerAfterDelay:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			d
+---
+	Method: _unsnapSizeFromFrame:fromEdge:state:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		5 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			Q
+			^{?=c{CGRect={CGPoint=dd}{CGSize=dd}}{CGRect={CGPoint=dd}{CGSize=dd}}{CGSize=dd}{CGPoint=dd}QcQ[64{CGRect={CGPoint=dd}{CGSize=dd}}][64{CGRect={CGPoint=dd}{CGSize=dd}}]dddd^{CGRect}Q@cQQQ}
+---
+	Method: _doSnapToFrame
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _setFrameHeightDelta:resizingFromTop:frame:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			d
+			c
+			^{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _setFrameWidthDelta:resizingFromRight:frame:
+	ReturnType: v
+		5 Arguments:
+			@
+			:
+			d
+			c
+			^{CGRect={CGPoint=dd}{CGSize=dd}}
+---
+	Method: _snapWindowSizeWithFrame:resizeDirection:state:
+	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
+		5 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			q
+			^{?=c{CGRect={CGPoint=dd}{CGSize=dd}}{CGRect={CGPoint=dd}{CGSize=dd}}{CGSize=dd}{CGPoint=dd}QcQ[64{CGRect={CGPoint=dd}{CGSize=dd}}][64{CGRect={CGPoint=dd}{CGSize=dd}}]dddd^{CGRect}Q@cQQQ}
+---
+	Method: _snapSizeToFrame:withEvent:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			@
+---
+	Method: _provideActuationFeedbackWithEvent:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setLiveResizedFrame:animated:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			c
+---
+	Method: _scrollViewIntersectsSoutheastGrowCorner:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: liveResizeEdges
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: _isConsideredSheetForResizing
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldDoScreenSizeSnappingFromResizedEdge:frame:state:
+	ReturnType: c
+		5 Arguments:
+			@
+			:
+			Q
+			{CGRect={CGPoint=dd}{CGSize=dd}}
+			^{?=c{CGRect={CGPoint=dd}{CGSize=dd}}{CGRect={CGPoint=dd}{CGSize=dd}}{CGSize=dd}{CGPoint=dd}QcQ[64{CGRect={CGPoint=dd}{CGSize=dd}}][64{CGRect={CGPoint=dd}{CGSize=dd}}]dddd^{CGRect}Q@cQQQ}
+---
+	Method: _shouldSnapSizeWhenResizing
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _autolayoutEngagedSomewhereInWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _windowResizeConstraints
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _layout_primitiveAnchorInfo
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _layout_defaultAnchorInfo
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _layout_anchorInfo
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _layout_setPrimitiveAnchorInfo:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _setWindowResizeConstraints:
+	ReturnType: v
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _fromConstraintsCalculateWindowMinSize:maxSize:allowDynamicLayout:changingOnlySlightly:
+	ReturnType: v
+		6 Arguments:
+			@
+			:
+			^{CGSize=dd}
+			^{CGSize=dd}
+			c
+			c
+---
+	Method: anchorItemForOrientation:
+	ReturnType: @
+		3 Arguments:
+			@
+			:
+			q
+---
+	Method: _layout_anchorPoint
+	ReturnType: {CGPoint=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: _layout_anchorPointInEngine
+	ReturnType: {CGPoint=dd}
+		2 Arguments:
+			@
+			:
+---
+	Method: _nsib_candidateRedundantConstraints
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _changeWindowFrameFromConstraintsIfNecessary
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _updateConstraintsForEngineHostingViews:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _layoutEngineIfAvailable
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _layoutEngineEngaging
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: setAnchorItem:forOrientation:
+	ReturnType: v
+		4 Arguments:
+			@
+			:
+			@
+			q
+---
+	Method: _redundantConstraints
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _tileSpaceID
+	ReturnType: Q
+		2 Arguments:
+			@
+			:
+---
+	Method: _allowsLinearMaskOverlayForView:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---
+	Method: _cleanupToolbarFromFullScreen
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _fullScreenTitlebarMinHeight
+	ReturnType: d
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldOpenInFullScreen
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _willBeInFullScreenSpace
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _someFullScreenInstanceHasSuppressedImplicitFullScreen
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _reacquireToolbarViewFromFullScreenWindow
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _fullScreenPreferredJoinRatioDefaultsKey
+	ReturnType: @
+		2 Arguments:
+			@
+			:
+---
+	Method: _doUpdateTilingConstraintsImmediately
+	ReturnType: v
+		2 Arguments:
+			@
+			:
+---
+	Method: _needsTilingConstraintUpdate
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _canJoinActiveFullScreenSpace
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _explicitlyAllowsFullScreenPrimary
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _shouldJoinActiveSpaceOnOrderIn
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _explicitlyAllowsFullScreenAuxiliary
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _isInFullScreenSpace
+	ReturnType: c
+		2 Arguments:
+			@
+			:
+---
+	Method: _canQuitQuietlyAndSafelyWithOptionalExplanation:
+	ReturnType: c
+		3 Arguments:
+			@
+			:
+			@
+---

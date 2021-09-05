@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(Win32) Launch Debug",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/win32/build_debug/shimmer_win32_c_ocoa.exe",
+            "args": ["--test", "NSApplication.dump.txt" ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/win32/build_release/",
+            "environment": [],
+        },
+        {
+            "name": "(Win32) Launch Release",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/win32/build_debug/shimmer_win32_c_ocoa.exe",
+            "args": ["--test", "NSApplication.dump.txt" ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/win32/build_debug/",
+            "environment": [],
+        },
+    ]
+}
