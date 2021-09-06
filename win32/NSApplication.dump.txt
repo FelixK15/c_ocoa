@@ -1,4267 +1,633 @@
 Info dump of class NSApplication:
-	Method: init
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: pushRegistrationDidRegisterWithDeviceToken:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: pushRegistrationDidFailToRegister:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: pushRegistrationDidReceiveRemotePush:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: .cxx_destruct
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: delegate
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: setDelegate:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: conformsToProtocol:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _disableSuddenTermination
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: setWindowsNeedUpdate:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _enableSuddenTermination
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _setLaunchTaskMaskBits:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: _appleEventActivationInProgress
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: isActive
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _afterBatchOrderingFinishesDo:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@?
----
-	Method: _setAppleEventActivationInProgress:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _isFinishLaunchingFromEventHandlersSuppressed
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _sendFinishLaunchingNotification
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _doHide
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _doUnhideWithoutActivation
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: nextEventMatchingMask:untilDate:inMode:dequeue:
-	ReturnType: @
-		6 Arguments:
-			@
-			:
-			Q
-			@
-			@
-			c
----
-	Method: postEvent:atStart:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			c
----
-	Method: contextID
-	ReturnType: I
-		2 Arguments:
-			@
-			:
----
-	Method: dealloc
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: effectiveAppearance
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: initWithCoder:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: encodeWithCoder:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: windowWithWindowNumber:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: _keyWindow
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: observeValueForKeyPath:ofObject:change:context:
-	ReturnType: v
-		6 Arguments:
-			@
-			:
-			@
-			@
-			@
-			^v
----
-	Method: userInterfaceLayoutDirection
-	ReturnType: q
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilitySetMayContainProtectedContent:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: accessibilityFocusedUIElement
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityHitTest:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			{CGPoint=dd}
----
-	Method: accessibilityFrame
-	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityIsIgnored
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _accessibilityValueForAttribute:clientError:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			^i
----
-	Method: accessibilityAttributeValue:forParameter:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: _accessibilityUIElementSpecifier
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityAttributeNames
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityAttributeValue:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: mainMenu
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityMayContainProtectedContent
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityActionDescription:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _setCurrentEvent:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: context
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: canEnterFullScreenMode
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: targetForAction:to:from:
-	ReturnType: @
-		5 Arguments:
-			@
-			:
-			:
-			@
-			@
----
-	Method: mainWindow
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: presentationOptions
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: windows
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: enumerateWindowsWithOptions:usingBlock:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			q
-			@?
----
-	Method: validateMenuItem:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: validateUserInterfaceItem:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: windowsMenu
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _findMenuItemWithSelector:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			:
----
-	Method: menu
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: keyWindow
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: closeAll:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: supplementalTargetForAction:sender:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			:
-			@
----
-	Method: run
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityShouldUseUniqueId
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityRoleAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityIsRoleAttributeSettable
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityRoleDescriptionAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityIsRoleDescriptionAttributeSettable
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityIsAttributeSettable:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: accessibilitySetValue:forAttribute:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: accessibilityActionNames
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityPerformAction:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: accessibilityParent
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: setAccessibilityMainThreadIdleNotificationEnabled:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: setAccessibilityEventProcessedNotificationEnabled:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _accessibilityUIElementSpecifierRegisterIfNeeded:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: currentEvent
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: setValue:forKey:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: accessibilityChildrenAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: exitFullScreenMode:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: disableCursorRects
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: enableCursorRects
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: runModalForWindow:
-	ReturnType: q
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: endSheet:returnCode:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			q
----
-	Method: stopModalWithCode:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: speakString:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: touchBar
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: isHidden
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _scheduleWindow:forBatchOrdering:relativeTo:
-	ReturnType: v
-		5 Arguments:
-			@
-			:
-			q
-			q
-			q
----
-	Method: _terminateOnMemoryPressure:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _emitApplicationLaunchExtendedSignpostsAppIsOptedIn:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _setNeedsUpdateToReflectAutomaticTerminationState
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _appHasOpenNSWindowOrPanel
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _setShouldRestoreStateOnNextLaunch:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: terminate:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _canAutoQuitQuietlyAndSafelyWithOptionalExplanation:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: hide:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _makeSureAutomaticTerminationIsNotInterferingWithLanguagePrefs:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _setSpacesSwitchOnActivation
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _setDoubleClickBehavior
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _disableRelaunchOnLoginIfNotLaunchedByLaunchServicesOrBlacklisted
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _registerForAppearanceNotifications
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _accessibilityStatusChanged:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _eventBlockingTransitionWillBegin
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _eventBlockingTransitionDidEnd
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _dockBehaviorChanged:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _reactToChangeInQuitAlwaysKeepsWindows:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _spacesSwitchOnActivationChanged:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _registerWithDock
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _isActiveApp
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: setIsActive:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _setIsHidden:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _startPrefetchingUbiquityContainerURL
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _registerForDisplayChangedNotifications
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _cancelAllUserAttentionRequests
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: setApplicationIconImage:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _removeSystemUIModeHandler
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _startBatchWindowAccumulation:
-	ReturnType: i
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: _performBatchWindowOrdering:release:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			i
-			c
----
-	Method: _deallocHardCore:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: validRequestorForSendType:returnType:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: _isRunningAppModal
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _isFakeHidden
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _setFakeHidden:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _makeHODWindowsPerform:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			:
----
-	Method: _doHideMaybeFakingIt:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _doUnhideWithoutActivationMaybeFakingIt:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _switchToSpaceIfNeeded
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: activationPolicy
-	ReturnType: q
-		2 Arguments:
-			@
-			:
----
-	Method: _copyBatchWindowOrderingPerformerForToken:release:
-	ReturnType: @?
-		4 Arguments:
-			@
-			:
-			i
-			c
----
-	Method: activateIgnoringOtherApps:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: unhideWithoutActivation
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _shouldRestoreWithFullFidelity
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _orderWindowsAndSwitchToSpaceIfNeeded
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _pendingActivationOriginatingDisplayHint
-	ReturnType: i
-		2 Arguments:
-			@
-			:
----
-	Method: _bestKeyWindowCandidateOnScreen:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _setKeyWindow:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _setMainWindow:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _bestMainWindowCandidateOnScreen:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _mainWindow
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _findWindowUsingCache:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: _findWindowUsingContextID:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: _setPreviousKeyWindow:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _doOpenFile:ok:tryTemp:
-	ReturnType: v
-		5 Arguments:
-			@
-			:
-			@
-			^q
-			c
----
-	Method: _appCentricOpenPanel
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _findKeyWindowConsideringSpacesWithOriginatingDisplayHint:isAppleEventPending:makeKey:
-	ReturnType: c
-		5 Arguments:
-			@
-			:
-			i
-			c
-			c
----
-	Method: currentSystemPresentationOptions
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: updateWindows
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: makeWindowsPerform:inOrder:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			:
-			c
----
-	Method: _launchTaskMask
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: modalWindow
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _reopenWindowsIfNecessaryWithAppleEvent:completionHandler:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			@?
----
-	Method: _postDidFinishNotification
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _emitApplicationLaunchSignpost
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _enableAutomaticTerminationIfWhitelisted
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _initializeAutomaticTermination
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _registerRequiredAEHandlers
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _shouldDelayDocumentReopeningUntilAfterFinishLaunching
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _delayReopening
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _continueReopening
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _customizeMainMenu
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _handleAEPrintDocumentsForURLs:withSettings:showPrintPanels:
-	ReturnType: s
-		5 Arguments:
-			@
-			:
-			@
-			@
-			c
----
-	Method: finishLaunching
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _checkForAutomaticTerminationSupportPossiblyEnablingIt
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _installMemoryStatusDispatchSources
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _installMemoryPressureDispatchSources
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: sendEvent:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: unhide
-	ReturnType: q
-		2 Arguments:
-			@
-			:
----
-	Method: _modalSession:sendEvent:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
-			@
----
-	Method: beginModalSessionForWindow:
-	ReturnType: ^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _doModalLoop:peek:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
-			c
----
-	Method: endModalSession:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
----
-	Method: beginModalSessionForWindow:relativeToWindow:
-	ReturnType: ^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: _commonBeginModalSessionForWindow:relativeToWindow:modalDelegate:didEndSelector:contextInfo:
-	ReturnType: ^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
-		7 Arguments:
-			@
-			:
-			@
-			@
-			@
-			:
-			^v
----
-	Method: _hiddenOnLaunch
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _wantsToActivate
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _orderFrontModalWindow:relativeToWindow:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: requestUserAttention:
-	ReturnType: q
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: _setMouseActivationInProgress:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _makeModalWindowsPerform:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			:
----
-	Method: _isModalUsingCache:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _hasActiveRequest
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _cancelRequest:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: cancelUserAttentionRequest:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: _isRunningDocModal
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _docController:shouldTerminate:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			c
----
-	Method: _setWaitingForTerminationReply:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _setWantsToActivate:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: replyToApplicationShouldTerminate:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _hiddenWindows
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: shouldRestoreStateOnNextLaunch
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _flushPersistentState
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _reopenPersistentState
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: encodeRestorableStateWithCoder:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _persistenceOrderedWindowNumbers
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: restoreStateWithCoder:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _persistentUIWindowID
-	ReturnType: I
-		2 Arguments:
-			@
-			:
----
-	Method: _createDockMenu:
-	ReturnType: ^{__CFArray=}
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _setDockMenuForPersistentState:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _applicationBundle
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _terminateFromSender:askIfShouldTerminate:saveWindows:
-	ReturnType: v
-		5 Arguments:
-			@
-			:
-			@
-			c
-			c
----
-	Method: _unsetShouldRestoreStateOnNextLaunch
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _quitMenuItemShouldKeepWindows:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _pushPersistentStateTerminationGeneration
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _shouldTerminate
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _popPersistentStateTerminationGeneration
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _unregisterForAppearanceNotifications
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _hasKeyFocus
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _findWindowWithOptions:passingTest:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			q
-			@?
----
-	Method: _spacesSwitchOnActivation
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _updateFullScreenPresentationOptionsForInstance:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _setPresentationOptions:instance:flags:
-	ReturnType: v
-		5 Arguments:
-			@
-			:
-			Q
-			@
-			Q
----
-	Method: _isDying
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _updateActiveWindowForSpaceChange
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _updateFullScreenPresentationOptions
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: activeSpaceChanged:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _requestSpaceChangedNotification
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _activeDisplayChanged:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _setAmbientOriginatingDisplayHint:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			i
----
-	Method: _isDeactPending
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _declineSpaceChangedNotification
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _shouldClearModalWindowLevelWhenInactive
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _clearModalWindowLevels
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: quickLookPreviewItems:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _resignKeyFocus
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _getLockedWindowListForCycle
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _unlockWindowListForCycle
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: dockTile
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _setApplicationIconImage:setDockImage:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			c
----
-	Method: _iconImage
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _copyWindows
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _updateWindowsUsingCache
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _isAlternateQuitMenuItem:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: setMainMenu:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _addFeedbackMenuItemIfNeeded
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _sendDockMenuCommand:withTag:modifierFlags:originatingDisplay:
-	ReturnType: i
-		6 Arguments:
-			@
-			:
-			I
-			Q
-			Q
-			i
----
-	Method: _sendDockMenuCommand:withTag:modifierFlags:
-	ReturnType: i
-		5 Arguments:
-			@
-			:
-			I
-			Q
-			Q
----
-	Method: _flattenMenu:flatList:
-	ReturnType: ^{__CFArray=}
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: _flattenMenuItem:flatList:
-	ReturnType: ^{__CFDictionary=}
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: _addWindowsMenu:enabled:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			^{__CFArray=}
-			c
----
-	Method: _previousKeyWindow
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _indexOfWindow:
-	ReturnType: q
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _removeWindowFromCache:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleActivatedEvent:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleReactivateEvent:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleDeactivateEvent:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleActivateDeferredEvent:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _setCursorForCurrentMouseLocation
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _mouseActivationInProgress
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _obtainKeyFocus
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _crashOnException:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _exceptionListeners
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _canShowExceptions
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _showException:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: stopSpeaking:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: isSpeaking
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: runPageLayout:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _isNSDocumentBased
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: startDictation:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: stopDictation:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: arrangeInFront:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: alternateArrangeInFront:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _appHasVisibleWindowOrPanel
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: miniaturizeAll:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _anyOfMyWindowsAreOnAVisibleNonFullScreenSpace
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: zoomAll:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: unhideAllApplications:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: hideOtherApplications:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: toggleTouchBarCustomizationPalette:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: toggleTouchBarControlStripCustomizationPalette:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _validateTouchBarCustomizationPaletteItem:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: orderFrontColorPanel:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: showGuessPanel:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _kitBundle
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: doCommandBySelector:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			:
----
-	Method: _setPresentationOptions:flags:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			Q
-			Q
----
-	Method: _reactToPresentationChanged
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: enterFullScreenMode:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _doCopyMemoryPressureArrayOnWriteIfNecessary
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _callMemoryPressureHandlers
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _fakeMemoryPressureHandler:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _inInstallEnvironment
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: markAppLaunchComplete
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _cleanUpForCarbonAppTermination
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _installAutoreleasePoolsOnCurrentThreadIfNecessary
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _updateButtonsForSystemUIModeChanged
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _applicationLaunchIsPastSplashScreens
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _freezeAutomaticTerminationState
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _unfreezeAutomaticTerminationState
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _forceAutoQuit:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: occlusionState
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: _setEventDelegate:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _eventDelegate
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _addHiddenWindow:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _removeHiddenWindow:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _doFakeUnhide
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _unscheduleWindowForBatchOrdering:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: _lowestWindowOfAtLeastNormalWindowLevelAfterScheduledBatchOrdering
-	ReturnType: q
-		2 Arguments:
-			@
-			:
----
-	Method: unhide:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _batchOrdering
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _windowNumber:changedTo:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			q
-			q
----
-	Method: _windowWithContextID:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: _isDoingOpenFile
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: openFile:ok:
-	ReturnType: q
-		4 Arguments:
-			@
-			:
-			@
-			^q
----
-	Method: openTempFile:ok:
-	ReturnType: q
-		4 Arguments:
-			@
-			:
-			@
-			^q
----
-	Method: _openFileWithoutUI:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: replyToOpenOrPrint:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: _hasOpenMenuItem
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _doOpenUntitled
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _isDoingUnhide
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _isDoingHide
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _isRunningModal
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: isRunning
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: deactivate
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _ambientOriginatingDisplayHint
-	ReturnType: i
-		2 Arguments:
-			@
-			:
----
-	Method: _handlingAmbientDisplayHintDockMenuCommand
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _withAmbientOriginatingDisplayHint:perform:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			i
-			@?
----
-	Method: _setPendingActivationOriginatingDisplayHint:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			i
----
-	Method: _adjustKeyWindowFromOriginatingDisplayHint:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			i
----
-	Method: _deactivateWindows
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _activateWindows
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _suppressFinishLaunchingFromEventHandlersWhilePerformingBlock:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@?
----
-	Method: _replyToLaunch
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _replyToOpen:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: _didNSOpenOrPrint
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _startRunMethod
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _endRunMethod
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _preEventHandling
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _postEventHandling
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _wantsDeviceDependentEventModifierFlags
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: runModalForWindow:relativeToWindow:
-	ReturnType: q
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: beginSheet:modalForWindow:modalDelegate:didEndSelector:contextInfo:
-	ReturnType: v
-		7 Arguments:
-			@
-			:
-			@
-			@
-			@
-			:
-			^v
----
-	Method: stop:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: stopModal
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: endSheet:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: abortModal
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: runModalSession:
-	ReturnType: q
-		3 Arguments:
-			@
-			:
-			^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
----
-	Method: _setAppCentricOpenPanel:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _waitingForTerminationReply
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _persistentStateTerminationGeneration
-	ReturnType: I
-		2 Arguments:
-			@
-			:
----
-	Method: _copyPublicPersistentUIInfo
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _expectingAppDeath
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: delayWindowOrdering
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: preventWindowOrdering
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: onFirstEvent
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: rightMouseDown:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _sendScreenNotificationWhenDockSizeChanges
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: event:wouldActivateWindow:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: quickLookPreviewItemsAtWindowLocation:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			{CGPoint=dd}
----
-	Method: _setHasKeyFocus:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _stealKeyFocusWithOptions:
-	ReturnType: i
-		3 Arguments:
-			@
-			:
-			I
----
-	Method: _releaseKeyFocus
-	ReturnType: i
-		2 Arguments:
-			@
-			:
----
-	Method: _setAllPanelsNonactivating:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _areAllPanelsNonactivating
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: frontWindow
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _enumerateOnScreenWindowsUsingBlock:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@?
----
-	Method: _makeWindowsPerform:forEvent:inWindow:standardWindowButton:
-	ReturnType: v
-		6 Arguments:
-			@
-			:
-			:
-			@
-			@
-			Q
----
-	Method: _cycleWindowsReversed:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _cycleUtilityWindowsReversed:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _dockDied
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _iconImageIfSet
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: applicationIconImage
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _dockRestarted
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _appIcon
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: setActivationPolicy:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: _addUpdaterForDocumentMenuItem:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _setMainMenu:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: setMenu:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: setHelpMenu:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: helpMenu
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: setDockMenu:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _flattenMenuItem:
-	ReturnType: ^{__CFDictionary=}
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _flattenMenu:
-	ReturnType: ^{__CFArray=}
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _setWindowMoveDisabled:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _windowMoveDisabled
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _removeWindow:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _addWindow:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _addOpenWindow:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _removeOpenWindow:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _openWindows
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _handleAppKitDefinedEvent:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleHotKeyPressed:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleHotKeyRelease:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleKeyFocusNotification:withEvent:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			q
-			@
----
-	Method: _currentActivation
-	ReturnType: q
-		2 Arguments:
-			@
-			:
----
-	Method: _setCurrentActivation:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: _pendingActCount
-	ReturnType: q
-		2 Arguments:
-			@
-			:
----
-	Method: _registerExceptionListener:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _unregisterExceptionListener:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: reportException:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: speechSynthesizer:didFinishSpeaking:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			c
----
-	Method: _whenReopeningIsAllowedDo:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@?
----
-	Method: _reopenWindowsAsNecessaryIncludingRestorableState:completionHandler:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			c
-			@?
----
-	Method: orderFrontCharacterPalette:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: isFullKeyboardAccessEnabled
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _processSwitchesEnabled
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: setPresentationOptions:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: setCanEnterFullScreenMode:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: abortAllToolTips
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: addMemoryPressureMonitorUsingHandler:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@?
----
-	Method: removeMemoryPressureMonitor:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: addIdleMonitorUsingHandler:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@?
----
-	Method: removeIdleMonitor:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: memoryStatus
-	ReturnType: q
-		2 Arguments:
-			@
-			:
----
-	Method: _shouldLoadMainNibNamed:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _modalSessionForWindow:
-	ReturnType: ^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _windowForModalSession:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
----
-	Method: _previousModalSession:
-	ReturnType: ^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
-		3 Arguments:
-			@
-			:
-			^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
----
-	Method: presentError:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: willPresentError:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _validateError:forPresentationMethod:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			:
----
-	Method: _something:wasPresentedWithResult:soContinue:
-	ReturnType: v
-		5 Arguments:
-			@
-			:
-			@
-			q
-			@?
----
-	Method: presentError:modalForWindow:delegate:didPresentSelector:contextInfo:
-	ReturnType: v
-		7 Arguments:
-			@
-			:
-			@
-			@
-			@
-			:
-			^v
----
-	Method: _observeValueForSystemAppearanceKeyPath:ofObject:change:
-	ReturnType: v
-		5 Arguments:
-			@
-			:
-			@
-			@
-			@
----
-	Method: disableAutomaticTermination
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: enableAutomaticTermination
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _tryTransformingToBackgroundTypeForAutoQuit
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: registerForRemoteNotificationTypes:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: registerForRemoteNotifications
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: unregisterForRemoteNotifications
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: isRegisteredForRemoteNotifications
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: enabledRemoteNotificationTypes
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: _userNotificationCenter:willActivateForNotification:additionalUserInfo:
-	ReturnType: @
-		5 Arguments:
-			@
-			:
-			@
-			@
-			@
----
-	Method: _userNotificationCenter:didActivateWithToken:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: _asynchronouslyPrefetchUbiqityContainerURL
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _ubiquityIdentityDidChange:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _addTextInputMenuItems:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _customizeFileMenuIfNeeded
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _addFullScreenMenuItemIfNeeded
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _addDebugMenuIfNeeded
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _customizeImportFromDeviceMenuItem
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _findMenuItemMatchingPredicate:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@?
----
-	Method: _bestAppearanceCustomizationTargetForAction:to:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			:
-			@
----
-	Method: _appHasNonMiniaturizedWindow
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: disableRelaunchOnLogin
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: enableRelaunchOnLogin
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: importFromDevice:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: accessibilityExtrasMenuBarAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityMenuBarAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityWindowsAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityFunctionRowTopLevelElementsAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityFocusedWindowAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _accessibilityPopovers
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _accessibilityViewBridgeHitTest:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			{CGPoint=dd}
----
-	Method: accessibilityWorkaroundAddExtraWindow:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: accessibilityWorkaroundRemoveExtraWindow:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: accessibilityTitleAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityIsTitleAttributeSettable
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityIsMenuBarAttributeSettable
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityIsWindowsAttributeSettable
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityChildrenInNavigationOrderAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityIsChildrenAttributeSettable
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityFrontmostAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityIsFrontmostAttributeSettable
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilitySetFrontmostAttribute:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: accessibilityHiddenAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityIsHiddenAttributeSettable
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilitySetHiddenAttribute:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: accessibilityMainWindowAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityIsMainWindowAttributeSettable
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityIsFocusedWindowAttributeSettable
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityFocusedUIElementAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityIsFocusedUIElementAttributeSettable
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityEnhancedUserInterfaceAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityIsEnhancedUserInterfaceAttributeSettable
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilitySetEnhancedUserInterfaceAttribute:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: accessibilityAuditIssuesAttribute
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: accessibilityHitTest
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _accessibilityCompatibilityHitTest:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			{CGPoint=dd}
----
-	Method: _accessibilityEventReceived:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _accessibilityEventProcessed:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: isAccessibilityMainThreadIdleNotificationSupported
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: isAccessibilityMainThreadIdleNotificationEnabled
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: isAccessibilityEventProcessedNotificationSupported
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: isAccessibilityEventProcessedNotificationEnabled
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _orderedWindowsWithPanels:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _delegate:handlesKey:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: copyScriptingValue:forKey:withProperties:
-	ReturnType: @
-		5 Arguments:
-			@
-			:
-			@
-			@
-			@
----
-	Method: newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:
-	ReturnType: @
-		6 Arguments:
-			@
-			:
-			#
-			@
-			@
-			@
----
-	Method: valueForKey:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: orderedDocuments
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: orderedWindows
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: valueAtIndex:inPropertyWithKey:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			Q
-			@
----
-	Method: valueWithName:inPropertyWithKey:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: valueWithUniqueID:inPropertyWithKey:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: insertValue:atIndex:inPropertyWithKey:
-	ReturnType: v
-		5 Arguments:
-			@
-			:
-			@
-			Q
-			@
----
-	Method: insertValue:inPropertyWithKey:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: removeValueAtIndex:fromPropertyWithKey:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			Q
-			@
----
-	Method: replaceValueAtIndex:inPropertyWithKey:withValue:
-	ReturnType: v
-		5 Arguments:
-			@
-			:
-			Q
-			@
-			@
----
-	Method: _supportsGetValueWithNameForKey:perhapsByOverridingClass:
-	ReturnType: q
-		4 Arguments:
-			@
-			:
-			@
-			#
----
-	Method: _supportsGetValueWithUniqueIDForKey:perhapsByOverridingClass:
-	ReturnType: q
-		4 Arguments:
-			@
-			:
-			@
-			#
----
-	Method: _handleAEOpenDocumentsForURLs:
-	ReturnType: s
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleAEQuit
-	ReturnType: s
-		2 Arguments:
-			@
-			:
----
-	Method: valueInOrderedWindowsWithUniqueID:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: _scriptingCount
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: handleOpenScriptCommand:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: handlePrintScriptCommand:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: handleQuitScriptCommand:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _requiresOpeningUntitledWindowAtLaunch
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _appHasOpenNSWindow
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _extractOriginatingDisplayHintFromAppleEvent:
-	ReturnType: i
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _restoreMiniaturizedWindow
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _supportsOpenURLs
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _forAEOpenDocumentsEvent:populateReplyEvent:withURLs:documents:
-	ReturnType: v
-		6 Arguments:
-			@
-			:
-			@
-			@
-			@
-			@
----
-	Method: _openURLs:withCompletionHandler:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			@?
----
-	Method: _resumeAppleEventWithSuspensionIDValue:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleSelfTestEvent:
-	ReturnType: i
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleAEOpenEvent:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleAEReopen:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleAEOpenContentsEvent:withReplyEvent:
-	ReturnType: s
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: _handleAEContinueUserActivityEvent:
-	ReturnType: s
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleAECloudKitShareInvitationEvent:
-	ReturnType: s
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleAEGetURLEvent:
-	ReturnType: s
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleCoreEvent:withReplyEvent:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: _handleTestEvent:withReplyEvent:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: _doModalLoopForCarbonWindow:peek:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
-			c
----
-	Method: runModalForCarbonWindow:
-	ReturnType: q
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: setAppearance:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _invalidateWindowListForCycleIfNeededForWindow:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _effectiveAppearanceParent
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: sendAction:to:from:
-	ReturnType: c
-		5 Arguments:
-			@
-			:
-			:
-			@
-			@
----
-	Method: appearance
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: areCursorRectsEnabled
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _setVisibleInCache:forWindow:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			c
-			@
----
-	Method: addWindowsItem:title:filename:
-	ReturnType: v
-		5 Arguments:
-			@
-			:
-			@
-			@
-			c
----
-	Method: restoreWindowWithIdentifier:state:completionHandler:
-	ReturnType: c
-		5 Arguments:
-			@
-			:
-			@
-			@
-			@?
----
-	Method: orderFrontPreferencesPanel:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: shouldBeTreatedAsInkEvent:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _restoreCursor
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _cursorRectCursor
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _kitAppearance
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: discardEventsMatchingMask:beforeEvent:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			Q
-			@
----
-	Method: _resetCursorStack
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _handleCursorRectEvent:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _setSupressGestureSubMaskChangesEnabled:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: tryToPerform:with:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			:
-			@
----
-	Method: _isSuppressGestureSubMaskChangesEnabled
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _gestureEventMask
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: _setGestureEventMask:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: targetForAction:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			:
----
-	Method: orderFrontFontPanel:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: activateContextHelpMode:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: showHelp:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _cancelGestureRecognizers:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: setServicesMenu:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: setWindowsMenu:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: setAppleMenu:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _invalidateEffectiveAppearance
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _invalidateWindowAppearances
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _refreshSetAppearance
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: NS_touchBarProviders
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: NS_touchBarProvidersKeyPaths
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: gestureEventMask
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: setGestureEventMask:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: _eventFirstResponderChainDescription
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: servicesProvider
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: setServicesProvider:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: registerServiceProvider:withName:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: unregisterServiceProviderNamed:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _debugMenu
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _fillSpellCheckerPopupButton:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _launchSpellChecker:error:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			q
-			^@
----
-	Method: _nextEventMatchingEventMask:untilDate:inMode:dequeue:
-	ReturnType: @
-		6 Arguments:
-			@
-			:
-			Q
-			@
-			@
-			c
----
-	Method: _handleKeyEquivalent:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _handleSymbolicHotKey:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _lastEventRecordTime
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: _addKeyOverrideWindow:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _removeKeyOverrideWindow:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: orderFrontStandardAboutPanelWithOptions:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: orderFrontStandardAboutPanel:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: registerServicesMenuSendTypes:returnTypes:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: isAutomaticCustomizeTouchBarMenuItemEnabled
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _setAutomaticCustomizeTouchBarMenuItemEnabled:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: setAutomaticCustomizeTouchBarMenuItemEnabled:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: resetAutomaticCustomizeTouchBarMenuItemEnabled
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _setHasInvalidRestorableState:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _hasInvalidRestorableState
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: removeWindowsItem:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _setCacheWindowNum:forWindow:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			q
-			@
----
-	Method: changeWindowsItem:title:filename:
-	ReturnType: v
-		5 Arguments:
-			@
-			:
-			@
-			@
-			c
----
-	Method: _isHandlingDisplayReconfigThatWillRepositionWindows
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: updateWindowsItem:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _setHidesOnDeactivateInCache:forWindow:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			c
-			@
----
-	Method: _setModalInCache:forWindow:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			c
-			@
----
-	Method: _reactToDockChanged
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _responsibleDelegateForSelector:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			:
----
-	Method: _lockOrUnlockWindowCycleList:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _getWindowData:add:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			c
----
-	Method: _checkForTerminateAfterLastWindowClosed:saveWindows:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			c
----
-	Method: _scheduleCheckForTerminateAfterLastWindowClosed
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _isVisibleUsingCache:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: servicesMenu
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _rebuildOrUpdateServicesMenu:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _launchSpellChecker:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: _reactToDisplayChangedEvent:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			I
----
-	Method: _displayStatusNotification:title:options:
-	ReturnType: v
-		5 Arguments:
-			@
-			:
-			@
-			@
-			@
----
-	Method: _displayProgressNotification:isIndeterminate:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			f
-			c
----
-	Method: _reactToScreenInvalidation:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: registerUserInterfaceItemSearchHandler:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: unregisterUserInterfaceItemSearchHandler:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: searchString:inUserInterfaceItemString:searchRange:foundRange:
-	ReturnType: c
-		6 Arguments:
-			@
-			:
-			@
-			@
-			{_NSRange=QQ}
-			^{_NSRange=QQ}
----
-	Method: isDefaultHelpBookSearchEnabled
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: setDefaultHelpBookSearchEnabled:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _feedbackURL
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _feedbackMenuAppName
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _shouldShowFeedbackMenuItem
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _openFeedbackAssistant:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _feedbackMenuTitle
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _updateCanQuitQuietlyAndSafely
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _contentsHaveInvalidRestorableState
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _setContentsHaveInvalidRestorableState:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _shouldRecordPersistentState
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _invalidateRestorableStateOfContents
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _persistentUIWindow
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _persistentUIIdentifier
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: extendStateRestoration
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: completeStateRestoration
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _stateRestorationExtensionCounter
-	ReturnType: q
-		2 Arguments:
-			@
-			:
----
-	Method: _disableRestorableStateWriting
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _enableRestorableStateWriting
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _restoreGlobalStateWithRestoration:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _restoreWindowWithRestoration:completionHandler:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			@
-			@?
----
-	Method: _tryRestorationHeuristicsForWindowWithIdentifier:state:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: _startHandlingDisplayReconfig:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _finishHandlingDisplayReconfig
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _reactToScreenInvalidationImmediately:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _prepareForPossibleScreenInvalidation:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _reactToDisplayChangedNotification
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _reactToAcceleratorChangedNotification
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _reactToExtendedDynamicRangeChangeNotification
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _reactToDisplayProfileChangedNotification
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: _canQuitQuietlyAndSafelyWithOptionalExplanation:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _globalCanQuietAndSafeQuit
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _debugCanQuietSafeQuit
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
+@ init @ :
+v pushRegistrationDidRegisterWithDeviceToken: @ : @
+v pushRegistrationDidFailToRegister: @ : @
+v pushRegistrationDidReceiveRemotePush: @ : @
+v .cxx_destruct @ :
+@ delegate @ :
+v setDelegate: @ : @
+c conformsToProtocol: @ : @
+c _disableSuddenTermination @ :
+v setWindowsNeedUpdate: @ : c
+v _enableSuddenTermination @ :
+v _setLaunchTaskMaskBits: @ : Q
+c _appleEventActivationInProgress @ :
+c isActive @ :
+v _afterBatchOrderingFinishesDo: @ : @?
+v _setAppleEventActivationInProgress: @ : c
+c _isFinishLaunchingFromEventHandlersSuppressed @ :
+v _sendFinishLaunchingNotification @ :
+v _doHide @ :
+v _doUnhideWithoutActivation @ :
+@ nextEventMatchingMask:untilDate:inMode:dequeue: @ : Q @ @ c
+v postEvent:atStart: @ : @ c
+I contextID @ :
+v dealloc @ :
+@ effectiveAppearance @ :
+@ initWithCoder: @ : @
+v encodeWithCoder: @ : @
+@ windowWithWindowNumber: @ : q
+@ _keyWindow @ :
+v observeValueForKeyPath:ofObject:change:context: @ : @ @ @ ^v
+q userInterfaceLayoutDirection @ :
+v accessibilitySetMayContainProtectedContent: @ : c
+@ accessibilityFocusedUIElement @ :
+@ accessibilityHitTest: @ : {CGPoint=dd}
+{CGRect={CGPoint=dd}{CGSize=dd}} accessibilityFrame @ :
+c accessibilityIsIgnored @ :
+@ _accessibilityValueForAttribute:clientError: @ : @ ^i
+@ accessibilityAttributeValue:forParameter: @ : @ @
+@ _accessibilityUIElementSpecifier @ :
+@ accessibilityAttributeNames @ :
+@ accessibilityAttributeValue: @ : @
+@ mainMenu @ :
+c accessibilityMayContainProtectedContent @ :
+@ accessibilityActionDescription: @ : @
+v _setCurrentEvent: @ : @
+@ context @ :
+c canEnterFullScreenMode @ :
+@ targetForAction:to:from: @ : : @ @
+@ mainWindow @ :
+Q presentationOptions @ :
+@ windows @ :
+v enumerateWindowsWithOptions:usingBlock: @ : q @?
+c validateMenuItem: @ : @
+c validateUserInterfaceItem: @ : @
+@ windowsMenu @ :
+@ _findMenuItemWithSelector: @ : :
+@ menu @ :
+@ keyWindow @ :
+v closeAll: @ : @
+@ supplementalTargetForAction:sender: @ : : @
+v run @ :
+c accessibilityShouldUseUniqueId @ :
+@ accessibilityRoleAttribute @ :
+c accessibilityIsRoleAttributeSettable @ :
+@ accessibilityRoleDescriptionAttribute @ :
+c accessibilityIsRoleDescriptionAttributeSettable @ :
+c accessibilityIsAttributeSettable: @ : @
+v accessibilitySetValue:forAttribute: @ : @ @
+@ accessibilityActionNames @ :
+v accessibilityPerformAction: @ : @
+@ accessibilityParent @ :
+v setAccessibilityMainThreadIdleNotificationEnabled: @ : c
+v setAccessibilityEventProcessedNotificationEnabled: @ : c
+@ _accessibilityUIElementSpecifierRegisterIfNeeded: @ : c
+@ currentEvent @ :
+v setValue:forKey: @ : @ @
+@ accessibilityChildrenAttribute @ :
+v exitFullScreenMode: @ : @
+v disableCursorRects @ :
+v enableCursorRects @ :
+q runModalForWindow: @ : @
+v endSheet:returnCode: @ : @ q
+v stopModalWithCode: @ : q
+v speakString: @ : @
+@ touchBar @ :
+c isHidden @ :
+v _scheduleWindow:forBatchOrdering:relativeTo: @ : q q q
+v _terminateOnMemoryPressure: @ : @
+v _emitApplicationLaunchExtendedSignpostsAppIsOptedIn: @ : c
+v _setNeedsUpdateToReflectAutomaticTerminationState @ :
+c _appHasOpenNSWindowOrPanel @ :
+v _setShouldRestoreStateOnNextLaunch: @ : c
+v terminate: @ : @
+c _canAutoQuitQuietlyAndSafelyWithOptionalExplanation: @ : @
+v hide: @ : @
+v _makeSureAutomaticTerminationIsNotInterferingWithLanguagePrefs: @ : @
+v _setSpacesSwitchOnActivation @ :
+v _setDoubleClickBehavior @ :
+v _disableRelaunchOnLoginIfNotLaunchedByLaunchServicesOrBlacklisted @ :
+v _registerForAppearanceNotifications @ :
+v _accessibilityStatusChanged: @ : @
+v _eventBlockingTransitionWillBegin @ :
+v _eventBlockingTransitionDidEnd @ :
+v _dockBehaviorChanged: @ : @
+v _reactToChangeInQuitAlwaysKeepsWindows: @ : @
+v _spacesSwitchOnActivationChanged: @ : @
+v _registerWithDock @ :
+c _isActiveApp @ :
+v setIsActive: @ : c
+v _setIsHidden: @ : c
+v _startPrefetchingUbiquityContainerURL @ :
+v _registerForDisplayChangedNotifications @ :
+v _cancelAllUserAttentionRequests @ :
+v setApplicationIconImage: @ : @
+v _removeSystemUIModeHandler @ :
+i _startBatchWindowAccumulation: @ : q
+v _performBatchWindowOrdering:release: @ : i c
+v _deallocHardCore: @ : c
+@ validRequestorForSendType:returnType: @ : @ @
+c _isRunningAppModal @ :
+c _isFakeHidden @ :
+v _setFakeHidden: @ : c
+v _makeHODWindowsPerform: @ : :
+v _doHideMaybeFakingIt: @ : c
+v _doUnhideWithoutActivationMaybeFakingIt: @ : c
+v _switchToSpaceIfNeeded @ :
+q activationPolicy @ :
+@? _copyBatchWindowOrderingPerformerForToken:release: @ : i c
+v activateIgnoringOtherApps: @ : c
+v unhideWithoutActivation @ :
+c _shouldRestoreWithFullFidelity @ :
+v _orderWindowsAndSwitchToSpaceIfNeeded @ :
+i _pendingActivationOriginatingDisplayHint @ :
+@ _bestKeyWindowCandidateOnScreen: @ : @
+@ _setKeyWindow: @ : @
+@ _setMainWindow: @ : @
+@ _bestMainWindowCandidateOnScreen: @ : @
+@ _mainWindow @ :
+@ _findWindowUsingCache: @ : q
+@ _findWindowUsingContextID: @ : q
+v _setPreviousKeyWindow: @ : @
+v _doOpenFile:ok:tryTemp: @ : @ ^q c
+@ _appCentricOpenPanel @ :
+c _findKeyWindowConsideringSpacesWithOriginatingDisplayHint:isAppleEventPending:makeKey: @ : i c c
+Q currentSystemPresentationOptions @ :
+v updateWindows @ :
+@ makeWindowsPerform:inOrder: @ : : c
+Q _launchTaskMask @ :
+@ modalWindow @ :
+v _reopenWindowsIfNecessaryWithAppleEvent:completionHandler: @ : @ @?
+v _postDidFinishNotification @ :
+v _emitApplicationLaunchSignpost @ :
+v _enableAutomaticTerminationIfWhitelisted @ :
+v _initializeAutomaticTermination @ :
+v _registerRequiredAEHandlers @ :
+c _shouldDelayDocumentReopeningUntilAfterFinishLaunching @ :
+v _delayReopening @ :
+v _continueReopening @ :
+v _customizeMainMenu @ :
+s _handleAEPrintDocumentsForURLs:withSettings:showPrintPanels: @ : @ @ c
+v finishLaunching @ :
+c _checkForAutomaticTerminationSupportPossiblyEnablingIt @ :
+v _installMemoryStatusDispatchSources @ :
+v _installMemoryPressureDispatchSources @ :
+v sendEvent: @ : @
+q unhide @ :
+v _modalSession:sendEvent: @ : ^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c} @
+^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c} beginModalSessionForWindow: @ : @
+v _doModalLoop:peek: @ : ^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c} c
+v endModalSession: @ : ^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
+^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c} beginModalSessionForWindow:relativeToWindow: @ : @ @
+^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c} _commonBeginModalSessionForWindow:relativeToWindow:modalDelegate:didEndSelector:contextInfo: @ : @ @ @ : ^v
+c _hiddenOnLaunch @ :
+c _wantsToActivate @ :
+@ _orderFrontModalWindow:relativeToWindow: @ : @ @
+q requestUserAttention: @ : Q
+v _setMouseActivationInProgress: @ : c
+v _makeModalWindowsPerform: @ : :
+c _isModalUsingCache: @ : @
+c _hasActiveRequest @ :
+v _cancelRequest: @ : @
+v cancelUserAttentionRequest: @ : q
+c _isRunningDocModal @ :
+v _docController:shouldTerminate: @ : @ c
+v _setWaitingForTerminationReply: @ : c
+v _setWantsToActivate: @ : c
+v replyToApplicationShouldTerminate: @ : c
+@ _hiddenWindows @ :
+c shouldRestoreStateOnNextLaunch @ :
+v _flushPersistentState @ :
+v _reopenPersistentState @ :
+v encodeRestorableStateWithCoder: @ : @
+@ _persistenceOrderedWindowNumbers @ :
+v restoreStateWithCoder: @ : @
+I _persistentUIWindowID @ :
+^{__CFArray=} _createDockMenu: @ : c
+v _setDockMenuForPersistentState: @ : @
+@ _applicationBundle @ :
+v _terminateFromSender:askIfShouldTerminate:saveWindows: @ : @ c c
+v _unsetShouldRestoreStateOnNextLaunch @ :
+c _quitMenuItemShouldKeepWindows: @ : @
+v _pushPersistentStateTerminationGeneration @ :
+c _shouldTerminate @ :
+v _popPersistentStateTerminationGeneration @ :
+v _unregisterForAppearanceNotifications @ :
+c _hasKeyFocus @ :
+@ _findWindowWithOptions:passingTest: @ : q @?
+c _spacesSwitchOnActivation @ :
+v _updateFullScreenPresentationOptionsForInstance: @ : @
+v _setPresentationOptions:instance:flags: @ : Q @ Q
+c _isDying @ :
+v _updateActiveWindowForSpaceChange @ :
+v _updateFullScreenPresentationOptions @ :
+v activeSpaceChanged: @ : @
+v _requestSpaceChangedNotification @ :
+v _activeDisplayChanged: @ : @
+v _setAmbientOriginatingDisplayHint: @ : i
+c _isDeactPending @ :
+v _declineSpaceChangedNotification @ :
+c _shouldClearModalWindowLevelWhenInactive @ :
+v _clearModalWindowLevels @ :
+v quickLookPreviewItems: @ : @
+v _resignKeyFocus @ :
+@ _getLockedWindowListForCycle @ :
+v _unlockWindowListForCycle @ :
+@ dockTile @ :
+v _setApplicationIconImage:setDockImage: @ : @ c
+@ _iconImage @ :
+@ _copyWindows @ :
+v _updateWindowsUsingCache @ :
+c _isAlternateQuitMenuItem: @ : @
+v setMainMenu: @ : @
+v _addFeedbackMenuItemIfNeeded @ :
+i _sendDockMenuCommand:withTag:modifierFlags:originatingDisplay: @ : I Q Q i
+i _sendDockMenuCommand:withTag:modifierFlags: @ : I Q Q
+^{__CFArray=} _flattenMenu:flatList: @ : @ @
+^{__CFDictionary=} _flattenMenuItem:flatList: @ : @ @
+v _addWindowsMenu:enabled: @ : ^{__CFArray=} c
+@ _previousKeyWindow @ :
+q _indexOfWindow: @ : @
+v _removeWindowFromCache: @ : @
+v _handleActivatedEvent: @ : @
+v _handleReactivateEvent: @ : @
+v _handleDeactivateEvent: @ : @
+v _handleActivateDeferredEvent: @ : @
+v _setCursorForCurrentMouseLocation @ :
+c _mouseActivationInProgress @ :
+v _obtainKeyFocus @ :
+v _crashOnException: @ : @
+@ _exceptionListeners @ :
+c _canShowExceptions @ :
+v _showException: @ : @
+v stopSpeaking: @ : @
+c isSpeaking @ :
+v runPageLayout: @ : @
+c _isNSDocumentBased @ :
+v startDictation: @ : @
+v stopDictation: @ : @
+v arrangeInFront: @ : @
+v alternateArrangeInFront: @ : @
+c _appHasVisibleWindowOrPanel @ :
+v miniaturizeAll: @ : @
+c _anyOfMyWindowsAreOnAVisibleNonFullScreenSpace @ :
+v zoomAll: @ : @
+v unhideAllApplications: @ : @
+v hideOtherApplications: @ : @
+v toggleTouchBarCustomizationPalette: @ : @
+v toggleTouchBarControlStripCustomizationPalette: @ : @
+c _validateTouchBarCustomizationPaletteItem: @ : @
+v orderFrontColorPanel: @ : @
+v showGuessPanel: @ : @
+@ _kitBundle @ :
+v doCommandBySelector: @ : :
+v _setPresentationOptions:flags: @ : Q Q
+v _reactToPresentationChanged @ :
+v enterFullScreenMode: @ : @
+v _doCopyMemoryPressureArrayOnWriteIfNecessary @ :
+v _callMemoryPressureHandlers @ :
+v _fakeMemoryPressureHandler: @ : @
+c _inInstallEnvironment @ :
+v markAppLaunchComplete @ :
+v _cleanUpForCarbonAppTermination @ :
+v _installAutoreleasePoolsOnCurrentThreadIfNecessary @ :
+v _updateButtonsForSystemUIModeChanged @ :
+c _applicationLaunchIsPastSplashScreens @ :
+v _freezeAutomaticTerminationState @ :
+v _unfreezeAutomaticTerminationState @ :
+v _forceAutoQuit: @ : @
+Q occlusionState @ :
+v _setEventDelegate: @ : @
+@ _eventDelegate @ :
+v _addHiddenWindow: @ : @
+v _removeHiddenWindow: @ : @
+v _doFakeUnhide @ :
+v _unscheduleWindowForBatchOrdering: @ : q
+q _lowestWindowOfAtLeastNormalWindowLevelAfterScheduledBatchOrdering @ :
+v unhide: @ : @
+c _batchOrdering @ :
+v _windowNumber:changedTo: @ : q q
+@ _windowWithContextID: @ : q
+c _isDoingOpenFile @ :
+q openFile:ok: @ : @ ^q
+q openTempFile:ok: @ : @ ^q
+c _openFileWithoutUI: @ : @
+v replyToOpenOrPrint: @ : Q
+c _hasOpenMenuItem @ :
+c _doOpenUntitled @ :
+c _isDoingUnhide @ :
+c _isDoingHide @ :
+c _isRunningModal @ :
+c isRunning @ :
+v deactivate @ :
+i _ambientOriginatingDisplayHint @ :
+c _handlingAmbientDisplayHintDockMenuCommand @ :
+v _withAmbientOriginatingDisplayHint:perform: @ : i @?
+v _setPendingActivationOriginatingDisplayHint: @ : i
+v _adjustKeyWindowFromOriginatingDisplayHint: @ : i
+v _deactivateWindows @ :
+v _activateWindows @ :
+v _suppressFinishLaunchingFromEventHandlersWhilePerformingBlock: @ : @?
+c _replyToLaunch @ :
+@ _replyToOpen: @ : q
+c _didNSOpenOrPrint @ :
+v _startRunMethod @ :
+v _endRunMethod @ :
+v _preEventHandling @ :
+v _postEventHandling @ :
+c _wantsDeviceDependentEventModifierFlags @ :
+q runModalForWindow:relativeToWindow: @ : @ @
+v beginSheet:modalForWindow:modalDelegate:didEndSelector:contextInfo: @ : @ @ @ : ^v
+v stop: @ : @
+v stopModal @ :
+v endSheet: @ : @
+v abortModal @ :
+q runModalSession: @ : ^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
+v _setAppCentricOpenPanel: @ : @
+c _waitingForTerminationReply @ :
+I _persistentStateTerminationGeneration @ :
+@ _copyPublicPersistentUIInfo @ :
+c _expectingAppDeath @ :
+@ delayWindowOrdering @ :
+v preventWindowOrdering @ :
+v onFirstEvent @ :
+v rightMouseDown: @ : @
+c _sendScreenNotificationWhenDockSizeChanges @ :
+v event:wouldActivateWindow: @ : @ @
+v quickLookPreviewItemsAtWindowLocation: @ : {CGPoint=dd}
+v _setHasKeyFocus: @ : c
+i _stealKeyFocusWithOptions: @ : I
+i _releaseKeyFocus @ :
+v _setAllPanelsNonactivating: @ : c
+c _areAllPanelsNonactivating @ :
+@ frontWindow @ :
+v _enumerateOnScreenWindowsUsingBlock: @ : @?
+v _makeWindowsPerform:forEvent:inWindow:standardWindowButton: @ : : @ @ Q
+v _cycleWindowsReversed: @ : c
+v _cycleUtilityWindowsReversed: @ : c
+v _dockDied @ :
+@ _iconImageIfSet @ :
+@ applicationIconImage @ :
+v _dockRestarted @ :
+@ _appIcon @ :
+c setActivationPolicy: @ : q
+v _addUpdaterForDocumentMenuItem: @ : @
+v _setMainMenu: @ : @
+v setMenu: @ : @
+v setHelpMenu: @ : @
+@ helpMenu @ :
+v setDockMenu: @ : @
+^{__CFDictionary=} _flattenMenuItem: @ : @
+^{__CFArray=} _flattenMenu: @ : @
+v _setWindowMoveDisabled: @ : c
+c _windowMoveDisabled @ :
+@ _removeWindow: @ : @
+@ _addWindow: @ : @
+v _addOpenWindow: @ : @
+v _removeOpenWindow: @ : @
+@ _openWindows @ :
+v _handleAppKitDefinedEvent: @ : @
+c _handleHotKeyPressed: @ : @
+c _handleHotKeyRelease: @ : @
+c _handleKeyFocusNotification:withEvent: @ : q @
+q _currentActivation @ :
+@ _setCurrentActivation: @ : q
+q _pendingActCount @ :
+v _registerExceptionListener: @ : @
+v _unregisterExceptionListener: @ : @
+v reportException: @ : @
+v speechSynthesizer:didFinishSpeaking: @ : @ c
+v _whenReopeningIsAllowedDo: @ : @?
+v _reopenWindowsAsNecessaryIncludingRestorableState:completionHandler: @ : c @?
+v orderFrontCharacterPalette: @ : @
+c isFullKeyboardAccessEnabled @ :
+c _processSwitchesEnabled @ :
+v setPresentationOptions: @ : Q
+v setCanEnterFullScreenMode: @ : c
+v abortAllToolTips @ :
+@ addMemoryPressureMonitorUsingHandler: @ : @?
+v removeMemoryPressureMonitor: @ : @
+@ addIdleMonitorUsingHandler: @ : @?
+v removeIdleMonitor: @ : @
+q memoryStatus @ :
+c _shouldLoadMainNibNamed: @ : @
+^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c} _modalSessionForWindow: @ : @
+@ _windowForModalSession: @ : ^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
+^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c} _previousModalSession: @ : ^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c}
+c presentError: @ : @
+@ willPresentError: @ : @
+@ _validateError:forPresentationMethod: @ : @ :
+v _something:wasPresentedWithResult:soContinue: @ : @ q @?
+v presentError:modalForWindow:delegate:didPresentSelector:contextInfo: @ : @ @ @ : ^v
+v _observeValueForSystemAppearanceKeyPath:ofObject:change: @ : @ @ @
+v disableAutomaticTermination @ :
+v enableAutomaticTermination @ :
+c _tryTransformingToBackgroundTypeForAutoQuit @ :
+v registerForRemoteNotificationTypes: @ : Q
+v registerForRemoteNotifications @ :
+v unregisterForRemoteNotifications @ :
+c isRegisteredForRemoteNotifications @ :
+Q enabledRemoteNotificationTypes @ :
+@ _userNotificationCenter:willActivateForNotification:additionalUserInfo: @ : @ @ @
+v _userNotificationCenter:didActivateWithToken: @ : @ @
+v _asynchronouslyPrefetchUbiqityContainerURL @ :
+v _ubiquityIdentityDidChange: @ : @
+v _addTextInputMenuItems: @ : @
+v _customizeFileMenuIfNeeded @ :
+v _addFullScreenMenuItemIfNeeded @ :
+v _addDebugMenuIfNeeded @ :
+v _customizeImportFromDeviceMenuItem @ :
+@ _findMenuItemMatchingPredicate: @ : @?
+@ _bestAppearanceCustomizationTargetForAction:to: @ : : @
+c _appHasNonMiniaturizedWindow @ :
+v disableRelaunchOnLogin @ :
+v enableRelaunchOnLogin @ :
+v importFromDevice: @ : @
+@ accessibilityExtrasMenuBarAttribute @ :
+@ accessibilityMenuBarAttribute @ :
+@ accessibilityWindowsAttribute @ :
+@ accessibilityFunctionRowTopLevelElementsAttribute @ :
+@ accessibilityFocusedWindowAttribute @ :
+@ _accessibilityPopovers @ :
+@ _accessibilityViewBridgeHitTest: @ : {CGPoint=dd}
+v accessibilityWorkaroundAddExtraWindow: @ : @
+v accessibilityWorkaroundRemoveExtraWindow: @ : @
+@ accessibilityTitleAttribute @ :
+c accessibilityIsTitleAttributeSettable @ :
+c accessibilityIsMenuBarAttributeSettable @ :
+c accessibilityIsWindowsAttributeSettable @ :
+@ accessibilityChildrenInNavigationOrderAttribute @ :
+c accessibilityIsChildrenAttributeSettable @ :
+@ accessibilityFrontmostAttribute @ :
+c accessibilityIsFrontmostAttributeSettable @ :
+v accessibilitySetFrontmostAttribute: @ : @
+@ accessibilityHiddenAttribute @ :
+c accessibilityIsHiddenAttributeSettable @ :
+v accessibilitySetHiddenAttribute: @ : @
+@ accessibilityMainWindowAttribute @ :
+c accessibilityIsMainWindowAttributeSettable @ :
+c accessibilityIsFocusedWindowAttributeSettable @ :
+@ accessibilityFocusedUIElementAttribute @ :
+c accessibilityIsFocusedUIElementAttributeSettable @ :
+@ accessibilityEnhancedUserInterfaceAttribute @ :
+c accessibilityIsEnhancedUserInterfaceAttributeSettable @ :
+v accessibilitySetEnhancedUserInterfaceAttribute: @ : @
+@ accessibilityAuditIssuesAttribute @ :
+@ accessibilityHitTest @ :
+@ _accessibilityCompatibilityHitTest: @ : {CGPoint=dd}
+v _accessibilityEventReceived: @ : @
+v _accessibilityEventProcessed: @ : @
+c isAccessibilityMainThreadIdleNotificationSupported @ :
+c isAccessibilityMainThreadIdleNotificationEnabled @ :
+c isAccessibilityEventProcessedNotificationSupported @ :
+c isAccessibilityEventProcessedNotificationEnabled @ :
+@ _orderedWindowsWithPanels: @ : c
+c _delegate:handlesKey: @ : @ @
+@ copyScriptingValue:forKey:withProperties: @ : @ @ @
+@ newScriptingObjectOfClass:forValueForKey:withContentsValue:properties: @ : # @ @ @
+@ valueForKey: @ : @
+@ orderedDocuments @ :
+@ orderedWindows @ :
+@ valueAtIndex:inPropertyWithKey: @ : Q @
+@ valueWithName:inPropertyWithKey: @ : @ @
+@ valueWithUniqueID:inPropertyWithKey: @ : @ @
+v insertValue:atIndex:inPropertyWithKey: @ : @ Q @
+v insertValue:inPropertyWithKey: @ : @ @
+v removeValueAtIndex:fromPropertyWithKey: @ : Q @
+v replaceValueAtIndex:inPropertyWithKey:withValue: @ : Q @ @
+q _supportsGetValueWithNameForKey:perhapsByOverridingClass: @ : @ #
+q _supportsGetValueWithUniqueIDForKey:perhapsByOverridingClass: @ : @ #
+s _handleAEOpenDocumentsForURLs: @ : @
+s _handleAEQuit @ :
+@ valueInOrderedWindowsWithUniqueID: @ : q
+Q _scriptingCount @ :
+@ handleOpenScriptCommand: @ : @
+v handlePrintScriptCommand: @ : @
+v handleQuitScriptCommand: @ : @
+c _requiresOpeningUntitledWindowAtLaunch @ :
+c _appHasOpenNSWindow @ :
+i _extractOriginatingDisplayHintFromAppleEvent: @ : @
+v _restoreMiniaturizedWindow @ :
+c _supportsOpenURLs @ :
+v _forAEOpenDocumentsEvent:populateReplyEvent:withURLs:documents: @ : @ @ @ @
+v _openURLs:withCompletionHandler: @ : @ @?
+v _resumeAppleEventWithSuspensionIDValue: @ : @
+i _handleSelfTestEvent: @ : @
+v _handleAEOpenEvent: @ : @
+v _handleAEReopen: @ : @
+s _handleAEOpenContentsEvent:withReplyEvent: @ : @ @
+s _handleAEContinueUserActivityEvent: @ : @
+s _handleAECloudKitShareInvitationEvent: @ : @
+s _handleAEGetURLEvent: @ : @
+v _handleCoreEvent:withReplyEvent: @ : @ @
+v _handleTestEvent:withReplyEvent: @ : @ @
+v _doModalLoopForCarbonWindow:peek: @ : ^{_NSModalSession=@@^{_NSModalSession}icqQcccsq@@:^vq@@?@c} c
+q runModalForCarbonWindow: @ : @
+v setAppearance: @ : @
+v _invalidateWindowListForCycleIfNeededForWindow: @ : @
+@ _effectiveAppearanceParent @ :
+c sendAction:to:from: @ : : @ @
+@ appearance @ :
+c areCursorRectsEnabled @ :
+v _setVisibleInCache:forWindow: @ : c @
+v addWindowsItem:title:filename: @ : @ @ c
+c restoreWindowWithIdentifier:state:completionHandler: @ : @ @ @?
+v orderFrontPreferencesPanel: @ : @
+c shouldBeTreatedAsInkEvent: @ : @
+@ _restoreCursor @ :
+@ _cursorRectCursor @ :
+@ _kitAppearance @ :
+v discardEventsMatchingMask:beforeEvent: @ : Q @
+v _resetCursorStack @ :
+c _handleCursorRectEvent: @ : @
+v _setSupressGestureSubMaskChangesEnabled: @ : c
+c tryToPerform:with: @ : : @
+c _isSuppressGestureSubMaskChangesEnabled @ :
+Q _gestureEventMask @ :
+v _setGestureEventMask: @ : Q
+@ targetForAction: @ : :
+v orderFrontFontPanel: @ : @
+v activateContextHelpMode: @ : @
+v showHelp: @ : @
+v _cancelGestureRecognizers: @ : @
+v setServicesMenu: @ : @
+v setWindowsMenu: @ : @
+v setAppleMenu: @ : @
+v _invalidateEffectiveAppearance @ :
+v _invalidateWindowAppearances @ :
+v _refreshSetAppearance @ :
+@ NS_touchBarProviders @ :
+@ NS_touchBarProvidersKeyPaths @ :
+Q gestureEventMask @ :
+v setGestureEventMask: @ : Q
+@ _eventFirstResponderChainDescription @ :
+@ servicesProvider @ :
+v setServicesProvider: @ : @
+v registerServiceProvider:withName: @ : @ @
+v unregisterServiceProviderNamed: @ : @
+@ _debugMenu @ :
+c _fillSpellCheckerPopupButton: @ : @
+c _launchSpellChecker:error: @ : q ^@
+@ _nextEventMatchingEventMask:untilDate:inMode:dequeue: @ : Q @ @ c
+c _handleKeyEquivalent: @ : @
+c _handleSymbolicHotKey: @ : @
+Q _lastEventRecordTime @ :
+v _addKeyOverrideWindow: @ : @
+v _removeKeyOverrideWindow: @ : @
+v orderFrontStandardAboutPanelWithOptions: @ : @
+v orderFrontStandardAboutPanel: @ : @
+v registerServicesMenuSendTypes:returnTypes: @ : @ @
+c isAutomaticCustomizeTouchBarMenuItemEnabled @ :
+v _setAutomaticCustomizeTouchBarMenuItemEnabled: @ : @
+v setAutomaticCustomizeTouchBarMenuItemEnabled: @ : c
+v resetAutomaticCustomizeTouchBarMenuItemEnabled @ :
+v _setHasInvalidRestorableState: @ : c
+c _hasInvalidRestorableState @ :
+v removeWindowsItem: @ : @
+v _setCacheWindowNum:forWindow: @ : q @
+v changeWindowsItem:title:filename: @ : @ @ c
+c _isHandlingDisplayReconfigThatWillRepositionWindows @ :
+v updateWindowsItem: @ : @
+v _setHidesOnDeactivateInCache:forWindow: @ : c @
+v _setModalInCache:forWindow: @ : c @
+v _reactToDockChanged @ :
+@ _responsibleDelegateForSelector: @ : :
+c _lockOrUnlockWindowCycleList: @ : c
+@ _getWindowData:add: @ : @ c
+v _checkForTerminateAfterLastWindowClosed:saveWindows: @ : @ c
+v _scheduleCheckForTerminateAfterLastWindowClosed @ :
+c _isVisibleUsingCache: @ : @
+@ servicesMenu @ :
+v _rebuildOrUpdateServicesMenu: @ : c
+c _launchSpellChecker: @ : q
+v _reactToDisplayChangedEvent: @ : I
+v _displayStatusNotification:title:options: @ : @ @ @
+v _displayProgressNotification:isIndeterminate: @ : f c
+v _reactToScreenInvalidation: @ : c
+v registerUserInterfaceItemSearchHandler: @ : @
+v unregisterUserInterfaceItemSearchHandler: @ : @
+c searchString:inUserInterfaceItemString:searchRange:foundRange: @ : @ @ {_NSRange=QQ} ^{_NSRange=QQ}
+c isDefaultHelpBookSearchEnabled @ :
+v setDefaultHelpBookSearchEnabled: @ : c
+@ _feedbackURL @ :
+@ _feedbackMenuAppName @ :
+c _shouldShowFeedbackMenuItem @ :
+v _openFeedbackAssistant: @ : @
+@ _feedbackMenuTitle @ :
+v _updateCanQuitQuietlyAndSafely @ :
+c _contentsHaveInvalidRestorableState @ :
+v _setContentsHaveInvalidRestorableState: @ : c
+c _shouldRecordPersistentState @ :
+v _invalidateRestorableStateOfContents @ :
+@ _persistentUIWindow @ :
+@ _persistentUIIdentifier @ :
+v extendStateRestoration @ :
+v completeStateRestoration @ :
+q _stateRestorationExtensionCounter @ :
+v _disableRestorableStateWriting @ :
+v _enableRestorableStateWriting @ :
+v _restoreGlobalStateWithRestoration: @ : @
+v _restoreWindowWithRestoration:completionHandler: @ : @ @?
+@ _tryRestorationHeuristicsForWindowWithIdentifier:state: @ : @ @
+c _startHandlingDisplayReconfig: @ : c
+c _finishHandlingDisplayReconfig @ :
+v _reactToScreenInvalidationImmediately: @ : c
+v _prepareForPossibleScreenInvalidation: @ : c
+v _reactToDisplayChangedNotification @ :
+v _reactToAcceleratorChangedNotification @ :
+v _reactToExtendedDynamicRangeChangeNotification @ :
+v _reactToDisplayProfileChangedNotification @ :
+c _canQuitQuietlyAndSafelyWithOptionalExplanation: @ : @
+c _globalCanQuietAndSafeQuit @ :
+@ _debugCanQuietSafeQuit @ :

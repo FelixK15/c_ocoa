@@ -1,3292 +1,475 @@
 Info dump of class NSString:
-	Method: stringByTrimmingLeadingCharactersInSet:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: stringByTrimmingTrailingCharactersInSet:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: stringByTrimmingTrailingWhitespace
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stringByTrimmingLeadingWhitespace
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stringByTrimmingLeadingWhitespaceAndNewline
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stringByTrimmingTrailingWhitespaceAndNewline
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stringByTrimmingTrailingWhitespaceFromEachLine
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: ch_occurrencesOfCharactersInSet:maxCount:
-	ReturnType: q
-		4 Arguments:
-			@
-			:
-			@
-			q
----
-	Method: _mapkit_sizeWithFont:
-	ReturnType: {CGSize=dd}
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _mapkit_componentsSeparatedFromCommaDelimitedList
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: mkServerFormattedString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _mapkit_cgFloatValue
-	ReturnType: d
-		2 Arguments:
-			@
-			:
----
-	Method: abEllipsizeWithFont:withWidth:reverseForRightToLeft:
-	ReturnType: @
-		5 Arguments:
-			@
-			:
-			@
-			d
-			c
----
-	Method: abEllipsizeWithFont:withWidth:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			d
----
-	Method: abEndOfParagraphStartingAtIndex:
-	ReturnType: Q
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: localizedPropertyOrLabel
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: localizedPropertyOrLabelWithCapitals
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: SCN_safeHash
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: scn_stringByReplacingCharactersInRanges:withStrings:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: viewCount
-	ReturnType: q
-		2 Arguments:
-			@
-			:
----
-	Method: viewArray
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: viewWithPriorityArray
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: firstViewName
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: lastViewName
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: viewAtIndex:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: firstViewNameWithPriority
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: lastViewNameWithPriority
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: viewWithPriorityAtIndex:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: stringByLeftPaddingToLength:withString:startingAtIndex:
-	ReturnType: @
-		5 Arguments:
-			@
-			:
-			Q
-			@
-			Q
----
-	Method: delegate
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: drawInContext:atPoint:withFontName:size:alignement:
-	ReturnType: v
-		7 Arguments:
-			@
-			:
-			^{CGContext=}
-			{CGPoint=dd}
-			@
-			d
-			i
----
-	Method: _qlStringByAddingPercentEscapes
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: isIPAddress
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _webkit_scriptIfJavaScriptURL
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _webkit_isJavaScriptURL
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _webkit_isFileURL
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _webkit_stringByReplacingValidPercentEscapes
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _webkit_rangeOfURLScheme
-	ReturnType: {_NSRange=QQ}
-		2 Arguments:
-			@
-			:
----
-	Method: _web_decodeHostName
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_encodeHostName
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _webkit_encodeHostName
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _webkit_decodeHostName
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _webkit_looksLikeAbsoluteURL
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _web_isUserVisibleURL
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _web_capitalizeRFC822HeaderFieldName
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _webkit_isCaseInsensitiveEqualToString:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _webkit_hasCaseInsensitiveSuffix:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _webkit_filenameByFixingIllegalCharacters
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _webkit_stringByTrimmingWhitespace
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _webkit_fixedCarbonPOSIXPath
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_stringByAbbreviatingWithTildeInPath
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_widthWithFont:
-	ReturnType: f
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _web_drawAtPoint:font:textColor:
-	ReturnType: v
-		5 Arguments:
-			@
-			:
-			{CGPoint=dd}
-			@
-			@
----
-	Method: _webkit_hasCaseInsensitivePrefix:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: encodedByteLength
-	ReturnType: I
-		2 Arguments:
-			@
-			:
----
-	Method: uniqueFilenameWithExtension:suffix:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: _hasLocalizedCaseInsensitivePrefix:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: initWithPasteboardPropertyList:ofType:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: writableTypesForPasteboard:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: pasteboardPropertyListForType:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _endOfParagraphAtIndex:
-	ReturnType: Q
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: rangeOfGraphicalSegmentAtIndex:
-	ReturnType: {_NSRange=QQ}
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: stringWithoutAmpersand
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _textfinder_firstMatchForRegularExpression:inRange:
-	ReturnType: {_NSRange=QQ}
-		4 Arguments:
-			@
-			:
-			@
-			{_NSRange=QQ}
----
-	Method: stringByStrippingLeadingAndTrailingWhitespace
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: boundingRectWithSize:options:attributes:
-	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
-		5 Arguments:
-			@
-			:
-			{CGSize=dd}
-			q
-			@
----
-	Method: drawWithRect:options:attributes:
-	ReturnType: v
-		5 Arguments:
-			@
-			:
-			{CGRect={CGPoint=dd}{CGSize=dd}}
-			q
-			@
----
-	Method: boundingRectWithSize:options:attributes:context:
-	ReturnType: {CGRect={CGPoint=dd}{CGSize=dd}}
-		6 Arguments:
-			@
-			:
-			{CGSize=dd}
-			q
-			@
-			@
----
-	Method: drawWithRect:options:attributes:context:
-	ReturnType: v
-		6 Arguments:
-			@
-			:
-			{CGRect={CGPoint=dd}{CGSize=dd}}
-			q
-			@
-			@
----
-	Method: hasColorGlyphsInRange:attributes:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			{_NSRange=QQ}
-			@
----
-	Method: _sizeWithSize:attributes:
-	ReturnType: {CGSize=dd}
-		4 Arguments:
-			@
-			:
-			{CGSize=dd}
-			@
----
-	Method: sizeWithAttributes:
-	ReturnType: {CGSize=dd}
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: drawInRect:withAttributes:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			{CGRect={CGPoint=dd}{CGSize=dd}}
-			@
----
-	Method: drawAtPoint:withAttributes:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			{CGPoint=dd}
-			@
----
-	Method: imageMetadataFromFileName
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: scaleableResourceMetadataFromFileName
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _is_stableOSTypeHash
-	ReturnType: I
-		2 Arguments:
-			@
-			:
----
-	Method: _vk_internedString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: encodeWithCAMLWriter:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: CAMLType
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stdString
-	ReturnType: {basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >={__compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__rep, std::__1::allocator<char> >={__rep=(?={__long=QQ*}{__short=(?=Cc)[23c]}{__raw=[3Q]})}}}
-		2 Arguments:
-			@
-			:
----
-	Method: abTokens
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _abTrimmedString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: abEnumerateCharactersWithOptions:usingBlock:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			Q
-			@?
----
-	Method: _ab_entireRange
-	ReturnType: {_NSRange=QQ}
-		2 Arguments:
-			@
-			:
----
-	Method: abWords
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: abCaseNormalizedCopy
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: abVCardDataRepresentation
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _ab_containsSubstring:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: abSha1HashString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: abNameComponentTokensUsingLocale:inferredNameOrder:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			^q
----
-	Method: abUIDWithTableName:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: abIsBlank
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: abNameComponentTokens
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _ab_rangesOfStrings:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _ab_stringByReplacingStrings:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: abStandardizedPhoneNumber
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: abStringByRemovingPunctuation
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: abNormalizedUID
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _ab_containsDiacritics
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: ab_queryPieces
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: ab_queryPiecesNoLowerCase
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _abCompare:ascending:options:
-	ReturnType: q
-		5 Arguments:
-			@
-			:
-			@
-			c
-			Q
----
-	Method: _abCompareContainsSubString:options:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			@
-			Q
----
-	Method: _abComparePrefixMatch:options:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			@
-			Q
----
-	Method: _abCompareSuffixMatch:options:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			@
-			Q
----
-	Method: _abCompareWithinIntervalAroundToday:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _abCompareWithinIntervalAroundTodayYearless:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _abCompareNotWithinIntervalAroundToday:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _abCompareNotWithinIntervalAroundTodayYearless:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _abCompareWithinIntervalFromToday:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _abCompareWithinIntervalFromTodayYearless:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _abCompareNotWithinIntervalFromToday:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _abCompareNotWithinIntervalFromTodayYearless:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _cn_executeGetterForRepresentedKeys:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@?
----
-	Method: _cn_requiredKeys
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _cn_optionalKeys
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: dbgLongValue
-	ReturnType: q
-		2 Arguments:
-			@
-			:
----
-	Method: dbgUnsignedLongValue
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: dbgDoubleValue
-	ReturnType: d
-		2 Arguments:
-			@
-			:
----
-	Method: dbgBoolValue
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: dbgFloatValue
-	ReturnType: f
-		2 Arguments:
-			@
-			:
----
-	Method: dbgIntValue
-	ReturnType: i
-		2 Arguments:
-			@
-			:
----
-	Method: dbgUnsignedIntValue
-	ReturnType: I
-		2 Arguments:
-			@
-			:
----
-	Method: dbgIntegerValue
-	ReturnType: q
-		2 Arguments:
-			@
-			:
----
-	Method: dbgUnsignedIntegerValue
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: dbgCGFloatValue
-	ReturnType: d
-		2 Arguments:
-			@
-			:
----
-	Method: dbgStringValue
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: dbgDataValue
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _navigation_stripTagsFromSpokenString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _navigation_stripDebugPrefix
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _navigation_isEqualToString:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _navigation_containsVariables
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _navigation_stringByMakingPhonetic
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _navigation_stringByMarkingAsAddress
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _navigation_stringByMarkingAsNavigationText
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _navigation_stringByMarkingAsNormalText
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _navigation_isCJK
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _navigation_stripVariablesFromString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _navigation_distanceLevenshtein:
-	ReturnType: Q
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _navigation_stringByEscapingHTML
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _navigation_stringByReplacingNewLinesWithString:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _navigation_sanitizedStringForDisplayInHTML
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _initWithUTF8String:maxLength:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			r*
-			Q
----
-	Method: cl_json_serializeValue:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			^{value_ostream=B^{ostream}}
----
-	Method: cl_json_serializeKey
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _cn_stringBySanitizingPhoneNumber
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _cn_requiresPhoneNumberSanitizing
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _cn_hasPrefix:options:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			@
-			Q
----
-	Method: _cn_caseInsensitiveIsEqual:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _cn_take:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: _cn_stringByAddingPercentEscapesToEntireURL
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _cn_containsSubstring:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _cn_stringByNormalizingCase
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _cn_containsCharacterInSet:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _cn_nameComponentTokens
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _cn_trimmedString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _cn_SHA256HashStringWithSalt:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _cn_flatMap:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@?
----
-	Method: _cn_resultWithAllCharacters:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@?
----
-	Method: _cn_eachCharacter:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@?
----
-	Method: _cn_rangeFromIndex:
-	ReturnType: {_NSRange=QQ}
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: _cn_nameComponentTokensUsingLocale:inferredNameOrder:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			^q
----
-	Method: _cn_hasSuffix:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _cn_isBlank
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _cn_hasPrefix:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _cn_containsSubstring:options:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			@
-			Q
----
-	Method: _cn_hasSuffix:options:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			@
-			Q
----
-	Method: _cn_rangeOfCommonPrefixWithString:options:
-	ReturnType: {_NSRange=QQ}
-		4 Arguments:
-			@
-			:
-			@
-			Q
----
-	Method: _cn_hasCaseAndDiacriticInsensitivePrefix:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _cn_stringByDeletingCharactersInSet:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _cn_rangeOfCommonPrefixWithString:
-	ReturnType: {_NSRange=QQ}
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _cn_stringByAddingPercentEscapesIfNecessary
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _cn_stringByDeletingNumberOfPathComponents:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: _cn_tokens
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _cn_stringByReplacingStrings:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: ak_urlEncoded
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: ak_SHA256String
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: ak_SHA256
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: encodedBytesAndReturnLength:error:
-	ReturnType: r*
-		4 Arguments:
-			@
-			:
-			^Q
-			^@
----
-	Method: encodedDataAndReturnError:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			^@
----
-	Method: stdString
-	ReturnType: {basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >={__compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__rep, std::__1::allocator<char> >={__rep=(?={__long=QQ*}{__short=(?=Cc)[23c]}{__raw=[3Q]})}}}
-		2 Arguments:
-			@
-			:
----
-	Method: initWithStdString:copy:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			r^{basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >={__compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__rep, std::__1::allocator<char> >={__rep=(?={__long=QQ*}{__short=(?=Cc)[23c]}{__raw=[3Q]})}}}
-			c
----
-	Method: serverFormattedString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _geo_cacheHitParameters:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@?
----
-	Method: _geo_cacheMissParameters:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@?
----
-	Method: _geo_cacheMissErrorParameters:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@?
----
-	Method: plural
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: pascalCase
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: camelCase
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stripQuotes
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: isObjcReservedWord
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: intern
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _pb_fixCase:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: convertToDataFromHex:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			^@
----
-	Method: convertParamStringToArray:error:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			^@
----
-	Method: convertToInteger:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			^@
----
-	Method: convertParamStringToArray:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			^@
----
-	Method: convertParamStringToNumberArray:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			^@
----
-	Method: convertToBool:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			^@
----
-	Method: convertToMacAddress:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			^@
----
-	Method: cutStringByResolvingAndStandardizingPath
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: chmod:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			S
----
-	Method: validateGSName:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			o^@
----
-	Method: gs_stringByUpdatingPathExtensionWithPathOrURL:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: validateGSNameAllowingDot:error:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			c
-			^@
----
-	Method: gs_issueExtension:error:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			r*
-			^@
----
-	Method: gs_issueReadExtensionIfNeededForAuditToken:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			{?=[8I]}
----
-	Method: _lp_topLevelDomainFromComponents:indexOfFirstComponent:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			^Q
----
-	Method: _lp_lengthOfDeepSubdomainsFromComponents:
-	ReturnType: Q
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _lp_hasCaseInsensitiveSubstring:startingAt:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			@
-			Q
----
-	Method: _lp_highLevelDomainFromHost
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _lp_simplifiedUserVisibleURLStringWithSimplifications:forDisplayOnly:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			Q
-			c
----
-	Method: _lp_hasCaseInsensitivePrefix:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _lp_stringForcingLeftToRightDirection
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _lp_userVisibleHost
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: ls_isRecursiveKey
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: ls_updatedKey
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: clean
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: matches:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: matchesString:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: firstCharacter
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: componentsByLanguage:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			i
----
-	Method: pinyinStringFromPinyinWithToneNumber
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: zhuyinSyllableFromPinyinSyllable
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stringByStrippingDiacritics
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: toneFromPinyinSyllableWithNumber
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: strokeStringFromNumberString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stringByApplyingPinyinToneMarkToFirstSyllableWithToneNumber:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: simplifiedChineseCompare:
-	ReturnType: q
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: traditionalChinesePinyinCompare:
-	ReturnType: q
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: traditionalChineseZhuyinCompare:
-	ReturnType: q
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _caseInsensitiveNumericCompare:
-	ReturnType: q
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: init
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: UTF8String
-	ReturnType: r*
-		2 Arguments:
-			@
-			:
----
-	Method: isEqual:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: hash
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: description
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: length
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: variantFittingPresentationWidth:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			q
----
-	Method: isEqualToString:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: initWithCoder:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: encodeWithCoder:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: hasSuffix:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: stringByDeletingPathExtension
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: lastPathComponent
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: hasPrefix:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: integerValue
-	ReturnType: q
-		2 Arguments:
-			@
-			:
----
-	Method: caseInsensitiveCompare:
-	ReturnType: q
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: initWithString:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: boolValue
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: substringFromIndex:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: doubleValue
-	ReturnType: d
-		2 Arguments:
-			@
-			:
----
-	Method: floatValue
-	ReturnType: f
-		2 Arguments:
-			@
-			:
----
-	Method: getCString:maxLength:encoding:
-	ReturnType: c
-		5 Arguments:
-			@
-			:
-			*
-			Q
-			Q
----
-	Method: copyWithZone:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			^{_NSZone=}
----
-	Method: compare:
-	ReturnType: q
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: stringByAppendingFormat:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: stringByAppendingString:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: rangeOfString:
-	ReturnType: {_NSRange=QQ}
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: substringToIndex:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: cStringUsingEncoding:
-	ReturnType: r*
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: stringByAppendingPathComponent:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: rangeOfString:options:
-	ReturnType: {_NSRange=QQ}
-		4 Arguments:
-			@
-			:
-			@
-			Q
----
-	Method: substringWithRange:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			{_NSRange=QQ}
----
-	Method: longLongValue
-	ReturnType: q
-		2 Arguments:
-			@
-			:
----
-	Method: compare:options:
-	ReturnType: q
-		4 Arguments:
-			@
-			:
-			@
-			Q
----
-	Method: pathExtension
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: dataUsingEncoding:allowLossyConversion:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			Q
-			c
----
-	Method: getLineStart:end:contentsEnd:forRange:
-	ReturnType: v
-		6 Arguments:
-			@
-			:
-			^Q
-			^Q
-			^Q
-			{_NSRange=QQ}
----
-	Method: characterAtIndex:
-	ReturnType: S
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: intValue
-	ReturnType: i
-		2 Arguments:
-			@
-			:
----
-	Method: mutableCopyWithZone:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			^{_NSZone=}
----
-	Method: uppercaseString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: componentsSeparatedByString:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: lowercaseString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: compare:options:range:
-	ReturnType: q
-		5 Arguments:
-			@
-			:
-			@
-			Q
-			{_NSRange=QQ}
----
-	Method: initWithCharacters:length:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			r^S
-			Q
----
-	Method: initWithBytesNoCopy:length:encoding:freeWhenDone:
-	ReturnType: @
-		6 Arguments:
-			@
-			:
-			^v
-			Q
-			Q
-			c
----
-	Method: containsString:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: stringByAppendingPathExtension:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: localizedUppercaseString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: initWithFormat:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: rangeOfCharacterFromSet:options:range:
-	ReturnType: {_NSRange=QQ}
-		5 Arguments:
-			@
-			:
-			@
-			Q
-			{_NSRange=QQ}
----
-	Method: rangeOfComposedCharacterSequenceAtIndex:
-	ReturnType: {_NSRange=QQ}
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: initWithCharactersNoCopy:length:freeWhenDone:
-	ReturnType: @
-		5 Arguments:
-			@
-			:
-			^S
-			Q
-			c
----
-	Method: classForCoder
-	ReturnType: #
-		2 Arguments:
-			@
-			:
----
-	Method: canBeConvertedToEncoding:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: fileSystemRepresentation
-	ReturnType: r*
-		2 Arguments:
-			@
-			:
----
-	Method: initWithContentsOfFile:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: getCharacters:range:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			^S
-			{_NSRange=QQ}
----
-	Method: stringByDeletingLastPathComponent
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: initWithCString:encoding:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			r*
-			Q
----
-	Method: rangeOfCharacterFromSet:
-	ReturnType: {_NSRange=QQ}
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: rangeOfCharacterFromSet:options:
-	ReturnType: {_NSRange=QQ}
-		4 Arguments:
-			@
-			:
-			@
-			Q
----
-	Method: capitalizedString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stringByReplacingOccurrencesOfString:withString:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: writeToFile:atomically:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			@
-			c
----
-	Method: replacementObjectForPortCoder:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: stringByResolvingSymlinksInPath
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: dataUsingEncoding:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: pathComponents
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stringByExpandingTildeInPath
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: isAbsolutePath
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: stringByAddingPercentEscapesUsingEncoding:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: initWithFormat:arguments:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			[1{__va_list_tag=II^v^v}]
----
-	Method: stringByTrimmingCharactersInSet:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: initWithContentsOfURL:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: stringByStandardizingPath
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stringByAbbreviatingWithTildeInPath
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: rangeOfString:options:range:locale:
-	ReturnType: {_NSRange=QQ}
-		6 Arguments:
-			@
-			:
-			@
-			Q
-			{_NSRange=QQ}
-			@
----
-	Method: rangeOfString:options:range:
-	ReturnType: {_NSRange=QQ}
-		5 Arguments:
-			@
-			:
-			@
-			Q
-			{_NSRange=QQ}
----
-	Method: localizedStandardCompare:
-	ReturnType: q
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: paragraphRangeForRange:
-	ReturnType: {_NSRange=QQ}
-		3 Arguments:
-			@
-			:
-			{_NSRange=QQ}
----
-	Method: enumerateSubstringsInRange:options:usingBlock:
-	ReturnType: v
-		5 Arguments:
-			@
-			:
-			{_NSRange=QQ}
-			Q
-			@?
----
-	Method: getParagraphStart:end:contentsEnd:forRange:
-	ReturnType: v
-		6 Arguments:
-			@
-			:
-			^Q
-			^Q
-			^Q
-			{_NSRange=QQ}
----
-	Method: initWithContentsOfFile:encoding:error:
-	ReturnType: @
-		5 Arguments:
-			@
-			:
-			@
-			Q
-			^@
----
-	Method: getBytes:maxLength:filledLength:encoding:allowLossyConversion:range:remainingRange:
-	ReturnType: c
-		9 Arguments:
-			@
-			:
-			*
-			Q
-			^Q
-			Q
-			c
-			{_NSRange=QQ}
-			^{_NSRange=QQ}
----
-	Method: initWithData:encoding:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			Q
----
-	Method: propertyList
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: localizedCaseInsensitiveCompare:
-	ReturnType: q
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: rangeOfComposedCharacterSequencesForRange:
-	ReturnType: {_NSRange=QQ}
-		3 Arguments:
-			@
-			:
-			{_NSRange=QQ}
----
-	Method: stringByPaddingToLength:withString:startingAtIndex:
-	ReturnType: @
-		5 Arguments:
-			@
-			:
-			Q
-			@
-			Q
----
-	Method: initWithCStringNoCopy:length:freeWhenDone:
-	ReturnType: @
-		5 Arguments:
-			@
-			:
-			*
-			Q
-			c
----
-	Method: localizedCapitalizedString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stringsByAppendingPaths:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _fastCharacterContents
-	ReturnType: r^S
-		2 Arguments:
-			@
-			:
----
-	Method: _fastCStringContents:
-	ReturnType: r*
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: decomposedStringWithCanonicalMapping
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: writeToURL:atomically:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			@
-			c
----
-	Method: stringByReplacingPercentEscapesUsingEncoding:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: getFileSystemRepresentation:maxLength:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			*
-			Q
----
-	Method: uppercaseStringWithLocale:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: lowercaseStringWithLocale:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: capitalizedStringWithLocale:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: stringByApplyingTransform:reverse:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			c
----
-	Method: componentsSeparatedByCharactersInSet:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: decimalValue
-	ReturnType: {?=b8b4b1b1b18[8S]}
-		2 Arguments:
-			@
-			:
----
-	Method: enumerateLinesUsingBlock:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			@?
----
-	Method: _newSubstringWithRange:zone:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			{_NSRange=QQ}
-			^{_NSZone=}
----
-	Method: stringByRemovingPercentEncoding
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stringByReplacingCharactersInRange:withString:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			{_NSRange=QQ}
-			@
----
-	Method: commonPrefixWithString:options:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			Q
----
-	Method: stringByReplacingOccurrencesOfString:withString:options:range:
-	ReturnType: @
-		6 Arguments:
-			@
-			:
-			@
-			@
-			Q
-			{_NSRange=QQ}
----
-	Method: compare:options:range:locale:
-	ReturnType: q
-		6 Arguments:
-			@
-			:
-			@
-			Q
-			{_NSRange=QQ}
-			@
----
-	Method: isNSString__
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: scriptingIsEqualTo:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: scriptingIsLessThanOrEqualTo:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: scriptingIsLessThan:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: scriptingIsGreaterThanOrEqualTo:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: scriptingIsGreaterThan:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: scriptingBeginsWith:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: scriptingEndsWith:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: scriptingContains:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: formatConfiguration
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _isCString
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _createSubstringWithRange:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			{_NSRange=QQ}
----
-	Method: _stringByResolvingSymlinksInPathUsingCache:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _cfTypeID
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: fastestEncoding
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: smallestEncoding
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: _encodingCantBeStoredInEightBitCFString
-	ReturnType: C
-		2 Arguments:
-			@
-			:
----
-	Method: _smallestEncodingInCFStringEncoding
-	ReturnType: I
-		2 Arguments:
-			@
-			:
----
-	Method: _fastestEncodingInCFStringEncoding
-	ReturnType: I
-		2 Arguments:
-			@
-			:
----
-	Method: _getCString:maxLength:encoding:
-	ReturnType: c
-		5 Arguments:
-			@
-			:
-			*
-			Q
-			I
----
-	Method: decomposedStringWithCompatibilityMapping
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: precomposedStringWithCompatibilityMapping
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: cStringLength
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: lossyCString
-	ReturnType: r*
-		2 Arguments:
-			@
-			:
----
-	Method: _allowsDirectEncoding
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: quotedStringRepresentation
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _getCharactersAsStringInRange:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			{_NSRange=QQ}
----
-	Method: _getBytesAsData:maxLength:usedLength:encoding:options:range:remainingRange:
-	ReturnType: c
-		9 Arguments:
-			@
-			:
-			^@
-			Q
-			^Q
-			Q
-			Q
-			{_NSRange=QQ}
-			^{_NSRange=QQ}
----
-	Method: getCString:maxLength:range:remainingRange:
-	ReturnType: v
-		6 Arguments:
-			@
-			:
-			*
-			Q
-			{_NSRange=QQ}
-			^{_NSRange=QQ}
----
-	Method: getCString:maxLength:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			*
-			Q
----
-	Method: getCString:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			*
----
-	Method: _web_filenameByFixingIllegalCharacters
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: __escapeString5991
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: initWithCString:length:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			r*
-			Q
----
-	Method: __oldnf_containsString:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: __oldnf_copyToUnicharBuffer:saveLength:
-	ReturnType: v
-		4 Arguments:
-			@
-			:
-			^^S
-			^q
----
-	Method: __oldnf_stringWithSeparator:atFrequency:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			S
-			q
----
-	Method: __oldnf_containsCharFromSet:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: __oldnf_containsChar:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: __oldnf_componentsSeparatedBySet:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: initWithFormat:locale:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			@
----
-	Method: _stringByStandardizingPathUsingCache:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:
-	ReturnType: Q
-		6 Arguments:
-			@
-			:
-			^@
-			c
-			^@
-			@
----
-	Method: stringByConvertingPathToURL
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stringByConvertingURLToPath
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: writableTypeIdentifiersForItemProvider
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: loadDataWithTypeIdentifier:forItemProviderCompletionHandler:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			@?
----
-	Method: _scriptingAlternativeValueRankWithDescriptor:
-	ReturnType: i
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _scriptingTextDescriptor
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: isLike:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: isCaseInsensitiveLike:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _getBracketedStringFromBuffer:string:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			^{_NSStringBuffer=QQ@QQ[32S]SS}
-			@
----
-	Method: _matchesCharacter:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			S
----
-	Method: matchesPattern:caseInsensitive:
-	ReturnType: c
-		4 Arguments:
-			@
-			:
-			@
-			c
----
-	Method: matchesPattern:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:
-	ReturnType: @
-		7 Arguments:
-			@
-			:
-			@
-			@
-			@
-			[1{__va_list_tag=II^v^v}]
-			^@
----
-	Method: initWithContentsOfURL:usedEncoding:error:
-	ReturnType: @
-		5 Arguments:
-			@
-			:
-			@
-			^Q
-			^@
----
-	Method: initWithContentsOfFile:usedEncoding:error:
-	ReturnType: @
-		5 Arguments:
-			@
-			:
-			@
-			^Q
-			^@
----
-	Method: _rangeOfRegularExpressionPattern:options:range:locale:
-	ReturnType: {_NSRange=QQ}
-		6 Arguments:
-			@
-			:
-			@
-			Q
-			{_NSRange=QQ}
-			@
----
-	Method: _stringByReplacingOccurrencesOfRegularExpressionPattern:withTemplate:options:range:
-	ReturnType: @
-		6 Arguments:
-			@
-			:
-			@
-			@
-			Q
-			{_NSRange=QQ}
----
-	Method: _getBlockStart:end:contentsEnd:forRange:stopAtLineSeparators:
-	ReturnType: v
-		7 Arguments:
-			@
-			:
-			^Q
-			^Q
-			^Q
-			{_NSRange=QQ}
-			c
----
-	Method: _initWithDataOfUnknownEncoding:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _initWithBytesOfUnknownEncoding:length:copy:usedEncoding:
-	ReturnType: @
-		6 Arguments:
-			@
-			:
-			*
-			Q
-			c
-			^Q
----
-	Method: _stringRepresentation
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: localizedHasPrefix:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: localizedHasSuffix:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: localizedCaseInsensitiveContainsString:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: localizedStandardContainsString:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: localizedStandardRangeOfString:
-	ReturnType: {_NSRange=QQ}
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: localizedLowercaseString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: lineRangeForRange:
-	ReturnType: {_NSRange=QQ}
-		3 Arguments:
-			@
-			:
-			{_NSRange=QQ}
----
-	Method: displayableString
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: getExternalRepresentation:extendedAttributes:forWritingToURLOrPath:usingEncoding:error:
-	ReturnType: c
-		7 Arguments:
-			@
-			:
-			^@
-			^@
-			@
-			Q
-			^@
----
-	Method: initWithData:usedEncoding:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			@
-			^Q
----
-	Method: propertyListFromStringsFileFormat
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _copyFormatStringWithConfiguration:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: maximumLengthOfBytesUsingEncoding:
-	ReturnType: Q
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: _web_looksLikeIPAddress
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _web_isCaseInsensitiveEqualToString:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _web_hasCountryCodeTLD
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _web_countOfString:
-	ReturnType: q
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _web_rangeOfURLResourceSpecifier_nowarn
-	ReturnType: {_NSRange=QQ}
-		2 Arguments:
-			@
-			:
----
-	Method: _web_stringByTrimmingWhitespace
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_rangeOfURLScheme_nowarn
-	ReturnType: {_NSRange=QQ}
-		2 Arguments:
-			@
-			:
----
-	Method: _web_hasCaseInsensitivePrefix:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _web_stringByExpandingTildeInPath
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_fixedCarbonPOSIXPath
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_rangeOfURLUserPasswordHostPort
-	ReturnType: {_NSRange=QQ}
-		2 Arguments:
-			@
-			:
----
-	Method: _web_looksLikeAbsoluteURL
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _web_isFileURL
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: _web_URLFragment
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_stringByCollapsingNonPrintingCharacters
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_extractFourCharCode
-	ReturnType: I
-		2 Arguments:
-			@
-			:
----
-	Method: _web_parseAsKeyValuePairHandleQuotes_nowarn:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			c
----
-	Method: _web_splitAtNonDateCommas_nowarn
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_parseAsKeyValuePair_nowarn
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_mimeTypeFromContentTypeHeader_nowarn
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_characterSetFromContentTypeHeader_nowarn
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_fileNameFromContentDispositionHeader_nowarn
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_stringByReplacingValidPercentEscapes_nowarn
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_isJavaScriptURL
-	ReturnType: c
-		2 Arguments:
-			@
-			:
----
-	Method: stringByAddingPercentEscapes
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: standardizedURLPath
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stringByRemovingPercentEscapes
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: stringMarkingUpcaseTransitionsWithDelimiter2:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: _web_HTTPStyleLanguageCode
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_HTTPStyleLanguageCodeWithoutRegion
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: linguisticTagsInRange:scheme:options:orthography:tokenRanges:
-	ReturnType: @
-		7 Arguments:
-			@
-			:
-			{_NSRange=QQ}
-			@
-			Q
-			@
-			^@
----
-	Method: enumerateLinguisticTagsInRange:scheme:options:orthography:usingBlock:
-	ReturnType: v
-		7 Arguments:
-			@
-			:
-			{_NSRange=QQ}
-			@
-			Q
-			@
-			@?
----
-	Method: _flushRegularExpressionCaches
-	ReturnType: v
-		2 Arguments:
-			@
-			:
----
-	Method: significantText
-	ReturnType: {_NSRange=QQ}
-		2 Arguments:
-			@
-			:
----
-	Method: __graphemeCount
-	ReturnType: Q
-		2 Arguments:
-			@
-			:
----
-	Method: stringByAddingPercentEncodingWithAllowedCharacters:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: initWithUTF8String:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			r*
----
-	Method: initWithFormat:locale:arguments:
-	ReturnType: @
-		5 Arguments:
-			@
-			:
-			@
-			@
-			[1{__va_list_tag=II^v^v}]
----
-	Method: cString
-	ReturnType: r*
-		2 Arguments:
-			@
-			:
----
-	Method: initWithCString:
-	ReturnType: @
-		3 Arguments:
-			@
-			:
-			r*
----
-	Method: precomposedStringWithCanonicalMapping
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: localizedCompare:
-	ReturnType: q
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: getBytes:maxLength:usedLength:encoding:options:range:remainingRange:
-	ReturnType: c
-		9 Arguments:
-			@
-			:
-			^v
-			Q
-			^Q
-			Q
-			Q
-			{_NSRange=QQ}
-			^{_NSRange=QQ}
----
-	Method: stringByFoldingWithOptions:locale:
-	ReturnType: @
-		4 Arguments:
-			@
-			:
-			Q
-			@
----
-	Method: writeToURL:atomically:encoding:error:
-	ReturnType: c
-		6 Arguments:
-			@
-			:
-			@
-			c
-			Q
-			^@
----
-	Method: _web_domainFromHost
-	ReturnType: @
-		2 Arguments:
-			@
-			:
----
-	Method: _web_domainMatches:
-	ReturnType: c
-		3 Arguments:
-			@
-			:
-			@
----
-	Method: lengthOfBytesUsingEncoding:
-	ReturnType: Q
-		3 Arguments:
-			@
-			:
-			Q
----
-	Method: initWithContentsOfURL:encoding:error:
-	ReturnType: @
-		5 Arguments:
-			@
-			:
-			@
-			Q
-			^@
----
-	Method: _web_rangeOfURLHost
-	ReturnType: {_NSRange=QQ}
-		2 Arguments:
-			@
-			:
----
-	Method: getCharacters:
-	ReturnType: v
-		3 Arguments:
-			@
-			:
-			^S
----
-	Method: writeToFile:atomically:encoding:error:
-	ReturnType: c
-		6 Arguments:
-			@
-			:
-			@
-			c
-			Q
-			^@
----
+@ stringByTrimmingLeadingCharactersInSet: @ : @
+@ stringByTrimmingTrailingCharactersInSet: @ : @
+@ stringByTrimmingTrailingWhitespace @ :
+@ stringByTrimmingLeadingWhitespace @ :
+@ stringByTrimmingLeadingWhitespaceAndNewline @ :
+@ stringByTrimmingTrailingWhitespaceAndNewline @ :
+@ stringByTrimmingTrailingWhitespaceFromEachLine @ :
+q ch_occurrencesOfCharactersInSet:maxCount: @ : @ q
+{CGSize=dd} _mapkit_sizeWithFont: @ : @
+@ _mapkit_componentsSeparatedFromCommaDelimitedList @ :
+@ mkServerFormattedString @ :
+d _mapkit_cgFloatValue @ :
+@ abEllipsizeWithFont:withWidth:reverseForRightToLeft: @ : @ d c
+@ abEllipsizeWithFont:withWidth: @ : @ d
+Q abEndOfParagraphStartingAtIndex: @ : Q
+@ localizedPropertyOrLabel @ :
+@ localizedPropertyOrLabelWithCapitals @ :
+Q SCN_safeHash @ :
+@ scn_stringByReplacingCharactersInRanges:withStrings: @ : @ @
+q viewCount @ :
+@ viewArray @ :
+@ viewWithPriorityArray @ :
+@ firstViewName @ :
+@ lastViewName @ :
+@ viewAtIndex: @ : q
+@ firstViewNameWithPriority @ :
+@ lastViewNameWithPriority @ :
+@ viewWithPriorityAtIndex: @ : q
+@ stringByLeftPaddingToLength:withString:startingAtIndex: @ : Q @ Q
+@ delegate @ :
+v drawInContext:atPoint:withFontName:size:alignement: @ : ^{CGContext=} {CGPoint=dd} @ d i
+@ _qlStringByAddingPercentEscapes @ :
+c isIPAddress @ :
+@ _webkit_scriptIfJavaScriptURL @ :
+c _webkit_isJavaScriptURL @ :
+c _webkit_isFileURL @ :
+@ _webkit_stringByReplacingValidPercentEscapes @ :
+{_NSRange=QQ} _webkit_rangeOfURLScheme @ :
+@ _web_decodeHostName @ :
+@ _web_encodeHostName @ :
+@ _webkit_encodeHostName @ :
+@ _webkit_decodeHostName @ :
+c _webkit_looksLikeAbsoluteURL @ :
+c _web_isUserVisibleURL @ :
+@ _web_capitalizeRFC822HeaderFieldName @ :
+c _webkit_isCaseInsensitiveEqualToString: @ : @
+c _webkit_hasCaseInsensitiveSuffix: @ : @
+@ _webkit_filenameByFixingIllegalCharacters @ :
+@ _webkit_stringByTrimmingWhitespace @ :
+@ _webkit_fixedCarbonPOSIXPath @ :
+@ _web_stringByAbbreviatingWithTildeInPath @ :
+f _web_widthWithFont: @ : @
+v _web_drawAtPoint:font:textColor: @ : {CGPoint=dd} @ @
+c _webkit_hasCaseInsensitivePrefix: @ : @
+I encodedByteLength @ :
+@ uniqueFilenameWithExtension:suffix: @ : @ @
+c _hasLocalizedCaseInsensitivePrefix: @ : @
+@ initWithPasteboardPropertyList:ofType: @ : @ @
+@ writableTypesForPasteboard: @ : @
+@ pasteboardPropertyListForType: @ : @
+Q _endOfParagraphAtIndex: @ : Q
+{_NSRange=QQ} rangeOfGraphicalSegmentAtIndex: @ : Q
+@ stringWithoutAmpersand @ :
+{_NSRange=QQ} _textfinder_firstMatchForRegularExpression:inRange: @ : @ {_NSRange=QQ}
+@ stringByStrippingLeadingAndTrailingWhitespace @ :
+{CGRect={CGPoint=dd}{CGSize=dd}} boundingRectWithSize:options:attributes: @ : {CGSize=dd} q @
+v drawWithRect:options:attributes: @ : {CGRect={CGPoint=dd}{CGSize=dd}} q @
+{CGRect={CGPoint=dd}{CGSize=dd}} boundingRectWithSize:options:attributes:context: @ : {CGSize=dd} q @ @
+v drawWithRect:options:attributes:context: @ : {CGRect={CGPoint=dd}{CGSize=dd}} q @ @
+c hasColorGlyphsInRange:attributes: @ : {_NSRange=QQ} @
+{CGSize=dd} _sizeWithSize:attributes: @ : {CGSize=dd} @
+{CGSize=dd} sizeWithAttributes: @ : @
+v drawInRect:withAttributes: @ : {CGRect={CGPoint=dd}{CGSize=dd}} @
+v drawAtPoint:withAttributes: @ : {CGPoint=dd} @
+@ imageMetadataFromFileName @ :
+@ scaleableResourceMetadataFromFileName @ :
+I _is_stableOSTypeHash @ :
+@ _vk_internedString @ :
+v encodeWithCAMLWriter: @ : @
+@ CAMLType @ :
+{basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >={__compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__rep, std::__1::allocator<char> >={__rep=(?={__long=QQ*}{__short=(?=Cc)[23c]}{__raw=[3Q]})}}} stdString @ :
+@ abTokens @ :
+@ _abTrimmedString @ :
+v abEnumerateCharactersWithOptions:usingBlock: @ : Q @?
+{_NSRange=QQ} _ab_entireRange @ :
+@ abWords @ :
+@ abCaseNormalizedCopy @ :
+@ abVCardDataRepresentation @ :
+c _ab_containsSubstring: @ : @
+@ abSha1HashString @ :
+@ abNameComponentTokensUsingLocale:inferredNameOrder: @ : @ ^q
+@ abUIDWithTableName: @ : @
+c abIsBlank @ :
+@ abNameComponentTokens @ :
+@ _ab_rangesOfStrings: @ : @
+@ _ab_stringByReplacingStrings: @ : @
+@ abStandardizedPhoneNumber @ :
+@ abStringByRemovingPunctuation @ :
+@ abNormalizedUID @ :
+c _ab_containsDiacritics @ :
+@ ab_queryPieces @ :
+@ ab_queryPiecesNoLowerCase @ :
+q _abCompare:ascending:options: @ : @ c Q
+c _abCompareContainsSubString:options: @ : @ Q
+c _abComparePrefixMatch:options: @ : @ Q
+c _abCompareSuffixMatch:options: @ : @ Q
+c _abCompareWithinIntervalAroundToday: @ : @
+c _abCompareWithinIntervalAroundTodayYearless: @ : @
+c _abCompareNotWithinIntervalAroundToday: @ : @
+c _abCompareNotWithinIntervalAroundTodayYearless: @ : @
+c _abCompareWithinIntervalFromToday: @ : @
+c _abCompareWithinIntervalFromTodayYearless: @ : @
+c _abCompareNotWithinIntervalFromToday: @ : @
+c _abCompareNotWithinIntervalFromTodayYearless: @ : @
+v _cn_executeGetterForRepresentedKeys: @ : @?
+@ _cn_requiredKeys @ :
+@ _cn_optionalKeys @ :
+q dbgLongValue @ :
+Q dbgUnsignedLongValue @ :
+d dbgDoubleValue @ :
+c dbgBoolValue @ :
+f dbgFloatValue @ :
+i dbgIntValue @ :
+I dbgUnsignedIntValue @ :
+q dbgIntegerValue @ :
+Q dbgUnsignedIntegerValue @ :
+d dbgCGFloatValue @ :
+@ dbgStringValue @ :
+@ dbgDataValue @ :
+@ _navigation_stripTagsFromSpokenString @ :
+@ _navigation_stripDebugPrefix @ :
+c _navigation_isEqualToString: @ : @
+c _navigation_containsVariables @ :
+@ _navigation_stringByMakingPhonetic @ :
+@ _navigation_stringByMarkingAsAddress @ :
+@ _navigation_stringByMarkingAsNavigationText @ :
+@ _navigation_stringByMarkingAsNormalText @ :
+c _navigation_isCJK @ :
+@ _navigation_stripVariablesFromString @ :
+Q _navigation_distanceLevenshtein: @ : @
+@ _navigation_stringByEscapingHTML @ :
+@ _navigation_stringByReplacingNewLinesWithString: @ : @
+@ _navigation_sanitizedStringForDisplayInHTML @ :
+@ _initWithUTF8String:maxLength: @ : r* Q
+v cl_json_serializeValue: @ : ^{value_ostream=B^{ostream}}
+@ cl_json_serializeKey @ :
+@ _cn_stringBySanitizingPhoneNumber @ :
+c _cn_requiresPhoneNumberSanitizing @ :
+c _cn_hasPrefix:options: @ : @ Q
+c _cn_caseInsensitiveIsEqual: @ : @
+@ _cn_take: @ : Q
+@ _cn_stringByAddingPercentEscapesToEntireURL @ :
+c _cn_containsSubstring: @ : @
+@ _cn_stringByNormalizingCase @ :
+c _cn_containsCharacterInSet: @ : @
+@ _cn_nameComponentTokens @ :
+@ _cn_trimmedString @ :
+@ _cn_SHA256HashStringWithSalt: @ : @
+@ _cn_flatMap: @ : @?
+@ _cn_resultWithAllCharacters: @ : @?
+v _cn_eachCharacter: @ : @?
+{_NSRange=QQ} _cn_rangeFromIndex: @ : Q
+@ _cn_nameComponentTokensUsingLocale:inferredNameOrder: @ : @ ^q
+c _cn_hasSuffix: @ : @
+c _cn_isBlank @ :
+c _cn_hasPrefix: @ : @
+c _cn_containsSubstring:options: @ : @ Q
+c _cn_hasSuffix:options: @ : @ Q
+{_NSRange=QQ} _cn_rangeOfCommonPrefixWithString:options: @ : @ Q
+c _cn_hasCaseAndDiacriticInsensitivePrefix: @ : @
+@ _cn_stringByDeletingCharactersInSet: @ : @
+{_NSRange=QQ} _cn_rangeOfCommonPrefixWithString: @ : @
+@ _cn_stringByAddingPercentEscapesIfNecessary @ :
+@ _cn_stringByDeletingNumberOfPathComponents: @ : Q
+@ _cn_tokens @ :
+@ _cn_stringByReplacingStrings: @ : @
+@ ak_urlEncoded @ :
+@ ak_SHA256String @ :
+@ ak_SHA256 @ :
+r* encodedBytesAndReturnLength:error: @ : ^Q ^@
+@ encodedDataAndReturnError: @ : ^@
+{basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >={__compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__rep, std::__1::allocator<char> >={__rep=(?={__long=QQ*}{__short=(?=Cc)[23c]}{__raw=[3Q]})}}} stdString @ :
+@ initWithStdString:copy: @ : r^{basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >={__compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__rep, std::__1::allocator<char> >={__rep=(?={__long=QQ*}{__short=(?=Cc)[23c]}{__raw=[3Q]})}}} c
+@ serverFormattedString @ :
+v _geo_cacheHitParameters: @ : @?
+v _geo_cacheMissParameters: @ : @?
+v _geo_cacheMissErrorParameters: @ : @?
+@ plural @ :
+@ pascalCase @ :
+@ camelCase @ :
+@ stripQuotes @ :
+c isObjcReservedWord @ :
+@ intern @ :
+@ _pb_fixCase: @ : c
+@ convertToDataFromHex: @ : ^@
+@ convertParamStringToArray:error: @ : @ ^@
+@ convertToInteger: @ : ^@
+@ convertParamStringToArray: @ : ^@
+@ convertParamStringToNumberArray: @ : ^@
+@ convertToBool: @ : ^@
+@ convertToMacAddress: @ : ^@
+@ cutStringByResolvingAndStandardizingPath @ :
+v chmod: @ : S
+c validateGSName: @ : o^@
+@ gs_stringByUpdatingPathExtensionWithPathOrURL: @ : @
+c validateGSNameAllowingDot:error: @ : c ^@
+@ gs_issueExtension:error: @ : r* ^@
+@ gs_issueReadExtensionIfNeededForAuditToken: @ : {?=[8I]}
+@ _lp_topLevelDomainFromComponents:indexOfFirstComponent: @ : @ ^Q
+Q _lp_lengthOfDeepSubdomainsFromComponents: @ : @
+c _lp_hasCaseInsensitiveSubstring:startingAt: @ : @ Q
+@ _lp_highLevelDomainFromHost @ :
+@ _lp_simplifiedUserVisibleURLStringWithSimplifications:forDisplayOnly: @ : Q c
+c _lp_hasCaseInsensitivePrefix: @ : @
+@ _lp_stringForcingLeftToRightDirection @ :
+@ _lp_userVisibleHost @ :
+c ls_isRecursiveKey @ :
+@ ls_updatedKey @ :
+@ clean @ :
+c matches: @ : @
+c matchesString: @ : @
+@ firstCharacter @ :
+@ componentsByLanguage: @ : i
+@ pinyinStringFromPinyinWithToneNumber @ :
+@ zhuyinSyllableFromPinyinSyllable @ :
+@ stringByStrippingDiacritics @ :
+@ toneFromPinyinSyllableWithNumber @ :
+@ strokeStringFromNumberString @ :
+@ stringByApplyingPinyinToneMarkToFirstSyllableWithToneNumber: @ : Q
+q simplifiedChineseCompare: @ : @
+q traditionalChinesePinyinCompare: @ : @
+q traditionalChineseZhuyinCompare: @ : @
+q _caseInsensitiveNumericCompare: @ : @
+@ init @ :
+r* UTF8String @ :
+c isEqual: @ : @
+Q hash @ :
+@ description @ :
+Q length @ :
+@ variantFittingPresentationWidth: @ : q
+c isEqualToString: @ : @
+@ initWithCoder: @ : @
+v encodeWithCoder: @ : @
+c hasSuffix: @ : @
+@ stringByDeletingPathExtension @ :
+@ lastPathComponent @ :
+c hasPrefix: @ : @
+q integerValue @ :
+q caseInsensitiveCompare: @ : @
+@ initWithString: @ : @
+c boolValue @ :
+@ substringFromIndex: @ : Q
+d doubleValue @ :
+f floatValue @ :
+c getCString:maxLength:encoding: @ : * Q Q
+@ copyWithZone: @ : ^{_NSZone=}
+q compare: @ : @
+@ stringByAppendingFormat: @ : @
+@ stringByAppendingString: @ : @
+{_NSRange=QQ} rangeOfString: @ : @
+@ substringToIndex: @ : Q
+r* cStringUsingEncoding: @ : Q
+@ stringByAppendingPathComponent: @ : @
+{_NSRange=QQ} rangeOfString:options: @ : @ Q
+@ substringWithRange: @ : {_NSRange=QQ}
+q longLongValue @ :
+q compare:options: @ : @ Q
+@ pathExtension @ :
+@ dataUsingEncoding:allowLossyConversion: @ : Q c
+v getLineStart:end:contentsEnd:forRange: @ : ^Q ^Q ^Q {_NSRange=QQ}
+S characterAtIndex: @ : Q
+i intValue @ :
+@ mutableCopyWithZone: @ : ^{_NSZone=}
+@ uppercaseString @ :
+@ componentsSeparatedByString: @ : @
+@ lowercaseString @ :
+q compare:options:range: @ : @ Q {_NSRange=QQ}
+@ initWithCharacters:length: @ : r^S Q
+@ initWithBytesNoCopy:length:encoding:freeWhenDone: @ : ^v Q Q c
+c containsString: @ : @
+@ stringByAppendingPathExtension: @ : @
+@ localizedUppercaseString @ :
+@ initWithFormat: @ : @
+{_NSRange=QQ} rangeOfCharacterFromSet:options:range: @ : @ Q {_NSRange=QQ}
+{_NSRange=QQ} rangeOfComposedCharacterSequenceAtIndex: @ : Q
+@ initWithCharactersNoCopy:length:freeWhenDone: @ : ^S Q c
+# classForCoder @ :
+c canBeConvertedToEncoding: @ : Q
+r* fileSystemRepresentation @ :
+@ initWithContentsOfFile: @ : @
+v getCharacters:range: @ : ^S {_NSRange=QQ}
+@ stringByDeletingLastPathComponent @ :
+@ initWithCString:encoding: @ : r* Q
+{_NSRange=QQ} rangeOfCharacterFromSet: @ : @
+{_NSRange=QQ} rangeOfCharacterFromSet:options: @ : @ Q
+@ capitalizedString @ :
+@ stringByReplacingOccurrencesOfString:withString: @ : @ @
+c writeToFile:atomically: @ : @ c
+@ replacementObjectForPortCoder: @ : @
+@ stringByResolvingSymlinksInPath @ :
+@ dataUsingEncoding: @ : Q
+@ pathComponents @ :
+@ stringByExpandingTildeInPath @ :
+c isAbsolutePath @ :
+@ stringByAddingPercentEscapesUsingEncoding: @ : Q
+@ initWithFormat:arguments: @ : @ [1{__va_list_tag=II^v^v}]
+@ stringByTrimmingCharactersInSet: @ : @
+@ initWithContentsOfURL: @ : @
+@ stringByStandardizingPath @ :
+@ stringByAbbreviatingWithTildeInPath @ :
+{_NSRange=QQ} rangeOfString:options:range:locale: @ : @ Q {_NSRange=QQ} @
+{_NSRange=QQ} rangeOfString:options:range: @ : @ Q {_NSRange=QQ}
+q localizedStandardCompare: @ : @
+{_NSRange=QQ} paragraphRangeForRange: @ : {_NSRange=QQ}
+v enumerateSubstringsInRange:options:usingBlock: @ : {_NSRange=QQ} Q @?
+v getParagraphStart:end:contentsEnd:forRange: @ : ^Q ^Q ^Q {_NSRange=QQ}
+@ initWithContentsOfFile:encoding:error: @ : @ Q ^@
+c getBytes:maxLength:filledLength:encoding:allowLossyConversion:range:remainingRange: @ : * Q ^Q Q c {_NSRange=QQ} ^{_NSRange=QQ}
+@ initWithData:encoding: @ : @ Q
+@ propertyList @ :
+q localizedCaseInsensitiveCompare: @ : @
+{_NSRange=QQ} rangeOfComposedCharacterSequencesForRange: @ : {_NSRange=QQ}
+@ stringByPaddingToLength:withString:startingAtIndex: @ : Q @ Q
+@ initWithCStringNoCopy:length:freeWhenDone: @ : * Q c
+@ localizedCapitalizedString @ :
+@ stringsByAppendingPaths: @ : @
+r^S _fastCharacterContents @ :
+r* _fastCStringContents: @ : c
+@ decomposedStringWithCanonicalMapping @ :
+c writeToURL:atomically: @ : @ c
+@ stringByReplacingPercentEscapesUsingEncoding: @ : Q
+c getFileSystemRepresentation:maxLength: @ : * Q
+@ uppercaseStringWithLocale: @ : @
+@ lowercaseStringWithLocale: @ : @
+@ capitalizedStringWithLocale: @ : @
+@ stringByApplyingTransform:reverse: @ : @ c
+@ componentsSeparatedByCharactersInSet: @ : @
+{?=b8b4b1b1b18[8S]} decimalValue @ :
+v enumerateLinesUsingBlock: @ : @?
+@ _newSubstringWithRange:zone: @ : {_NSRange=QQ} ^{_NSZone=}
+@ stringByRemovingPercentEncoding @ :
+@ stringByReplacingCharactersInRange:withString: @ : {_NSRange=QQ} @
+@ commonPrefixWithString:options: @ : @ Q
+@ stringByReplacingOccurrencesOfString:withString:options:range: @ : @ @ Q {_NSRange=QQ}
+q compare:options:range:locale: @ : @ Q {_NSRange=QQ} @
+c isNSString__ @ :
+c scriptingIsEqualTo: @ : @
+c scriptingIsLessThanOrEqualTo: @ : @
+c scriptingIsLessThan: @ : @
+c scriptingIsGreaterThanOrEqualTo: @ : @
+c scriptingIsGreaterThan: @ : @
+c scriptingBeginsWith: @ : @
+c scriptingEndsWith: @ : @
+c scriptingContains: @ : @
+@ formatConfiguration @ :
+c _isCString @ :
+@ _createSubstringWithRange: @ : {_NSRange=QQ}
+@ _stringByResolvingSymlinksInPathUsingCache: @ : c
+Q _cfTypeID @ :
+Q fastestEncoding @ :
+Q smallestEncoding @ :
+C _encodingCantBeStoredInEightBitCFString @ :
+I _smallestEncodingInCFStringEncoding @ :
+I _fastestEncodingInCFStringEncoding @ :
+c _getCString:maxLength:encoding: @ : * Q I
+@ decomposedStringWithCompatibilityMapping @ :
+@ precomposedStringWithCompatibilityMapping @ :
+Q cStringLength @ :
+r* lossyCString @ :
+c _allowsDirectEncoding @ :
+@ quotedStringRepresentation @ :
+@ _getCharactersAsStringInRange: @ : {_NSRange=QQ}
+c _getBytesAsData:maxLength:usedLength:encoding:options:range:remainingRange: @ : ^@ Q ^Q Q Q {_NSRange=QQ} ^{_NSRange=QQ}
+v getCString:maxLength:range:remainingRange: @ : * Q {_NSRange=QQ} ^{_NSRange=QQ}
+v getCString:maxLength: @ : * Q
+v getCString: @ : *
+@ _web_filenameByFixingIllegalCharacters @ :
+@ __escapeString5991 @ :
+@ initWithCString:length: @ : r* Q
+c __oldnf_containsString: @ : @
+v __oldnf_copyToUnicharBuffer:saveLength: @ : ^^S ^q
+@ __oldnf_stringWithSeparator:atFrequency: @ : S q
+c __oldnf_containsCharFromSet: @ : @
+c __oldnf_containsChar: @ : c
+@ __oldnf_componentsSeparatedBySet: @ : @
+@ initWithFormat:locale: @ : @ @
+@ _stringByStandardizingPathUsingCache: @ : c
+Q completePathIntoString:caseSensitive:matchesIntoArray:filterTypes: @ : ^@ c ^@ @
+@ stringByConvertingPathToURL @ :
+@ stringByConvertingURLToPath @ :
+@ writableTypeIdentifiersForItemProvider @ :
+@ loadDataWithTypeIdentifier:forItemProviderCompletionHandler: @ : @ @?
+i _scriptingAlternativeValueRankWithDescriptor: @ : @
+@ _scriptingTextDescriptor @ :
+c isLike: @ : @
+c isCaseInsensitiveLike: @ : @
+@ _getBracketedStringFromBuffer:string: @ : ^{_NSStringBuffer=QQ@QQ[32S]SS} @
+c _matchesCharacter: @ : S
+c matchesPattern:caseInsensitive: @ : @ c
+c matchesPattern: @ : @
+@ initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error: @ : @ @ @ [1{__va_list_tag=II^v^v}] ^@
+@ initWithContentsOfURL:usedEncoding:error: @ : @ ^Q ^@
+@ initWithContentsOfFile:usedEncoding:error: @ : @ ^Q ^@
+{_NSRange=QQ} _rangeOfRegularExpressionPattern:options:range:locale: @ : @ Q {_NSRange=QQ} @
+@ _stringByReplacingOccurrencesOfRegularExpressionPattern:withTemplate:options:range: @ : @ @ Q {_NSRange=QQ}
+v _getBlockStart:end:contentsEnd:forRange:stopAtLineSeparators: @ : ^Q ^Q ^Q {_NSRange=QQ} c
+@ _initWithDataOfUnknownEncoding: @ : @
+@ _initWithBytesOfUnknownEncoding:length:copy:usedEncoding: @ : * Q c ^Q
+@ _stringRepresentation @ :
+c localizedHasPrefix: @ : @
+c localizedHasSuffix: @ : @
+c localizedCaseInsensitiveContainsString: @ : @
+c localizedStandardContainsString: @ : @
+{_NSRange=QQ} localizedStandardRangeOfString: @ : @
+@ localizedLowercaseString @ :
+{_NSRange=QQ} lineRangeForRange: @ : {_NSRange=QQ}
+@ displayableString @ :
+c getExternalRepresentation:extendedAttributes:forWritingToURLOrPath:usingEncoding:error: @ : ^@ ^@ @ Q ^@
+@ initWithData:usedEncoding: @ : @ ^Q
+@ propertyListFromStringsFileFormat @ :
+@ _copyFormatStringWithConfiguration: @ : @
+Q maximumLengthOfBytesUsingEncoding: @ : Q
+c _web_looksLikeIPAddress @ :
+c _web_isCaseInsensitiveEqualToString: @ : @
+c _web_hasCountryCodeTLD @ :
+q _web_countOfString: @ : @
+{_NSRange=QQ} _web_rangeOfURLResourceSpecifier_nowarn @ :
+@ _web_stringByTrimmingWhitespace @ :
+{_NSRange=QQ} _web_rangeOfURLScheme_nowarn @ :
+c _web_hasCaseInsensitivePrefix: @ : @
+@ _web_stringByExpandingTildeInPath @ :
+@ _web_fixedCarbonPOSIXPath @ :
+{_NSRange=QQ} _web_rangeOfURLUserPasswordHostPort @ :
+c _web_looksLikeAbsoluteURL @ :
+c _web_isFileURL @ :
+@ _web_URLFragment @ :
+@ _web_stringByCollapsingNonPrintingCharacters @ :
+I _web_extractFourCharCode @ :
+@ _web_parseAsKeyValuePairHandleQuotes_nowarn: @ : c
+@ _web_splitAtNonDateCommas_nowarn @ :
+@ _web_parseAsKeyValuePair_nowarn @ :
+@ _web_mimeTypeFromContentTypeHeader_nowarn @ :
+@ _web_characterSetFromContentTypeHeader_nowarn @ :
+@ _web_fileNameFromContentDispositionHeader_nowarn @ :
+@ _web_stringByReplacingValidPercentEscapes_nowarn @ :
+c _web_isJavaScriptURL @ :
+@ stringByAddingPercentEscapes @ :
+@ standardizedURLPath @ :
+@ stringByRemovingPercentEscapes @ :
+@ stringMarkingUpcaseTransitionsWithDelimiter2: @ : @
+@ _web_HTTPStyleLanguageCode @ :
+@ _web_HTTPStyleLanguageCodeWithoutRegion @ :
+@ linguisticTagsInRange:scheme:options:orthography:tokenRanges: @ : {_NSRange=QQ} @ Q @ ^@
+v enumerateLinguisticTagsInRange:scheme:options:orthography:usingBlock: @ : {_NSRange=QQ} @ Q @ @?
+v _flushRegularExpressionCaches @ :
+{_NSRange=QQ} significantText @ :
+Q __graphemeCount @ :
+@ stringByAddingPercentEncodingWithAllowedCharacters: @ : @
+@ initWithUTF8String: @ : r*
+@ initWithFormat:locale:arguments: @ : @ @ [1{__va_list_tag=II^v^v}]
+r* cString @ :
+@ initWithCString: @ : r*
+@ precomposedStringWithCanonicalMapping @ :
+q localizedCompare: @ : @
+c getBytes:maxLength:usedLength:encoding:options:range:remainingRange: @ : ^v Q ^Q Q Q {_NSRange=QQ} ^{_NSRange=QQ}
+@ stringByFoldingWithOptions:locale: @ : Q @
+c writeToURL:atomically:encoding:error: @ : @ c Q ^@
+@ _web_domainFromHost @ :
+c _web_domainMatches: @ : @
+Q lengthOfBytesUsingEncoding: @ : Q
+@ initWithContentsOfURL:encoding:error: @ : @ Q ^@
+{_NSRange=QQ} _web_rangeOfURLHost @ :
+v getCharacters: @ : ^S
+c writeToFile:atomically:encoding:error: @ : @ c Q ^@
