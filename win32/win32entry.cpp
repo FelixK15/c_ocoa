@@ -6,6 +6,7 @@
 #include <ctype.h>
 #include <malloc.h>
 
+#define ArrayCount(x) (sizeof(x)/sizeof((x)[1]))
 #define RuntimeAssert(x) if(!(x)){ __debugbreak();}
 #define InvalidCodePath() RuntimeAssert(false)
 #define UnusedArgument(x) (void)x
@@ -23,7 +24,7 @@ int main( int argc, const char** argv )
 		return -1;
 	}
 
-	ParseResult parseResult = parseCommandLineArguments( argc - 1, argv + 1 );
+	CommandLineParseResult parseResult = parseCommandLineArguments( argc - 1, argv + 1 );
 	if( parseResult.pTestFilePath == nullptr )
 	{
 		printf("Real use only supported under macOS, use --test <testfile> to test implementation under win32.");

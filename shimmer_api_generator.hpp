@@ -3,7 +3,6 @@ struct ObjCTypeDictEntry
     char* pOriginalType         = nullptr;
     const char* pResolvedType   = nullptr;
 
-    size_t originalTypeLength   = 0u;
     uint8_t isNew               = 1u;
 };
 
@@ -13,12 +12,12 @@ struct ObjCTypeDict
     uint32_t           entryCapacity;
 };
 
-struct ParseResult
+struct CommandLineParseResult
 {
     const char* pTestFilePath = nullptr;
 };
 
-ParseResult parseCommandLineArguments( const int argc, const char** argv )
+CommandLineParseResult parseCommandLineArguments( const int argc, const char** argv )
 {
     enum ParseState
     {
@@ -27,7 +26,7 @@ ParseResult parseCommandLineArguments( const int argc, const char** argv )
     };
 
     ParseState state = NextArgument;
-    ParseResult result;
+    CommandLineParseResult result;
 
     for( int argIndex = 0u; argIndex < argc; ++argIndex )
     {
@@ -96,12 +95,12 @@ uint32_t djb2_hash( const char* pString, const size_t stringLength )
 {
     uint32_t hash = 5381;
 
-    for(size_t i = 0u; i < stringLength; ++i)
+    while( *pString )
     {
-        const char c = pString[i];
+        const char c = *pString++;
         hash = ((hash << 5) + hash) + c;
     }
-
+        
     return hash;
 }
 
@@ -115,8 +114,6 @@ ObjCTypeDictEntry* insertTypeDictionaryEntry( ObjCTypeDict* pDict, const char* r
     *pOutIsNew = pEntry->isNew;
     if( pEntry->isNew )
     {
-        pEntry->originalTypeLength = typeNameLength;
-
         //FK: TODO: use custom linear allocator?
         pEntry->pOriginalType = (char*)malloc( typeNameLength + 1 ); 
         if( pEntry->pOriginalType == nullptr )
@@ -244,9 +241,17 @@ const char* resolveObjectiveCTypeName( ObjCTypeDict* pTypeDict, const char* pTyp
     return pTypeDictEntry->pResolvedType;
 }
 
-const char* parseToAfterNextNewline( const char* pText )
+const char* findNextNewline( const char* pText )
 {
-    while( *pText++ != '\n' );
+    while( *pText )
+    {
+        if( *pText == '\n' )
+        {
+            break;
+        }
+
+        ++pText;
+    }
     return pText;
 }
 
@@ -265,7 +270,7 @@ const char* findNextWhitespace( const char* pText )
     return pText;
 }
 
-const char* parseToBeforePreviousWhitespace( const char* pTextStart, const char* pText )
+const char* findPreviousWhitespace( const char* pTextStart, const char* pText )
 {
     while( pText != pTextStart )
     {
@@ -289,6 +294,93 @@ void convertToLower( char* pDestination, const char* pSource, size_t sourceLengt
     }
 }
 
+struct ParseResult
+{
+    char* pReturnType;
+    char* pFunctionName;
+    char* pArguments;
+
+    int32_t returnTypeLength;
+    int32_t functionNameLength;
+    int32_t argumentLength;
+};
+
+uint8_t isValidFunctionName( const char* pFunctionName )
+{
+    //FK: Filter (apparently) internal functions that we're not interested in
+    return ( *pFunctionName != '_' && *pFunctionName != '.' );
+}
+
+const char* convertToCFunctionName( char* pObjectiveCFunctionName, int32_t functionNameLength )
+{
+    if( pObjectiveCFunctionName[ functionNameLength - 1 ] == ':' )
+    {
+        pObjectiveCFunctionName[ functionNameLength - 1 ] = 0;
+    }
+
+    return pObjectiveCFunctionName;
+}
+
+void writeCFunctionDeclaration( FILE* pResultFileHandle, const char* pLowerClassName, const char* pResolvedReturnType, const char* pFunctionName, const char** pResolvedArgumentTypes, int32_t argumentCount )
+{
+    fprintf( pResultFileHandle, "%s %s_%s( nsobject_t %s_object", pResolvedReturnType, pLowerClassName, pFunctionName, pLowerClassName );
+
+    for( int32_t argumentIndex = 0u; argumentIndex < argumentCount; ++argumentIndex )
+    {
+        fprintf( pResultFileHandle, ", %s arg%u", pResolvedArgumentTypes[ argumentIndex ], argumentIndex );
+    }
+
+    fprintf( pResultFileHandle, " );\n" );
+    fflush( pResultFileHandle );
+}
+
+uint8_t convertParseResultToCCode( FILE* pResultFileHandle, ObjCTypeDict* pDict, ParseResult* pParseResult, const char* pLowerClassName )
+{
+    if( !isValidFunctionName( pParseResult->pFunctionName ) )
+    {
+        return 0u;
+    }
+
+    const char* pResolvedReturnType = resolveObjectiveCTypeName( pDict, pParseResult->pReturnType, pParseResult->returnTypeLength );
+    if( pResolvedReturnType == nullptr )
+    {
+        return 0u;
+    }
+
+    const char* pFunctionName = convertToCFunctionName( pParseResult->pFunctionName, pParseResult->functionNameLength );
+
+    const char* pArguments = pParseResult->pArguments;
+    const char* pResolvedArgumentTypes[32] = {};
+    
+    uint8_t argumentCount = 0u;
+    constexpr uint8_t argumentsToSkip = 2; //FK: Skip first two arguments since these are always the object + the selector.
+    while( *pArguments )
+    {
+        const char* pArgumentStart = pArguments;
+        const char* pArgumentEnd = findNextWhitespace( pArgumentStart );
+        const int32_t argumentLength = (int32_t)(pArgumentEnd - pArgumentStart);
+
+        if( argumentCount >= argumentsToSkip )
+        {
+            const uint8_t argumentIndex = argumentCount - argumentsToSkip;
+            RuntimeAssert( argumentIndex < ArrayCount( pResolvedArgumentTypes ) );
+
+            pResolvedArgumentTypes[ argumentIndex ] = resolveObjectiveCTypeName( pDict, pArgumentStart, argumentLength );
+        }
+
+        if( *pArgumentEnd == 0 )
+        {
+            break;
+        }
+
+        ++argumentCount;
+        pArguments = pArgumentEnd + 1;
+    }
+
+    writeCFunctionDeclaration( pResultFileHandle, pLowerClassName, pResolvedReturnType, pFunctionName, pResolvedArgumentTypes, ( argumentCount - argumentsToSkip ) );
+    return 1u;
+}
+
 void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, size_t fileContentBufferSizeInBytes )
 {
     constexpr size_t dictSizeInBytes = 1024*1024; //FK: 1 MiB
@@ -300,13 +392,13 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
 
     //FK: 
     const char* pClassNameEnd = strstr( pFileContentBuffer, ":" );
-    const char* pClassNameStart = parseToBeforePreviousWhitespace( pFileContentBuffer, pClassNameEnd );
+    const char* pClassNameStart = findPreviousWhitespace( pFileContentBuffer, pClassNameEnd );
 
     const size_t classNameLength = ( pClassNameEnd - pClassNameStart );
     char* pLowerClassName = (char*)malloc( classNameLength + 1 );
     convertToLower( pLowerClassName, pClassNameStart, classNameLength );
 
-    pFileContentBuffer = parseToAfterNextNewline( pFileContentBuffer );
+    pFileContentBuffer = findNextNewline( pFileContentBuffer ) + 1;
 
     enum State
     {
@@ -316,6 +408,12 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
         ParseArgumenType,
         ParseFunctionName
     };
+
+    constexpr size_t stringBufferSizeInBytes = 1024u*32u; //FK: 32KiB
+    char* pStringBuffer = (char*)calloc( 1u, stringBufferSizeInBytes );
+    size_t stringBufferOffset = 0u;
+    //FK: Temporary parse struct to store strings for easier parsing later
+    ParseResult parseResult = {};
 
     constexpr uint8_t ArgumentsToSkip = 2;
 
@@ -328,15 +426,7 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
         {
             case EatWhitespace:
             {
-                if( *pFileContentBuffer == '\n' )
-                {
-                    fprintf( pResultFileHandle, ");\n" );
-                    argumentCount = 0u;
-                    state = ParseReturnType;
-                    ++pFileContentBuffer;
-                    break;
-                }
-                else if( !isspace( *pFileContentBuffer ) )
+                if( !isspace( *pFileContentBuffer ) )
                 {
                     if( previousState == ParseArgumenType ||
                         previousState == ParseFunctionName )
@@ -358,6 +448,10 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
             {
                 if( *pFileContentBuffer == '\n' )
                 {
+                    convertParseResultToCCode( pResultFileHandle, pDict, &parseResult, pLowerClassName );
+                    memset( pStringBuffer, 0u, stringBufferOffset );
+                    stringBufferOffset = 0u;
+                    
                     ++pFileContentBuffer;
                     state = ParseReturnType;
                     break;
@@ -369,44 +463,78 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
 
             case ParseFunctionName:
             {
-                const char* pNextWhiteSpacePosition = strstr( pFileContentBuffer, " " );
-                const char* pNextColonPosition = strstr( pFileContentBuffer, ":" );
+                const char* pFunctionNameStart      = pFileContentBuffer;
+                const char* pNextWhiteSpacePosition = strstr( pFunctionNameStart, " " );
+                const char* pNextColonPosition      = strstr( pFunctionNameStart, ":" );
 
                 //FK: Ignore function name extension naming optional arguments
                 //    eg: nextEventMatchingMask:untilDate:inMode:dequeue:
-                size_t functionNameLength = ( pNextWhiteSpacePosition - pFileContentBuffer );
+                size_t functionNameLength = ( pNextWhiteSpacePosition - pFunctionNameStart );
                 if( pNextColonPosition < pNextWhiteSpacePosition )
                 {
-                    functionNameLength = ( pNextColonPosition - pFileContentBuffer );
+                    functionNameLength = ( pNextColonPosition - pFunctionNameStart );
                 }
+                
+                parseResult.pFunctionName = pStringBuffer + stringBufferOffset;
 
-                //FK: Omit trailing ':' from function name;
-                if( pFileContentBuffer[ functionNameLength ] == ':' )
-                {
-                    functionNameLength -= 1;
-                }
-
-                fprintf( pResultFileHandle, "%s_%.*s(", pLowerClassName, (int)functionNameLength, pFileContentBuffer );
-
+                const int32_t numCharactersWritten = sprintf( pStringBuffer + stringBufferOffset, "%.*s", (int)functionNameLength, pFunctionNameStart );
+                parseResult.functionNameLength = numCharactersWritten;
+                stringBufferOffset += numCharactersWritten + 1;
                 pFileContentBuffer += functionNameLength;
                 state = EatWhitespace;
                 break;
+
+#if 0
+                //FK: Omit trailing ':' from function name;
+                if( pFunctionNameStart[ functionNameLength ] == ':' )
+                {
+                    --functionNameLength;
+                }
+
+                //FK: Omit leading '.' (for internal functions...?)
+                if( *pFunctionNameStart == '.' )
+                {
+                    ++pFunctionNameStart;
+                    --functionNameLength;
+                }
+#endif
             }
 
             case ParseReturnType:
+            {
+                const char* pReturnTypeStart = pFileContentBuffer;
+                const char* pReturnTypeEnd   = findNextWhitespace( pReturnTypeStart );
+                const int32_t typeLength = ( int32_t )( pReturnTypeEnd - pReturnTypeStart );
+
+                parseResult.pReturnType = pStringBuffer + stringBufferOffset;
+
+                const int32_t numCharactersWritten = sprintf( pStringBuffer + stringBufferOffset, "%.*s", typeLength, pReturnTypeStart );
+                parseResult.returnTypeLength = numCharactersWritten;
+                stringBufferOffset += numCharactersWritten + 1;
+                state = EatWhitespace;
+
+                pFileContentBuffer += typeLength;
+
+                break;
+            }
             case ParseArgumenType:
             {
-                const char* pNextWhiteSpacePosition = findNextWhitespace( pFileContentBuffer );
-                size_t typeLength = 0u;
-                if( pNextWhiteSpacePosition == nullptr )
-                {
-                    typeLength = strlen( pFileContentBuffer );
-                }
-                else
-                {
-                    typeLength = ( pNextWhiteSpacePosition - pFileContentBuffer );
-                }
+                const char* pArgumentsStart = pFileContentBuffer;
+                const char* pArgumentsEnd = findNextNewline( pArgumentsStart );
+                const int32_t argumentLength = ( int32_t )( pArgumentsEnd - pArgumentsStart );
+               
+                parseResult.pArguments = pStringBuffer + stringBufferOffset;
 
+                const int32_t numCharactersWritten = sprintf( pStringBuffer + stringBufferOffset, "%.*s", argumentLength, pArgumentsStart );
+                parseResult.argumentLength = numCharactersWritten;
+                stringBufferOffset += numCharactersWritten + 1;
+                state = EatUntilNewLine;
+
+                pFileContentBuffer += argumentLength;
+
+                break;
+
+#if 0
                 ++argumentCount;
                 if( state == ParseArgumenType && argumentCount <= ArgumentsToSkip )
                 {
@@ -425,12 +553,7 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
 
                 if( state == ParseArgumenType )
                 {
-                    if( argumentCount != (ArgumentsToSkip + 1) )
-                    {
-                        fprintf( pResultFileHandle, "%s", ", " );
-                    }
-
-                    fprintf( pResultFileHandle, "%s arg%d", pResolvedType, ( argumentCount - ArgumentsToSkip ) );
+                    fprintf( pResultFileHandle, ", %s arg%d", pResolvedType, ( argumentCount - ArgumentsToSkip ) );
                 }
                 else
                 {
@@ -440,6 +563,7 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
                 pFileContentBuffer += typeLength;
                 state = EatWhitespace;
                 break;
+#endif
             }
 
             default:
