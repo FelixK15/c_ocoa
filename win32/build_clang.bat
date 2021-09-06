@@ -38,13 +38,13 @@ if "%BUILD_CONFIG%"=="debug" (
 set CL_OPTIONS=!COMPILER_OPTIONS!
 
 ::is cl.exe part of PATH?
-where /Q cl.exe
+where /Q clang.exe
 if !errorlevel! == 0 (
-	echo Found cl.exe in PATH
+	echo Found clang.exe in PATH
 	goto START_COMPILATION
 )
 
-echo Didn't find cl.exe in PATH - searching for Visual Studio installation...
+echo Didn't find clang.exe in PATH - searching for Visual Studio installation...
 
 set FOUND_PATH=0
 set VS_PATH=
