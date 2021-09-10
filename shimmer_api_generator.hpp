@@ -29,6 +29,103 @@ inline int32_t castSizeToInt32( size_t val )
     return (int32_t)val;
 }
 
+inline void fillMemoryWithZeroes( void* pMemory, const size_t sizeInBytes )
+{
+    memset( pMemory, 0u, sizeInBytes );
+}
+
+inline uint8_t areCStringsEqual( const char* pStringA, const char* pStringB )
+{
+    while( *pStringA && *pStringB )
+    {
+        if( *pStringA++ != *pStringB++ )
+        {
+            return 0u;
+        }
+    }
+
+    return ( *pStringA == *pStringB && *pStringA == 0 );
+}
+
+inline int32_t getCStringLengthInclNullTerminator( const char* pString )
+{
+    const char* pStringStart = pString;
+    while( *pString++ );
+
+    return castSizeToInt32( pString - pStringStart );
+}
+
+inline char* copyCStringAndAddNullTerminator( char* pDestination, const char* pSource, const int32_t stringLength )
+{
+    for( int32_t charIndex = 0; charIndex < stringLength; ++charIndex )
+    {
+        pDestination[ charIndex ] = pSource[ charIndex ];
+    }
+
+    pDestination[ stringLength ] = 0;
+    return pDestination;
+}
+
+inline char* convertCStringToLower( char* pString, const int32_t stringLength )
+{
+    for( int32_t charIndex = 0u; charIndex < stringLength; ++charIndex )
+    {
+        pString[ charIndex ] = tolower( pString[ charIndex ] );
+    }
+    return pString;
+}
+
+inline char* convertCStringToLower( char* pDestination, const char* pSource, const int32_t sourceLength )
+{
+    for( int32_t charIndex = 0u; charIndex < sourceLength; ++charIndex )
+    {
+        pDestination[ charIndex ] = tolower( pSource[ charIndex ] );
+    }
+
+    return pDestination;
+}
+
+inline char* allocateCStringCopy( const char* pString, const int32_t stringLength )
+{
+    char* pStringCopyMemory = (char*)malloc( stringLength + 1 );
+    if( pStringCopyMemory == NULL )
+    {
+        //FK: TODO: Handle out of memory
+        return NULL;
+    }
+
+    return copyCStringAndAddNullTerminator( pStringCopyMemory, pString, stringLength );
+}
+
+inline char* allocateLowerCStringCopy( const char* pString, const int32_t stringLength )
+{
+    char* pStringCopyMemory = (char*)malloc( stringLength + 1 );
+    if( pStringCopyMemory == NULL )
+    {
+        //FK: TODO: Handle out of memory
+        return NULL;
+    }
+
+    copyCStringAndAddNullTerminator( pStringCopyMemory, pString, stringLength );
+    return convertCStringToLower( pStringCopyMemory, stringLength );
+}
+
+inline const char* findNextCharacterPositionInCString( const char* pString, char character )
+{
+    const char* pStringStart = pString;
+    while( *pString )
+    {
+        if( *pString == character )
+        {
+            return pString;
+        }
+
+        ++pString;
+    }
+
+    return NULL;
+}
+
 CommandLineParseResult parseCommandLineArguments( const int argc, const char** argv )
 {
     enum ParseState
@@ -46,7 +143,7 @@ CommandLineParseResult parseCommandLineArguments( const int argc, const char** a
         {
             case NextArgument:
             {
-                if( strcmp( argv[argIndex], "--test" ) == 0 )
+                if( areCStringsEqual( argv[argIndex], "--test" ) )
                 {
                     state = ParseTestArg;
                     continue;
@@ -239,7 +336,7 @@ const char* resolveStructType( ObjCTypeDict* pTypeDict, const char* pTypeName, i
     //FK: pTypeNameCopy should now point to the beginning of the *actual* typename
     //    without any leading identifier like '{' or '_'.
     //    Search for end of type name to be able to extract it
-    char* pTypeNameCopyEnd = strchr( pTypeNameCopy, '=' );
+    char* pTypeNameCopyEnd = ( char* )findNextCharacterPositionInCString( pTypeNameCopy, '=' );
     RuntimeAssert( pTypeNameCopyEnd != NULL );
     *pTypeNameCopyEnd = 0;
 
@@ -249,9 +346,7 @@ const char* resolveStructType( ObjCTypeDict* pTypeDict, const char* pTypeName, i
     ObjCTypeDictEntry* pTypeDictEntry = insertTypeDictionaryEntry( pTypeDict, pTypeNameCopy, typeNameLength, &isNew );
     if( isNew )
     {
-        char* pResolvedType = (char*)malloc( typeNameLength + 1 );
-        sprintf( pResolvedType, "%.*s", typeNameLength, pTypeNameCopy );
-        pTypeDictEntry->pResolvedType = pResolvedType;
+        pTypeDictEntry->pResolvedType = allocateCStringCopy( pTypeNameCopy, typeNameLength );
     }
 
     return pTypeDictEntry->pResolvedType;
@@ -290,18 +385,16 @@ const char* resolveReferenceType( ObjCTypeDict* pTypeDict, const char* pTypeName
         pBaseTypeName = resolveBaseType( pTypeNameCopy );
     }
 
-    const size_t baseTypeNameLength = strlen( pBaseTypeName );
+    const size_t baseTypeNameLength = getCStringLengthInclNullTerminator( pBaseTypeName );
 
-    char* pReferenceType = (char*)alloca( baseTypeNameLength + 2u ); //FK: +2 for reference indicator ('*') & null char
+    char* pReferenceType = (char*)alloca( baseTypeNameLength +1u ); //FK: +1 for reference indicator ('*')
     const int32_t referenceTypeLength = sprintf( pReferenceType, "%s*", pBaseTypeName );
 
     uint8_t isNew = 0;
     ObjCTypeDictEntry* pTypeDictEntry = insertTypeDictionaryEntry( pTypeDict, pReferenceType, referenceTypeLength, &isNew );
     if( isNew )
     {
-        char* pResolvedType = (char*)malloc( referenceTypeLength + 1 );
-        strcpy( pResolvedType, pReferenceType );
-        pTypeDictEntry->pResolvedType = pResolvedType;
+        pTypeDictEntry->pResolvedType = allocateCStringCopy( pReferenceType, referenceTypeLength );
     }
 
     return pTypeDictEntry->pResolvedType;
@@ -366,14 +459,6 @@ const char* findPreviousWhitespace( const char* pTextStart, const char* pText )
     return pText;
 }
 
-void convertToLower( char* pDestination, const char* pSource, const int32_t sourceLength )
-{
-    for( int32_t charIndex = 0u; charIndex < sourceLength; ++charIndex )
-    {
-        pDestination[ charIndex ] = tolower( pSource[ charIndex ] );
-    }
-}
-
 struct ParseResult
 {
     char* pReturnType;
@@ -413,10 +498,10 @@ void writeCFunctionDeclaration( FILE* pResultFileHandle, const char* pLowerClass
     const size_t maxTabCount = 5u;
     size_t returnTypeLength = 0u;
 
-    const uint8_t isInitFunction = ( strcmp( pFunctionName, "init" ) == 0u );
+    const uint8_t isInitFunction = ( areCStringsEqual( pFunctionName, "init" ) || areCStringsEqual( pFunctionName, "initWithCoder" ) );
     if( isInitFunction )
     {
-        //FK: little syntactic sugar, return correct type for init function
+        //FK: little syntactic sugar, return correct type for init function(s)
         returnTypeLength = fprintf( pResultFileHandle, "%s_t ", pLowerClassName );
     }
     else
@@ -502,12 +587,12 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
         return;
     }
 
-    const char* pClassNameEnd = strchr( pFileContentBuffer, ':' );
+    const char* pClassNameEnd = findNextCharacterPositionInCString( pFileContentBuffer, ':' );
     const char* pClassNameStart = findPreviousWhitespace( pFileContentBuffer, pClassNameEnd );
 
     const int32_t classNameLength = castSizeToInt32( pClassNameEnd - pClassNameStart );
     char* pLowerClassName = (char*)malloc( classNameLength + 1 );
-    convertToLower( pLowerClassName, pClassNameStart, classNameLength );
+    convertCStringToLower( pLowerClassName, pClassNameStart, classNameLength );
 
     pFileContentBuffer = findNextNewline( pFileContentBuffer ) + 1;
 
@@ -560,7 +645,7 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
                 if( *pFileContentBuffer == '\n' )
                 {
                     convertParseResultToCCode( pResultFileHandle, pDict, &parseResult, pLowerClassName );
-                    memset( pStringBuffer, 0u, stringBufferOffset );
+                    fillMemoryWithZeroes( pStringBuffer, stringBufferOffset );
                     stringBufferOffset = 0u;
                     
                     ++pFileContentBuffer;
@@ -575,8 +660,8 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
             case ParseFunctionName:
             {
                 const char* pFunctionNameStart      = pFileContentBuffer;
-                const char* pNextWhiteSpacePosition = strchr( pFunctionNameStart, ' ' );
-                const char* pNextColonPosition      = strchr( pFunctionNameStart, ':' );
+                const char* pNextWhiteSpacePosition = findNextCharacterPositionInCString( pFunctionNameStart, ' ' );
+                const char* pNextColonPosition      = findNextCharacterPositionInCString( pFunctionNameStart, ':' );
 
                 //FK: Ignore function name extension naming optional arguments
                 //    eg: nextEventMatchingMask:untilDate:inMode:dequeue:
