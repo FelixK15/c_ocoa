@@ -404,9 +404,33 @@ const char* convertToCFunctionName( char* pObjectiveCFunctionName, int32_t funct
 
 void writeCFunctionDeclaration( FILE* pResultFileHandle, const char* pLowerClassName, const char* pResolvedReturnType, const char* pFunctionName, const char** pResolvedArgumentTypes, int32_t argumentCount )
 {   
-    const uint32_t returnTypeLength = castSizeToUint32( strlen( pResolvedReturnType ) );
+    //FK: "guess" maximum tab count for nice formatting
+    //    getting the correct tab count for the longest
+    //    return type name would be too involved since
+    //    we currently run on a function by function basis
+    //    and thus don't know the maximum type name length
+    //    beforehand
+    const size_t maxTabCount = 5u;
+    size_t returnTypeLength = 0u;
 
-    fprintf( pResultFileHandle, "%s ", pResolvedReturnType );
+    const uint8_t isInitFunction = ( strcmp( pFunctionName, "init" ) == 0u );
+    if( isInitFunction )
+    {
+        //FK: little syntactic sugar, return correct type for init function
+        returnTypeLength = fprintf( pResultFileHandle, "%s_t ", pLowerClassName );
+    }
+    else
+    {
+        returnTypeLength = fprintf( pResultFileHandle, "%s ", pResolvedReturnType );
+    }
+
+    const size_t spacesForTab = 4u;
+    const size_t tabCountForReturnType = getMax( 0u, maxTabCount - ( returnTypeLength / spacesForTab ) );
+    for( size_t tabIndex = 0u; tabIndex < tabCountForReturnType; ++tabIndex )
+    {
+        fprintf( pResultFileHandle, "\t" );
+    }
+
     fprintf( pResultFileHandle, "%s_%s( %s_t object", pLowerClassName, pFunctionName, pLowerClassName );
 
     for( int32_t argumentIndex = 0u; argumentIndex < argumentCount; ++argumentIndex )
@@ -423,11 +447,6 @@ uint8_t convertParseResultToCCode( FILE* pResultFileHandle, ObjCTypeDict* pDict,
     if( !isValidFunctionName( pParseResult->pFunctionName ) )
     {
         return 0u;
-    }
-
-    if( strcmp( pParseResult->pFunctionName, "setWindowsNeedUpdate" ) == 0 )
-    {
-        BreakpointHook();
     }
 
     const char* pResolvedReturnType = resolveObjectiveCTypeName( pDict, pParseResult->pReturnType, pParseResult->returnTypeLength );
