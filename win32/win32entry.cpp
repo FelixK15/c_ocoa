@@ -5,11 +5,17 @@
 #include <string.h>
 #include <ctype.h>
 #include <malloc.h>
+#include <intrin.h>
+
+#define getMax(a,b) (a)>(b)?(a):(b)
+#define getMin(a,b) (a)>(b)?(b):(a)
 
 #define ArrayCount(x) (sizeof(x)/sizeof((x)[1]))
 #define RuntimeAssert(x) if(!(x)){ __debugbreak();}
 #define InvalidCodePath() RuntimeAssert(false)
 #define UnusedArgument(x) (void)x
+
+#define BreakpointHook() __nop()
 
 #define restrict_modifier __restrict__
 
