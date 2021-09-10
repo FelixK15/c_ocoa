@@ -31,7 +31,38 @@ inline int32_t castSizeToInt32( size_t val )
 
 inline void fillMemoryWithZeroes( void* pMemory, const size_t sizeInBytes )
 {
-    memset( pMemory, 0u, sizeInBytes );
+    //FK: TODO: use STOSB - currently this is slower than memset (but saves the string.h include)
+    uint8_t* pMemoryAsByteArray = (uint8_t*)pMemory;
+    for( size_t byteIndex = 0u; byteIndex < sizeInBytes; ++byteIndex )
+    {
+        *pMemoryAsByteArray = 0;
+    }
+}
+
+//FK: Use custom string.h alternatives since we're not concerned with locale 
+inline uint8_t isWhiteSpaceCharacter( const char character )
+{
+    return character == ' '  ||
+           character == '\n' ||
+           character == '\t' ||
+           character == '\v' ||
+           character == '\f' ||
+           character == '\r';
+}
+
+inline uint8_t isAlphabeticalCharacter( const char character )
+{
+    return ( character >= 'A' && character <= 'Z' ) || ( character >= 'a' && character <= 'z' );
+}
+
+inline char convertCharacterToLower( const char character )
+{
+    if( !isAlphabeticalCharacter( character ) )
+    {
+        return character;
+    }
+
+    return character <= 'Z' ? character + 32 : character;
 }
 
 inline uint8_t areCStringsEqual( const char* pStringA, const char* pStringB )
@@ -70,7 +101,7 @@ inline char* convertCStringToLower( char* pString, const int32_t stringLength )
 {
     for( int32_t charIndex = 0u; charIndex < stringLength; ++charIndex )
     {
-        pString[ charIndex ] = tolower( pString[ charIndex ] );
+        pString[ charIndex ] = convertCharacterToLower( pString[ charIndex ] );
     }
     return pString;
 }
@@ -79,7 +110,7 @@ inline char* convertCStringToLower( char* pDestination, const char* pSource, con
 {
     for( int32_t charIndex = 0u; charIndex < sourceLength; ++charIndex )
     {
-        pDestination[ charIndex ] = tolower( pSource[ charIndex ] );
+        pDestination[ charIndex ] = convertCharacterToLower( pSource[ charIndex ] );
     }
 
     return pDestination;
@@ -183,7 +214,11 @@ ObjCTypeDict* createObjectiveCTypeDictionary( size_t sizeInBytes )
     pTypeDict->entryCapacity = sizeInBytes / sizeof( ObjCTypeDictEntry );
 
     //FK: mark all entries as `isNew`
-    memset( pTypeDict->pEntries, 1, sizeInBytes );
+    for( size_t entryIndex = 0u; entryIndex < pTypeDict->entryCapacity; ++entryIndex )
+    {
+        pTypeDict->pEntries[ entryIndex ].isNew = 1;
+    }
+
     return pTypeDict;
 }
 
@@ -253,8 +288,8 @@ const char* parseObjectiveCStruct( const char* pTypeName, const int32_t typeName
     //FK: Optimistically alloca 1KiB on the stack to have 
     //    a big enough scratchpad to resolve the typename
     char* pTempMemory = (char*)alloca(1024);
-    memset(pTempMemory, 0, 1024);
 
+    //FK: TODO!
     return pTypeName;
 }
 
@@ -432,7 +467,7 @@ const char* findNextWhitespace( const char* pText )
 {
     while( *pText )
     {
-        if( isspace( *pText ) )
+        if( isWhiteSpaceCharacter( *pText ) )
         {
             break;
         }
@@ -447,7 +482,7 @@ const char* findPreviousWhitespace( const char* pTextStart, const char* pText )
 {
     while( pText != pTextStart )
     {
-        if( isspace( *pText ) )
+        if( isWhiteSpaceCharacter( *pText ) )
         {
             ++pText;
             break;
@@ -622,7 +657,7 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
         {
             case EatWhitespace:
             {
-                if( !isspace( *pFileContentBuffer ) )
+                if( !isWhiteSpaceCharacter( *pFileContentBuffer ) )
                 {
                     if( previousState == ParseArgumenType ||
                         previousState == ParseFunctionName )
