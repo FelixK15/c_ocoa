@@ -2,8 +2,6 @@
 
 #include <stdio.h>
 #include <stdint.h>
-#include <string.h>
-#include <ctype.h>
 #include <malloc.h>
 #include <intrin.h>
 
