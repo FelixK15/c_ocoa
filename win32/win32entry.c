@@ -10,14 +10,14 @@
 
 #define ArrayCount(x) (sizeof(x)/sizeof((x)[1]))
 #define RuntimeAssert(x) if(!(x)){ __debugbreak();}
-#define InvalidCodePath() RuntimeAssert(false)
+#define InvalidCodePath() RuntimeAssert(0)
 #define UnusedArgument(x) (void)x
 
 #define BreakpointHook() __nop()
 
 #define restrict_modifier __restrict__
 
-#include "..\shimmer_api_generator.hpp"
+#include "..\shimmer_api_generator.h"
 
 int main( int argc, const char** argv )
 {
@@ -29,14 +29,14 @@ int main( int argc, const char** argv )
 	}
 
 	CommandLineParseResult parseResult = parseCommandLineArguments( argc - 1, argv + 1 );
-	if( parseResult.pTestFilePath == nullptr )
+	if( parseResult.pTestFilePath == NULL )
 	{
 		printf("Real use only supported under macOS, use --test <testfile> to test implementation under win32.");
 		return -1;
 	}
 
 	FILE* pTestFileHandle = fopen( parseResult.pTestFilePath, "r" );
-	if( pTestFileHandle == nullptr )
+	if( pTestFileHandle == NULL )
 	{
 		printf("Couldn't open test file '%s' for reading.", parseResult.pTestFilePath );
 		return -1;
@@ -48,7 +48,7 @@ int main( int argc, const char** argv )
 	fseek(pTestFileHandle, 0, SEEK_SET);
 
 	char* pFileBuffer = (char*)malloc( fileSizeInBytes );
-	if( pFileBuffer == nullptr )
+	if( pFileBuffer == NULL )
 	{
 		printf("Couldn't allocate %.3fKiB as file buffer.", (float)fileSizeInBytes/1024.f);
 		return -1;
@@ -56,15 +56,14 @@ int main( int argc, const char** argv )
 
 	fread( pFileBuffer, 1u, fileSizeInBytes, pTestFileHandle );
 	fclose( pTestFileHandle );
-	pTestFileHandle = nullptr;
+	pTestFileHandle = NULL;
 
-	FILE* pTestOutFileHandle = fopen( "test_out.hpp", "w" );
-	if( pTestOutFileHandle == nullptr )
+	ObjCConversionArguments arguments;
+	if( !createConversionArguments( &arguments, "test_out.h", "test_out.c" ) )
 	{
-		printf( "Could not open file 'test_out.hpp' for writing." );
 		return -1;
 	}
 
-	parseTestFile( pTestOutFileHandle, pFileBuffer, fileSizeInBytes );
+	parseTestFile( &arguments, pFileBuffer, fileSizeInBytes );
 	return 0;
 }

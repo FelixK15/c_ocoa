@@ -1,21 +1,105 @@
-struct ObjCTypeDictEntry
+typedef struct
 {
-    char* pOriginalType         = NULL;
-    const char* pResolvedType   = NULL;
+    char* pOriginalType;
+    const char* pResolvedType;
 
-    uint8_t isNew               = 1u;
-};
+    uint8_t isNew;
+} ObjCTypeDictEntry;
 
-struct ObjCTypeDict
+typedef struct
 {
     ObjCTypeDictEntry* pEntries;
     uint32_t           entryCapacity;
-};
+} ObjCTypeDict;
 
-struct CommandLineParseResult
+typedef struct
 {
-    const char* pTestFilePath = NULL;
-};
+    const char* pTestFilePath;
+} CommandLineParseResult;
+
+typedef struct
+{
+    FILE* pHeaderFileHandle;
+    FILE* pSourceFileHandle;
+
+    const char* pHeaderFileName;
+    const char* pSourceFileName;
+} ObjCConversionArguments;
+
+typedef struct
+{
+    char* pReturnType;
+    char* pFunctionName;
+    char* pArguments;
+    char* pResolvedArgumentTypes[32];
+
+    int32_t returnTypeLength;
+    int32_t functionNameLength;
+    int32_t argumentLength;
+    int32_t argumentCount;
+} ParseResult;
+
+typedef struct 
+{
+    char* pBufferStart;
+    uint32_t bufferCapacity;
+    uint32_t bufferSize;
+} StringAllocator;
+
+typedef struct
+{
+    const char* pResolvedReturnType;
+    const char* pResolvedArgumentTypes[32];
+
+    char* pClassName;
+    char* pLowerClassName;
+    char* pResolvedFunctionName;
+    char* pOriginalFunctionName;
+
+    uint8_t argumentCount   : 6;
+    uint8_t isVoidFunction  : 1;
+    uint8_t isInitFunction  : 1;
+} CFunctionDefinition;
+
+
+void resetStringAllocator( StringAllocator* pStringAllocator )
+{
+    pStringAllocator->bufferSize = 0u;
+}
+
+char* getCurrentStringAllocatorBase( StringAllocator* pStringAllocator )
+{
+    return pStringAllocator->pBufferStart + pStringAllocator->bufferSize;
+}
+
+void decrementStringAllocatorCapacity( StringAllocator* pStringAllocator, uint32_t sizeInBytes )
+{
+    RuntimeAssert( pStringAllocator->bufferSize + sizeInBytes < pStringAllocator->bufferCapacity );
+    pStringAllocator->bufferSize += sizeInBytes;
+}
+
+uint8_t createConversionArguments( ObjCConversionArguments* pOutArguments, const char* pHeaderFileName, const char* pSourceFileName )
+{
+    pOutArguments->pHeaderFileName = pHeaderFileName;
+    pOutArguments->pSourceFileName = pSourceFileName;
+
+    pOutArguments->pSourceFileHandle = fopen( pSourceFileName, "w" );
+    if( pOutArguments->pSourceFileHandle == NULL )
+    {
+        printf("Couldn't open '%s' for writing.\n", pSourceFileName );
+        return 0u;
+    }
+
+    pOutArguments->pHeaderFileHandle = fopen( pHeaderFileName, "w" );
+    if( pOutArguments->pHeaderFileHandle == NULL )
+    {
+        fclose( pOutArguments->pSourceFileHandle );
+        printf("Couldn't open '%s' for writing.\n", pSourceFileName );
+        return 0u;
+    }
+
+    return 1u;
+}
 
 inline uint32_t castSizeToUint32( size_t val )
 {
@@ -75,7 +159,7 @@ inline uint8_t areCStringsEqual( const char* pStringA, const char* pStringB )
         }
     }
 
-    return ( *pStringA == *pStringB && *pStringA == 0 );
+    return 1u;
 }
 
 inline int32_t getCStringLengthInclNullTerminator( const char* pString )
@@ -97,7 +181,7 @@ inline char* copyCStringAndAddNullTerminator( char* pDestination, const char* pS
     return pDestination;
 }
 
-inline char* convertCStringToLower( char* pString, const int32_t stringLength )
+inline char* convertCStringToLowerInplace( char* pString, const int32_t stringLength )
 {
     for( int32_t charIndex = 0u; charIndex < stringLength; ++charIndex )
     {
@@ -138,7 +222,15 @@ inline char* allocateLowerCStringCopy( const char* pString, const int32_t string
     }
 
     copyCStringAndAddNullTerminator( pStringCopyMemory, pString, stringLength );
-    return convertCStringToLower( pStringCopyMemory, stringLength );
+    return convertCStringToLowerInplace( pStringCopyMemory, stringLength );
+}
+
+inline char* allocateCStringCopyWithAllocator( StringAllocator* pAllocator, const char* pString, const int32_t stringLength )
+{
+    char* pStringCopyMemory = getCurrentStringAllocatorBase( pAllocator );
+    decrementStringAllocatorCapacity( pAllocator, stringLength + 1 );
+
+    return copyCStringAndAddNullTerminator( pStringCopyMemory, pString, stringLength );
 }
 
 inline const char* findNextCharacterPositionInCString( const char* pString, char character )
@@ -157,13 +249,19 @@ inline const char* findNextCharacterPositionInCString( const char* pString, char
     return NULL;
 }
 
+inline uint8_t isStdStringType( const char* pTypeName )
+{
+    ++pTypeName; //FK: Eat leading '{'
+    return areCStringsEqual( pTypeName, "basic_string<char");
+}
+
 CommandLineParseResult parseCommandLineArguments( const int argc, const char** argv )
 {
-    enum ParseState
+    typedef enum
     {
         NextArgument,
         ParseTestArg
-    };
+    } ParseState;
 
     ParseState state = NextArgument;
     CommandLineParseResult result;
@@ -228,11 +326,11 @@ uint8_t stringsAreEqual( const char* pStringA, const char* pStringB, const int32
     {
         if( pStringA[ charIndex ] != pStringB[ charIndex ] )
         {
-            return false;
+            return 0;
         }
     }
 
-    return true;
+    return 1;
 }
 
 uint32_t djb2_hash( const char* pString, const int32_t stringLength )
@@ -354,6 +452,12 @@ const char* resolveBaseType( const char* pObjectiveCTypeName )
 
 const char* resolveStructType( ObjCTypeDict* pTypeDict, const char* pTypeName, int32_t typeNameLength )
 {
+    const char* pResolvedTypeName = NULL;
+    if( isStdStringType( pTypeName ) )
+    {
+        return "std::string";
+    }
+    
     //FK: Make copy to be able to manipulate string and leaving the original intact
     //    (since the original typename is used as a lookup into the type dictionary)
     char* pTypeNameCopy = (char*)alloca( typeNameLength );
@@ -494,17 +598,6 @@ const char* findPreviousWhitespace( const char* pTextStart, const char* pText )
     return pText;
 }
 
-struct ParseResult
-{
-    char* pReturnType;
-    char* pFunctionName;
-    char* pArguments;
-
-    int32_t returnTypeLength;
-    int32_t functionNameLength;
-    int32_t argumentLength;
-};
-
 uint8_t isValidFunctionName( const char* pFunctionName )
 {
     //FK: Filter (apparently) internal functions that we're not interested in
@@ -522,47 +615,23 @@ const char* convertToCFunctionName( char* pObjectiveCFunctionName, int32_t funct
     return pObjectiveCFunctionName;
 }
 
-void writeCFunctionDeclaration( FILE* pResultFileHandle, const char* pLowerClassName, const char* pResolvedReturnType, const char* pFunctionName, const char** pResolvedArgumentTypes, int32_t argumentCount )
-{   
-    //FK: "guess" maximum tab count for nice formatting
-    //    getting the correct tab count for the longest
-    //    return type name would be too involved since
-    //    we currently run on a function by function basis
-    //    and thus don't know the maximum type name length
-    //    beforehand
-    const size_t maxTabCount = 5u;
-    size_t returnTypeLength = 0u;
+uint8_t createStringAllocator( StringAllocator* pOutStringAllocator, const uint32_t capacityInBytes )
+{
+    StringAllocator allocator;
+    allocator.pBufferStart      = (char*)calloc( 1u, capacityInBytes );
+    allocator.bufferSize        = 0u;
+    allocator.bufferCapacity    = capacityInBytes;
 
-    const uint8_t isInitFunction = ( areCStringsEqual( pFunctionName, "init" ) || areCStringsEqual( pFunctionName, "initWithCoder" ) );
-    if( isInitFunction )
+    if( allocator.pBufferStart == NULL )
     {
-        //FK: little syntactic sugar, return correct type for init function(s)
-        returnTypeLength = fprintf( pResultFileHandle, "%s_t ", pLowerClassName );
-    }
-    else
-    {
-        returnTypeLength = fprintf( pResultFileHandle, "%s ", pResolvedReturnType );
+        return 0u;
     }
 
-    const size_t spacesForTab = 4u;
-    const size_t tabCountForReturnType = getMax( 0u, maxTabCount - ( returnTypeLength / spacesForTab ) );
-    for( size_t tabIndex = 0u; tabIndex < tabCountForReturnType; ++tabIndex )
-    {
-        fprintf( pResultFileHandle, "\t" );
-    }
-
-    fprintf( pResultFileHandle, "%s_%s( %s_t object", pLowerClassName, pFunctionName, pLowerClassName );
-
-    for( int32_t argumentIndex = 0u; argumentIndex < argumentCount; ++argumentIndex )
-    {
-        fprintf( pResultFileHandle, ", %s arg%u", pResolvedArgumentTypes[ argumentIndex ], argumentIndex );
-    }
-
-    fprintf( pResultFileHandle, " );\n" );
-    fflush( pResultFileHandle );
+    *pOutStringAllocator = allocator;
+    return 1u;
 }
 
-uint8_t convertParseResultToCCode( FILE* pResultFileHandle, ObjCTypeDict* pDict, ParseResult* pParseResult, const char* pLowerClassName )
+uint8_t convertParseResultToFunctionDefinition( StringAllocator* pStringAllocator, CFunctionDefinition* pOutFunctionDefintion, ObjCTypeDict* pDict, ParseResult* pParseResult, const char* pClassName, int32_t classNameLength )
 {
     if( !isValidFunctionName( pParseResult->pFunctionName ) )
     {
@@ -575,13 +644,20 @@ uint8_t convertParseResultToCCode( FILE* pResultFileHandle, ObjCTypeDict* pDict,
         return 0u;
     }
 
-    const char* pFunctionName = convertToCFunctionName( pParseResult->pFunctionName, pParseResult->functionNameLength );
+    pOutFunctionDefintion->pResolvedReturnType      = pResolvedReturnType;
+    pOutFunctionDefintion->pOriginalFunctionName    = allocateCStringCopyWithAllocator( pStringAllocator, pParseResult->pFunctionName, pParseResult->functionNameLength );
+    pOutFunctionDefintion->pResolvedFunctionName    = allocateCStringCopyWithAllocator( pStringAllocator, pParseResult->pFunctionName, pParseResult->functionNameLength );
+    convertToCFunctionName( pOutFunctionDefintion->pResolvedFunctionName, pParseResult->functionNameLength );
+
+    pOutFunctionDefintion->pClassName       = allocateCStringCopyWithAllocator( pStringAllocator, pClassName, classNameLength );
+    pOutFunctionDefintion->pLowerClassName  = allocateCStringCopyWithAllocator( pStringAllocator, pClassName, classNameLength );
+    convertCStringToLowerInplace( pOutFunctionDefintion->pLowerClassName, classNameLength );
 
     const char* pArguments = pParseResult->pArguments;
-    const char* pResolvedArgumentTypes[32] = {};
-    
     uint8_t argumentCount = 0u;
-    constexpr uint8_t argumentsToSkip = 2; //FK: Skip first two arguments since these are always the object + the selector.
+    const uint8_t maxArgumentCount = ArrayCount( pParseResult->pResolvedArgumentTypes );
+    const uint8_t argumentsToSkip = 2; //FK: Skip first two arguments since these are always the object + the selector.
+
     while( *pArguments )
     {
         const char* pArgumentStart = pArguments;
@@ -591,16 +667,19 @@ uint8_t convertParseResultToCCode( FILE* pResultFileHandle, ObjCTypeDict* pDict,
         if( argumentCount >= argumentsToSkip )
         {
             const uint8_t argumentIndex = argumentCount - argumentsToSkip;
-            RuntimeAssert( argumentIndex < ArrayCount( pResolvedArgumentTypes ) );
+            RuntimeAssert( argumentIndex < maxArgumentCount );
 
             const char* pArgumentType = resolveObjectiveCTypeName( pDict, pArgumentStart, argumentLength );
-            RuntimeAssert( pArgumentType != NULL );
+            if( pArgumentType == NULL )
+            {
+                //FK: TODO: Error reporting
+                return 0u;
+            }
 
-            pResolvedArgumentTypes[ argumentIndex ] = pArgumentType;
+            pOutFunctionDefintion->pResolvedArgumentTypes[ argumentIndex ] = pArgumentType;
         }
 
         ++argumentCount;
-
         if( *pArgumentEnd == 0 )
         {
             break;
@@ -608,14 +687,113 @@ uint8_t convertParseResultToCCode( FILE* pResultFileHandle, ObjCTypeDict* pDict,
 
         pArguments = pArgumentEnd + 1;
     }
-    
-    writeCFunctionDeclaration( pResultFileHandle, pLowerClassName, pResolvedReturnType, pFunctionName, pResolvedArgumentTypes, ( argumentCount - argumentsToSkip ) );
+
+    pOutFunctionDefintion->argumentCount  = argumentCount < argumentsToSkip ? 0 : argumentCount - argumentsToSkip;
+    pOutFunctionDefintion->isVoidFunction = areCStringsEqual( pOutFunctionDefintion->pResolvedReturnType, "void" );
+    pOutFunctionDefintion->isInitFunction = areCStringsEqual( pOutFunctionDefintion->pResolvedFunctionName, "init" ) 
+        || areCStringsEqual( pOutFunctionDefintion->pResolvedFunctionName, "initWithCoder" );
+
     return 1u;
 }
 
-void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, size_t fileContentBufferSizeInBytes )
+void writeCFunctionDeclaration( FILE* pResultFileHandle, const CFunctionDefinition* pFunctionDefinition )
+{   
+    //FK: "guess" maximum tab count for nice formatting
+    //    getting the correct tab count for the longest
+    //    return type name would be too involved since
+    //    we currently run on a function by function basis
+    //    and thus don't know the maximum type name length
+    //    beforehand
+    const size_t maxTabCount = 5u;
+    size_t returnTypeLength = 0u;
+
+    if( pFunctionDefinition->isInitFunction )
+    {
+        //FK: little syntactic sugar, return correct type for init function(s)
+        returnTypeLength = fprintf( pResultFileHandle, "%s_t ", pFunctionDefinition->pLowerClassName );
+    }
+    else
+    {
+        returnTypeLength = fprintf( pResultFileHandle, "%s ", pFunctionDefinition->pResolvedReturnType );
+    }
+
+    const size_t spacesForTab = 4u;
+    const size_t tabCountForReturnType = getMax( 0u, maxTabCount - ( returnTypeLength / spacesForTab ) );
+    for( size_t tabIndex = 0u; tabIndex < tabCountForReturnType; ++tabIndex )
+    {
+        fprintf( pResultFileHandle, "\t" );
+    }
+
+    fprintf( pResultFileHandle, "%s_%s( %s_t object", pFunctionDefinition->pLowerClassName, pFunctionDefinition->pResolvedFunctionName, pFunctionDefinition->pLowerClassName );
+
+    for( uint8_t argumentIndex = 0u; argumentIndex < pFunctionDefinition->argumentCount; ++argumentIndex )
+    {
+        fprintf( pResultFileHandle, ", %s arg%u", pFunctionDefinition->pResolvedArgumentTypes[ argumentIndex ], argumentIndex );
+    }
+
+    fprintf( pResultFileHandle, " );\n" );
+    fflush( pResultFileHandle );
+}
+
+void writeCSourcePrefix( FILE* pSourceFileHandle, const char* pHeaderFileName, const char* pClassName )
 {
-    constexpr size_t dictSizeInBytes = 1024*1024; //FK: 1 MiB
+    fprintf( pSourceFileHandle, "#include \"%s\"\n\n", pHeaderFileName );
+    fprintf( pSourceFileHandle, "static Class internalClassObject = objc_getClass( \"%s\" );\n\n", pClassName );
+}
+
+void writeCFunctionImplementation( FILE* pSourceFileHandle, const CFunctionDefinition* pFunctionDefinition )
+{   
+    size_t returnTypeLength = 0u;
+    if( pFunctionDefinition->isInitFunction )
+    {
+        //FK: little syntactic sugar, return correct type for init function(s)
+        returnTypeLength = fprintf( pSourceFileHandle, "%s_t ", pFunctionDefinition->pLowerClassName );
+    }
+    else
+    {
+        returnTypeLength = fprintf( pSourceFileHandle, "%s ", pFunctionDefinition->pResolvedReturnType );
+    }
+
+    fprintf( pSourceFileHandle, "%s_%s( %s_t object", pFunctionDefinition->pLowerClassName, pFunctionDefinition->pResolvedFunctionName, pFunctionDefinition->pLowerClassName );
+
+    for( uint8_t argumentIndex = 0u; argumentIndex < pFunctionDefinition->argumentCount; ++argumentIndex )
+    {
+        fprintf( pSourceFileHandle, ", %s arg%u", pFunctionDefinition->pResolvedArgumentTypes[ argumentIndex ], argumentIndex );
+    }
+
+    fprintf( pSourceFileHandle, " )\n{\n" );
+    fprintf( pSourceFileHandle, "\tstatic SEL methodSelector = sel_registerName( \"%s\" );\n", pFunctionDefinition->pOriginalFunctionName );
+    fprintf( pSourceFileHandle, "\tstatic IMP methodImplementation = class_getMethodImplementation( internalClassObject, methodSelector );\n" );
+    fprintf( pSourceFileHandle, "\ttypedef %s(*%sImplementation)(id, SEL", pFunctionDefinition->pResolvedReturnType, pFunctionDefinition->pResolvedFunctionName );
+
+    for( uint8_t argumentIndex = 0u; argumentIndex < pFunctionDefinition->argumentCount; ++argumentIndex )
+    {
+        const char* pArgumentType = pFunctionDefinition->pResolvedArgumentTypes[ argumentIndex ];
+        fprintf( pSourceFileHandle, ", %s arg%d", pArgumentType, argumentIndex );
+    }
+
+    fprintf( pSourceFileHandle, " );\n\n" );
+    fprintf( pSourceFileHandle, "\t%sImplementation impl = (%sImplementation)methodImplementation;\n", pFunctionDefinition->pResolvedFunctionName, pFunctionDefinition->pResolvedFunctionName );
+    fprintf( pSourceFileHandle, "\t" );
+
+    const uint8_t hasReturnValue = !areCStringsEqual( pFunctionDefinition->pResolvedReturnType, "void" );
+    if( hasReturnValue )
+    {
+        fprintf( pSourceFileHandle, "return " );
+    }
+
+    fprintf( pSourceFileHandle, "impl( (id)object, methodSelector");
+    for( uint8_t argumentIndex = 0u; argumentIndex < pFunctionDefinition->argumentCount; ++argumentIndex )
+    {
+        fprintf( pSourceFileHandle, ", arg%hhu", argumentIndex );
+    }
+    fprintf( pSourceFileHandle, " );\n}\n\n");
+    fflush( pSourceFileHandle );
+}
+
+void parseTestFile( ObjCConversionArguments* pParseArguments, const char* pFileContentBuffer, size_t fileContentBufferSizeInBytes )
+{
+    const size_t dictSizeInBytes = 1024*1024; //FK: 1 MiB
     ObjCTypeDict* pDict = createObjectiveCTypeDictionary( dictSizeInBytes );
     if( pDict == NULL )
     {
@@ -626,27 +804,35 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
     const char* pClassNameStart = findPreviousWhitespace( pFileContentBuffer, pClassNameEnd );
 
     const int32_t classNameLength = castSizeToInt32( pClassNameEnd - pClassNameStart );
-    char* pLowerClassName = (char*)malloc( classNameLength + 1 );
+    char* pClassName      = (char*)alloca( classNameLength + 1 );
+    char* pLowerClassName = (char*)alloca( classNameLength + 1 );
+    copyCStringAndAddNullTerminator( pClassName, pClassNameStart, classNameLength );
     convertCStringToLower( pLowerClassName, pClassNameStart, classNameLength );
 
     pFileContentBuffer = findNextNewline( pFileContentBuffer ) + 1;
 
-    enum State
+    typedef enum
     {
         EatWhitespace = 0,
         EatUntilNewLine,
         ParseReturnType,
         ParseArgumenType,
         ParseFunctionName
-    };
+    } State;
 
-    constexpr size_t stringBufferSizeInBytes = 1024u*32u; //FK: 32KiB
-    char* pStringBuffer = (char*)calloc( 1u, stringBufferSizeInBytes );
-    size_t stringBufferOffset = 0u;
+    const uint32_t stringAllocatorSizeInBytes = 1024u*32u; //FK: 32KiB
+    StringAllocator stringAllocator;
+    if( !createStringAllocator( &stringAllocator, stringAllocatorSizeInBytes ) )
+    {
+        //FK: TODO: Error handling
+        return;
+    }
+
     //FK: Temporary parse struct to store strings for easier parsing later
     ParseResult parseResult = {};
 
-    constexpr uint8_t ArgumentsToSkip = 2;
+    const uint8_t ArgumentsToSkip = 2;
+    writeCSourcePrefix( pParseArguments->pSourceFileHandle, pParseArguments->pHeaderFileName, pClassName );
 
     uint8_t argumentCount = 0u;
     State state = ParseReturnType;
@@ -679,9 +865,14 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
             {
                 if( *pFileContentBuffer == '\n' )
                 {
-                    convertParseResultToCCode( pResultFileHandle, pDict, &parseResult, pLowerClassName );
-                    fillMemoryWithZeroes( pStringBuffer, stringBufferOffset );
-                    stringBufferOffset = 0u;
+                    CFunctionDefinition functionDefinition;
+                    if( convertParseResultToFunctionDefinition( &stringAllocator, &functionDefinition, pDict, &parseResult, pClassName, classNameLength ) )
+                    {
+                        writeCFunctionDeclaration( pParseArguments->pHeaderFileHandle, &functionDefinition );
+                        writeCFunctionImplementation( pParseArguments->pSourceFileHandle, &functionDefinition );
+                    }
+
+                    resetStringAllocator( &stringAllocator );
                     
                     ++pFileContentBuffer;
                     state = ParseReturnType;
@@ -706,13 +897,16 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
                     functionNameLength = castSizeToInt32( pNextColonPosition - pFunctionNameStart );
                 }
             
-                parseResult.pFunctionName = pStringBuffer + stringBufferOffset;
+                parseResult.pFunctionName = getCurrentStringAllocatorBase( &stringAllocator );
 
-                const int32_t numCharactersWritten = sprintf( pStringBuffer + stringBufferOffset, "%.*s", functionNameLength, pFunctionNameStart );
+                const int32_t numCharactersWritten = sprintf( parseResult.pFunctionName, "%.*s", functionNameLength, pFunctionNameStart );
                 parseResult.functionNameLength = numCharactersWritten;
-                stringBufferOffset += numCharactersWritten + 1;
+                
+                decrementStringAllocatorCapacity( &stringAllocator, numCharactersWritten + 1 );
+
                 pFileContentBuffer += ( pNextWhiteSpacePosition - pFunctionNameStart );
                 state = EatWhitespace;
+                
                 break;
             }
 
@@ -722,14 +916,15 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
                 const char* pReturnTypeEnd   = findNextWhitespace( pReturnTypeStart );
                 const int32_t typeLength = castSizeToInt32( pReturnTypeEnd - pReturnTypeStart );
 
-                parseResult.pReturnType = pStringBuffer + stringBufferOffset;
+                parseResult.pReturnType = getCurrentStringAllocatorBase( &stringAllocator );
 
-                const int32_t numCharactersWritten = sprintf( pStringBuffer + stringBufferOffset, "%.*s", typeLength, pReturnTypeStart );
+                const int32_t numCharactersWritten = sprintf( parseResult.pReturnType, "%.*s", typeLength, pReturnTypeStart );
                 parseResult.returnTypeLength = numCharactersWritten;
-                stringBufferOffset += numCharactersWritten + 1;
-                state = EatWhitespace;
+                
+                decrementStringAllocatorCapacity( &stringAllocator, numCharactersWritten + 1 );
 
                 pFileContentBuffer += typeLength;
+                state = EatWhitespace;
 
                 break;
             }
@@ -739,13 +934,14 @@ void parseTestFile( FILE* pResultFileHandle, const char* pFileContentBuffer, siz
                 const char* pArgumentsEnd = findNextNewline( pArgumentsStart );
                 const int32_t argumentLength = castSizeToInt32( pArgumentsEnd - pArgumentsStart );
                
-                parseResult.pArguments = pStringBuffer + stringBufferOffset;
+                parseResult.pArguments = getCurrentStringAllocatorBase( &stringAllocator );
 
-                const int32_t numCharactersWritten = sprintf( pStringBuffer + stringBufferOffset, "%.*s", argumentLength, pArgumentsStart );
+                const int32_t numCharactersWritten = sprintf( parseResult.pArguments, "%.*s", argumentLength, pArgumentsStart );
                 parseResult.argumentLength = numCharactersWritten;
-                stringBufferOffset += numCharactersWritten + 1;
-                state = EatUntilNewLine;
 
+                decrementStringAllocatorCapacity( &stringAllocator, numCharactersWritten + 1 );
+
+                state = EatUntilNewLine;
                 pFileContentBuffer += argumentLength;
 
                 break;
