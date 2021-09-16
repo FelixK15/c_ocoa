@@ -7,7 +7,7 @@
         {
             "name": "Launch Debug",
             "request": "launch",
-            "type":"cppdbg",
+            "type": "cppvsdbg",
             "windows": {
                 "program": "${workspaceFolder}/win32/build_debug/shimmer_win32_c_ocoa.exe",
                 "type": "cppvsdbg",
@@ -15,9 +15,8 @@
                 "cwd": "${workspaceFolder}/win32/"
             },
             "osx": {
-                "MIMode": "llvm",
                 "program": "${workspaceFolder}/osx/build_debug/shimmer_osx_c_coca",
-                "type": "cppdbg",
+                "type": "lldb-vscode",
                 //"args": ["--test", "NSApplication.dump.txt" ],
                 "cwd": "${workspaceFolder}/osx/"
             },
