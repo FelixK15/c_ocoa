@@ -61,6 +61,15 @@ typedef struct
     uint8_t isInitFunction  : 1;
 } CFunctionDefinition;
 
+typedef enum
+{
+    ConvertResult_Success = 0,
+    ConvertResult_InvalidFunctionName,
+    ConvertResult_UnknownReturnType,
+    ConvertResult_UnknownArgumentType
+} ConvertResult;
+
+#define printf_stderr(x, ...) fprintf( stderr, x, __VA_ARGS__ )
 
 void resetStringAllocator( StringAllocator* pStringAllocator )
 {
@@ -149,6 +158,16 @@ inline char convertCharacterToLower( const char character )
     return character <= 'Z' ? character + 32 : character;
 }
 
+inline char convertCharacterToUpper( const char character )
+{
+    if( !isAlphabeticalCharacter( character ) )
+    {
+        return character;
+    }
+
+    return character >= 'a' ? character - 32 : character;
+}
+
 inline uint8_t areCStringsEqual( const char* pStringA, const char* pStringB )
 {
     while( *pStringA && *pStringB )
@@ -195,6 +214,16 @@ inline char* convertCStringToLower( char* pDestination, const char* pSource, con
     for( int32_t charIndex = 0u; charIndex < sourceLength; ++charIndex )
     {
         pDestination[ charIndex ] = convertCharacterToLower( pSource[ charIndex ] );
+    }
+
+    return pDestination;
+}
+
+inline char* convertCStringToUpper( char* pDestination, const char* pSource, const int32_t sourceLength )
+{
+    for( int32_t charIndex = 0u; charIndex < sourceLength; ++charIndex )
+    {
+        pDestination[ charIndex ] = convertCharacterToUpper( pSource[ charIndex ] );
     }
 
     return pDestination;
@@ -446,7 +475,6 @@ const char* resolveBaseType( const char* pObjectiveCTypeName )
             return "void";
     }
 
-    printf( "Unknown base type identifier '%c'\n", *pObjectiveCTypeName );
     return NULL;
 }
 
@@ -631,23 +659,27 @@ uint8_t createStringAllocator( StringAllocator* pOutStringAllocator, const uint3
     return 1u;
 }
 
-uint8_t convertParseResultToFunctionDefinition( StringAllocator* pStringAllocator, CFunctionDefinition* pOutFunctionDefintion, ObjCTypeDict* pDict, ParseResult* pParseResult, const char* pClassName, int32_t classNameLength )
+ConvertResult convertParseResultToFunctionDefinition( StringAllocator* pStringAllocator, CFunctionDefinition* pOutFunctionDefintion, ObjCTypeDict* pDict, ParseResult* pParseResult, const char* pClassName, int32_t classNameLength )
 {
     if( !isValidFunctionName( pParseResult->pFunctionName ) )
     {
-        return 0u;
+        //FK: Add log here?
+        return ConvertResult_InvalidFunctionName;
     }
+
+    pOutFunctionDefintion->pOriginalFunctionName    = allocateCStringCopyWithAllocator( pStringAllocator, pParseResult->pFunctionName, pParseResult->functionNameLength );
+    pOutFunctionDefintion->pResolvedFunctionName    = allocateCStringCopyWithAllocator( pStringAllocator, pParseResult->pFunctionName, pParseResult->functionNameLength );
+    convertToCFunctionName( pOutFunctionDefintion->pResolvedFunctionName, pParseResult->functionNameLength );
 
     const char* pResolvedReturnType = resolveObjectiveCTypeName( pDict, pParseResult->pReturnType, pParseResult->returnTypeLength );
     if( pResolvedReturnType == NULL )
     {
-        return 0u;
+        printf_stderr( "[error] Couldn't resolve return type '%.*s' of function '%s'.\n", pParseResult->returnTypeLength, pParseResult->pReturnType, pOutFunctionDefintion->pResolvedFunctionName );
+        return ConvertResult_UnknownReturnType;
     }
 
     pOutFunctionDefintion->pResolvedReturnType      = pResolvedReturnType;
-    pOutFunctionDefintion->pOriginalFunctionName    = allocateCStringCopyWithAllocator( pStringAllocator, pParseResult->pFunctionName, pParseResult->functionNameLength );
-    pOutFunctionDefintion->pResolvedFunctionName    = allocateCStringCopyWithAllocator( pStringAllocator, pParseResult->pFunctionName, pParseResult->functionNameLength );
-    convertToCFunctionName( pOutFunctionDefintion->pResolvedFunctionName, pParseResult->functionNameLength );
+
 
     pOutFunctionDefintion->pClassName       = allocateCStringCopyWithAllocator( pStringAllocator, pClassName, classNameLength );
     pOutFunctionDefintion->pLowerClassName  = allocateCStringCopyWithAllocator( pStringAllocator, pClassName, classNameLength );
@@ -672,8 +704,8 @@ uint8_t convertParseResultToFunctionDefinition( StringAllocator* pStringAllocato
             const char* pArgumentType = resolveObjectiveCTypeName( pDict, pArgumentStart, argumentLength );
             if( pArgumentType == NULL )
             {
-                //FK: TODO: Error reporting
-                return 0u;
+                printf_stderr( "[error] Couldn't resolve %d. argument type name '%.*s' of function '%s'.\n", argumentCount, argumentLength, pArgumentStart, pOutFunctionDefintion->pResolvedFunctionName );
+                return ConvertResult_UnknownArgumentType;
             }
 
             pOutFunctionDefintion->pResolvedArgumentTypes[ argumentIndex ] = pArgumentType;
@@ -693,7 +725,7 @@ uint8_t convertParseResultToFunctionDefinition( StringAllocator* pStringAllocato
     pOutFunctionDefintion->isInitFunction = areCStringsEqual( pOutFunctionDefintion->pResolvedFunctionName, "init" ) 
         || areCStringsEqual( pOutFunctionDefintion->pResolvedFunctionName, "initWithCoder" );
 
-    return 1u;
+    return ConvertResult_Success;
 }
 
 void writeCFunctionDeclaration( FILE* pResultFileHandle, const CFunctionDefinition* pFunctionDefinition )
@@ -735,6 +767,27 @@ void writeCFunctionDeclaration( FILE* pResultFileHandle, const CFunctionDefiniti
     fflush( pResultFileHandle );
 }
 
+void writeCHeaderPrefix( FILE* pHeaderFileHandle, const char* pClassName, const int32_t classNameLength )
+{
+    char* pUpperClassName = (char*)alloca( classNameLength + 1u );
+    convertCStringToUpper( pUpperClassName, pClassName, classNameLength );
+    pUpperClassName[ classNameLength ] = 0;
+
+    fprintf( pHeaderFileHandle, "/*\n" );
+    fprintf( pHeaderFileHandle, "\tThis file has been automatically generated by the shimmer industries c-ocoa API generator\n" );
+    fprintf( pHeaderFileHandle, "\tThus, manual changes to this file will be lost if the file is re-generated.\n" );
+    fprintf( pHeaderFileHandle, "*/\n\n" );
+
+    //FK: Header guard
+    fprintf( pHeaderFileHandle, "#ifndef SHIMMER_%s_HEADER\n#define SHIMMER_%s_HEADER\n\n", pUpperClassName, pUpperClassName );
+}
+
+void writeCHeaderSuffix( FILE* pHeaderFileHandle )
+{
+    //FK: End of header guard
+    fprintf( pHeaderFileHandle, "#endif");
+}
+
 void writeCSourcePrefix( FILE* pSourceFileHandle, const char* pHeaderFileName, const char* pClassName, const int32_t classNameLength )
 {
     char* pLowerClassName = (char*)alloca( classNameLength + 1u );
@@ -742,7 +795,7 @@ void writeCSourcePrefix( FILE* pSourceFileHandle, const char* pHeaderFileName, c
     pLowerClassName[ classNameLength ] = 0;
 
     fprintf( pSourceFileHandle, "/*\n" );
-    fprintf( pSourceFileHandle, "\tThis file has been automatically generated by <insert tool name here>\n" );
+    fprintf( pSourceFileHandle, "\tThis file has been automatically generated by the shimmer industries c-ocoa API generator\n" );
     fprintf( pSourceFileHandle, "\tThus, manual changes to this file will be lost if the file is re-generated.\n" );
     fprintf( pSourceFileHandle, "*/\n\n" );
 
@@ -831,16 +884,15 @@ void parseTestFile( ObjCConversionArguments* pParseArguments, const char* pFileC
     StringAllocator stringAllocator;
     if( !createStringAllocator( &stringAllocator, stringAllocatorSizeInBytes ) )
     {
-        //FK: TODO: Error handling
+        printf_stderr( "[error] Couldn't allocate %.3fKiB of memory for string allocation.\n", (float)stringAllocatorSizeInBytes/1024.f );
         return;
     }
 
-    //FK: Temporary parse struct to store strings for easier parsing later
-    ParseResult parseResult = {};
-
-    const uint8_t ArgumentsToSkip = 2;
+    writeCHeaderPrefix( pParseArguments->pHeaderFileHandle, pClassNameStart, classNameLength );
     writeCSourcePrefix( pParseArguments->pSourceFileHandle, pParseArguments->pHeaderFileName, pClassNameStart, classNameLength );
 
+    ParseResult parseResult = {};
+    const uint8_t ArgumentsToSkip = 2;
     uint8_t argumentCount = 0u;
     State state = ParseReturnType;
     State previousState = ParseReturnType;
@@ -873,10 +925,25 @@ void parseTestFile( ObjCConversionArguments* pParseArguments, const char* pFileC
                 if( *pFileContentBuffer == '\n' )
                 {
                     CFunctionDefinition functionDefinition;
-                    if( convertParseResultToFunctionDefinition( &stringAllocator, &functionDefinition, pDict, &parseResult, pClassNameStart, classNameLength ) )
+                    const ConvertResult convertResult = convertParseResultToFunctionDefinition( &stringAllocator, &functionDefinition, pDict, &parseResult, pClassNameStart, classNameLength );
+                    switch( convertResult )
                     {
-                        writeCFunctionDeclaration( pParseArguments->pHeaderFileHandle, &functionDefinition );
-                        writeCFunctionImplementation( pParseArguments->pSourceFileHandle, &functionDefinition );
+                        case ConvertResult_UnknownArgumentType:
+                            printf_stderr("[error] Skipping function '%s' because of unknown argument type.\n", parseResult.pFunctionName );
+                            break;
+
+                        case ConvertResult_UnknownReturnType:
+                            printf_stderr("[error] Skipping function '%s' because of unknown argument type.\n", parseResult.pFunctionName );
+                            break;
+
+                        case ConvertResult_InvalidFunctionName:
+                            //FK: Add log here?
+                            break;
+
+                        case ConvertResult_Success:
+                            writeCFunctionDeclaration( pParseArguments->pHeaderFileHandle, &functionDefinition );
+                            writeCFunctionImplementation( pParseArguments->pSourceFileHandle, &functionDefinition );
+                            break;
                     }
 
                     resetStringAllocator( &stringAllocator );
@@ -964,4 +1031,6 @@ void parseTestFile( ObjCConversionArguments* pParseArguments, const char* pFileC
             previousState = state;
         }
     }
+
+    writeCHeaderSuffix( pParseArguments->pHeaderFileHandle );
 }
