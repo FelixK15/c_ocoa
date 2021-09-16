@@ -21,7 +21,7 @@ if not exist !BUILD_FOLDER! mkdir "!BUILD_FOLDER!"
 set OBJ_OUTPUT_PATH="!BUILD_FOLDER!\!PROJECT_NAME!.obj"
 set EXE_OUTPUT_PATH="!BUILD_FOLDER!\!PROJECT_NAME!.exe"
 
-set C_FILE_NAME="!SOURCE_FOLDER!win32entry.cpp"
+set C_FILE_NAME="!SOURCE_FOLDER!win32_entry.cpp"
 
 ::FK: Add /Bt to get a compile performance profile
 set COMPILER_OPTIONS=/nologo /FC /TC /W3 /Fe!EXE_OUTPUT_PATH! /Fo!OBJ_OUTPUT_PATH!

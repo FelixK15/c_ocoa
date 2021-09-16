@@ -23,7 +23,7 @@ if not exist !BUILD_FOLDER! mkdir "!BUILD_FOLDER!"
 set OBJ_OUTPUT_PATH="!BUILD_FOLDER!\!PROJECT_NAME!.obj"
 set EXE_OUTPUT_PATH="!BUILD_FOLDER!\!PROJECT_NAME!.exe"
 
-set C_FILE_NAME="!SOURCE_FOLDER!win32entry.c"
+set C_FILE_NAME="!SOURCE_FOLDER!win32_entry.c"
 
 ::FK: Add /Bt to get a compile performance profile
 set COMPILER_OPTIONS=-ferror-limit=900 -fstrict-aliasing --output !EXE_OUTPUT_PATH!
