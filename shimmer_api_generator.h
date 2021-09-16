@@ -55,7 +55,9 @@ typedef struct
     char* pLowerClassName;
     char* pResolvedFunctionName;
     char* pOriginalFunctionName;
-
+    char* pOriginalReturnType;
+    char* pOriginalArgumentTypes;
+    
     uint8_t argumentCount   : 6;
     uint8_t isVoidFunction  : 1;
     uint8_t isInitFunction  : 1;
@@ -667,8 +669,10 @@ ConvertResult convertParseResultToFunctionDefinition( StringAllocator* pStringAl
         return ConvertResult_InvalidFunctionName;
     }
 
-    pOutFunctionDefintion->pOriginalFunctionName    = allocateCStringCopyWithAllocator( pStringAllocator, pParseResult->pFunctionName, pParseResult->functionNameLength );
-    pOutFunctionDefintion->pResolvedFunctionName    = allocateCStringCopyWithAllocator( pStringAllocator, pParseResult->pFunctionName, pParseResult->functionNameLength );
+    pOutFunctionDefintion->pOriginalReturnType          = allocateCStringCopyWithAllocator( pStringAllocator, pParseResult->pReturnType, pParseResult->returnTypeLength );
+    pOutFunctionDefintion->pOriginalArgumentTypes       = allocateCStringCopyWithAllocator( pStringAllocator, pParseResult->pArguments, pParseResult->argumentLength );
+    pOutFunctionDefintion->pOriginalFunctionName        = allocateCStringCopyWithAllocator( pStringAllocator, pParseResult->pFunctionName, pParseResult->functionNameLength );
+    pOutFunctionDefintion->pResolvedFunctionName        = allocateCStringCopyWithAllocator( pStringAllocator, pParseResult->pFunctionName, pParseResult->functionNameLength );
     convertToCFunctionName( pOutFunctionDefintion->pResolvedFunctionName, pParseResult->functionNameLength );
 
     const char* pResolvedReturnType = resolveObjectiveCTypeName( pDict, pParseResult->pReturnType, pParseResult->returnTypeLength );
@@ -739,6 +743,8 @@ void writeCFunctionDeclaration( FILE* pResultFileHandle, const CFunctionDefiniti
     const size_t maxTabCount = 5u;
     size_t returnTypeLength = 0u;
 
+    fprintf(pResultFileHandle, "// Signature from Objective-C Runtime: %s %s %s\n", pFunctionDefinition->pOriginalReturnType, pFunctionDefinition->pOriginalFunctionName, pFunctionDefinition->pOriginalArgumentTypes );
+
     if( pFunctionDefinition->isInitFunction )
     {
         //FK: little syntactic sugar, return correct type for init function(s)
@@ -763,7 +769,7 @@ void writeCFunctionDeclaration( FILE* pResultFileHandle, const CFunctionDefiniti
         fprintf( pResultFileHandle, ", %s arg%u", pFunctionDefinition->pResolvedArgumentTypes[ argumentIndex ], argumentIndex );
     }
 
-    fprintf( pResultFileHandle, " );\n" );
+    fprintf( pResultFileHandle, " );\n\n" );
     fflush( pResultFileHandle );
 }
 
@@ -779,7 +785,12 @@ void writeCHeaderPrefix( FILE* pHeaderFileHandle, const char* pClassName, const 
     fprintf( pHeaderFileHandle, "*/\n\n" );
 
     //FK: Header guard
-    fprintf( pHeaderFileHandle, "#ifndef SHIMMER_%s_HEADER\n#define SHIMMER_%s_HEADER\n\n", pUpperClassName, pUpperClassName );
+    fprintf( pHeaderFileHandle, "#ifndef SHIMMER_C_OCOA_%s_HEADER\n#define SHIMMER_C_OCOA_%s_HEADER\n\n", pUpperClassName, pUpperClassName );
+
+    char* pLowerClassName = convertCStringToLowerInplace( pUpperClassName, classNameLength );
+    fprintf( pHeaderFileHandle, "typedef id\t%s_t;\n", pLowerClassName );
+    fprintf( pHeaderFileHandle, "typedef id\tnsobject_t;\n" );
+    fprintf( pHeaderFileHandle, "typedef SEL\tnsselector_t;\n\n" );
 }
 
 void writeCHeaderSuffix( FILE* pHeaderFileHandle )
@@ -801,9 +812,6 @@ void writeCSourcePrefix( FILE* pSourceFileHandle, const char* pHeaderFileName, c
 
     fprintf( pSourceFileHandle, "#include \"%s\"\n\n", pHeaderFileName );
     fprintf( pSourceFileHandle, "static Class internalClassObject = objc_getClass( \"%.*s\" );\n\n", classNameLength, pClassName );
-    fprintf( pSourceFileHandle, "typedef id\t%s_t;\n", pLowerClassName );
-    fprintf( pSourceFileHandle, "typedef id\tnsobject_t;\n" );
-    fprintf( pSourceFileHandle, "typedef SEL\tnsselector_t;\n\n" );
 }
 
 void writeCFunctionImplementation( FILE* pSourceFileHandle, const CFunctionDefinition* pFunctionDefinition )
