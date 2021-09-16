@@ -31,12 +31,10 @@ typedef struct
     char* pReturnType;
     char* pFunctionName;
     char* pArguments;
-    char* pResolvedArgumentTypes[32];
 
     int32_t returnTypeLength;
     int32_t functionNameLength;
     int32_t argumentLength;
-    int32_t argumentCount;
 } ParseResult;
 
 typedef struct 
@@ -71,7 +69,12 @@ typedef enum
     ConvertResult_UnknownArgumentType
 } ConvertResult;
 
-#define printf_stderr(x, ...) fprintf( stderr, x, __VA_ARGS__ )
+//FK: Some helpful macros
+#define printf_stderr(x, ...)   fprintf( stderr, x, __VA_ARGS__ )
+#define ArrayCount(x)           (sizeof(x)/sizeof(x[0]))
+#define getMax(a,b)             (a)>(b)?(a):(b)
+#define getMin(a,b)             (a)>(b)?(b):(a)
+#define UnusedArgument(x)       (void)x
 
 void resetStringAllocator( StringAllocator* pStringAllocator )
 {
@@ -87,6 +90,11 @@ void decrementStringAllocatorCapacity( StringAllocator* pStringAllocator, uint32
 {
     RuntimeAssert( pStringAllocator->bufferSize + sizeInBytes < pStringAllocator->bufferCapacity );
     pStringAllocator->bufferSize += sizeInBytes;
+}
+
+uint32_t getRemainingStringAllocatorCapacity( StringAllocator* pStringAllocator )
+{
+    return pStringAllocator->bufferCapacity - pStringAllocator->bufferSize;
 }
 
 uint8_t createConversionArguments( ObjCConversionArguments* pOutArguments, const char* pHeaderFileName, const char* pSourceFileName )
@@ -112,19 +120,19 @@ uint8_t createConversionArguments( ObjCConversionArguments* pOutArguments, const
     return 1u;
 }
 
-inline uint32_t castSizeToUint32( size_t val )
+static inline uint32_t castSizeToUint32( size_t val )
 {
     RuntimeAssert( val < UINT32_MAX );
     return (uint32_t)val;
 }
 
-inline int32_t castSizeToInt32( size_t val )
+static inline int32_t castSizeToInt32( size_t val )
 {
     RuntimeAssert( val < INT32_MAX );
     return (int32_t)val;
 }
 
-inline void fillMemoryWithZeroes( void* pMemory, const size_t sizeInBytes )
+static inline void fillMemoryWithZeroes( void* pMemory, const size_t sizeInBytes )
 {
     //FK: TODO: use STOSB - currently this is slower than memset (but saves the string.h include)
     uint8_t* pMemoryAsByteArray = (uint8_t*)pMemory;
@@ -135,7 +143,7 @@ inline void fillMemoryWithZeroes( void* pMemory, const size_t sizeInBytes )
 }
 
 //FK: Use custom string.h alternatives since we're not concerned with locale 
-inline uint8_t isWhiteSpaceCharacter( const char character )
+static inline uint8_t isWhiteSpaceCharacter( const char character )
 {
     return character == ' '  ||
            character == '\n' ||
@@ -145,12 +153,12 @@ inline uint8_t isWhiteSpaceCharacter( const char character )
            character == '\r';
 }
 
-inline uint8_t isAlphabeticalCharacter( const char character )
+static inline uint8_t isAlphabeticalCharacter( const char character )
 {
     return ( character >= 'A' && character <= 'Z' ) || ( character >= 'a' && character <= 'z' );
 }
 
-inline char convertCharacterToLower( const char character )
+static inline char convertCharacterToLower( const char character )
 {
     if( !isAlphabeticalCharacter( character ) )
     {
@@ -160,7 +168,7 @@ inline char convertCharacterToLower( const char character )
     return character <= 'Z' ? character + 32 : character;
 }
 
-inline char convertCharacterToUpper( const char character )
+static inline char convertCharacterToUpper( const char character )
 {
     if( !isAlphabeticalCharacter( character ) )
     {
@@ -170,7 +178,7 @@ inline char convertCharacterToUpper( const char character )
     return character >= 'a' ? character - 32 : character;
 }
 
-inline uint8_t areCStringsEqual( const char* pStringA, const char* pStringB )
+static inline uint8_t areCStringsEqual( const char* pStringA, const char* pStringB )
 {
     while( *pStringA && *pStringB )
     {
@@ -183,7 +191,23 @@ inline uint8_t areCStringsEqual( const char* pStringA, const char* pStringB )
     return 1u;
 }
 
-inline int32_t getCStringLengthInclNullTerminator( const char* pString )
+static inline int32_t getCStringLength( const char* pString )
+{
+    const char* pStringStart = pString;
+    while( *pString )
+    {
+        if( *pString == 0 )
+        {
+            break; 
+        }
+
+        ++pString;
+    }
+
+    return castSizeToInt32( pString - pStringStart );
+}
+
+static inline int32_t getCStringLengthInclNullTerminator( const char* pString )
 {
     const char* pStringStart = pString;
     while( *pString++ );
@@ -191,7 +215,7 @@ inline int32_t getCStringLengthInclNullTerminator( const char* pString )
     return castSizeToInt32( pString - pStringStart );
 }
 
-inline char* copyCStringAndAddNullTerminator( char* pDestination, const char* pSource, const int32_t stringLength )
+static inline char* copyCStringAndAddNullTerminator( char* pDestination, const char* pSource, const int32_t stringLength )
 {
     for( int32_t charIndex = 0; charIndex < stringLength; ++charIndex )
     {
@@ -202,7 +226,7 @@ inline char* copyCStringAndAddNullTerminator( char* pDestination, const char* pS
     return pDestination;
 }
 
-inline char* convertCStringToLowerInplace( char* pString, const int32_t stringLength )
+static inline char* convertCStringToLowerInplace( char* pString, const int32_t stringLength )
 {
     for( int32_t charIndex = 0u; charIndex < stringLength; ++charIndex )
     {
@@ -211,7 +235,7 @@ inline char* convertCStringToLowerInplace( char* pString, const int32_t stringLe
     return pString;
 }
 
-inline char* convertCStringToLower( char* pDestination, const char* pSource, const int32_t sourceLength )
+static inline char* convertCStringToLower( char* pDestination, const char* pSource, const int32_t sourceLength )
 {
     for( int32_t charIndex = 0u; charIndex < sourceLength; ++charIndex )
     {
@@ -221,7 +245,7 @@ inline char* convertCStringToLower( char* pDestination, const char* pSource, con
     return pDestination;
 }
 
-inline char* convertCStringToUpper( char* pDestination, const char* pSource, const int32_t sourceLength )
+static inline char* convertCStringToUpper( char* pDestination, const char* pSource, const int32_t sourceLength )
 {
     for( int32_t charIndex = 0u; charIndex < sourceLength; ++charIndex )
     {
@@ -231,7 +255,7 @@ inline char* convertCStringToUpper( char* pDestination, const char* pSource, con
     return pDestination;
 }
 
-inline char* allocateCStringCopy( const char* pString, const int32_t stringLength )
+static inline char* allocateCStringCopy( const char* pString, const int32_t stringLength )
 {
     char* pStringCopyMemory = (char*)malloc( stringLength + 1 );
     if( pStringCopyMemory == NULL )
@@ -243,7 +267,7 @@ inline char* allocateCStringCopy( const char* pString, const int32_t stringLengt
     return copyCStringAndAddNullTerminator( pStringCopyMemory, pString, stringLength );
 }
 
-inline char* allocateLowerCStringCopy( const char* pString, const int32_t stringLength )
+static inline char* allocateLowerCStringCopy( const char* pString, const int32_t stringLength )
 {
     char* pStringCopyMemory = (char*)malloc( stringLength + 1 );
     if( pStringCopyMemory == NULL )
@@ -256,7 +280,7 @@ inline char* allocateLowerCStringCopy( const char* pString, const int32_t string
     return convertCStringToLowerInplace( pStringCopyMemory, stringLength );
 }
 
-inline char* allocateCStringCopyWithAllocator( StringAllocator* pAllocator, const char* pString, const int32_t stringLength )
+static inline char* allocateCStringCopyWithAllocator( StringAllocator* pAllocator, const char* pString, const int32_t stringLength )
 {
     char* pStringCopyMemory = getCurrentStringAllocatorBase( pAllocator );
     decrementStringAllocatorCapacity( pAllocator, stringLength + 1 );
@@ -264,7 +288,7 @@ inline char* allocateCStringCopyWithAllocator( StringAllocator* pAllocator, cons
     return copyCStringAndAddNullTerminator( pStringCopyMemory, pString, stringLength );
 }
 
-inline const char* findNextCharacterPositionInCString( const char* pString, char character )
+static inline const char* findNextCharacterPositionInCString( const char* pString, char character )
 {
     const char* pStringStart = pString;
     while( *pString )
@@ -280,7 +304,7 @@ inline const char* findNextCharacterPositionInCString( const char* pString, char
     return NULL;
 }
 
-inline uint8_t isStdStringType( const char* pTypeName )
+static inline uint8_t isStdStringType( const char* pTypeName )
 {
     ++pTypeName; //FK: Eat leading '{'
     return areCStringsEqual( pTypeName, "basic_string<char");
@@ -691,7 +715,7 @@ ConvertResult convertParseResultToFunctionDefinition( StringAllocator* pStringAl
 
     const char* pArguments = pParseResult->pArguments;
     uint8_t argumentCount = 0u;
-    const uint8_t maxArgumentCount = ArrayCount( pParseResult->pResolvedArgumentTypes );
+    const uint8_t maxArgumentCount = ArrayCount( pOutFunctionDefintion->pResolvedArgumentTypes );
     const uint8_t argumentsToSkip = 2; //FK: Skip first two arguments since these are always the object + the selector.
 
     while( *pArguments )

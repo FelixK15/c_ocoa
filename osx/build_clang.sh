@@ -21,7 +21,7 @@ then
 	BuildConfig=release
 fi
 
-BuildFolder=${ScriptDirectory}/build_${BuildConfig}
+BuildFolder="${ScriptDirectory}/build_${BuildConfig}"
 if [ ! -d "${BuildFolder}" ] 
 then
 	mkdir "${BuildFolder}"
@@ -30,7 +30,7 @@ fi
 OutputFile="${BuildFolder}/shimmer_osx_c_coca"
 InputCFile="${ScriptDirectory}/osx_entry.c"
 
-CompilerOptions="-ferror-limit=900 -fstrict-aliasing --output ${OutputFile}"
+CompilerOptions="-lobjc -ferror-limit=900 -fstrict-aliasing --output ${OutputFile}"
 if [ "${BuildConfig}" == "release" ] 
 then
 	echo "Build config = release"
