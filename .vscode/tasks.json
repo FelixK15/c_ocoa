@@ -6,11 +6,17 @@
         {
             "label": "Build C-ocoa API Generator - DEBUG",
             "type": "shell",
-            "options": {
-                "cwd": "win32"
-            },
             "windows": {
+                "options": {
+                    "cwd": "win32"
+                },
                 "command": "build_clang.bat",
+                "args": [
+                    "debug"
+                ]
+            },
+            "osx": {
+                "command": "osx/build_clang.sh",
                 "args": [
                     "debug"
                 ]
@@ -24,13 +30,19 @@
             },
         },
         {
-            "label": "Build C-ocoa API Generator - DEBUG",
+            "label": "Build C-ocoa API Generator - RELEASE",
             "type": "shell",
-            "options": {
-                "cwd": "win32"
-            },
             "windows": {
+                "options": {
+                    "cwd": "win32"
+                },
                 "command": "build_clang.bat",
+                "args": [
+                    "release"
+                ]
+            },
+            "osx": {
+                "command": "osx/build_clang.sh",
                 "args": [
                     "release"
                 ]

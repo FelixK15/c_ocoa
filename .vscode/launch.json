@@ -5,25 +5,42 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(Win32) Launch Debug",
-            "type": "cppvsdbg",
+            "name": "Launch Debug",
             "request": "launch",
-            "program": "${workspaceFolder}/win32/build_debug/shimmer_win32_c_ocoa.exe",
-            "args": ["--test", "NSApplication.dump.txt" ],
-            //"args": ["--test", "NSString.dump.txt" ],
-            //"args": ["--test", "NSWindow.dump.txt" ],
+            "type":"cppdbg",
+            "windows": {
+                "program": "${workspaceFolder}/win32/build_debug/shimmer_win32_c_ocoa.exe",
+                "type": "cppvsdbg",
+                "args": ["--test", "NSApplication.dump.txt" ],
+                "cwd": "${workspaceFolder}/win32/"
+            },
+            "osx": {
+                "MIMode": "llvm",
+                "program": "${workspaceFolder}/osx/build_debug/shimmer_osx_c_coca",
+                "type": "cppdbg",
+                //"args": ["--test", "NSApplication.dump.txt" ],
+                "cwd": "${workspaceFolder}/osx/"
+            },
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/win32/",
             "environment": [],
         },
         {
-            "name": "(Win32) Launch Release",
-            "type": "cppvsdbg",
+            "name": "Launch Release",
             "request": "launch",
-            "program": "${workspaceFolder}/win32/build_release/shimmer_win32_c_ocoa.exe",
-            "args": ["--test", "NSApplication.dump.txt" ],
+            "windows": {
+                "program": "${workspaceFolder}/win32/build_release/shimmer_win32_c_ocoa.exe",
+                "type": "cppvsdbg",
+                "args": ["--test", "NSApplication.dump.txt" ],
+                "cwd": "${workspaceFolder}/win32/"
+            },
+            "osx": {
+                "program": "${workspaceFolder}/osx/build_release/shimmer_osx_c_ocoa",
+                "type": "cppdbg",
+                //"args": ["--test", "NSApplication.dump.txt" ],
+                "cwd": "${workspaceFolder}/osx/"
+            },
+            
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/win32/",
             "environment": [],
         },
     ]
