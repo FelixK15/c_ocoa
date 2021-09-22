@@ -191,7 +191,7 @@ static inline uint8_t areCStringsEqual( const char* pStringA, const char* pStrin
     return 1u;
 }
 
-static inline int32_t getCStringLength( const char* pString )
+static inline int32_t getCStringLengthExclNullTerminator( const char* pString )
 {
     const char* pStringStart = pString;
     while( *pString )
@@ -479,7 +479,7 @@ const char* resolveBaseType( const char* pObjectiveCTypeName )
             return "nsobject_t";
 
         case ':':
-            return "nssignal_t";
+            return "nsselector_t";
 
         case '#':
             return "nsclass_t";
@@ -660,10 +660,15 @@ uint8_t isValidFunctionName( const char* pFunctionName )
 
 const char* convertToCFunctionName( char* pObjectiveCFunctionName, int32_t functionNameLength )
 {
-    //FK: Some functions end with a colon (not sure yet what this indicates exactly)
-    if( pObjectiveCFunctionName[ functionNameLength - 1 ] == ':' )
+    if( strcmp( pObjectiveCFunctionName, "initWithCoder:" ) == 0 )
     {
-        pObjectiveCFunctionName[ functionNameLength - 1 ] = 0;
+        BreakpointHook();
+    }
+    //FK: Some functions end with a colon (not sure yet what this indicates exactly)
+    char* pColonPos = (char*)findNextCharacterPositionInCString( pObjectiveCFunctionName, ':' );
+    if( pColonPos != NULL )
+    {
+        *pColonPos = 0;
     }
 
     return pObjectiveCFunctionName;
@@ -756,6 +761,37 @@ ConvertResult convertParseResultToFunctionDefinition( StringAllocator* pStringAl
     return ConvertResult_Success;
 }
 
+void writeCFunctionSignature( FILE* pResultFileHandle, const CFunctionDefinition* pFunctionDefinition )
+{
+    //FK: Function name
+    fprintf( pResultFileHandle, "%s_%s(", pFunctionDefinition->pLowerClassName, pFunctionDefinition->pResolvedFunctionName );
+
+    if( !pFunctionDefinition->isInitFunction )
+    {
+        //FK: add object as first parameter for non init functions
+        fprintf( pResultFileHandle, " %s_t object", pFunctionDefinition->pLowerClassName );
+
+        for( uint8_t argumentIndex = 0u; argumentIndex < pFunctionDefinition->argumentCount; ++argumentIndex )
+        {
+            fprintf( pResultFileHandle, ", %s arg%u", pFunctionDefinition->pResolvedArgumentTypes[ argumentIndex ], argumentIndex );
+        }
+    }
+    else
+    {
+        if( pFunctionDefinition->argumentCount > 0u )
+        {
+            fprintf( pResultFileHandle, " %s arg%u", pFunctionDefinition->pResolvedArgumentTypes[ 0 ], 0 );
+
+            for( uint8_t argumentIndex = 1u; argumentIndex < pFunctionDefinition->argumentCount; ++argumentIndex )
+            {   
+                fprintf( pResultFileHandle, ", %s arg%u", pFunctionDefinition->pResolvedArgumentTypes[ argumentIndex ], argumentIndex );
+            }
+        }
+    }
+
+    fprintf( pResultFileHandle, " )");
+}
+
 void writeCFunctionDeclaration( FILE* pResultFileHandle, const CFunctionDefinition* pFunctionDefinition )
 {   
     //FK: "guess" maximum tab count for nice formatting
@@ -764,8 +800,8 @@ void writeCFunctionDeclaration( FILE* pResultFileHandle, const CFunctionDefiniti
     //    we currently run on a function by function basis
     //    and thus don't know the maximum type name length
     //    beforehand
-    const size_t maxTabCount = 5u;
-    size_t returnTypeLength = 0u;
+    const int32_t maxTabCount = 5u;
+    int32_t returnTypeLength = 0u;
 
     fprintf(pResultFileHandle, "// Signature from Objective-C Runtime: %s %s %s\n", pFunctionDefinition->pOriginalReturnType, pFunctionDefinition->pOriginalFunctionName, pFunctionDefinition->pOriginalArgumentTypes );
 
@@ -779,21 +815,16 @@ void writeCFunctionDeclaration( FILE* pResultFileHandle, const CFunctionDefiniti
         returnTypeLength = fprintf( pResultFileHandle, "%s ", pFunctionDefinition->pResolvedReturnType );
     }
 
-    const size_t spacesForTab = 4u;
-    const size_t tabCountForReturnType = getMax( 0u, maxTabCount - ( returnTypeLength / spacesForTab ) );
-    for( size_t tabIndex = 0u; tabIndex < tabCountForReturnType; ++tabIndex )
+    const int32_t spacesForTab = 4u;
+    const int32_t tabCountForReturnType = getMax( 0u, maxTabCount - ( returnTypeLength / spacesForTab ) );
+    for( int32_t tabIndex = 0u; tabIndex < tabCountForReturnType; ++tabIndex )
     {
         fprintf( pResultFileHandle, "\t" );
     }
 
-    fprintf( pResultFileHandle, "%s_%s( %s_t object", pFunctionDefinition->pLowerClassName, pFunctionDefinition->pResolvedFunctionName, pFunctionDefinition->pLowerClassName );
+    writeCFunctionSignature( pResultFileHandle, pFunctionDefinition );
 
-    for( uint8_t argumentIndex = 0u; argumentIndex < pFunctionDefinition->argumentCount; ++argumentIndex )
-    {
-        fprintf( pResultFileHandle, ", %s arg%u", pFunctionDefinition->pResolvedArgumentTypes[ argumentIndex ], argumentIndex );
-    }
-
-    fprintf( pResultFileHandle, " );\n\n" );
+    fprintf( pResultFileHandle, ";\n\n" );
     fflush( pResultFileHandle );
 }
 
@@ -812,9 +843,9 @@ void writeCHeaderPrefix( FILE* pHeaderFileHandle, const char* pClassName, const 
     fprintf( pHeaderFileHandle, "#ifndef SHIMMER_C_OCOA_%s_HEADER\n#define SHIMMER_C_OCOA_%s_HEADER\n\n", pUpperClassName, pUpperClassName );
 
     char* pLowerClassName = convertCStringToLowerInplace( pUpperClassName, classNameLength );
-    fprintf( pHeaderFileHandle, "typedef id\t%s_t;\n", pLowerClassName );
-    fprintf( pHeaderFileHandle, "typedef id\tnsobject_t;\n" );
-    fprintf( pHeaderFileHandle, "typedef SEL\tnsselector_t;\n\n" );
+    fprintf( pHeaderFileHandle, "typedef void*\t%s_t;\n", pLowerClassName );
+    fprintf( pHeaderFileHandle, "typedef void*\tnsobject_t;\n" );
+    fprintf( pHeaderFileHandle, "typedef void*\tnsselector_t;\n\n" );
 }
 
 void writeCHeaderSuffix( FILE* pHeaderFileHandle )
@@ -823,22 +854,17 @@ void writeCHeaderSuffix( FILE* pHeaderFileHandle )
     fprintf( pHeaderFileHandle, "#endif");
 }
 
-void writeCSourcePrefix( FILE* pSourceFileHandle, const char* pHeaderFileName, const char* pClassName, const int32_t classNameLength )
+void writeCSourcePrefix( FILE* pSourceFileHandle, const char* pHeaderFileName) 
 {
-    char* pLowerClassName = (char*)alloca( classNameLength + 1u );
-    convertCStringToLower( pLowerClassName, pClassName, classNameLength );
-    pLowerClassName[ classNameLength ] = 0;
-
     fprintf( pSourceFileHandle, "/*\n" );
     fprintf( pSourceFileHandle, "\tThis file has been automatically generated by the shimmer industries c-ocoa API generator\n" );
     fprintf( pSourceFileHandle, "\tThus, manual changes to this file will be lost if the file is re-generated.\n" );
     fprintf( pSourceFileHandle, "*/\n\n" );
 
     fprintf( pSourceFileHandle, "#include \"%s\"\n\n", pHeaderFileName );
-    fprintf( pSourceFileHandle, "static Class internalClassObject = objc_getClass( \"%.*s\" );\n\n", classNameLength, pClassName );
 }
 
-void writeCFunctionImplementation( FILE* pSourceFileHandle, const CFunctionDefinition* pFunctionDefinition )
+void writeCFunctionImplementation( FILE* pSourceFileHandle, const CFunctionDefinition* pFunctionDefinition, const char* pClassName, const int32_t classNameLength )
 {   
     size_t returnTypeLength = 0u;
     if( pFunctionDefinition->isInitFunction )
@@ -851,16 +877,12 @@ void writeCFunctionImplementation( FILE* pSourceFileHandle, const CFunctionDefin
         returnTypeLength = fprintf( pSourceFileHandle, "%s ", pFunctionDefinition->pResolvedReturnType );
     }
 
-    fprintf( pSourceFileHandle, "%s_%s( %s_t object", pFunctionDefinition->pLowerClassName, pFunctionDefinition->pResolvedFunctionName, pFunctionDefinition->pLowerClassName );
+    writeCFunctionSignature( pSourceFileHandle, pFunctionDefinition );
 
-    for( uint8_t argumentIndex = 0u; argumentIndex < pFunctionDefinition->argumentCount; ++argumentIndex )
-    {
-        fprintf( pSourceFileHandle, ", %s arg%u", pFunctionDefinition->pResolvedArgumentTypes[ argumentIndex ], argumentIndex );
-    }
-
-    fprintf( pSourceFileHandle, " )\n{\n" );
-    fprintf( pSourceFileHandle, "\tstatic SEL methodSelector = sel_registerName( \"%s\" );\n", pFunctionDefinition->pOriginalFunctionName );
-    fprintf( pSourceFileHandle, "\tstatic IMP methodImplementation = class_getMethodImplementation( internalClassObject, methodSelector );\n" );
+    fprintf( pSourceFileHandle, "\n{\n" );
+    fprintf( pSourceFileHandle, "\tClass internalClassObject = objc_getClass( \"%.*s\" );\n", classNameLength, pClassName );
+    fprintf( pSourceFileHandle, "\tSEL methodSelector = sel_registerName( \"%s\" );\n", pFunctionDefinition->pOriginalFunctionName );
+    fprintf( pSourceFileHandle, "\tIMP methodImplementation = class_getMethodImplementation( internalClassObject, methodSelector );\n" );
     fprintf( pSourceFileHandle, "\ttypedef %s( *MethodFunctionPtr )( id, SEL", pFunctionDefinition->pResolvedReturnType );
 
     for( uint8_t argumentIndex = 0u; argumentIndex < pFunctionDefinition->argumentCount; ++argumentIndex )
@@ -879,7 +901,15 @@ void writeCFunctionImplementation( FILE* pSourceFileHandle, const CFunctionDefin
         fprintf( pSourceFileHandle, "return " );
     }
 
-    fprintf( pSourceFileHandle, "impl( (id)object, methodSelector");
+    if( pFunctionDefinition->isInitFunction )
+    {
+        fprintf( pSourceFileHandle, "impl( (id)internalClassObject, methodSelector");
+    }
+    else
+    {
+        fprintf( pSourceFileHandle, "impl( (id)object, methodSelector");
+    }
+
     for( uint8_t argumentIndex = 0u; argumentIndex < pFunctionDefinition->argumentCount; ++argumentIndex )
     {
         fprintf( pSourceFileHandle, ", arg%hhu", argumentIndex );
@@ -921,7 +951,7 @@ void parseTestFile( ObjCConversionArguments* pParseArguments, const char* pFileC
     }
 
     writeCHeaderPrefix( pParseArguments->pHeaderFileHandle, pClassNameStart, classNameLength );
-    writeCSourcePrefix( pParseArguments->pSourceFileHandle, pParseArguments->pHeaderFileName, pClassNameStart, classNameLength );
+    writeCSourcePrefix( pParseArguments->pSourceFileHandle, pParseArguments->pHeaderFileName );
 
     ParseResult parseResult = {};
     const uint8_t ArgumentsToSkip = 2;
@@ -974,7 +1004,7 @@ void parseTestFile( ObjCConversionArguments* pParseArguments, const char* pFileC
 
                         case ConvertResult_Success:
                             writeCFunctionDeclaration( pParseArguments->pHeaderFileHandle, &functionDefinition );
-                            writeCFunctionImplementation( pParseArguments->pSourceFileHandle, &functionDefinition );
+                            writeCFunctionImplementation( pParseArguments->pSourceFileHandle, &functionDefinition, pClassNameStart, classNameLength );
                             break;
                     }
 
