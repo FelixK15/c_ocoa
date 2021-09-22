@@ -29,8 +29,10 @@ fi
 
 OutputFile="${BuildFolder}/shimmer_osx_c_coca"
 InputCFile="${ScriptDirectory}/osx_entry.c"
+Libraries="-lobjc"
+Frameworks="-framework CoreFoundation -framework AppKit"
 
-CompilerOptions="-lobjc -ferror-limit=900 -fstrict-aliasing --output ${OutputFile}"
+CompilerOptions="-ferror-limit=900 -fstrict-aliasing --output ${OutputFile} ${Libraries} ${Frameworks}"
 if [ "${BuildConfig}" == "release" ] 
 then
 	echo "Build config = release"

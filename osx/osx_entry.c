@@ -6,7 +6,7 @@
 
 #define RuntimeAssert(x)    if(!(x)) raise(SIGTRAP)
 #define InvalidCodePath()   RuntimeAssert(0)
-
+#define BreakpointHook()    asm("nop")
 //FK: TODO
 #define restrict_modifier __restrict__
 #include "../shimmer_api_generator.h"
@@ -41,7 +41,7 @@ uint8_t createCSourceCodeForClass( ObjCTypeDict* pTypeDict, StringAllocator* pSt
     }
 
     writeCHeaderPrefix( pHeaderFileHandle, pClassName, classNameLength );
-    writeCSourcePrefix( pSourceFileHandle, pHeaderFileName, pClassName, classNameLength );
+    writeCSourcePrefix( pSourceFileHandle, pHeaderFileName );
     
     uint32_t methodCount = 0u;
     Method* ppMethods = class_copyMethodList( pClass, &methodCount );
@@ -66,8 +66,8 @@ uint8_t createCSourceCodeForClass( ObjCTypeDict* pTypeDict, StringAllocator* pSt
         //          calls 'malloc()' each time internally...
         method_getReturnType( pMethod, pReturnType, stringAllocatorCapacity );
 
-        const int32_t returnTypeLength = getCStringLengthInclNullTerminator( pReturnType );
-        decrementStringAllocatorCapacity( pStringAllocator, returnTypeLength );
+        const int32_t returnTypeLength = getCStringLengthExclNullTerminator( pReturnType );
+        decrementStringAllocatorCapacity( pStringAllocator, returnTypeLength + 1 );
 
         SEL pMethodSelector = method_getName( pMethod );
         if( pMethodSelector == NULL )
@@ -83,7 +83,7 @@ uint8_t createCSourceCodeForClass( ObjCTypeDict* pTypeDict, StringAllocator* pSt
             continue;
         }
 
-        const int32_t selectorNameLength = getCStringLengthInclNullTerminator( pSelectorName );
+        const int32_t selectorNameLength = getCStringLengthExclNullTerminator( pSelectorName );
         char* pMethodName = allocateCStringCopyWithAllocator( pStringAllocator, pSelectorName, selectorNameLength );
        
         const uint32_t argumentCount = method_getNumberOfArguments( pMethod );
@@ -94,7 +94,7 @@ uint8_t createCSourceCodeForClass( ObjCTypeDict* pTypeDict, StringAllocator* pSt
             const uint32_t stringAllocatorCapacity = getRemainingStringAllocatorCapacity( pStringAllocator );
             method_getArgumentType( pMethod, argumentIndex, pCurrentArgumentType, stringAllocatorCapacity );
 
-            const int32_t argumentTypeLength = getCStringLength( pCurrentArgumentType );
+            const int32_t argumentTypeLength = getCStringLengthExclNullTerminator( pCurrentArgumentType );
 
             const uint8_t addSpaceAtEnd = ( argumentIndex + 1 != argumentCount );
             if( addSpaceAtEnd )
@@ -136,7 +136,7 @@ uint8_t createCSourceCodeForClass( ObjCTypeDict* pTypeDict, StringAllocator* pSt
 
             case ConvertResult_Success:
                 writeCFunctionDeclaration( pHeaderFileHandle, &functionDefinition );
-                writeCFunctionImplementation( pSourceFileHandle, &functionDefinition );
+                writeCFunctionImplementation( pSourceFileHandle, &functionDefinition, pClassName, classNameLength );
                 break;
         }
         resetStringAllocator( pStringAllocator );
@@ -186,14 +186,12 @@ int main(int argc, const char** argv)
     {
         Class pClass = ppClasses[ classIndex ];
         const char* pClassName = class_getName( pClass );
-        if( areCStringsEqual(pClassName, "NSWindow") ||
-            areCStringsEqual(pClassName, "NSString") ||
-            areCStringsEqual(pClassName, "NSApplication") )
+        if( areCStringsEqual(pClassName, "NSApplication") )
         {
-            continue;
+            createCSourceCodeForClass( pDict, &stringAllocator, pClass, pClassName );
         }
 
-        createCSourceCodeForClass( pDict, &stringAllocator, pClass, pClassName );
+        printf( "%s\n", pClassName );
     }
     return 0;
 }
