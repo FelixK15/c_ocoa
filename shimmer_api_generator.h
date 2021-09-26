@@ -1,9 +1,24 @@
+typedef uint8_t boolean8_t;
+
+
 typedef struct
 {
-    char* pOriginalType;
+    const char* pOriginalType;
     const char* pResolvedType;
+    int32_t     resolvedTypeLength;
+    int32_t     originalTypeLength;
 
-    uint8_t isNew;
+    boolean8_t isReference;
+    boolean8_t isBaseType;
+    boolean8_t isStdType;
+} ObjCTypeResolveResult;
+
+typedef struct
+{
+    char*                   pHashParameter;
+    ObjCTypeResolveResult   resolveResult;
+    boolean8_t              isNew;
+
 } ObjCTypeDictEntry;
 
 typedef struct
@@ -57,8 +72,8 @@ typedef struct
     char* pOriginalArgumentTypes;
     
     uint8_t argumentCount   : 6;
-    uint8_t isVoidFunction  : 1;
-    uint8_t isInitFunction  : 1;
+    boolean8_t isVoidFunction  : 1;
+    boolean8_t isInitFunction  : 1;
 } CFunctionDefinition;
 
 typedef enum
@@ -97,7 +112,7 @@ uint32_t getRemainingStringAllocatorCapacity( StringAllocator* pStringAllocator 
     return pStringAllocator->bufferCapacity - pStringAllocator->bufferSize;
 }
 
-uint8_t createConversionArguments( ObjCConversionArguments* pOutArguments, const char* pHeaderFileName, const char* pSourceFileName )
+boolean8_t createConversionArguments( ObjCConversionArguments* pOutArguments, const char* pHeaderFileName, const char* pSourceFileName )
 {
     pOutArguments->pHeaderFileName = pHeaderFileName;
     pOutArguments->pSourceFileName = pSourceFileName;
@@ -143,7 +158,7 @@ static inline void fillMemoryWithZeroes( void* pMemory, const size_t sizeInBytes
 }
 
 //FK: Use custom string.h alternatives since we're not concerned with locale 
-static inline uint8_t isWhiteSpaceCharacter( const char character )
+static inline boolean8_t isWhiteSpaceCharacter( const char character )
 {
     return character == ' '  ||
            character == '\n' ||
@@ -153,7 +168,7 @@ static inline uint8_t isWhiteSpaceCharacter( const char character )
            character == '\r';
 }
 
-static inline uint8_t isAlphabeticalCharacter( const char character )
+static inline boolean8_t isAlphabeticalCharacter( const char character )
 {
     return ( character >= 'A' && character <= 'Z' ) || ( character >= 'a' && character <= 'z' );
 }
@@ -178,7 +193,7 @@ static inline char convertCharacterToUpper( const char character )
     return character >= 'a' ? character - 32 : character;
 }
 
-static inline uint8_t areCStringsEqual( const char* pStringA, const char* pStringB )
+static inline boolean8_t areCStringsEqual( const char* pStringA, const char* pStringB )
 {
     while( *pStringA && *pStringB )
     {
@@ -288,6 +303,23 @@ static inline char* allocateCStringCopyWithAllocator( StringAllocator* pAllocato
     return copyCStringAndAddNullTerminator( pStringCopyMemory, pString, stringLength );
 }
 
+static inline const char* findLastCharacterPositionInCString( const char* pString, char character )
+{
+    const char* pLastOccurance = NULL;
+    const char* pStringStart = pString;
+    while( *pString )
+    {
+        if( *pString == character )
+        {
+            pLastOccurance = pString;
+        }
+
+        ++pString;
+    }
+
+    return pLastOccurance;
+}
+
 static inline const char* findNextCharacterPositionInCString( const char* pString, char character )
 {
     const char* pStringStart = pString;
@@ -304,7 +336,7 @@ static inline const char* findNextCharacterPositionInCString( const char* pStrin
     return NULL;
 }
 
-static inline uint8_t isStdStringType( const char* pTypeName )
+static inline boolean8_t isStdStringType( const char* pTypeName )
 {
     ++pTypeName; //FK: Eat leading '{'
     return areCStringsEqual( pTypeName, "basic_string<char");
@@ -375,7 +407,7 @@ ObjCTypeDict* createObjectiveCTypeDictionary( size_t sizeInBytes )
     return pTypeDict;
 }
 
-uint8_t stringsAreEqual( const char* pStringA, const char* pStringB, const int32_t stringLength )
+boolean8_t stringsAreEqual( const char* pStringA, const char* pStringB, const int32_t stringLength )
 {
     for( int32_t charIndex = 0u; charIndex < stringLength; ++charIndex )
     {
@@ -401,7 +433,7 @@ uint32_t djb2_hash( const char* pString, const int32_t stringLength )
     return hash;
 }
 
-ObjCTypeDictEntry* insertTypeDictionaryEntry( ObjCTypeDict* pDict, const char* restrict_modifier pTypeName, const int32_t typeNameLength, uint8_t* restrict_modifier pOutIsNew )
+ObjCTypeDictEntry* insertTypeDictionaryEntry( ObjCTypeDict* pDict, const char* restrict_modifier pTypeName, const int32_t typeNameLength, boolean8_t* restrict_modifier pOutIsNew )
 {
     //FK: TODO: Check hash distribution
     const uint32_t hashValue = djb2_hash( pTypeName, typeNameLength );
@@ -412,19 +444,19 @@ ObjCTypeDictEntry* insertTypeDictionaryEntry( ObjCTypeDict* pDict, const char* r
     if( pEntry->isNew )
     {
         //FK: TODO: use custom linear allocator?
-        pEntry->pOriginalType = (char*)malloc( typeNameLength + 1 ); 
-        if( pEntry->pOriginalType == NULL )
+        pEntry->pHashParameter = (char*)malloc( typeNameLength + 1 ); 
+        if( pEntry->pHashParameter == NULL )
         {
             //FK: out of memory.
             //FK: TODO: Print message, let the user know what's going on
             return NULL;
         }
-        sprintf( pEntry->pOriginalType, "%.*s", typeNameLength, pTypeName );
+        sprintf( pEntry->pHashParameter, "%.*s", typeNameLength, pTypeName );
         pEntry->isNew = 0;
     }
 
     //FK: Check for hash collision
-    RuntimeAssert( stringsAreEqual( pEntry->pOriginalType, pTypeName, typeNameLength ) );
+    RuntimeAssert( stringsAreEqual( pEntry->pHashParameter, pTypeName, typeNameLength ) );
 
     return pEntry;
 }
@@ -466,50 +498,78 @@ int32_t getTypenameReferencePosition( const char* pTypeName, const int32_t typen
     return INT32_MAX;
 }
 
-uint8_t isObjectiveCStructType( const char* pTypeName )
+boolean8_t isObjectiveCStructType( const char* pTypeName )
 {
     return *pTypeName == '{';
 }
 
-const char* resolveBaseType( const char* pObjectiveCTypeName )
+boolean8_t isObjectiveCReference( const char* pTypeName, const int32_t typeNameLength )
 {
+    const int32_t referencePosition = getTypenameReferencePosition( pTypeName, typeNameLength );
+    return referencePosition != INT32_MAX;
+}
+
+boolean8_t resolveBaseType( ObjCTypeResolveResult* pOutResult, const char* pObjectiveCTypeName )
+{
+    const char* pResolvedBaseType = NULL;
     switch( *pObjectiveCTypeName )
     {
         case '@':
-            return "nsobject_t";
-
+            pResolvedBaseType = "nsobject_t";
+            break;
         case ':':
-            return "nsselector_t";
-
+            pResolvedBaseType = "nsselector_t";
+            break;
         case '#':
-            return "nsclass_t";
-
+            pResolvedBaseType = "nsclass_t";
+            break;
         case 'q':
         case 'Q':
-            return "uint32_t";
-
+            pResolvedBaseType = "uint32_t";
+            break;
         case 's':
         case 'S':
-            return "uint16_t";
-
+            pResolvedBaseType = "uint16_t";
+            break;
         case 'c':
         case 'C':
-            return "uint8_t";
-
+            pResolvedBaseType = "uint8_t";
+            break;
         case 'v':
         case 'V':
-            return "void";
+            pResolvedBaseType = "void";
+            break;
+        case 'd':
+        case 'D':
+            pResolvedBaseType = "double";
+            break;
+        default:
+            return 0;
     }
 
-    return NULL;
+    const int32_t resolvedTypeLength = getCStringLengthExclNullTerminator( pResolvedBaseType );
+    pOutResult->isStdType                = 0;
+    pOutResult->isReference              = 0;
+    pOutResult->isBaseType               = 1;
+    pOutResult->originalTypeLength       = 1;
+    pOutResult->pResolvedType            = allocateCStringCopy( pResolvedBaseType, resolvedTypeLength );
+    pOutResult->pOriginalType            = allocateCStringCopy( pObjectiveCTypeName, 1 );
+    pOutResult->resolvedTypeLength       = resolvedTypeLength;
+    return 1;
 }
 
-const char* resolveStructType( ObjCTypeDict* pTypeDict, const char* pTypeName, int32_t typeNameLength )
+boolean8_t resolveStructType( ObjCTypeResolveResult* pOutResult, const char* pTypeName, int32_t typeNameLength )
 {
-    const char* pResolvedTypeName = NULL;
     if( isStdStringType( pTypeName ) )
     {
-        return "std::string";
+        pOutResult->isStdType                = 1;
+        pOutResult->isBaseType               = 0;
+        pOutResult->isReference              = 0;
+        pOutResult->pOriginalType            = (const char*)allocateCStringCopy( pTypeName, typeNameLength );
+        pOutResult->originalTypeLength       = typeNameLength;
+        pOutResult->pResolvedType            = "std::string";
+        pOutResult->resolvedTypeLength       = getCStringLengthExclNullTerminator( pOutResult->pResolvedType );
+        return 1;
     }
     
     //FK: Make copy to be able to manipulate string and leaving the original intact
@@ -533,19 +593,18 @@ const char* resolveStructType( ObjCTypeDict* pTypeDict, const char* pTypeName, i
     RuntimeAssert( pTypeNameCopyEnd != NULL );
     *pTypeNameCopyEnd = 0;
 
-    typeNameLength = ( pTypeNameCopyEnd - pTypeNameCopy );
-
-    uint8_t isNew = 0;
-    ObjCTypeDictEntry* pTypeDictEntry = insertTypeDictionaryEntry( pTypeDict, pTypeNameCopy, typeNameLength, &isNew );
-    if( isNew )
-    {
-        pTypeDictEntry->pResolvedType = allocateCStringCopy( pTypeNameCopy, typeNameLength );
-    }
-
-    return pTypeDictEntry->pResolvedType;
+    const int32_t resolvedTypeNameLength = castSizeToInt32( pTypeNameCopyEnd - pTypeNameCopy );
+    pOutResult->isStdType                = 0;
+    pOutResult->isBaseType               = 0;
+    pOutResult->isReference              = 0;
+    pOutResult->pOriginalType            = (const char*)allocateCStringCopy( pTypeName, typeNameLength );
+    pOutResult->pResolvedType            = allocateCStringCopy( pTypeNameCopy, typeNameLength );
+    pOutResult->resolvedTypeLength       = resolvedTypeNameLength;
+    pOutResult->originalTypeLength       = typeNameLength;
+    return 1;
 }
 
-const char* resolveReferenceType( ObjCTypeDict* pTypeDict, const char* pTypeName, int32_t typeNameLength )
+boolean8_t resolveReferenceType( ObjCTypeResolveResult* pOutResult, const char* pTypeName, int32_t typeNameLength )
 {
     //FK: Make copy to be able to manipulate string and leaving the original intact
     char* pTypeNameCopy = (char*)alloca( typeNameLength );
@@ -553,10 +612,6 @@ const char* resolveReferenceType( ObjCTypeDict* pTypeDict, const char* pTypeName
 
     //FK: Check if the typename is a reference and return the position of the reference identifier ('^' or '*')
     const int32_t referencePosition = getTypenameReferencePosition( pTypeNameCopy, typeNameLength );
-    
-    //FK: If we enter this block, we *should* be dealing with a reference
-    //    TODO: Double-check
-    RuntimeAssert( referencePosition != INT32_MAX );
 
     //FK: Reference indicator should always be at the end or beginning of the type name (objective-c runtime returns both)
     RuntimeAssert( referencePosition == 0u || referencePosition == ( typeNameLength - 1u ) );
@@ -568,43 +623,81 @@ const char* resolveReferenceType( ObjCTypeDict* pTypeDict, const char* pTypeName
         pTypeNameCopy = pTypeNameCopy + 1;
     }
 
-    const char* pBaseTypeName = NULL;
-    if( isObjectiveCStructType( pTypeNameCopy ) )
+    if( isObjectiveCStructType( pTypeNameCopy) )
     {
-        pBaseTypeName = resolveStructType( pTypeDict, pTypeNameCopy, typeNameLength );
+        if( !resolveStructType( pOutResult, pTypeNameCopy, typeNameLength ) )
+        {
+            return 0;
+        }
     }
     else
     {
-        pBaseTypeName = resolveBaseType( pTypeNameCopy );
+        if( !resolveBaseType( pOutResult, pTypeNameCopy ) )
+        {
+            return 0;
+        }
     }
 
-    const size_t baseTypeNameLength = getCStringLengthInclNullTerminator( pBaseTypeName );
+    char* pReferenceType = (char*)alloca( pOutResult->resolvedTypeLength + 2u ); //FK: +12for reference indicator ('*') + NULL terminator
+    const int32_t referenceTypeLength = sprintf( pReferenceType, "%s*", pOutResult->pResolvedType );
+    
+    free( (void*)pOutResult->pResolvedType );
+    free( (void*)pOutResult->pOriginalType );
 
-    char* pReferenceType = (char*)alloca( baseTypeNameLength +1u ); //FK: +1 for reference indicator ('*')
-    const int32_t referenceTypeLength = sprintf( pReferenceType, "%s*", pBaseTypeName );
-
-    uint8_t isNew = 0;
-    ObjCTypeDictEntry* pTypeDictEntry = insertTypeDictionaryEntry( pTypeDict, pReferenceType, referenceTypeLength, &isNew );
-    if( isNew )
-    {
-        pTypeDictEntry->pResolvedType = allocateCStringCopy( pReferenceType, referenceTypeLength );
-    }
-
-    return pTypeDictEntry->pResolvedType;
+    pOutResult->pResolvedType       = allocateCStringCopy( pReferenceType, referenceTypeLength );
+    pOutResult->pOriginalType       = allocateCStringCopy( pTypeName, typeNameLength );
+    pOutResult->resolvedTypeLength  = referenceTypeLength;
+    pOutResult->originalTypeLength  = typeNameLength;
+    pOutResult->isReference         = 1;
+    return 1;
 }
 
-const char* resolveObjectiveCTypeName( ObjCTypeDict* pTypeDict, const char* pTypeName, int32_t typeNameLength )
+boolean8_t resolveObjectiveCTypeName( ObjCTypeResolveResult* pOutResult, boolean8_t* pOutNewEntry, ObjCTypeDict* pTypeDict, const char* pTypeName, int32_t typeNameLength )
 {
-    if( typeNameLength == 1u )
+    boolean8_t isNew = 0;
+    ObjCTypeDictEntry* pTypeDictEntry = insertTypeDictionaryEntry( pTypeDict, pTypeName, typeNameLength, &isNew );
+
+    if( pOutNewEntry != NULL )
     {
-        return resolveBaseType( pTypeName );
+        *pOutNewEntry = isNew;
     }
-    else if( isObjectiveCStructType( pTypeName ) )
+
+    if( !isNew )
     {
-        return resolveStructType( pTypeDict, pTypeName, typeNameLength );
+        *pOutResult             = pTypeDictEntry->resolveResult;
+        return 1;
     }
-    
-    return resolveReferenceType( pTypeDict, pTypeName, typeNameLength );
+
+    ObjCTypeResolveResult resolveResult = {};
+    boolean8_t resolvedSuccessfully = 0;
+    if( isObjectiveCStructType( pTypeName ) )
+    {
+        resolvedSuccessfully = resolveStructType( &resolveResult, pTypeName, typeNameLength );
+    }
+    else if( isObjectiveCReference( pTypeName, typeNameLength ) )
+    {
+        resolvedSuccessfully = resolveReferenceType( &resolveResult, pTypeName, typeNameLength );
+    }
+    else if( typeNameLength == 1u )
+    {
+        resolvedSuccessfully = resolveBaseType( &resolveResult, pTypeName );
+    }
+    else
+    {
+        resolvedSuccessfully = 0;
+        printf_stderr("[error] Couldn't resolve type '%.*s' - neither struct nor reference nor base type.", typeNameLength, pTypeName );
+    }
+
+    if( !resolvedSuccessfully )
+    {
+        pTypeDictEntry->isNew = 1;
+        return 0;
+    }
+
+    pTypeDictEntry->resolveResult = resolveResult;
+
+    *pOutResult = resolveResult;
+    return 1;
 }
 
 const char* findNextNewline( const char* pText )
@@ -652,7 +745,7 @@ const char* findPreviousWhitespace( const char* pTextStart, const char* pText )
     return pText;
 }
 
-uint8_t isValidFunctionName( const char* pFunctionName )
+boolean8_t isValidFunctionName( const char* pFunctionName )
 {
     //FK: Filter (apparently) internal functions that we're not interested in
     return ( *pFunctionName != '_' && *pFunctionName != '.' );
@@ -674,7 +767,7 @@ const char* convertToCFunctionName( char* pObjectiveCFunctionName, int32_t funct
     return pObjectiveCFunctionName;
 }
 
-uint8_t createStringAllocator( StringAllocator* pOutStringAllocator, const uint32_t capacityInBytes )
+boolean8_t createStringAllocator( StringAllocator* pOutStringAllocator, const uint32_t capacityInBytes )
 {
     StringAllocator allocator;
     allocator.pBufferStart      = (char*)calloc( 1u, capacityInBytes );
@@ -704,18 +797,16 @@ ConvertResult convertParseResultToFunctionDefinition( StringAllocator* pStringAl
     pOutFunctionDefintion->pResolvedFunctionName        = allocateCStringCopyWithAllocator( pStringAllocator, pParseResult->pFunctionName, pParseResult->functionNameLength );
     convertToCFunctionName( pOutFunctionDefintion->pResolvedFunctionName, pParseResult->functionNameLength );
 
-    const char* pResolvedReturnType = resolveObjectiveCTypeName( pDict, pParseResult->pReturnType, pParseResult->returnTypeLength );
-    if( pResolvedReturnType == NULL )
+    ObjCTypeResolveResult returnTypeResolveResult = {};
+    if( !resolveObjectiveCTypeName( &returnTypeResolveResult, NULL, pDict, pParseResult->pReturnType, pParseResult->returnTypeLength ) )
     {
         printf_stderr( "[error] Couldn't resolve return type '%.*s' of function '%s'.\n", pParseResult->returnTypeLength, pParseResult->pReturnType, pOutFunctionDefintion->pResolvedFunctionName );
         return ConvertResult_UnknownReturnType;
     }
 
-    pOutFunctionDefintion->pResolvedReturnType      = pResolvedReturnType;
-
-
-    pOutFunctionDefintion->pClassName       = allocateCStringCopyWithAllocator( pStringAllocator, pClassName, classNameLength );
-    pOutFunctionDefintion->pLowerClassName  = allocateCStringCopyWithAllocator( pStringAllocator, pClassName, classNameLength );
+    pOutFunctionDefintion->pResolvedReturnType = returnTypeResolveResult.pResolvedType;
+    pOutFunctionDefintion->pClassName          = allocateCStringCopyWithAllocator( pStringAllocator, pClassName, classNameLength );
+    pOutFunctionDefintion->pLowerClassName     = allocateCStringCopyWithAllocator( pStringAllocator, pClassName, classNameLength );
     convertCStringToLowerInplace( pOutFunctionDefintion->pLowerClassName, classNameLength );
 
     const char* pArguments = pParseResult->pArguments;
@@ -734,14 +825,14 @@ ConvertResult convertParseResultToFunctionDefinition( StringAllocator* pStringAl
             const uint8_t argumentIndex = argumentCount - argumentsToSkip;
             RuntimeAssert( argumentIndex < maxArgumentCount );
 
-            const char* pArgumentType = resolveObjectiveCTypeName( pDict, pArgumentStart, argumentLength );
-            if( pArgumentType == NULL )
+            ObjCTypeResolveResult argumentResolveResult = {};
+            if( !resolveObjectiveCTypeName( &argumentResolveResult, NULL, pDict, pArgumentStart, argumentLength ) )
             {
                 printf_stderr( "[error] Couldn't resolve %d. argument type name '%.*s' of function '%s'.\n", argumentCount, argumentLength, pArgumentStart, pOutFunctionDefintion->pResolvedFunctionName );
                 return ConvertResult_UnknownArgumentType;
             }
 
-            pOutFunctionDefintion->pResolvedArgumentTypes[ argumentIndex ] = pArgumentType;
+            pOutFunctionDefintion->pResolvedArgumentTypes[ argumentIndex ] = argumentResolveResult.pResolvedType;
         }
 
         ++argumentCount;
@@ -828,16 +919,33 @@ void writeCFunctionDeclaration( FILE* pResultFileHandle, const CFunctionDefiniti
     fflush( pResultFileHandle );
 }
 
+void writeAutomicGeneratedComment( FILE* pFileHandle )
+{
+    fprintf( pFileHandle, "/*\n" );
+    fprintf( pFileHandle, "\tThis file has been automatically generated by the shimmer industries c-ocoa API generator\n" );
+    fprintf( pFileHandle, "\tThus, manual changes to this file will be lost if the file is re-generated.\n" );
+    fprintf( pFileHandle, "*/\n\n" );
+}
+
+void writeCTypesHeaderPrefix( FILE* pTypesFileHandle )
+{
+    writeAutomicGeneratedComment( pTypesFileHandle );
+    fprintf( pTypesFileHandle, "#ifndef C_OCOA_TYPES_HEADER\n");
+    fprintf( pTypesFileHandle, "#define C_OCOA_TYPES_HEADER\n\n");
+}
+
+void writeCTypesHeaderSuffix( FILE* pTypesFileHandle )
+{
+    fprintf( pTypesFileHandle, "#endif" );
+}
+
 void writeCHeaderPrefix( FILE* pHeaderFileHandle, const char* pClassName, const int32_t classNameLength )
 {
     char* pUpperClassName = (char*)alloca( classNameLength + 1u );
     convertCStringToUpper( pUpperClassName, pClassName, classNameLength );
     pUpperClassName[ classNameLength ] = 0;
 
-    fprintf( pHeaderFileHandle, "/*\n" );
-    fprintf( pHeaderFileHandle, "\tThis file has been automatically generated by the shimmer industries c-ocoa API generator\n" );
-    fprintf( pHeaderFileHandle, "\tThus, manual changes to this file will be lost if the file is re-generated.\n" );
-    fprintf( pHeaderFileHandle, "*/\n\n" );
+    writeAutomicGeneratedComment( pHeaderFileHandle );
 
     //FK: Header guard
     fprintf( pHeaderFileHandle, "#ifndef SHIMMER_C_OCOA_%s_HEADER\n#define SHIMMER_C_OCOA_%s_HEADER\n\n", pUpperClassName, pUpperClassName );
@@ -856,11 +964,7 @@ void writeCHeaderSuffix( FILE* pHeaderFileHandle )
 
 void writeCSourcePrefix( FILE* pSourceFileHandle, const char* pHeaderFileName) 
 {
-    fprintf( pSourceFileHandle, "/*\n" );
-    fprintf( pSourceFileHandle, "\tThis file has been automatically generated by the shimmer industries c-ocoa API generator\n" );
-    fprintf( pSourceFileHandle, "\tThus, manual changes to this file will be lost if the file is re-generated.\n" );
-    fprintf( pSourceFileHandle, "*/\n\n" );
-
+    writeAutomicGeneratedComment( pSourceFileHandle );
     fprintf( pSourceFileHandle, "#include \"%s\"\n\n", pHeaderFileName );
 }
 
@@ -895,7 +999,7 @@ void writeCFunctionImplementation( FILE* pSourceFileHandle, const CFunctionDefin
     fprintf( pSourceFileHandle, "\tMethodFunctionPtr impl = ( MethodFunctionPtr )methodImplementation;\n" );
     fprintf( pSourceFileHandle, "\t" );
 
-    const uint8_t hasReturnValue = !areCStringsEqual( pFunctionDefinition->pResolvedReturnType, "void" );
+    const boolean8_t hasReturnValue = !areCStringsEqual( pFunctionDefinition->pResolvedReturnType, "void" );
     if( hasReturnValue )
     {
         fprintf( pSourceFileHandle, "return " );
@@ -1095,4 +1199,150 @@ void parseTestFile( ObjCConversionArguments* pParseArguments, const char* pFileC
     }
 
     writeCHeaderSuffix( pParseArguments->pHeaderFileHandle );
+}
+
+void writeCTypeForwardDeclarations( FILE* pTypesFileHandle, ObjCTypeDict* pTypeDict )
+{
+    fprintf( pTypesFileHandle, "// Forward declarations:\n" );
+    for( uint32_t typeEntryIndex = 0u; typeEntryIndex < pTypeDict->entryCapacity; ++typeEntryIndex )
+    {
+        const ObjCTypeDictEntry* pEntry = pTypeDict->pEntries + typeEntryIndex;
+        if( pEntry->isNew )
+        {
+            continue;
+        }
+
+        const ObjCTypeResolveResult* pResolveResult = &pEntry->resolveResult;
+        if( !pResolveResult->isReference )
+        {
+            continue;
+        }
+
+        if( pResolveResult->isBaseType )
+        {
+            continue;
+        }
+
+        const int32_t resolvedTypeLength = pResolveResult->resolvedTypeLength - 1; //FK: -1 to not include '*' (since this is a reference type...)
+        fprintf( pTypesFileHandle, "struct _%.*s_;\n", resolvedTypeLength, pResolveResult->pResolvedType );
+        fprintf( pTypesFileHandle, "typedef _%.*s_ %.*s;\n", resolvedTypeLength, pResolveResult->pResolvedType, resolvedTypeLength, pResolveResult->pResolvedType  );
+    }
+
+    fprintf( pTypesFileHandle, "\n" );
+}
+
+void writeSingleCTypeStructDefinition( FILE* pTypesFileHandle, ObjCTypeDict* pTypeDict, const ObjCTypeResolveResult* pObjCTypeDefinition )
+{
+    const int32_t structResolveBufferCapacity = 2048;
+    int32_t structResolveBufferLength   = 0u;
+    char* pStructResolveBuffer          = (char*)alloca( structResolveBufferCapacity );
+
+    char* pCurrentStructResolveBufferPosition = pStructResolveBuffer;
+
+    const char* pCurrentStructMember = findNextCharacterPositionInCString( pObjCTypeDefinition->pOriginalType, '=' ) + 1; //FK: +1 to skip '='
+    RuntimeAssert( pCurrentStructMember != NULL );
+
+    const char* pStructEnd = findLastCharacterPositionInCString( pCurrentStructMember, '}' );
+    RuntimeAssert( pStructEnd != NULL );
+
+    boolean8_t skipStruct = 0;
+    uint32_t structMemberCount = 0u;
+    while( 1 )
+    {
+        int32_t structMemberTypeLength = 1;
+        if( isObjectiveCStructType( pCurrentStructMember ) )
+        {
+            const char* pEndCurrentStructMember = findNextCharacterPositionInCString( pCurrentStructMember, '}' );
+            structMemberTypeLength = castSizeToInt32( pEndCurrentStructMember - pCurrentStructMember ) + 1; //FK: +1 to include '}' as part of the name
+        }
+
+        boolean8_t isNewType = 0;
+        ObjCTypeResolveResult resolveResult = {};
+        if( !resolveObjectiveCTypeName( &resolveResult, &isNewType, pTypeDict, pCurrentStructMember, structMemberTypeLength ) )
+        {
+            printf_stderr( "[error] skipped struct generation of struct '%s' because struct member of type '%c' couldn't be resolved.\n", pObjCTypeDefinition->pResolvedType, *pCurrentStructMember );
+            skipStruct = 1;
+            break;
+        }
+
+        if( isNewType && !resolveResult.isBaseType && !resolveResult.isReference )
+        {
+            writeSingleCTypeStructDefinition( pTypesFileHandle, pTypeDict, &resolveResult );
+        }
+
+        const uint32_t structMemberLength = resolveResult.resolvedTypeLength + 13;
+        if( structResolveBufferLength + structMemberLength >= structResolveBufferCapacity )
+        {
+            printf_stderr( "[error] skipped struct generation of struct '%s' we've run out of memory while trying to assemble the struct.\n", pObjCTypeDefinition->pResolvedType );
+            skipStruct = 1;
+            break;
+        }
+
+        const int32_t characterWritten = sprintf( pCurrentStructResolveBufferPosition, "\t%s member%d;", resolveResult.pResolvedType, structMemberCount );
+
+        pCurrentStructMember        += structMemberTypeLength;
+        structResolveBufferLength   += characterWritten;
+
+        if( pCurrentStructMember == pStructEnd )
+        {
+            break;
+        }
+
+        pCurrentStructResolveBufferPosition += characterWritten;
+
+        sprintf( pCurrentStructResolveBufferPosition, "\n" );
+        ++pCurrentStructResolveBufferPosition;
+        ++structResolveBufferLength;
+        ++structMemberCount;
+    }
+
+    if( !skipStruct )
+    {
+        fprintf( pTypesFileHandle, "//Original struct: %s\n", pObjCTypeDefinition->pOriginalType );
+        fprintf( pTypesFileHandle, "typedef struct _%s_\n{\n%.*s\n} %s;\n\n", pObjCTypeDefinition->pResolvedType, structResolveBufferLength, pStructResolveBuffer, pObjCTypeDefinition->pResolvedType );
+    }
+}
+
+void writeCTypeStructDefinitions( FILE* pTypesFileHandle, ObjCTypeDict* pTypeDict )
+{
+    for( uint32_t typeEntryIndex = 0u; typeEntryIndex < pTypeDict->entryCapacity; ++typeEntryIndex )
+    {
+        const ObjCTypeDictEntry* pEntry = pTypeDict->pEntries + typeEntryIndex;
+        if( pEntry->isNew )
+        {
+            continue;
+        }
+
+        const ObjCTypeResolveResult* pResolveResult = &pEntry->resolveResult;
+        if( pResolveResult->isReference )
+        {
+            continue;
+        }
+
+        if( pResolveResult->isBaseType )
+        {
+            continue;
+        }
+
+        writeSingleCTypeStructDefinition( pTypesFileHandle, pTypeDict, pResolveResult );
+    }
+}
+
+void resolveStructTypesInTypeDictionary( ObjCTypeDict* pTypeDict, StringAllocator* pStringAllocator )
+{
+    FILE* pTypesFileHandle = fopen( "c_ocoa_types.h", "w" );
+    if( pTypesFileHandle == NULL )
+    {
+        printf_stderr( "[error] Couldn't open '%s' for writing.\n", "c_cocoa_types.h" );
+        return;
+    }
+
+    //FK: Write struct references first:
+    writeCTypesHeaderPrefix( pTypesFileHandle );
+
+    writeCTypeForwardDeclarations( pTypesFileHandle, pTypeDict );
+    writeCTypeStructDefinitions( pTypesFileHandle, pTypeDict );
+
+    //FK: Now write struct types:
+    writeCTypesHeaderSuffix( pTypesFileHandle );
 }

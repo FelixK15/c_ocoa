@@ -190,8 +190,8 @@ int main(int argc, const char** argv)
         {
             createCSourceCodeForClass( pDict, &stringAllocator, pClass, pClassName );
         }
-
-        printf( "%s\n", pClassName );
     }
+
+    resolveStructTypesInTypeDictionary( pDict, &stringAllocator );
     return 0;
 }
