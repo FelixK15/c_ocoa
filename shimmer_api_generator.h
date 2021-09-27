@@ -424,9 +424,9 @@ uint32_t djb2_hash( const char* pString, const int32_t stringLength )
 {
     uint32_t hash = 5381;
 
-    while( *pString )
+    for( int32_t charIndex = 0u; charIndex < stringLength; ++charIndex )
     {
-        const char c = *pString++;
+        const char c = pString[ charIndex ];
         hash = ((hash << 5) + hash) + c;
     }
         
@@ -753,10 +753,6 @@ boolean8_t isValidFunctionName( const char* pFunctionName )
 
 const char* convertToCFunctionName( char* pObjectiveCFunctionName, int32_t functionNameLength )
 {
-    if( strcmp( pObjectiveCFunctionName, "initWithCoder:" ) == 0 )
-    {
-        BreakpointHook();
-    }
     //FK: Some functions end with a colon (not sure yet what this indicates exactly)
     char* pColonPos = (char*)findNextCharacterPositionInCString( pObjectiveCFunctionName, ':' );
     if( pColonPos != NULL )
