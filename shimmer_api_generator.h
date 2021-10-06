@@ -1,3 +1,19 @@
+typedef enum
+{
+    ConvertResult_Success = 0,
+    ConvertResult_OutOfMemory,
+    ConvertResult_InvalidFunctionName,
+    ConvertResult_UnknownReturnType,
+    ConvertResult_UnknownArgumentType,
+    ConvertResult_AlreadyKnown
+} ConvertResult;
+
+typedef enum
+{
+    MethodType_Class = 0,
+    MethodType_Instance
+} MethodType;
+
 typedef uint8_t boolean8_t;
 
 typedef struct 
@@ -31,9 +47,11 @@ typedef struct
     char*                   pOriginalReturnType;
     char*                   pOriginalArgumentTypes;
     
-    uint8_t argumentCount       : 6;
-    boolean8_t isVoidFunction   : 1;
-    boolean8_t isInitFunction   : 1;
+    MethodType              methodType;
+
+    uint8_t                 argumentCount     : 6;
+    boolean8_t              isVoidFunction    : 1;
+    boolean8_t              isInitFunction    : 1;
 } ObjCFunctionResolveResult;
 
 typedef struct
@@ -75,13 +93,15 @@ typedef struct
 
 typedef struct
 {
-    char* pReturnType;
-    char* pFunctionName;
-    char* pArguments;
+    char*       pReturnType;
+    char*       pFunctionName;
+    char*       pArguments;
 
-    int32_t returnTypeLength;
-    int32_t functionNameLength;
-    int32_t argumentLength;
+    int32_t     returnTypeLength;
+    int32_t     functionNameLength;
+    int32_t     argumentLength;
+
+    MethodType  methodType;
 } ParseResult;
 
 typedef struct 
@@ -90,16 +110,6 @@ typedef struct
     uint32_t bufferCapacity;
     uint32_t bufferSize;
 } StringAllocator;
-
-typedef enum
-{
-    ConvertResult_Success = 0,
-    ConvertResult_OutOfMemory,
-    ConvertResult_InvalidFunctionName,
-    ConvertResult_UnknownReturnType,
-    ConvertResult_UnknownArgumentType,
-    ConvertResult_AlreadyKnown
-} ConvertResult;
 
 typedef struct 
 {
@@ -1140,6 +1150,7 @@ ConvertResult convertParseResultToFunctionDefinition( StringAllocator* pStringAl
     resolveResult.argumentCount  = argumentCount < argumentsToSkip ? 0 : argumentCount - argumentsToSkip;
     resolveResult.isVoidFunction = areCStringsEqual( resolveResult.pResolvedReturnType, "void", 5u );
     resolveResult.isInitFunction = areCStringsEqual( resolveResult.pOriginalFunctionName, "init", 5u );
+    resolveResult.methodType     = resolveResult.isInitFunction ? MethodType_Class : pParseResult->methodType;
 
     *pOutFunctionResolveResult = resolveResult;
 
@@ -1151,9 +1162,9 @@ void writeCFunctionSignature( FILE* pResultFileHandle, const ObjCFunctionResolve
     //FK: Function name
     fprintf( pResultFileHandle, "%s(", pFunctionDefinition->pResolvedFunctionName );
 
-    if( !pFunctionDefinition->isInitFunction )
+    if( pFunctionDefinition->methodType == MethodType_Instance )
     {
-        //FK: add object as first parameter for non init functions
+        //FK: add object as first parameter instance methods
         fprintf( pResultFileHandle, " %s_t object", pFunctionDefinition->pClassName->pNameLower );
 
         for( uint8_t argumentIndex = 0u; argumentIndex < pFunctionDefinition->argumentCount; ++argumentIndex )
@@ -1276,9 +1287,21 @@ void writeCFunctionImplementation( FILE* pSourceFileHandle, const ObjCFunctionRe
 
     fprintf( pSourceFileHandle, "\n{\n" );
 
-    fprintf( pSourceFileHandle, "\tClass internalClassObject = objc_getClass( \"%s\" );\n", pClassName->pNameLower );
+    fprintf( pSourceFileHandle, "\tClass internalClassObject = objc_getClass( \"%s\" );\n", pClassName->pName );
     fprintf( pSourceFileHandle, "\tSEL methodSelector = sel_registerName( \"%s\" );\n", pFunctionResolveResult->pOriginalFunctionName );
-    fprintf( pSourceFileHandle, "\tIMP methodImplementation = class_getMethodImplementation( internalClassObject, methodSelector );\n" );
+
+    switch( pFunctionResolveResult->methodType )
+    {
+        case MethodType_Class:
+            fprintf( pSourceFileHandle, "\tClass metaClassObject = object_getClass( (id)internalClassObject );\n");
+            fprintf( pSourceFileHandle, "\tIMP methodImplementation = class_getMethodImplementation( metaClassObject, methodSelector );\n" );
+        break;
+
+        case MethodType_Instance:
+            fprintf( pSourceFileHandle, "\tIMP methodImplementation = class_getMethodImplementation( internalClassObject, methodSelector );\n" );
+        break;
+    }
+
     fprintf( pSourceFileHandle, "\ttypedef %s( *MethodFunctionPtr )( id, SEL", pFunctionResolveResult->pResolvedReturnType );
 
     for( uint8_t argumentIndex = 0u; argumentIndex < pFunctionResolveResult->argumentCount; ++argumentIndex )
@@ -1294,7 +1317,6 @@ void writeCFunctionImplementation( FILE* pSourceFileHandle, const ObjCFunctionRe
     {
         //FK: Add call to 'alloc' to init function 
         //    TODO: Move out eventually?
-        fprintf( pSourceFileHandle, "\tClass metaClassObject = object_getClass( (id)internalClassObject );\n");
         fprintf( pSourceFileHandle, "\tnsobject_t newObject = NULL;\n");
         fprintf( pSourceFileHandle, "\t{\n");
         fprintf( pSourceFileHandle, "\t\tSEL allocMethodSelector = sel_registerName( \"alloc\" );\n" );
@@ -1319,7 +1341,17 @@ void writeCFunctionImplementation( FILE* pSourceFileHandle, const ObjCFunctionRe
             fprintf( pSourceFileHandle, "return " );
         }
 
-        fprintf( pSourceFileHandle, "impl( (id)object, methodSelector");
+        switch( pFunctionResolveResult->methodType )
+        {
+            case MethodType_Class:
+                fprintf( pSourceFileHandle, "impl( (id)internalClassObject, methodSelector");
+                break;
+
+            case MethodType_Instance:
+                fprintf( pSourceFileHandle, "impl( (id)object, methodSelector");
+                break;
+        }
+
         for( uint8_t argumentIndex = 0u; argumentIndex < pFunctionResolveResult->argumentCount; ++argumentIndex )
         {
             fprintf( pSourceFileHandle, ", arg%hhu", argumentIndex );
@@ -1348,6 +1380,7 @@ boolean8_t createObjCClassName( ObjCClassName* pOutClassName, const char* pClass
     return 1;
 }
 
+#if 0
 void parseTestFile( ObjCConversionArguments* pParseArguments, const char* pFileContentBuffer, size_t fileContentBufferSizeInBytes )
 {
     const size_t dictTypeSizeInBytes = 1024*1024;
@@ -1544,6 +1577,7 @@ void parseTestFile( ObjCConversionArguments* pParseArguments, const char* pFileC
 
     writeCHeaderSuffix( pParseArguments->pHeaderFileHandle );
 }
+#endif
 
 void writeCTypeForwardDeclarations( FILE* pTypesFileHandle, ObjCTypeDict* pTypeDict )
 {
