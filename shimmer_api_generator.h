@@ -651,6 +651,7 @@ boolean8_t isObjectiveCReference( const char* pTypeName, const int32_t typeNameL
 
 boolean8_t resolveBaseType( ObjCTypeResolveResult* pOutResult, const char* pObjectiveCTypeName )
 {
+    //FK: types are defined in objc/runtime.h
     const char* pResolvedBaseType = NULL;
     switch( *pObjectiveCTypeName )
     {
@@ -664,16 +665,34 @@ boolean8_t resolveBaseType( ObjCTypeResolveResult* pOutResult, const char* pObje
             pResolvedBaseType = "nsclass_t";
             break;
         case 'q':
+            pResolvedBaseType = "long long";
+            break;
         case 'Q':
-            pResolvedBaseType = "uint32_t";
+            pResolvedBaseType = "unsigned long long";
+            break;
+        case 'l':
+            pResolvedBaseType = "long";
+            break;
+        case 'L':
+            pResolvedBaseType = "unsigned long";
+            break;
+        case 'i':
+            pResolvedBaseType = "int";
+            break;
+        case 'I':
+            pResolvedBaseType = "unsigned int";
             break;
         case 's':
+            pResolvedBaseType = "short";
+            break;
         case 'S':
-            pResolvedBaseType = "uint16_t";
+            pResolvedBaseType = "unsigned short";
             break;
         case 'c':
+            pResolvedBaseType = "char";
+            break;
         case 'C':
-            pResolvedBaseType = "uint8_t";
+            pResolvedBaseType = "unsigned char";
             break;
         case 'v':
         case 'V':
@@ -682,6 +701,13 @@ boolean8_t resolveBaseType( ObjCTypeResolveResult* pOutResult, const char* pObje
         case 'd':
         case 'D':
             pResolvedBaseType = "double";
+            break;
+        case 'f':
+        case 'F':
+            pResolvedBaseType = "float";
+            break;
+        case 'B':
+            pResolvedBaseType = "bool";
             break;
         default:
             return 0;
@@ -1237,6 +1263,10 @@ void writeCTypesHeaderPrefix( FILE* pTypesFileHandle )
     writeAutomicGeneratedComment( pTypesFileHandle );
     fprintf( pTypesFileHandle, "#ifndef C_OCOA_TYPES_HEADER\n");
     fprintf( pTypesFileHandle, "#define C_OCOA_TYPES_HEADER\n\n");
+    fprintf( pTypesFileHandle, "#include <stdbool.h>\n\n");
+    fprintf( pTypesFileHandle, "typedef void*\tnsobject_t;\n" );
+    fprintf( pTypesFileHandle, "typedef void*\tnsselector_t;\n" );
+    fprintf( pTypesFileHandle, "typedef void*\tnsclass_t;\n\n" );
 }
 
 void writeCTypesHeaderSuffix( FILE* pTypesFileHandle )
@@ -1250,11 +1280,7 @@ void writeCHeaderPrefix( FILE* pHeaderFileHandle, const ObjCClassName* pClassNam
 
     //FK: Header guard
     fprintf( pHeaderFileHandle, "#ifndef SHIMMER_C_OCOA_%s_HEADER\n#define SHIMMER_C_OCOA_%s_HEADER\n\n", pClassName->pNameUpper, pClassName->pNameUpper );
-
     fprintf( pHeaderFileHandle, "typedef void*\t%s_t;\n", pClassName->pNameLower );
-    fprintf( pHeaderFileHandle, "typedef void*\tnsobject_t;\n" );
-    fprintf( pHeaderFileHandle, "typedef void*\tnsselector_t;\n" );
-    fprintf( pHeaderFileHandle, "typedef void*\tnsclass_t;\n\n" );
     fprintf( pHeaderFileHandle, "#include \"c_ocoa_types.h\"\n\n");
 }
 
