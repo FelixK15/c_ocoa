@@ -652,6 +652,7 @@ boolean8_t isObjectiveCReference( const char* pTypeName, const int32_t typeNameL
 boolean8_t resolveBaseType( ObjCTypeResolveResult* pOutResult, const char* pObjectiveCTypeName )
 {
     //FK: types are defined in objc/runtime.h
+    //    TODO: Double check with static assert that these still map to what I think they map to
     const char* pResolvedBaseType = NULL;
     switch( *pObjectiveCTypeName )
     {
