@@ -1,5 +1,5 @@
-win32/build_debug
-win32/build_release
-osx/build_debug
-osx/build_release
-test_out.*
+build_debug
+build_release
+.DS_Store
+c_ocoa_types.h
+osx/generated_files

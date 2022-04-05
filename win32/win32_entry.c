@@ -12,7 +12,7 @@
 
 #define restrict_modifier __restrict__
 
-#include "..\shimmer_api_generator.h"
+#include "..\api_generator.h"
 
 int main( int argc, const char** argv )
 {

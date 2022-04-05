@@ -27,7 +27,7 @@ then
 	mkdir "${BuildFolder}"
 fi
 
-OutputFile="${BuildFolder}/shimmer_osx_c_coca"
+OutputFile="${BuildFolder}/osx_c_coca_api_generator"
 InputCFile="${ScriptDirectory}/osx_entry.c"
 Libraries="-lobjc"
 Frameworks="-framework CoreFoundation -framework AppKit"

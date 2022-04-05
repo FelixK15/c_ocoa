@@ -4,6 +4,20 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Build C-ocoa Test",
+            "type": "shell",
+            "osx": {
+                "command": "osx/test/build_test_clang.sh",
+                "args": [
+                    "debug"
+                ]
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
             "label": "Build C-ocoa API Generator - DEBUG",
             "type": "shell",
             "windows": {

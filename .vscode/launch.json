@@ -4,18 +4,12 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        {
-            "name": "Launch Debug",
+       {
+            "name": "Launch Test",
             "request": "launch",
             "type": "cppvsdbg",
-            "windows": {
-                "program": "${workspaceFolder}/win32/build_debug/shimmer_win32_c_ocoa.exe",
-                "type": "cppvsdbg",
-                "args": ["--test", "NSApplication.dump.txt" ],
-                "cwd": "${workspaceFolder}/win32/"
-            },
             "osx": {
-                "program": "${workspaceFolder}/osx/build_debug/shimmer_osx_c_coca",
+                "program": "${workspaceFolder}/osx/test/build_debug/test",
                 "type": "lldb-vscode",
                 //"args": ["--test", "NSApplication.dump.txt" ],
                 "cwd": "${workspaceFolder}/osx/"
@@ -24,19 +18,38 @@
             "environment": [],
         },
         {
-            "name": "Launch Release",
+            "name": "Launch Debug",
             "request": "launch",
+            "type": "cppvsdbg",
             "windows": {
-                "program": "${workspaceFolder}/win32/build_release/shimmer_win32_c_ocoa.exe",
+                "program": "${workspaceFolder}/win32/build_debug/win32_c_coca_api_generator.exe",
                 "type": "cppvsdbg",
                 "args": ["--test", "NSApplication.dump.txt" ],
                 "cwd": "${workspaceFolder}/win32/"
             },
             "osx": {
-                "program": "${workspaceFolder}/osx/build_release/shimmer_osx_c_ocoa",
+                "program": "${workspaceFolder}/osx/build_debug/osx_c_coca_api_generator",
+                "type": "lldb-vscode",
+                //"args": ["--test", "NSApplication.dump.txt" ],
+                "cwd": "${workspaceFolder}/osx/generated_files"
+            },
+            "stopAtEntry": false,
+            "environment": [],
+        },
+        {
+            "name": "Launch Release",
+            "request": "launch",
+            "windows": {
+                "program": "${workspaceFolder}/win32/build_release/win32_c_coca_api_generator.exe",
+                "type": "cppvsdbg",
+                "args": ["--test", "NSApplication.dump.txt" ],
+                "cwd": "${workspaceFolder}/win32/"
+            },
+            "osx": {
+                "program": "${workspaceFolder}/osx/build_release/osx_c_coca_api_generator",
                 "type": "cppdbg",
                 //"args": ["--test", "NSApplication.dump.txt" ],
-                "cwd": "${workspaceFolder}/osx/"
+                "cwd": "${workspaceFolder}/osx/generated_files"
             },
             
             "stopAtEntry": false,

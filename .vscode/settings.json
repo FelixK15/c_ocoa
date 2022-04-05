@@ -17,7 +17,13 @@
         "ios": "cpp",
         "xiosbase": "cpp",
         "xmemory0": "cpp",
-        "shimmer_api_generator.h": "c"
+        "shimmer_api_generator.h": "c",
+        "objc.h": "c",
+        "objc-api.h": "c",
+        "nsapplication.h": "c",
+        "c_ocoa_types.h": "c",
+        "types.h": "c",
+        "runtime.h": "c"
     },
     "C_Cpp.intelliSenseEngineFallback": "Enabled",
     "search.exclude": {

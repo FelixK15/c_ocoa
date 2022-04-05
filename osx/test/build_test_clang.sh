@@ -30,7 +30,7 @@ fi
 OutputFile="${BuildFolder}/test"
 InputCFile="${ScriptDirectory}/test.c"
 Libraries="-lobjc"
-Frameworks="-framework AppKit"
+Frameworks="-framework Cocoa"
 
 CompilerOptions="-ferror-limit=900 -fstrict-aliasing --output ${OutputFile} ${Libraries} ${Frameworks}"
 if [ "${BuildConfig}" == "release" ] 
