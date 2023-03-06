@@ -4,35 +4,48 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define RuntimeAssert(x)    if(!(x)) raise(SIGTRAP)
-#define InvalidCodePath()   RuntimeAssert(0)
-#define BreakpointHook()    asm("nop")
+#define assert_runtime(x)    if(!(x)) raise(SIGTRAP)
+#define code_path_invalid()  assert_runtime(0)
+#define hook_breakpoint()    asm("nop")
 //FK: TODO
 #define restrict_modifier __restrict__
-#include "../api_generator.h"
 
+#include "../c_ocoa_generator.h"
 #include <objc/runtime.h>
 
-typedef struct 
+typedef struct
 {
     Method* ppClassMethods;
     Method* ppInstanceMethods;
 
     uint32_t classMethodCount;
     uint32_t instanceMethodCount;
-} ClassMethodCollection;
+} c_ocoa_class_method_collection;
 
-typedef struct 
+typedef struct
 {
-    ObjCFunctionCollection* pFunctionCollection;
-    ObjCTypeDict*           pTypeDict;
-    const ObjCClassName*    pClassName;
-    StringAllocator*        pStringAllocator;
-    FILE*                   pHeaderFileHandle;
-    FILE*                   pSourceFileHandle;
-} SourceCodeGeneratorInput;
+    c_ocoa_objc_function_collection* pFunctionCollection;
+    c_ocoa_objc_type_dictionary*     pTypeDict;
+    const c_ocoa_objc_class_name*    pClassName;
+    c_ocoa_string_allocator*         pStringAllocator;
+    FILE*                            pHeaderFileHandle;
+    FILE*                            pSourceFileHandle;
+} c_ocoa_source_code_generator_input;
 
-bool addClassMethodsToMethodCollection( ClassMethodCollection* pMethodCollection, Method* pMethods, uint32_t methodCount )
+char s_AppPath[512] = {};
+size_t s_AppPathLength = 0;
+
+FILE* fopen_ios( const char* pPath, const char* pMode )
+{
+    char fixedPath[512] = {};
+    const size_t pathLength = strlen( pPath );
+    memcpy( fixedPath + 0, s_AppPath, s_AppPathLength );
+    memcpy( fixedPath + s_AppPathLength, pPath, pathLength + 1 );
+
+    return fopen( fixedPath, pMode );
+}
+
+bool objc_runtime_add_class_methods_to_collection( c_ocoa_class_method_collection* pMethodCollection, Method* pMethods, uint32_t methodCount )
 {
     if( methodCount == 0u )
     {
@@ -47,8 +60,8 @@ bool addClassMethodsToMethodCollection( ClassMethodCollection* pMethodCollection
         return false;
     }
 
-    copyMemoryNonOverlapping( pNewMethodArray, pMethodCollection->ppClassMethods, sizeof(Method) * oldMethodCount );
-    copyMemoryNonOverlapping( pNewMethodArray + oldMethodCount, pMethods, sizeof(Method) * methodCount );
+    memory_copy_non_overlapping( pNewMethodArray, pMethodCollection->ppClassMethods, sizeof(Method) * oldMethodCount );
+    memory_copy_non_overlapping( pNewMethodArray + oldMethodCount, pMethods, sizeof(Method) * methodCount );
 
     pMethodCollection->ppClassMethods = pNewMethodArray;
     pMethodCollection->classMethodCount = newMethodCount;
@@ -56,7 +69,7 @@ bool addClassMethodsToMethodCollection( ClassMethodCollection* pMethodCollection
     return true;
 }
 
-boolean8_t addInstanceMethodsToMethodCollection( ClassMethodCollection* pMethodCollection, Method* pMethods, uint32_t methodCount )
+boolean8_t objc_runtime_add_instance_methods_to_collection( c_ocoa_class_method_collection* pMethodCollection, Method* pMethods, uint32_t methodCount )
 {
     if( methodCount == 0u )
     {
@@ -71,8 +84,8 @@ boolean8_t addInstanceMethodsToMethodCollection( ClassMethodCollection* pMethodC
         return 0;
     }
 
-    copyMemoryNonOverlapping( pNewMethodArray, pMethodCollection->ppInstanceMethods, sizeof(Method) * oldMethodCount );
-    copyMemoryNonOverlapping( pNewMethodArray + oldMethodCount, pMethods, sizeof(Method) * methodCount );
+    memory_copy_non_overlapping( pNewMethodArray, pMethodCollection->ppInstanceMethods, sizeof(Method) * oldMethodCount );
+    memory_copy_non_overlapping( pNewMethodArray + oldMethodCount, pMethods, sizeof(Method) * methodCount );
 
     free( pMethodCollection->ppInstanceMethods );
 
@@ -82,7 +95,7 @@ boolean8_t addInstanceMethodsToMethodCollection( ClassMethodCollection* pMethodC
     return 1;
 }
 
-boolean8_t collectMethodsFromClass( ClassMethodCollection* pMethodCollection, Class pClass, const char* pClassName )
+boolean8_t objc_runtime_collect_methods_from_class( c_ocoa_class_method_collection* pMethodCollection, Class pClass, const char* pClassName )
 {
     Class pMetaClass = object_getClass( (id)pClass );
     uint32_t instanceMethodCount    = 0u;
@@ -91,8 +104,8 @@ boolean8_t collectMethodsFromClass( ClassMethodCollection* pMethodCollection, Cl
     Method* pInstanceMethods    = class_copyMethodList( pClass, &instanceMethodCount );
     Method* pClassMethods       = class_copyMethodList( pMetaClass, &classMethodCount );
 
-    const boolean8_t addedInstanceMethods = addInstanceMethodsToMethodCollection( pMethodCollection, pInstanceMethods, instanceMethodCount );
-    const boolean8_t addedClassMethods    = addClassMethodsToMethodCollection( pMethodCollection, pClassMethods, classMethodCount );
+    const boolean8_t addedInstanceMethods = objc_runtime_add_instance_methods_to_collection( pMethodCollection, pInstanceMethods, instanceMethodCount );
+    const boolean8_t addedClassMethods    = objc_runtime_add_class_methods_to_collection( pMethodCollection, pClassMethods, classMethodCount );
 
     free( pInstanceMethods );
     free( pClassMethods );
@@ -112,22 +125,22 @@ boolean8_t collectMethodsFromClass( ClassMethodCollection* pMethodCollection, Cl
     return 1;
 }
 
-void createCSourceCodeForMethods( MethodType methodType, Method* ppMethods, const uint32_t methodCount, SourceCodeGeneratorInput* pCodeGenInput )
+void c_ocoa_create_source_code_for_objc_methods( c_ocoa_method_type c_ocoa_method_type, Method* ppMethods, const uint32_t methodCount, c_ocoa_source_code_generator_input* pCodeGenInput )
 {
-    StringAllocator*        pStringAllocator    = pCodeGenInput->pStringAllocator;
-    ObjCTypeDict*           pTypeDict           = pCodeGenInput->pTypeDict;
-    ObjCFunctionCollection* pFunctionCollection = pCodeGenInput->pFunctionCollection;    
-    const ObjCClassName*    pClassName          = pCodeGenInput->pClassName;
+    c_ocoa_string_allocator*        pStringAllocator    = pCodeGenInput->pStringAllocator;
+    c_ocoa_objc_type_dictionary*           pTypeDict           = pCodeGenInput->pTypeDict;
+    c_ocoa_objc_function_collection* pFunctionCollection = pCodeGenInput->pFunctionCollection;
+    const c_ocoa_objc_class_name*    pClassName          = pCodeGenInput->pClassName;
     FILE*                   pSourceFileHandle   = pCodeGenInput->pSourceFileHandle;
     FILE*                   pHeaderFileHandle   = pCodeGenInput->pHeaderFileHandle;
 
-    ParseResult parseResult = {};
+    c_ocoa_parse_result parseResult = {};
     for( uint32_t methodIndex = 0u; methodIndex < methodCount; ++methodIndex )
     {
         Method pMethod = ppMethods[ methodIndex ];
 
-        const size_t stringAllocatorCapacity = (size_t)getRemainingStringAllocatorCapacity( pStringAllocator );
-        char* pReturnType = getCurrentStringAllocatorBase( pStringAllocator );
+        const size_t stringAllocatorCapacity = (size_t)string_allocator_get_remaining_capacity( pStringAllocator );
+        char* pReturnType = string_allocator_get_current_base( pStringAllocator );
         
         //FK: There seems to be no way to know the return type length beforehand...?
         //    NOTE: Potential memory trampler here since we don't know beforehand
@@ -136,8 +149,8 @@ void createCSourceCodeForMethods( MethodType methodType, Method* ppMethods, cons
         //          calls 'malloc()' each time internally...
         method_getReturnType( pMethod, pReturnType, stringAllocatorCapacity );
 
-        const int32_t returnTypeLength = getCStringLengthExclNullTerminator( pReturnType );
-        decrementStringAllocatorCapacity( pStringAllocator, returnTypeLength + 1 );
+        const int32_t returnTypeLength = string_get_length_excl_null_terminator( pReturnType );
+        string_allocator_decrement_capacity( pStringAllocator, returnTypeLength + 1 );
 
         SEL pMethodSelector = method_getName( pMethod );
         if( pMethodSelector == NULL )
@@ -153,18 +166,18 @@ void createCSourceCodeForMethods( MethodType methodType, Method* ppMethods, cons
             continue;
         }
 
-        const int32_t selectorNameLength = getCStringLengthExclNullTerminator( pSelectorName );
-        char* pMethodName = allocateCStringCopyWithAllocator( pStringAllocator, pSelectorName, selectorNameLength );
+        const int32_t selectorNameLength = string_get_length_excl_null_terminator( pSelectorName );
+        char* pMethodName = string_allocate_copy_with_allocator( pStringAllocator, pSelectorName, selectorNameLength );
 
         const uint32_t argumentCount = method_getNumberOfArguments( pMethod );
-        char* pArgumentTypes = getCurrentStringAllocatorBase( pStringAllocator );
+        char* pArgumentTypes = string_allocator_get_current_base( pStringAllocator );
         char* pCurrentArgumentType = pArgumentTypes;
         for( uint32_t argumentIndex = 0u; argumentIndex < argumentCount; ++argumentIndex )
         {
-            const uint32_t stringAllocatorCapacity = getRemainingStringAllocatorCapacity( pStringAllocator );
+            const uint32_t stringAllocatorCapacity = string_allocator_get_remaining_capacity( pStringAllocator );
             method_getArgumentType( pMethod, argumentIndex, pCurrentArgumentType, stringAllocatorCapacity );
 
-            const int32_t argumentTypeLength = getCStringLengthExclNullTerminator( pCurrentArgumentType );
+            const int32_t argumentTypeLength = string_get_length_excl_null_terminator( pCurrentArgumentType );
 
             const uint8_t addSpaceAtEnd = ( argumentIndex + 1 != argumentCount );
             if( addSpaceAtEnd )
@@ -173,25 +186,24 @@ void createCSourceCodeForMethods( MethodType methodType, Method* ppMethods, cons
             }
 
             //FK: +1 for space if not at end of iteration and for null terminator if last iteration
-            decrementStringAllocatorCapacity( pStringAllocator, argumentTypeLength + 1);
+            string_allocator_decrement_capacity( pStringAllocator, argumentTypeLength + 1);
             pCurrentArgumentType = pCurrentArgumentType + argumentTypeLength + 1;
         }
 
-        const int32_t argumentCharacterWritten = castSizeToInt32( pCurrentArgumentType - pArgumentTypes );
+        const int32_t argumentCharacterWritten = cast_size_to_int32( pCurrentArgumentType - pArgumentTypes );
         pArgumentTypes[ argumentCharacterWritten + 1] = 0;
 
-        ParseResult parseResult;
         parseResult.pArguments          = pArgumentTypes;
         parseResult.argumentLength      = argumentCharacterWritten;
         parseResult.pFunctionName       = pMethodName;
         parseResult.functionNameLength  = selectorNameLength;
         parseResult.pReturnType         = pReturnType;
         parseResult.returnTypeLength    = returnTypeLength;
-        parseResult.methodType          = methodType;
+        parseResult.c_ocoa_method_type  = c_ocoa_method_type;
 
-        ObjCFunctionResolveResult functionResolveResult;
-        const ConvertResult convertResult = convertParseResultToFunctionDefinition( pStringAllocator, &functionResolveResult, pFunctionCollection, pTypeDict, &parseResult, pClassName );
-        switch( convertResult )
+        c_ocoa_objc_function_resolve_result functionResolveResult;
+        const c_ocoa_convert_result c_ocoa_convert_result = objc_parse_result_convert_to_function_definition( pStringAllocator, &functionResolveResult, pFunctionCollection, pTypeDict, &parseResult, pClassName );
+        switch( c_ocoa_convert_result )
         {
             case ConvertResult_OutOfMemory:
                 printf_stderr("[error] Out of memory while trying to parse function of class '%s'.\n", pClassName->pName );
@@ -211,26 +223,26 @@ void createCSourceCodeForMethods( MethodType methodType, Method* ppMethods, cons
                 break;
 
             case ConvertResult_Success:
-                writeCFunctionDeclaration( pHeaderFileHandle, &functionResolveResult );
-                writeCFunctionImplementation( pSourceFileHandle, &functionResolveResult, pClassName );
+                cfunction_write_declaration( pHeaderFileHandle, &functionResolveResult );
+                file_write_c_function_implementation( pSourceFileHandle, &functionResolveResult, pClassName );
                 break;
         }
-        resetStringAllocator( pStringAllocator );
+        string_allocator_reset( pStringAllocator );
     }
 }
 
-void createCSoureCodeForMethodCollection( const ClassMethodCollection* pMethodCollection, SourceCodeGeneratorInput* pCodeGenInput )
+void c_ocoa_create_source_code_for_objc_method_collection( const c_ocoa_class_method_collection* pMethodCollection, c_ocoa_source_code_generator_input* pCodeGenInput )
 {
-    createCSourceCodeForMethods( MethodType_Instance, pMethodCollection->ppInstanceMethods, pMethodCollection->instanceMethodCount, pCodeGenInput );
-    createCSourceCodeForMethods( MethodType_Class, pMethodCollection->ppClassMethods, pMethodCollection->classMethodCount, pCodeGenInput );
+    c_ocoa_create_source_code_for_objc_methods( MethodType_Instance, pMethodCollection->ppInstanceMethods, pMethodCollection->instanceMethodCount, pCodeGenInput );
+    c_ocoa_create_source_code_for_objc_methods( MethodType_Class, pMethodCollection->ppClassMethods, pMethodCollection->classMethodCount, pCodeGenInput );
 
-    resetFunctionCollection( pCodeGenInput->pFunctionCollection );
+    objc_function_collection_reset( pCodeGenInput->pFunctionCollection );
 }
 
-boolean8_t createCSourceCodeForClass( ObjCTypeDict* pTypeDict, ObjCFunctionCollection* pFunctionCollection, StringAllocator* pStringAllocator, Class pClass, const char* pClassName, int32_t classNameLength )
+boolean8_t c_ocoa_create_source_code_for_objc_class( c_ocoa_objc_type_dictionary* pTypeDict, c_ocoa_objc_function_collection* pFunctionCollection, c_ocoa_string_allocator* pStringAllocator, Class pClass, const char* pClassName, int32_t classNameLength )
 {
-    ClassMethodCollection classMethodCollection = {};
-    if( !collectMethodsFromClass( &classMethodCollection, pClass, pClassName ) )
+    c_ocoa_class_method_collection c_ocoa_class_method_collection = {};
+    if( !objc_runtime_collect_methods_from_class( &c_ocoa_class_method_collection, pClass, pClassName ) )
     {
         return 0u;
     }
@@ -243,7 +255,7 @@ boolean8_t createCSourceCodeForClass( ObjCTypeDict* pTypeDict, ObjCFunctionColle
     while( pSuperClass != NULL )
     {
         const char* pSuperClassName = class_getName( pSuperClass );
-        if( !collectMethodsFromClass( &classMethodCollection, pSuperClass, pSuperClassName ) )
+        if( !objc_runtime_collect_methods_from_class( &c_ocoa_class_method_collection, pSuperClass, pSuperClassName ) )
         {
             return 0u;
         }
@@ -251,8 +263,8 @@ boolean8_t createCSourceCodeForClass( ObjCTypeDict* pTypeDict, ObjCFunctionColle
         pSuperClass = class_getSuperclass( pSuperClass );
     }
 
-    ObjCClassName className;
-    if( !createObjCClassName( &className, pClassName, classNameLength ) )
+    c_ocoa_objc_class_name className;
+    if( !objc_create_class_name( &className, pClassName, classNameLength ) )
     {
         return 0u;
     }
@@ -264,8 +276,8 @@ boolean8_t createCSourceCodeForClass( ObjCTypeDict* pTypeDict, ObjCFunctionColle
     sprintf( pHeaderFileName, "%s.h", className.pNameLower );
     sprintf( pSourceFileName, "%s.c", className.pNameLower );
 
-    FILE* pSourceFileHandle = fopen( pSourceFileName, "w" );
-    FILE* pHeaderFileHandle = fopen( pHeaderFileName, "w" );
+    FILE* pSourceFileHandle = fopen_ios( pSourceFileName, "w" );
+    FILE* pHeaderFileHandle = fopen_ios( pHeaderFileName, "w" );
 
     if( pSourceFileHandle == NULL )
     {
@@ -279,19 +291,19 @@ boolean8_t createCSourceCodeForClass( ObjCTypeDict* pTypeDict, ObjCFunctionColle
         return 0u;
     }
 
-    writeCHeaderPrefix( pHeaderFileHandle, &className );
-    writeCSourcePrefix( pSourceFileHandle, pHeaderFileName, &className );
+    file_write_c_header_prefix( pHeaderFileHandle, &className );
+    file_write_c_source_prefix( pSourceFileHandle, pHeaderFileName, &className );
 
-    SourceCodeGeneratorInput codeGenInput;
+    c_ocoa_source_code_generator_input codeGenInput;
     codeGenInput.pHeaderFileHandle      = pHeaderFileHandle;
     codeGenInput.pSourceFileHandle      = pSourceFileHandle;
     codeGenInput.pStringAllocator       = pStringAllocator;
     codeGenInput.pTypeDict              = pTypeDict;
     codeGenInput.pFunctionCollection    = pFunctionCollection;
     codeGenInput.pClassName             = &className;
-    createCSoureCodeForMethodCollection( &classMethodCollection, &codeGenInput );
+    c_ocoa_create_source_code_for_objc_method_collection( &c_ocoa_class_method_collection, &codeGenInput );
     
-    writeCHeaderSuffix( pHeaderFileHandle );
+    file_write_c_header_suffix( pHeaderFileHandle );
     
     fclose( pHeaderFileHandle );
     fclose( pSourceFileHandle );
@@ -299,30 +311,64 @@ boolean8_t createCSourceCodeForClass( ObjCTypeDict* pTypeDict, ObjCFunctionColle
     return 1u;
 };
 
+void extract_ios_app_path( const char* pAppPath )
+{
+    const size_t appPathLength = strlen( pAppPath );
+    const char* pAppPathEnd = pAppPath + appPathLength - 1;
+    const char* pAppPathStart = pAppPath;
+
+    while( pAppPathStart != pAppPathEnd )
+    {
+        if( *pAppPathEnd == '/' )
+        {
+            break;
+        }
+
+        --pAppPathEnd;
+    }
+
+    s_AppPathLength = pAppPathEnd - pAppPathStart;
+    memcpy( s_AppPath, pAppPath, s_AppPathLength );
+}
+
+void ios_print_directory()
+{
+    printf("###########################\n\n%s\n\n###########################\n", s_AppPath );
+}
+
 int main(int argc, const char** argv)
 {
     const size_t dictTypeSizeInBytes = 1024*1024;
     const size_t dictFunctionSizeInBytes = 1024*1024*2;
 
-    ObjCTypeDict typeDict;
-    if( !createObjectiveCTypeDictionary( &typeDict, dictTypeSizeInBytes, dictFunctionSizeInBytes ) )
+    extract_ios_app_path( argv[0] );
+
+    c_ocoa_objc_type_dictionary typeDict;
+    if( !objc_type_dict_create( &typeDict, dictTypeSizeInBytes, dictFunctionSizeInBytes ) )
     {
         printf_stderr( "Out of memory while trying to create objective c type dictionary of size %.3fkB.", (float)(dictTypeSizeInBytes+dictFunctionSizeInBytes)/1024.f );
         return 2;
     }
 
-    ObjCFunctionCollection functionCollection;
-    if( !createObjectiveCFunctionCollection( &functionCollection ) )
+    c_ocoa_objc_function_collection functionCollection;
+    if( !objc_function_collection_create( &functionCollection ) )
     {
         printf_stderr( "Out of memory while trying to create objective c function collection of size %.3fkB", (float)(sizeof( char* ) * functionCollection.capacity)/1024.f );
         return 2;
     }
 
     const size_t stringAllocatorSizeInBytes = 1024*1024; //FK: 1 MiB, quite a lot for a string allocator but better be safe than sorry
-    StringAllocator stringAllocator;
-    if( !createStringAllocator( &stringAllocator, stringAllocatorSizeInBytes ) )
+    c_ocoa_string_allocator c_ocoa_string_allocator;
+    if( !string_allocator_create( &c_ocoa_string_allocator, stringAllocatorSizeInBytes ) )
     {
         printf_stderr( "Out of memory while trying to create string allocator of size %.3fKiB.", (float)stringAllocatorSizeInBytes/1024.f );
+        return 2;
+    }
+    
+    FILE* pTypesFileHandle = fopen_ios( "c_ocoa_types.h", "w" );
+    if( pTypesFileHandle == NULL )
+    {
+        printf_stderr( "Could not open '%s' for writing.", "c_ocoa_types.h" );
         return 2;
     }
 
@@ -342,32 +388,25 @@ int main(int argc, const char** argv)
     {
         Class pClass = ppClasses[ classIndex ];
         const char* pClassName = class_getName( pClass );
-        const int32_t classNameLength = getCStringLengthInclNullTerminator( pClassName );
-        //if( classNameLength >= 2u && pClassName[0] == 'N' && pClassName[1] == 'S' )
-        if( strcmp( pClassName, "NSOpenGLPixelFormat" ) == 0u ||
-            strcmp( pClassName, "NSMenu" ) == 0u ||
-            strcmp( pClassName, "NSApplication" ) == 0u || 
-            strcmp( pClassName, "NSColor" ) == 0u ||
-            strcmp( pClassName, "NSProcessInfo" ) == 0u ||
-            strcmp( pClassName, "NSMenuItem") == 0 ||
-            strcmp( pClassName, "NSScreen" ) == 0u || 
-            strcmp( pClassName, "NSArray" ) == 0 || 
-            strcmp( pClassName, "NSObject") == 0 ||
-            strcmp( pClassName, "NSView" ) == 0u ||
-            strcmp( pClassName, "NSOpenGLContext" ) == 0u ||
-            strcmp( pClassName, "NSWindow" ) == 0u ||
-            strcmp( pClassName, "NSString" ) == 0u ||
-            strcmp( pClassName, "NSEvent") == 0u ||
-            strcmp( pClassName, "NSDate" ) == 0u ||
-            strcmp( pClassName, "UIFont" ) == 0u ||
-            strcmp( pClassName, "UIFontStyle" ) == 0u )
+        const int32_t classNameLength = string_get_length_incl_null_terminator( pClassName );
+
+        if( ( pClassName[0] == 'U' && pClassName[1] == 'I' ) ||
+            ( pClassName[0] == 'N' && pClassName[1] == 'S' ) ||
+           ( pClassName[0] == 'G' && pClassName[1] == 'L' ) ||
+           ( pClassName[0] == 'E' && pClassName[1] == 'A' && pClassName[2] == 'G' && pClassName[3] == 'L') )
         {
-            createCSourceCodeForClass( &typeDict, &functionCollection, &stringAllocator, pClass, pClassName, classNameLength );
+            c_ocoa_create_source_code_for_objc_class( &typeDict, &functionCollection, &c_ocoa_string_allocator, pClass, pClassName, classNameLength );
         }
 
-        resetStringAllocator( &stringAllocator );
+        string_allocator_reset( &c_ocoa_string_allocator );
     }
-
-    resolveStructTypesInTypeDictionary( &typeDict, &stringAllocator );
+    
+    objc_type_dict_resolve_struct_types( &typeDict, pTypesFileHandle );
+    
+    fflush( pTypesFileHandle );
+    fclose( pTypesFileHandle );
+    
+    ios_print_directory();
+    
     return 0;
 }

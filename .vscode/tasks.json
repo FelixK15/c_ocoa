@@ -4,12 +4,29 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build C-ocoa Test",
+            "label": "(OSX) Build C-ocoa API Generator - DEBUG",
             "type": "shell",
             "osx": {
-                "command": "osx/test/build_test_clang.sh",
+                "command": "osx/build.sh",
                 "args": [
                     "debug"
+                ]
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+         {
+            "label": "(OSX) Build C-ocoa API Generator - RELEASE",
+            "type": "shell",
+            "osx": {
+                "command": "osx/build.sh",
+                "args": [
+                    "release"
                 ]
             },
             "problemMatcher": [
@@ -18,19 +35,10 @@
             "group": "build"
         },
         {
-            "label": "Build C-ocoa API Generator - DEBUG",
+            "label": "(IOS) Build C-ocoa API Generator - DEBUG",
             "type": "shell",
-            "windows": {
-                "options": {
-                    "cwd": "win32"
-                },
-                "command": "build_clang.bat",
-                "args": [
-                    "debug"
-                ]
-            },
             "osx": {
-                "command": "osx/build_clang.sh",
+                "command": "ios/build.sh",
                 "args": [
                     "debug"
                 ]
@@ -41,30 +49,24 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
+            }
         },
-        {
-            "label": "Build C-ocoa API Generator - RELEASE",
+         {
+            "label": "(IOS) Build C-ocoa API Generator - RELEASE",
             "type": "shell",
-            "windows": {
-                "options": {
-                    "cwd": "win32"
-                },
-                "command": "build_clang.bat",
-                "args": [
-                    "release"
-                ]
-            },
             "osx": {
-                "command": "osx/build_clang.sh",
+                "command": "ios/build.sh",
                 "args": [
-                    "release"
+                    "debug"
                 ]
             },
             "problemMatcher": [
                 "$gcc"
             ],
-            "group": "build"
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
         }
     ]
 }

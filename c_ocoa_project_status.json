@@ -1,0 +1,21 @@
+{
+  "magicmember": "ObservatoryProfile",
+  "name": "C-Ocoa Generator",
+  "owner": "Felix Klinge",
+  "todo": "c_ocoa_generator_todo.txt",
+  "assets": [
+  ],
+  "prefixes": [
+    "c_ocoa_"
+  ],
+  "builds": [
+    {
+      "platform": "win32",
+      "file": "shimmer_win32_c_ocoa.exe"
+    },
+    {
+      "platform": "osx",
+      "file": "osx_c_coca_api_generator"
+    }
+  ]
+}

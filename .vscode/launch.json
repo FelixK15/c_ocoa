@@ -18,42 +18,44 @@
             "environment": [],
         },
         {
-            "name": "Launch Debug",
+            "name": "(OSX) Launch Debug",
             "request": "launch",
-            "type": "cppvsdbg",
-            "windows": {
-                "program": "${workspaceFolder}/win32/build_debug/win32_c_coca_api_generator.exe",
-                "type": "cppvsdbg",
-                "args": ["--test", "NSApplication.dump.txt" ],
-                "cwd": "${workspaceFolder}/win32/"
-            },
+            "type": "cppdbg",
             "osx": {
                 "program": "${workspaceFolder}/osx/build_debug/osx_c_coca_api_generator",
-                "type": "lldb-vscode",
-                //"args": ["--test", "NSApplication.dump.txt" ],
+                "MIMode":"lldb",
                 "cwd": "${workspaceFolder}/osx/generated_files"
             },
             "stopAtEntry": false,
             "environment": [],
         },
         {
-            "name": "Launch Release",
+            "name": "(OSX) Launch Release",
             "request": "launch",
-            "windows": {
-                "program": "${workspaceFolder}/win32/build_release/win32_c_coca_api_generator.exe",
-                "type": "cppvsdbg",
-                "args": ["--test", "NSApplication.dump.txt" ],
-                "cwd": "${workspaceFolder}/win32/"
-            },
+            "type": "cppdbg",
             "osx": {
                 "program": "${workspaceFolder}/osx/build_release/osx_c_coca_api_generator",
-                "type": "cppdbg",
-                //"args": ["--test", "NSApplication.dump.txt" ],
+                "MIMode":"lldb",
                 "cwd": "${workspaceFolder}/osx/generated_files"
             },
-            
             "stopAtEntry": false,
             "environment": [],
         },
+        {
+            "name": "(IOS Sim) Launch Debug",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceRoot}/ios/build/debug/C-Ocoa_Generator.app",
+            "iosBundleId": "com.shimmer.c_ocoa_generator",
+            "iosTarget": "select",
+        },
+        {
+            "name": "(IOS Sim) Launch Release",
+            "request": "launch",
+            "type": "lldb",
+            "program": "${workspaceRoot}/ios/build/release/C-Ocoa_Generator.app",
+            "iosBundleId": "com.shimmer.c_ocoa_generator",
+            "iosTarget": "select",
+        }
     ]
 }

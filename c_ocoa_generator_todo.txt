@@ -1,0 +1,3 @@
+- fix out of memory crash when dumping *everything*
+- add command line arguments to dump sourcecode for selected class
+- add possibility to resolve member & argument names using the online documentation (?)
