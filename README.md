@@ -16,6 +16,7 @@ To be able to use this project for iOS, you are bound to use the XCode project. 
 Once the project is build, you can run the executable without any parameter. In that case it will generate the API for *all* classes that are contained within the framework that the executable has been build with. If you're only interested in a subset of the available classes you can specify one or more filters as arguments when running the executable (wildcards using `*` are also supported).
 
 eg: If you're only interested in classes that start with `NS` you can start the executable with this argument:
+
 `c_ocoa_generator NS*`
 
 The project has additional support for these options:
@@ -25,6 +26,7 @@ The project has additional support for these options:
 ```
 
 eg: This will generate the C API for classes that start with `CG`. The generated C files will be written to the `~/c_ocoa/output/` directory and all generated files will be prefixed with `awesome_company_`.
+
 `c_ocoa_generator -o ~/c_ocoa/output/ -p awesome_company_ CG*`
 
 > *Note*: When running the executable on an iOS or iOS Simulator, you have to make sure that the code generator only writes to folders that it has write-access to
