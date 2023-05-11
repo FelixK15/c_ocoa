@@ -21,8 +21,8 @@ eg: If you're only interested in classes that start with `NS` you can start the 
 
 The project has additional support for these options:
 ```
-    -o <output>     | Specifies where to write the generated C files
-    -p <prefix>     | Specifies a prefix that should be added to the name of the generated C files
+    -o <output>     | Specifies where to write the generated C files. Default: Working Directory
+    -p <prefix>     | Specifies a prefix that should be added to the name of the generated C files. Default: No prefix
 ```
 
 eg: This will generate the C API for classes that start with `CG`. The generated C files will be written to the `~/c_ocoa/output/` directory and all generated files will be prefixed with `awesome_company_`.
@@ -30,3 +30,5 @@ eg: This will generate the C API for classes that start with `CG`. The generated
 `c_ocoa_generator -o ~/c_ocoa/output/ -p awesome_company_ CG*`
 
 > *Note*: When running the executable on an iOS or iOS Simulator, you have to make sure that the code generator only writes to folders that it has write-access to
+
+Once the code has been generated you can use it by including the generated `*.h` files and adding the generated `*.c` files to your project.
