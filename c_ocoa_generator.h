@@ -65,6 +65,13 @@ typedef struct
 
 typedef struct
 {
+    const char* pOutputPath;
+    const char* pPrefix;
+    const char* pClassNameFilter;
+} c_ocoa_code_generator_parameter;
+
+typedef struct
+{
     char*                   pHashParameter; //FK: Type name;
     c_ocoa_objc_type_resolve_result   resolveResult;
     boolean8_t              isNew;
@@ -331,9 +338,7 @@ static inline char* string_allocator_copy_upper( const char* pString, const int3
 
 static inline char* string_allocate_copy_with_allocator( c_ocoa_string_allocator* pAllocator, const char* pString, const int32_t stringLength )
 {
-    char* pStringCopyMemory = string_allocator_get_current_base( pAllocator );
-    string_allocator_decrement_capacity( pAllocator, stringLength + 1 );
-
+    char* pStringCopyMemory = string_allocator_allocate(pAllocator, stringLength + 1);
     return string_copy_and_add_null_terminator( pStringCopyMemory, pString, stringLength );
 }
 
@@ -409,6 +414,94 @@ c_ocoa_command_line_parse_result command_line_arguments_parse( const int argc, c
     }
 
     return result;
+}
+
+boolean8_t string_name_matches_filter( const char* restrict_modifier pName, const char* restrict_modifier pNameFilter)
+{
+    boolean8_t wildcard = 0u;
+    while( true )
+    {
+        if( *pName == 0u && *pNameFilter == 0u )
+        {
+            return 1u;
+        }
+        else if( *pName != 0u && *pNameFilter == 0u && !wildcard )
+        {
+            return 0u;
+        }
+
+        if( *pNameFilter != '*' )
+        {
+            if( wildcard )
+            {
+                if( *pNameFilter == 0u )
+                {
+                    //FK: early-out - there are only wildcards left
+                    return 1u;
+                }
+                else 
+                {
+                    if( *pNameFilter == *pName )
+                    {
+                        wildcard = 0u;
+                        ++pName;
+                    }
+                    else
+                    {
+                        ++pName;
+                    }
+                }
+            }
+            else
+            {
+                if( *pName == *pNameFilter )
+                {
+                    ++pName;
+                    ++pNameFilter;
+                    continue;
+                }
+                else
+                {
+                    return 0u;
+                }
+            }
+           
+        }
+        else
+        {
+            wildcard = 1u;
+            ++pClassNameFilter
+        }
+    }
+
+    return 1u;
+}
+
+void evaluate_code_generator_argv_arguments( int argc, const char** argv, c_ocoa_code_generator_parameter* pOutArguments )
+{
+    for( int i = 1; i < argc; ++i )
+    {
+        const char* pArg = argv[i];
+        if( pArg[0] == '-' )
+        {
+            switch( pArg[1] )
+            {
+                case 'o':
+                    *pOutArguments->pOutputPath = pArg;
+                break;
+
+                case 'p':
+                    *pOutArguments->pPrefix = pArg;
+                break;
+            }
+        }
+        else
+        {
+            //FK: it is assumed that the class name filter is the last argument
+            *pOutArguments->pClassNameFilter = pArg;
+            break;
+        }
+    }
 }
 
 boolean8_t objc_type_dict_create( c_ocoa_objc_type_dictionary* pOutTypeDict, const size_t typeDictSizeInBytes, const size_t functionDictSizeInBytes )
@@ -1073,6 +1166,13 @@ boolean8_t string_allocator_create( c_ocoa_string_allocator* pOutStringAllocator
     return 1u;
 }
 
+char* string_allocator_allocate( c_ocoa_string_allocator* pStringAllocator, const uint32_t length )
+{
+    char* pReturnString = string_allocator_get_current_base( pStringAllocator );
+    string_allocator_decrement_capacity( pStringAllocator, length );
+    return pReturnString;
+}
+
 boolean8_t function_name_ends_with_colon( const char* pFunctionName, const int32_t functionNameLength )
 {
     assert_runtime( functionNameLength > 0u );
@@ -1107,17 +1207,7 @@ boolean8_t objc_function_collection_contains_function( const c_ocoa_objc_functio
 
 void memory_copy_non_overlapping( void* pDestination, const void* pSource, const size_t sizeInBytes )
 {
-    assert_runtime( ( pDestination < pSource && ( pDestination + sizeInBytes ) <= pSource ) || 
-                   ( pDestination > pSource && ( pDestination + sizeInBytes ) >= pSource ) );
-
-    const char* restrict_modifier pSourcePtr = (const char*)pSource;
-    char* restrict_modifier pDestinationPtr = (char*)pDestination;
-
-    //FK: TODO: Use STOS eventually - this approach is super slow
-    for( size_t byteIndex = 0u; byteIndex < sizeInBytes; ++byteIndex )
-    {
-        *pDestinationPtr++ = *pSourcePtr++;
-    }
+    memcpy(pDestination, pSource, sizeInBytes);
 }
 
 void objc_function_collection_reset( c_ocoa_objc_function_collection* pFunctionCollection )

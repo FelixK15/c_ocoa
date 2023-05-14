@@ -239,8 +239,16 @@ void c_ocoa_create_source_code_for_objc_method_collection( const c_ocoa_class_me
     objc_function_collection_reset( pCodeGenInput->pFunctionCollection );
 }
 
-boolean8_t c_ocoa_create_source_code_for_objc_class( c_ocoa_objc_type_dictionary* pTypeDict, c_ocoa_objc_function_collection* pFunctionCollection, c_ocoa_string_allocator* pStringAllocator, Class pClass, const char* pClassName, int32_t classNameLength )
+boolean8_t c_ocoa_create_source_code_for_objc_class( const c_ocoa_code_generator_parameter* pParameter, c_ocoa_objc_type_dictionary* pTypeDict, c_ocoa_objc_function_collection* pFunctionCollection, c_ocoa_string_allocator* pStringAllocator, Class pClass, const char* pClassName, int32_t classNameLength )
 {
+    if( pParameter->pClassNameFilter != NULL )
+    {
+        if( !string_name_matches_filter( pClassName, pParameter->pClassNameFilter ) )
+        {
+            return 0u;
+        }
+    }
+
     c_ocoa_class_method_collection c_ocoa_class_method_collection = {};
     if( !objc_runtime_collect_methods_from_class( &c_ocoa_class_method_collection, pClass, pClassName ) )
     {
@@ -269,12 +277,17 @@ boolean8_t c_ocoa_create_source_code_for_objc_class( c_ocoa_objc_type_dictionary
         return 0u;
     }
 
-    //FK: +2 for file extension (.c/.h)
-    char* pHeaderFileName = (char*)alloca( classNameLength + 2);
-    char* pSourceFileName = (char*)alloca( classNameLength + 2);
+    const char* pOutputPath = pParameter->pOutputPath == NULL ? "" : pParameter->pOutputPath;
+    const char* pFilePrefix = pParameter->pPrefix == NULL ? "" : pParameter->pPrefix;
+    const int32_t outputPathLength = string_get_length_excl_null_terminator( pOutputPath );
+    const int32_t filePrefixLength = string_get_length_excl_null_terminator( pFilePrefix );
 
-    sprintf( pHeaderFileName, "%s.h", className.pNameLower );
-    sprintf( pSourceFileName, "%s.c", className.pNameLower );
+    //FK: +2 for file extension (.c/.h) +1 for null terminator
+    char* pHeaderFileName = string_allocator_allocate( pStringAllocator, outputPathLength + filePrefixLength + classNameLength + 2 + 1 );
+    char* pSourceFileName = string_allocator_allocate( pStringAllocator, outputPathLength + filePrefixLength + classNameLength + 2 + 1 );
+
+    sprintf( pHeaderFileName, "%s%s%s.h", pOutputPath, pFilePrefix, className.pNameLower );
+    sprintf( pSourceFileName, "%s%s%s.c", pOutputPath, pFilePrefix, className.pNameLower );
 
     FILE* pSourceFileHandle = fopen_ios( pSourceFileName, "w" );
     FILE* pHeaderFileHandle = fopen_ios( pHeaderFileName, "w" );
@@ -343,6 +356,9 @@ int main(int argc, const char** argv)
 
     extract_ios_app_path( argv[0] );
 
+    c_ocoa_code_generator_parameter parameters = {};
+    evaluate_code_generator_argv_arguments(argc, argv, &parameters);
+
     c_ocoa_objc_type_dictionary typeDict;
     if( !objc_type_dict_create( &typeDict, dictTypeSizeInBytes, dictFunctionSizeInBytes ) )
     {
@@ -390,14 +406,7 @@ int main(int argc, const char** argv)
         const char* pClassName = class_getName( pClass );
         const int32_t classNameLength = string_get_length_incl_null_terminator( pClassName );
 
-        if( ( pClassName[0] == 'U' && pClassName[1] == 'I' ) ||
-            ( pClassName[0] == 'N' && pClassName[1] == 'S' ) ||
-           ( pClassName[0] == 'G' && pClassName[1] == 'L' ) ||
-           ( pClassName[0] == 'E' && pClassName[1] == 'A' && pClassName[2] == 'G' && pClassName[3] == 'L') )
-        {
-            c_ocoa_create_source_code_for_objc_class( &typeDict, &functionCollection, &c_ocoa_string_allocator, pClass, pClassName, classNameLength );
-        }
-
+        c_ocoa_create_source_code_for_objc_class( &parameters, &typeDict, &functionCollection, &c_ocoa_string_allocator, pClass, pClassName, classNameLength );
         string_allocator_reset( &c_ocoa_string_allocator );
     }
     
