@@ -3,3 +3,4 @@ build_release
 .DS_Store
 c_ocoa_types.h
 osx/generated_files
+xcuserdata/

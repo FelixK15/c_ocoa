@@ -141,7 +141,7 @@ typedef struct
 } c_ocoa_objc_function_collection;
 
 //FK: Some helpful macros
-#define printf_stderr(x, ...)   fprintf( stderr, x, __VA_ARGS__ )
+#define printf_stderr(x, ...)    fprintf( stderr, x, __VA_ARGS__ )
 #define array_count(x)           (sizeof(x)/sizeof(x[0]))
 #define get_max(a,b)             (a)>(b)?(a):(b)
 #define unused_argument(x)       (void)x
@@ -336,6 +336,13 @@ static inline char* string_allocator_copy_upper( const char* pString, const int3
     return string_convert_to_upper_inplace( pStringCopyMemory, stringLength );
 }
 
+static inline char* string_allocator_allocate( c_ocoa_string_allocator* pStringAllocator, const uint32_t length )
+{
+    char* pReturnString = string_allocator_get_current_base( pStringAllocator );
+    string_allocator_decrement_capacity( pStringAllocator, length );
+    return pReturnString;
+}
+
 static inline char* string_allocate_copy_with_allocator( c_ocoa_string_allocator* pAllocator, const char* pString, const int32_t stringLength )
 {
     char* pStringCopyMemory = string_allocator_allocate(pAllocator, stringLength + 1);
@@ -419,11 +426,11 @@ c_ocoa_command_line_parse_result command_line_arguments_parse( const int argc, c
 boolean8_t string_name_matches_filter( const char* restrict_modifier pName, const char* restrict_modifier pNameFilter)
 {
     boolean8_t wildcard = 0u;
-    while( true )
+    while( 1 )
     {
-        if( *pName == 0u && *pNameFilter == 0u )
+        if( *pName == 0u )
         {
-            return 1u;
+            return pNameFilter == NULL || *pNameFilter == 0;
         }
         else if( *pName != 0u && *pNameFilter == 0u && !wildcard )
         {
@@ -445,6 +452,7 @@ boolean8_t string_name_matches_filter( const char* restrict_modifier pName, cons
                     {
                         wildcard = 0u;
                         ++pName;
+                        ++pNameFilter;
                     }
                     else
                     {
@@ -470,7 +478,7 @@ boolean8_t string_name_matches_filter( const char* restrict_modifier pName, cons
         else
         {
             wildcard = 1u;
-            ++pClassNameFilter
+            ++pNameFilter;
         }
     }
 
@@ -487,18 +495,18 @@ void evaluate_code_generator_argv_arguments( int argc, const char** argv, c_ocoa
             switch( pArg[1] )
             {
                 case 'o':
-                    *pOutArguments->pOutputPath = pArg;
+                    pOutArguments->pOutputPath = pArg;
                 break;
 
                 case 'p':
-                    *pOutArguments->pPrefix = pArg;
+                    pOutArguments->pPrefix = pArg;
                 break;
             }
         }
         else
         {
             //FK: it is assumed that the class name filter is the last argument
-            *pOutArguments->pClassNameFilter = pArg;
+            pOutArguments->pClassNameFilter = pArg;
             break;
         }
     }
@@ -1166,12 +1174,6 @@ boolean8_t string_allocator_create( c_ocoa_string_allocator* pOutStringAllocator
     return 1u;
 }
 
-char* string_allocator_allocate( c_ocoa_string_allocator* pStringAllocator, const uint32_t length )
-{
-    char* pReturnString = string_allocator_get_current_base( pStringAllocator );
-    string_allocator_decrement_capacity( pStringAllocator, length );
-    return pReturnString;
-}
 
 boolean8_t function_name_ends_with_colon( const char* pFunctionName, const int32_t functionNameLength )
 {
