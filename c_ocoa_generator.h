@@ -2,6 +2,19 @@
 #define C_OCOA_GENERATOR_HEADER
 #define C_OCOA_GENERATOR_VERSION 1
 
+#include <stdint.h>
+#include <stdio.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define assert_runtime(x)    if(!(x)) raise(SIGTRAP)
+#define code_path_invalid()  assert_runtime(0)
+#define hook_breakpoint()    asm("nop")
+#define restrict_modifier   __restrict__
+
+#include <objc/runtime.h>
+
 typedef enum
 {
     ConvertResult_Success = 0,
@@ -63,34 +76,45 @@ typedef struct
     boolean8_t              hasFloatReturnValue     : 1;
 } c_ocoa_objc_function_resolve_result;
 
+typedef FILE*(*fopen_fn)(const char* pPath, const char* pMode);
+typedef int(*fclose_fn)(FILE* pStream);
+typedef int(*fflush_fn)(FILE* pStream);
+
 typedef struct
 {
     const char* pOutputPath;
     const char* pPrefix;
     const char* pClassNameFilter;
+    
+    fopen_fn    fopen;
+    fclose_fn   fclose;
+    fflush_fn   fflush;
 } c_ocoa_code_generator_parameter;
 
 typedef struct
 {
-    char*                   pHashParameter; //FK: Type name;
-    c_ocoa_objc_type_resolve_result   resolveResult;
-    boolean8_t              isNew;
-    boolean8_t              declarationWasWritten;
+    void*                               pNext;
+    char                                hashValue[128];
+    char*                               pHashValue; //FK: dynamically allocated in case the hash value is > 128
+    c_ocoa_objc_type_resolve_result     resolveResult;
+    uint32_t                            index;
+    boolean8_t                          declarationWasWritten;
 } c_ocoa_objc_type_dictionary_entry;
 
 typedef struct
 {
-    char*                       pHashParameter; //FK: Function name;
-    c_ocoa_objc_function_resolve_result   resolveResult;
-    boolean8_t                  isNew;
-} c_ocoa_objc_function_dictionary_entry;
+    void* pNext;
+    c_ocoa_objc_type_dictionary_entry* pEntries;
+    uint32_t entryCount;
+    uint32_t entryCapacity;
+} c_ocoa_objc_type_dictionary_entry_block;
 
 typedef struct
 {
-    c_ocoa_objc_function_dictionary_entry*  pFunctionEntries;
-    c_ocoa_objc_type_dictionary_entry*      pTypeEntries;
-    uint32_t                typeEntryCapacity;
-    uint32_t                functionEntryCapactiy;
+    c_ocoa_objc_type_dictionary_entry_block*    pFreeEntries;
+    c_ocoa_objc_type_dictionary_entry**         ppTypeEntries;
+    uint32_t                                    typeEntryCapacity;
+    uint32_t                                    typeEntryCount;
 } c_ocoa_objc_type_dictionary;
 
 typedef struct
@@ -140,11 +164,46 @@ typedef struct
     c_ocoa_objc_function_collection_entry*    pEntries;
 } c_ocoa_objc_function_collection;
 
+
+typedef struct
+{
+    Method* ppClassMethods;
+    Method* ppInstanceMethods;
+
+    uint32_t classMethodCount;
+    uint32_t instanceMethodCount;
+} c_ocoa_class_method_collection;
+
+typedef struct
+{
+    c_ocoa_objc_function_collection* pFunctionCollection;
+    c_ocoa_objc_type_dictionary*     pTypeDict;
+    const c_ocoa_objc_class_name*    pClassName;
+    c_ocoa_string_allocator*         pStringAllocator;
+    FILE*                            pHeaderFileHandle;
+    FILE*                            pSourceFileHandle;
+} c_ocoa_source_code_generator_input;
+
+typedef struct
+{
+    c_ocoa_objc_type_dictionary     typeDict;
+    c_ocoa_objc_function_collection functionCollection;
+    c_ocoa_string_allocator         stringAllocator;
+} c_ocoa_code_gen_context;
+
 //FK: Some helpful macros
-#define printf_stderr(x, ...)    fprintf( stderr, x, __VA_ARGS__ )
+#define printf_stderr(x, ...)    fprintf( stderr, x, ## __VA_ARGS__ )
 #define array_count(x)           (sizeof(x)/sizeof(x[0]))
 #define get_max(a,b)             (a)>(b)?(a):(b)
 #define unused_argument(x)       (void)x
+
+void c_ocoa_create_source_code_for_objc_methods( c_ocoa_method_type c_ocoa_method_type, Method* ppMethods, const uint32_t methodCount, c_ocoa_source_code_generator_input* pCodeGenInput );
+c_ocoa_convert_result objc_parse_result_convert_to_function_definition( c_ocoa_string_allocator* pStringAllocator, c_ocoa_objc_function_resolve_result* pOutFunctionResolveResult, c_ocoa_objc_function_collection* pFunctionCollection, c_ocoa_objc_type_dictionary* pDict, c_ocoa_parse_result* pParseResult, const c_ocoa_objc_class_name* pClassName );
+void file_write_c_function_implementation( FILE* pSourceFileHandle, const c_ocoa_objc_function_resolve_result* pFunctionResolveResult, const c_ocoa_objc_class_name* pClassName );
+void cfunction_write_declaration( FILE* pResultFileHandle, const c_ocoa_objc_function_resolve_result* pFunctionDefinition );
+boolean8_t objc_create_class_name( c_ocoa_objc_class_name* pOutClassName, const char* pClassNameStart, const int32_t classNameLength );
+void objc_type_dict_resolve_struct_types( c_ocoa_objc_type_dictionary* pTypeDict, FILE* pTypesFileHandle );
+
 
 void string_allocator_reset( c_ocoa_string_allocator* pStringAllocator )
 {
@@ -167,27 +226,9 @@ uint32_t string_allocator_get_remaining_capacity( c_ocoa_string_allocator* pStri
     return pStringAllocator->bufferCapacity - pStringAllocator->bufferSize;
 }
 
-boolean8_t conversion_arguments_create( c_ocoa_objc_conversion_arguments* pOutArguments, const char* pHeaderFileName, const char* pSourceFileName )
+void memory_copy_non_overlapping( void* pDestination, const void* pSource, const size_t sizeInBytes )
 {
-    pOutArguments->pHeaderFileName = pHeaderFileName;
-    pOutArguments->pSourceFileName = pSourceFileName;
-
-    pOutArguments->pSourceFileHandle = fopen( pSourceFileName, "w" );
-    if( pOutArguments->pSourceFileHandle == NULL )
-    {
-        printf("Couldn't open '%s' for writing.\n", pSourceFileName );
-        return 0u;
-    }
-
-    pOutArguments->pHeaderFileHandle = fopen( pHeaderFileName, "w" );
-    if( pOutArguments->pHeaderFileHandle == NULL )
-    {
-        fclose( pOutArguments->pSourceFileHandle );
-        printf("Couldn't open '%s' for writing.\n", pSourceFileName );
-        return 0u;
-    }
-
-    return 1u;
+    memcpy(pDestination, pSource, sizeInBytes);
 }
 
 static inline int32_t cast_size_to_int32( size_t val )
@@ -485,6 +526,18 @@ boolean8_t string_name_matches_filter( const char* restrict_modifier pName, cons
     return 1u;
 }
 
+void print_help(void)
+{
+    printf("Usage: c_ocoa_generator [OPTIONS] [FILTER]\n\n");
+    printf("OPTIONS are:\n");
+    printf("-o {path}    set output path (output directory)\n");
+    printf("-p {prefix}  set prefix for output source files\n");
+    printf("-h           print this help text\n\n");
+    printf("FILTER is:\n");
+    printf("A filter for the class name to be exported. Supports wildcard.\n\n");
+    printf("eg: 'c_ocoa_generator NS*'  - export all classes that start with 'NS'.\n");
+}
+
 void evaluate_code_generator_argv_arguments( int argc, const char** argv, c_ocoa_code_generator_parameter* pOutArguments )
 {
     for( int i = 1; i < argc; ++i )
@@ -495,11 +548,18 @@ void evaluate_code_generator_argv_arguments( int argc, const char** argv, c_ocoa
             switch( pArg[1] )
             {
                 case 'o':
-                    pOutArguments->pOutputPath = pArg;
+                    pOutArguments->pOutputPath = argv[i+1];
+                    ++i;
                 break;
 
                 case 'p':
-                    pOutArguments->pPrefix = pArg;
+                    pOutArguments->pPrefix = argv[i+1];
+                    ++i;
+                break;
+   
+                case 'h':
+                    print_help();
+                    exit(0);
                 break;
             }
         }
@@ -512,43 +572,66 @@ void evaluate_code_generator_argv_arguments( int argc, const char** argv, c_ocoa
     }
 }
 
-boolean8_t objc_type_dict_create( c_ocoa_objc_type_dictionary* pOutTypeDict, const size_t typeDictSizeInBytes, const size_t functionDictSizeInBytes )
+boolean8_t c_ocoa_objc_type_dictionary_create_entry_block( c_ocoa_objc_type_dictionary_entry_block** pOutEntryBlock, uint32_t entryCapacityPerBlock )
 {
-    //FK: TODO: accept 'entry dict size' & 'function dict size' arguments
-    const size_t totalSizeInBytes = typeDictSizeInBytes + functionDictSizeInBytes;
-    uint8_t* pDictionaryMemory = (uint8_t*)malloc( totalSizeInBytes );
-    if( pDictionaryMemory == NULL )
+    const uint32_t entrySizeInBytes = sizeof(c_ocoa_objc_type_dictionary_entry) * entryCapacityPerBlock;
+    c_ocoa_objc_type_dictionary_entry* pEntries = (c_ocoa_objc_type_dictionary_entry*)malloc(entrySizeInBytes);
+    
+    if( pEntries == NULL )
     {
         return 0;
     }
-
-    const uint32_t typeEntryCount       = ( uint32_t )( typeDictSizeInBytes / sizeof( c_ocoa_objc_type_dictionary_entry ) );
-    const uint32_t functionEntryCount   = ( uint32_t )( functionDictSizeInBytes / sizeof( c_ocoa_objc_function_dictionary_entry ) );
-
-    pOutTypeDict->pFunctionEntries         = (c_ocoa_objc_function_dictionary_entry*)pDictionaryMemory;
-    pOutTypeDict->pTypeEntries             = (c_ocoa_objc_type_dictionary_entry*)( pDictionaryMemory + typeDictSizeInBytes  );
-    pOutTypeDict->typeEntryCapacity        = typeEntryCount;
-    pOutTypeDict->functionEntryCapactiy    = functionEntryCount;
-
-    //FK: mark all entries as `isNew`
-    for( size_t entryIndex = 0u; entryIndex < pOutTypeDict->typeEntryCapacity; ++entryIndex )
+    
+    c_ocoa_objc_type_dictionary_entry_block* pBlock = (c_ocoa_objc_type_dictionary_entry_block*)malloc(sizeof(c_ocoa_objc_type_dictionary_entry));
+    
+    if( pBlock == NULL )
     {
-        pOutTypeDict->pTypeEntries[ entryIndex ].isNew = 1;
+        free(pEntries);
+        return 0;
     }
+    
+    memset(pEntries, 0, entrySizeInBytes);
+    
+    pBlock->pEntries        = pEntries;
+    pBlock->entryCapacity   = entryCapacityPerBlock;
+    pBlock->entryCount      = 0;
+    pBlock->pNext           = NULL;
+    
+    *pOutEntryBlock = pBlock;
+    return 1;
+}
 
-    for( size_t entryIndex = 0u; entryIndex < pOutTypeDict->functionEntryCapactiy; ++entryIndex )
+boolean8_t objc_type_dict_create( c_ocoa_objc_type_dictionary* pOutTypeDict )
+{
+    const size_t typeEntryCount = 4096u;
+    const size_t freeEntryBlockCount = 512u;
+    
+    const size_t typeEntrySizeInBytes = typeEntryCount * sizeof( void* );
+    c_ocoa_objc_type_dictionary_entry** ppEntries = ( c_ocoa_objc_type_dictionary_entry** )malloc(typeEntrySizeInBytes);
+    if( ppEntries == NULL )
     {
-        pOutTypeDict->pFunctionEntries[ entryIndex ].isNew = 1;
+        return 0;
     }
+    
+    if( !c_ocoa_objc_type_dictionary_create_entry_block( &pOutTypeDict->pFreeEntries, freeEntryBlockCount ) )
+    {
+        free(ppEntries);
+        return 0;
+    }
+       
+    memset(ppEntries, 0, typeEntrySizeInBytes);
+    pOutTypeDict->ppTypeEntries         = ppEntries;
+    pOutTypeDict->typeEntryCapacity     = typeEntryCount;
+    pOutTypeDict->typeEntryCount        = 0u;
 
     return 1;
 }
 
 boolean8_t objc_function_collection_create( c_ocoa_objc_function_collection* pOutFunctionCollection )
 {
-    pOutFunctionCollection->capacity = 16u;
+    pOutFunctionCollection->capacity = 64u;
     pOutFunctionCollection->size = 0u;
-    pOutFunctionCollection->pEntries = ( c_ocoa_objc_function_collection_entry* )malloc( sizeof( c_ocoa_objc_function_collection_entry ) * 16u );
+    pOutFunctionCollection->pEntries = ( c_ocoa_objc_function_collection_entry* )malloc( sizeof( c_ocoa_objc_function_collection_entry ) * 64u );
 
     if( pOutFunctionCollection->pEntries == NULL )
     {
@@ -571,19 +654,6 @@ boolean8_t strings_are_equal( const char* pStringA, const char* pStringB, const 
     return 1;
 }
 
-uint32_t sdbm_hash( const char* pString, const int32_t stringLength )
-{
-    uint32_t hash = 0;
-
-    for( int32_t charIndex = 0u; charIndex < stringLength; ++charIndex )
-    {
-        hash = pString[ charIndex ] + ( hash << 6 ) + ( hash << 16 ) - hash;
-    }
-
-    return hash;
-    
-}
-
 uint32_t djb2_hash( const char* pString, const int32_t stringLength )
 {
     uint32_t hash = 5381;
@@ -601,83 +671,102 @@ c_ocoa_objc_type_dictionary_entry* objc_type_dict_find_entry( c_ocoa_objc_type_d
 {
     const uint32_t hashValue = djb2_hash( pTypeName, typeNameLength );
     const uint32_t entryIndex = hashValue % pDict->typeEntryCapacity;
-    c_ocoa_objc_type_dictionary_entry* pEntry = pDict->pTypeEntries + entryIndex;
-    return pEntry->isNew ? NULL : pEntry;
-}
-
-#if 0
-c_ocoa_objc_function_dictionary_entry* insertFunctionDictEntry( c_ocoa_objc_type_dictionary* restrict_modifier pDict, const char* restrict_modifier pFunctionName, const int32_t functionNameLength, boolean8_t* restrict_modifier pOutIsNew )
-{
-    //FK: TODO: Check hash distribution
-    const uint32_t hashValue = sdbm_hash( pFunctionName, functionNameLength );
-    const uint32_t entryIndex = hashValue % pDict->functionEntryCapactiy;
-    c_ocoa_objc_function_dictionary_entry* pEntry = pDict->pFunctionEntries + entryIndex;
-
-    *pOutIsNew = pEntry->isNew;
-    if( pEntry->isNew )
+    c_ocoa_objc_type_dictionary_entry* pEntry = pDict->ppTypeEntries[entryIndex];
+    while( pEntry != NULL && strcmp( pEntry->pHashValue, pTypeName ) != 0 )
     {
-        pEntry->pHashParameter = (char*)malloc( functionNameLength + 1 );
-        if( pEntry->pHashParameter == NULL )
-        {
-            //FK: out of memory.
-            //FK: TODO: Print message, let the user know what's going on
-            return NULL;
-        }
-
-        sprintf( pEntry->pHashParameter, "%.*s", functionNameLength, pFunctionName );
-        pEntry->isNew = 0;
+        pEntry = (c_ocoa_objc_type_dictionary_entry*)pEntry->pNext;
     }
-
-    //FK: Check for hash collision
-    assert_runtime( strings_are_equal( pEntry->pHashParameter, pFunctionName, functionNameLength ) );
-
+    
     return pEntry;
 }
-#endif
 
-c_ocoa_objc_type_dictionary_entry* objc_type_dict_insert_entry( c_ocoa_objc_type_dictionary* restrict_modifier pDict, const char* restrict_modifier pTypeName, const int32_t typeNameLength, boolean8_t* restrict_modifier pOutIsNew )
+c_ocoa_objc_type_dictionary_entry* c_ocoa_type_dict_get_free_entry_from_block( c_ocoa_objc_type_dictionary_entry_block* pBlock )
+{
+    c_ocoa_objc_type_dictionary_entry_block* pCurrentBlock = pBlock;
+    c_ocoa_objc_type_dictionary_entry_block* pPrevBlock = NULL;
+    while( pCurrentBlock != NULL && pCurrentBlock->entryCount == pCurrentBlock->entryCapacity )
+    {
+        pPrevBlock = pCurrentBlock;
+        pCurrentBlock = (c_ocoa_objc_type_dictionary_entry_block*)pCurrentBlock->pNext;
+    }
+    
+    if( pCurrentBlock == NULL )
+    {
+        if( !c_ocoa_objc_type_dictionary_create_entry_block((c_ocoa_objc_type_dictionary_entry_block**)&pPrevBlock->pNext, pPrevBlock->entryCapacity ))
+        {
+            return NULL;
+        }
+        
+        pCurrentBlock = (c_ocoa_objc_type_dictionary_entry_block*)pPrevBlock->pNext;
+    }
+    
+    const uint32_t entryIndex = pCurrentBlock->entryCount++;
+    return pCurrentBlock->pEntries + entryIndex;
+}
+
+c_ocoa_objc_type_dictionary_entry* objc_type_dict_insert_or_get_entry( c_ocoa_objc_type_dictionary* restrict_modifier pDict, const char* restrict_modifier pTypeName, const int32_t typeNameLength, boolean8_t* restrict_modifier pOutIsNew )
 {
     //FK: TODO: Check hash distribution
     const uint32_t hashValue = djb2_hash( pTypeName, typeNameLength );
     const uint32_t entryIndex = hashValue % pDict->typeEntryCapacity;
-    c_ocoa_objc_type_dictionary_entry* pEntry = pDict->pTypeEntries + entryIndex;
-
-    *pOutIsNew = pEntry->isNew;
-    if( pEntry->isNew )
+    c_ocoa_objc_type_dictionary_entry* pEntry = pDict->ppTypeEntries[entryIndex];
+    c_ocoa_objc_type_dictionary_entry* pPrev = NULL;
+    
+    const boolean8_t isFirstEntry = pEntry == NULL;
+    
+    while( pEntry != NULL )
     {
-        //FK: TODO: use custom linear allocator?
-        pEntry->pHashParameter = (char*)malloc( typeNameLength + 1 ); 
-        if( pEntry->pHashParameter == NULL )
+        if( strcmp( pEntry->pHashValue, pTypeName ) == 0 )
         {
-            //FK: out of memory.
-            //FK: TODO: Print message, let the user know what's going on
+            *pOutIsNew = 0;
+            return pEntry;
+        }
+        
+        pPrev = pEntry;
+        pEntry = (c_ocoa_objc_type_dictionary_entry*)pEntry->pNext;
+    }
+    
+    pEntry = c_ocoa_type_dict_get_free_entry_from_block(pDict->pFreeEntries);
+    if( pEntry == NULL )
+    {
+        return NULL;
+    }
+    
+    if( typeNameLength >= sizeof(pEntry->hashValue) )
+    {
+        char* pHashValue = string_allocate_copy( pTypeName, typeNameLength );
+        if( pHashValue == NULL )
+        {
             return NULL;
         }
-        sprintf( pEntry->pHashParameter, "%.*s", typeNameLength, pTypeName );
-        pEntry->isNew = 0;
+        
+        pEntry->pHashValue = pHashValue;
     }
-
-    //FK: Check for hash collision
-    assert_runtime( strings_are_equal( pEntry->pHashParameter, pTypeName, typeNameLength ) );
-
+    else
+    {
+        pEntry->pHashValue = pEntry->hashValue;
+    }
+    
+    string_copy_and_add_null_terminator(pEntry->pHashValue, pTypeName, typeNameLength);
+    
+    *pOutIsNew = 1;
+    
+    pEntry->index = entryIndex;
+    
+    if(isFirstEntry)
+    {
+        pDict->ppTypeEntries[entryIndex] = pEntry;
+        ++pDict->typeEntryCount;
+        
+        assert_runtime(pDict->typeEntryCount < pDict->typeEntryCapacity);
+    }
+    
+    if( pPrev != NULL )
+    {
+        pPrev->pNext = pEntry;
+    }
+    
     return pEntry;
-}
-
-const char* objc_parse_struct( const char* pTypeName, const int32_t typeNameLength )
-{
-    char* pTemp = (char*)malloc( typeNameLength + 1 );
-    sprintf( pTemp, "%.*s", typeNameLength, pTypeName );
-    return pTemp;
-
-    unused_argument(pTypeName);
-    unused_argument(typeNameLength);
-
-    //FK: Optimistically alloca 1KiB on the stack to have 
-    //    a big enough scratchpad to resolve the typename
-    //char* pTempMemory = (char*)alloca(1024);
-
-    //FK: TODO!
-    return pTypeName;
 }
 
 int32_t typename_get_reference_position( const char* pTypeName, const int32_t typenameLength )
@@ -810,10 +899,43 @@ boolean8_t base_type_resolve( c_ocoa_objc_type_resolve_result* pOutResult, const
     return 1;
 }
 
+void objc_type_dict_remove_entry( c_ocoa_objc_type_dictionary* pDict, c_ocoa_objc_type_dictionary_entry* pEntryToRemove )
+{
+    const uint32_t entryIndex = pEntryToRemove->index;
+    c_ocoa_objc_type_dictionary_entry* pEntry = pDict->ppTypeEntries[entryIndex];
+    c_ocoa_objc_type_dictionary_entry* pPrev = NULL;
+    while( strcmp( pEntry->pHashValue, pEntryToRemove->pHashValue ) != 0 )
+    {
+        pPrev = pEntry;
+        pEntry = ( c_ocoa_objc_type_dictionary_entry* )pEntry->pNext;
+    }
+    
+    assert_runtime( pEntry != NULL );
+
+    //FK: is first entry in linked list?
+    if( pPrev == NULL )
+    {
+        pDict->ppTypeEntries[entryIndex] = NULL;
+        
+        assert_runtime( pDict->typeEntryCount > 0 );
+        --pDict->typeEntryCount;
+    }
+    else
+    {
+        pPrev->pNext = pEntry->pNext;
+    }
+}
+
 boolean8_t objc_type_dict_resolve_base_type( c_ocoa_objc_type_resolve_result* pOutResult, c_ocoa_objc_type_dictionary* pDict, const char* pObjectiveCTypeName )
 {
     boolean8_t isNewDictEntry = 0;
-    c_ocoa_objc_type_dictionary_entry* pDictEntry = objc_type_dict_insert_entry( pDict, pObjectiveCTypeName, 1, &isNewDictEntry );
+    c_ocoa_objc_type_dictionary_entry* pDictEntry = objc_type_dict_insert_or_get_entry( pDict, pObjectiveCTypeName, 1, &isNewDictEntry );
+    if( pDictEntry == NULL )
+    {
+        printf_stderr( "[error] Could not resolve type name '%s' because we ran out of memory.", pObjectiveCTypeName );
+        return 0;
+    }
+    
     if( !isNewDictEntry )
     {
         *pOutResult = pDictEntry->resolveResult;
@@ -823,7 +945,7 @@ boolean8_t objc_type_dict_resolve_base_type( c_ocoa_objc_type_resolve_result* pO
     const boolean8_t resolvedSuccessful = base_type_resolve( pOutResult, pObjectiveCTypeName );
     if( !resolvedSuccessful )
     {
-        pDictEntry->isNew = 1;
+        objc_type_dict_remove_entry( pDict, pDictEntry );
         return 0;
     }
 
@@ -916,11 +1038,17 @@ boolean8_t objc_type_dict_resolve_struct_type( c_ocoa_objc_type_resolve_result* 
 
     if( struct_type_is_unknown( pTypeNameStart, resolvedTypeNameLength ) )
     {
-        printf_stderr("[warning] typename '%.*s' is an unknown struct type. Skipping type resolve...", typeNameLength, pTypeName );
+        printf_stderr( "[warning] typename '%.*s' is an unknown struct type. Skipping type resolve...\n", typeNameLength, pTypeName );
         return 0u;
     }
 
-    c_ocoa_objc_type_dictionary_entry* pEntry = objc_type_dict_insert_entry( pDict, pTypeNameStart, resolvedTypeNameLength, &isNewTypeDictEntry );
+    c_ocoa_objc_type_dictionary_entry* pEntry = objc_type_dict_insert_or_get_entry( pDict, pTypeNameStart, resolvedTypeNameLength, &isNewTypeDictEntry );
+    if( pEntry == NULL )
+    {
+        printf_stderr( "[error] could not resolve typename '%.*s' because we ran out of memory.\n", typeNameLength, pTypeName );
+        return 0u;
+    }
+    
     if( !isNewTypeDictEntry )
     {
         *pOutResult = pEntry->resolveResult;
@@ -930,7 +1058,7 @@ boolean8_t objc_type_dict_resolve_struct_type( c_ocoa_objc_type_resolve_result* 
     const boolean8_t resolvedSuccessfully = struct_type_resolve( pOutResult, pDict, pTypeName, typeNameLength );
     if( !resolvedSuccessfully )
     {
-        pEntry->isNew = 1;
+        objc_type_dict_remove_entry( pDict, pEntry );
         return 0;
     }
     
@@ -1036,7 +1164,14 @@ boolean8_t reference_type_resolve( c_ocoa_objc_type_resolve_result* pOutResult, 
 boolean8_t objc_type_dict_resolve_reference_type( c_ocoa_objc_type_resolve_result* pOutResult, c_ocoa_objc_type_dictionary* pDict, const char* pTypeName, int32_t typeNameLength )
 {
     boolean8_t isNewDictEntry = 0;
-    c_ocoa_objc_type_dictionary_entry* pDictEntry = objc_type_dict_insert_entry( pDict, pTypeName, typeNameLength, &isNewDictEntry );
+    c_ocoa_objc_type_dictionary_entry* pDictEntry = objc_type_dict_insert_or_get_entry( pDict, pTypeName, typeNameLength, &isNewDictEntry );
+    
+    if( pDictEntry == NULL )
+    {
+        printf_stderr( "[error] Could not resolve typename '%.*s' because we ran out of memory.\n", typeNameLength, pTypeName );
+        return 0u;
+    }
+    
     if( !isNewDictEntry )
     {
         *pOutResult = pDictEntry->resolveResult;
@@ -1046,7 +1181,8 @@ boolean8_t objc_type_dict_resolve_reference_type( c_ocoa_objc_type_resolve_resul
     const boolean8_t resolvedSuccessfully = reference_type_resolve( pOutResult, pTypeName, typeNameLength );
     if( !resolvedSuccessfully )
     {
-        pDictEntry->isNew = 1;
+        printf_stderr( "[warning] could not resolve type name '%.*s'.\n", typeNameLength, pTypeName );
+        objc_type_dict_remove_entry( pDict, pDictEntry );
         return 0;
     }
 
@@ -1072,7 +1208,7 @@ boolean8_t objc_resolve_c_type_name( c_ocoa_objc_type_resolve_result* pOutResult
     else
     {
         resolvedSuccessfully = 0;
-        printf_stderr("[error] Couldn't resolve type '%.*s' - neither struct nor reference nor base type.", typeNameLength, pTypeName );
+        printf_stderr("[error] Couldn't resolve type '%.*s' - neither struct nor reference nor base type.\n", typeNameLength, pTypeName );
     }
 
     return resolvedSuccessfully;
@@ -1182,6 +1318,408 @@ boolean8_t function_name_ends_with_colon( const char* pFunctionName, const int32
     return pFunctionName[ functionNameLength - 1u ] == ':';
 }
 
+bool objc_runtime_add_class_methods_to_collection( c_ocoa_class_method_collection* pMethodCollection, Method* pMethods, uint32_t methodCount )
+{
+    if( methodCount == 0u )
+    {
+        return true;
+    }
+
+    const uint32_t oldMethodCount = pMethodCollection->classMethodCount;
+    const uint32_t newMethodCount = methodCount + oldMethodCount;
+    Method* pNewMethodArray = (Method*)malloc( newMethodCount * sizeof( Method ) );
+    if( pNewMethodArray == NULL )
+    {
+        return false;
+    }
+
+    memory_copy_non_overlapping( pNewMethodArray, pMethodCollection->ppClassMethods, sizeof(Method) * oldMethodCount );
+    memory_copy_non_overlapping( pNewMethodArray + oldMethodCount, pMethods, sizeof(Method) * methodCount );
+
+    pMethodCollection->ppClassMethods = pNewMethodArray;
+    pMethodCollection->classMethodCount = newMethodCount;
+
+    return true;
+}
+
+boolean8_t objc_runtime_add_instance_methods_to_collection( c_ocoa_class_method_collection* pMethodCollection, Method* pMethods, uint32_t methodCount )
+{
+    if( methodCount == 0u )
+    {
+        return 1;
+    }
+
+    const uint32_t oldMethodCount = pMethodCollection->instanceMethodCount;
+    const uint32_t newMethodCount = methodCount + oldMethodCount;
+    Method* pNewMethodArray = (Method*)malloc( newMethodCount * sizeof( Method ) );
+    if( pNewMethodArray == NULL )
+    {
+        return 0;
+    }
+
+    memory_copy_non_overlapping( pNewMethodArray, pMethodCollection->ppInstanceMethods, sizeof(Method) * oldMethodCount );
+    memory_copy_non_overlapping( pNewMethodArray + oldMethodCount, pMethods, sizeof(Method) * methodCount );
+
+    free( pMethodCollection->ppInstanceMethods );
+
+    pMethodCollection->ppInstanceMethods = pNewMethodArray;
+    pMethodCollection->instanceMethodCount = newMethodCount;
+
+    return 1;
+}
+
+boolean8_t objc_runtime_collect_methods_from_class( c_ocoa_class_method_collection* pMethodCollection, Class pClass, const char* pClassName )
+{
+    Class pMetaClass = object_getClass( (id)pClass );
+    uint32_t instanceMethodCount    = 0u;
+    uint32_t classMethodCount       = 0u;
+
+    Method* pInstanceMethods    = class_copyMethodList( pClass, &instanceMethodCount );
+    Method* pClassMethods       = class_copyMethodList( pMetaClass, &classMethodCount );
+
+    const boolean8_t addedInstanceMethods = objc_runtime_add_instance_methods_to_collection( pMethodCollection, pInstanceMethods, instanceMethodCount );
+    const boolean8_t addedClassMethods    = objc_runtime_add_class_methods_to_collection( pMethodCollection, pClassMethods, classMethodCount );
+
+    free( pInstanceMethods );
+    free( pClassMethods );
+
+    if( !addedInstanceMethods )
+    {
+        printf("[error] out of memory while trying to add %u instance methods from class '%s'.\n", instanceMethodCount, pClassName );
+        return 0;
+    }
+
+    if( !addedClassMethods )
+    {
+        printf("[error] out of memory while trying to add %u class methods from class '%s'.\n", classMethodCount, pClassName );
+        return 0;
+    }
+
+    return 1;
+}
+
+void c_ocoa_create_source_code_for_objc_methods( c_ocoa_method_type c_ocoa_method_type, Method* ppMethods, const uint32_t methodCount, c_ocoa_source_code_generator_input* pCodeGenInput )
+{
+    c_ocoa_string_allocator*            pStringAllocator    = pCodeGenInput->pStringAllocator;
+    c_ocoa_objc_type_dictionary*        pTypeDict           = pCodeGenInput->pTypeDict;
+    c_ocoa_objc_function_collection*    pFunctionCollection = pCodeGenInput->pFunctionCollection;
+    const c_ocoa_objc_class_name*       pClassName          = pCodeGenInput->pClassName;
+    FILE*                               pSourceFileHandle   = pCodeGenInput->pSourceFileHandle;
+    FILE*                               pHeaderFileHandle   = pCodeGenInput->pHeaderFileHandle;
+
+    c_ocoa_parse_result parseResult = {};
+    for( uint32_t methodIndex = 0u; methodIndex < methodCount; ++methodIndex )
+    {
+        Method pMethod = ppMethods[ methodIndex ];
+
+        const size_t stringAllocatorCapacity = (size_t)string_allocator_get_remaining_capacity( pStringAllocator );
+        char* pReturnType = string_allocator_get_current_base( pStringAllocator );
+        
+        //FK: There seems to be no way to know the return type length beforehand...?
+        //    NOTE: Potential memory trampler here since we don't know beforehand
+        //          if the string allocator can satisfy this allocation or not
+        //          Alternativaly, we could use 'method_copyReturnType()' but that
+        //          calls 'malloc()' each time internally...
+        method_getReturnType( pMethod, pReturnType, stringAllocatorCapacity );
+
+        const int32_t returnTypeLength = string_get_length_excl_null_terminator( pReturnType );
+        string_allocator_decrement_capacity( pStringAllocator, returnTypeLength + 1 );
+
+        SEL pMethodSelector = method_getName( pMethod );
+        if( pMethodSelector == NULL )
+        {
+            printf_stderr("[error] empty method selector for %d. method of class '%s' - Skipping method.\n", methodIndex, pClassName->pName );
+            continue;
+        }
+
+        const char* pSelectorName = sel_getName( pMethodSelector );
+        if( pSelectorName == NULL )
+        {
+            printf_stderr("[error] empty method selector name for %d. method of class '%s' - Skipping method.\n", methodIndex, pClassName->pName );
+            continue;
+        }
+
+        const int32_t selectorNameLength = string_get_length_excl_null_terminator( pSelectorName );
+        char* pMethodName = string_allocate_copy_with_allocator( pStringAllocator, pSelectorName, selectorNameLength );
+
+        const uint32_t argumentCount = method_getNumberOfArguments( pMethod );
+        char* pArgumentTypes = string_allocator_get_current_base( pStringAllocator );
+        char* pCurrentArgumentType = pArgumentTypes;
+        for( uint32_t argumentIndex = 0u; argumentIndex < argumentCount; ++argumentIndex )
+        {
+            const uint32_t stringAllocatorCapacity = string_allocator_get_remaining_capacity( pStringAllocator );
+            method_getArgumentType( pMethod, argumentIndex, pCurrentArgumentType, stringAllocatorCapacity );
+
+            const int32_t argumentTypeLength = string_get_length_excl_null_terminator( pCurrentArgumentType );
+
+            const uint8_t addSpaceAtEnd = ( argumentIndex + 1 != argumentCount );
+            if( addSpaceAtEnd )
+            {
+                pCurrentArgumentType[ argumentTypeLength ] = ' ';
+            }
+
+            //FK: +1 for space if not at end of iteration and for null terminator if last iteration
+            string_allocator_decrement_capacity( pStringAllocator, argumentTypeLength + 1);
+            pCurrentArgumentType = pCurrentArgumentType + argumentTypeLength + 1;
+        }
+
+        const int32_t argumentCharacterWritten = cast_size_to_int32( pCurrentArgumentType - pArgumentTypes );
+        pArgumentTypes[ argumentCharacterWritten + 1] = 0;
+
+        parseResult.pArguments          = pArgumentTypes;
+        parseResult.argumentLength      = argumentCharacterWritten;
+        parseResult.pFunctionName       = pMethodName;
+        parseResult.functionNameLength  = selectorNameLength;
+        parseResult.pReturnType         = pReturnType;
+        parseResult.returnTypeLength    = returnTypeLength;
+        parseResult.c_ocoa_method_type  = c_ocoa_method_type;
+
+        c_ocoa_objc_function_resolve_result functionResolveResult;
+        const c_ocoa_convert_result c_ocoa_convert_result = objc_parse_result_convert_to_function_definition( pStringAllocator, &functionResolveResult, pFunctionCollection, pTypeDict, &parseResult, pClassName );
+        switch( c_ocoa_convert_result )
+        {
+            case ConvertResult_OutOfMemory:
+                printf_stderr("[error] Out of memory while trying to parse function of class '%s'.\n", pClassName->pName );
+                break;
+
+            case ConvertResult_UnknownArgumentType:
+                printf_stderr("[error] Skipping function '%s' of class '%s' because of unknown argument type.\n", parseResult.pFunctionName, pClassName->pName );
+                break;
+
+            case ConvertResult_UnknownReturnType:
+                printf_stderr("[error] Skipping function '%s' of class '%s' because of unknown argument type.\n", parseResult.pFunctionName, pClassName->pName );
+                break;
+
+            case ConvertResult_InvalidFunctionName:
+            case ConvertResult_AlreadyKnown:
+                //FK: Add log here?
+                break;
+
+            case ConvertResult_Success:
+                cfunction_write_declaration( pHeaderFileHandle, &functionResolveResult );
+                file_write_c_function_implementation( pSourceFileHandle, &functionResolveResult, pClassName );
+                break;
+        }
+        string_allocator_reset( pStringAllocator );
+    }
+}
+
+c_ocoa_code_generator_parameter c_ocoa_default_code_generator_parameter(void)
+{
+    c_ocoa_code_generator_parameter parameter = {};
+    parameter.fopen = fopen;
+    parameter.fclose = fclose;
+    parameter.fflush = fflush;
+    
+    return parameter;
+}
+
+void objc_function_collection_reset( c_ocoa_objc_function_collection* pFunctionCollection )
+{
+    for( uint32_t functionIndex = 0u; functionIndex < pFunctionCollection->size; ++functionIndex )
+    {
+        free((char*)pFunctionCollection->pEntries[functionIndex].pFunctionName);
+    }
+    
+    pFunctionCollection->size = 0u;
+}
+
+void c_ocoa_create_source_code_for_objc_method_collection( const c_ocoa_class_method_collection* pMethodCollection, c_ocoa_source_code_generator_input* pCodeGenInput )
+{
+    c_ocoa_create_source_code_for_objc_methods( MethodType_Instance, pMethodCollection->ppInstanceMethods, pMethodCollection->instanceMethodCount, pCodeGenInput );
+    c_ocoa_create_source_code_for_objc_methods( MethodType_Class, pMethodCollection->ppClassMethods, pMethodCollection->classMethodCount, pCodeGenInput );
+
+    objc_function_collection_reset( pCodeGenInput->pFunctionCollection );
+}
+
+void file_write_generated_comment( FILE* pFileHandle )
+{
+    fprintf( pFileHandle, "/*\n" );
+    fprintf( pFileHandle, "\tThis file has been automatically generated by the shimmer industries c-ocoa API generator\n" );
+    fprintf( pFileHandle, "\tThus, manual changes to this file will be lost if the file is re-generated.\n" );
+    fprintf( pFileHandle, "*/\n\n" );
+}
+
+void file_write_c_type_header_prefix( FILE* pTypesFileHandle )
+{
+    file_write_generated_comment( pTypesFileHandle );
+    fprintf( pTypesFileHandle, "#ifndef C_OCOA_TYPES_HEADER\n");
+    fprintf( pTypesFileHandle, "#define C_OCOA_TYPES_HEADER\n\n");
+    fprintf( pTypesFileHandle, "#include <stdbool.h>\n\n");
+    fprintf( pTypesFileHandle, "typedef void*\tnsobject_t;\n" );
+    fprintf( pTypesFileHandle, "typedef void*\tnsselector_t;\n" );
+    fprintf( pTypesFileHandle, "typedef void*\tnsclass_t;\n\n" );
+}
+
+void file_write_c_type_header_suffix( FILE* pTypesFileHandle )
+{
+    fprintf( pTypesFileHandle, "#endif" );
+}
+
+void file_write_c_header_prefix( FILE* pHeaderFileHandle, const c_ocoa_objc_class_name* pClassName )
+{
+    file_write_generated_comment( pHeaderFileHandle );
+
+    //FK: Header guard
+    fprintf( pHeaderFileHandle, "#ifndef SHIMMER_C_OCOA_%s_HEADER\n#define SHIMMER_C_OCOA_%s_HEADER\n\n", pClassName->pNameUpper, pClassName->pNameUpper );
+    fprintf( pHeaderFileHandle, "typedef void*\t%s_t;\n", pClassName->pNameLower );
+    fprintf( pHeaderFileHandle, "#include \"c_ocoa_types.h\"\n\n");
+}
+
+void file_write_c_header_suffix( FILE* pHeaderFileHandle )
+{
+    //FK: End of header guard
+    fprintf( pHeaderFileHandle, "#endif");
+}
+
+void file_write_c_source_prefix( FILE* pSourceFileHandle, const char* pHeaderFileName, const c_ocoa_objc_class_name* pClassName)
+{
+    file_write_generated_comment( pSourceFileHandle );
+    fprintf( pSourceFileHandle, "#if defined(__OBJC__) && __has_feature(objc_arc)\n" );
+    fprintf( pSourceFileHandle, "#define ARC_AVAILABLE\n" );
+    fprintf( pSourceFileHandle, "#endif\n\n" );
+
+    fprintf( pSourceFileHandle, "// ABI is a bit different between platforms\n" );
+    fprintf( pSourceFileHandle, "#ifdef __arm64__\n" );
+    fprintf( pSourceFileHandle, "#define abi_objc_msgSend_stret objc_msgSend\n" );
+    fprintf( pSourceFileHandle, "#else\n" );
+    fprintf( pSourceFileHandle, "#define abi_objc_msgSend_stret objc_msgSend_stret\n" );
+    fprintf( pSourceFileHandle, "#endif\n" );
+    fprintf( pSourceFileHandle, "#ifdef __i386__\n" );
+    fprintf( pSourceFileHandle, "#define abi_objc_msgSend_fpret objc_msgSend_fpret\n" );
+    fprintf( pSourceFileHandle, "#else\n" );
+    fprintf( pSourceFileHandle, "#define abi_objc_msgSend_fpret objc_msgSend\n" );
+    fprintf( pSourceFileHandle, "#endif\n\n" );
+    fprintf( pSourceFileHandle, "#include \"%s\"\n\n", pHeaderFileName );
+}
+
+boolean8_t c_ocoa_create_source_code_for_objc_class( const c_ocoa_code_generator_parameter* pParameter, c_ocoa_objc_type_dictionary* pTypeDict, c_ocoa_objc_function_collection* pFunctionCollection, c_ocoa_string_allocator* pStringAllocator, Class pClass, const char* pClassName, int32_t classNameLength )
+{
+    if( pParameter->pClassNameFilter != NULL )
+    {
+        if( !string_name_matches_filter( pClassName, pParameter->pClassNameFilter ) )
+        {
+            return 0u;
+        }
+    }
+
+    c_ocoa_class_method_collection c_ocoa_class_method_collection = {};
+    if( !objc_runtime_collect_methods_from_class( &c_ocoa_class_method_collection, pClass, pClassName ) )
+    {
+        return 0u;
+    }
+
+    //FK: TODO: Instead of completely reparsing the base class over-and-over again,
+    //    we should use the type dict to speed up parsing...
+
+    //FK: Move up the class hiearchy
+    Class pSuperClass = class_getSuperclass( pClass );
+    while( pSuperClass != NULL )
+    {
+        const char* pSuperClassName = class_getName( pSuperClass );
+        if( !objc_runtime_collect_methods_from_class( &c_ocoa_class_method_collection, pSuperClass, pSuperClassName ) )
+        {
+            return 0u;
+        }
+
+        pSuperClass = class_getSuperclass( pSuperClass );
+    }
+
+    c_ocoa_objc_class_name className;
+    if( !objc_create_class_name( &className, pClassName, classNameLength ) )
+    {
+        return 0u;
+    }
+
+    const char* pOutputPath = pParameter->pOutputPath == NULL ? "" : pParameter->pOutputPath;
+    const char* pFilePrefix = pParameter->pPrefix == NULL ? "" : pParameter->pPrefix;
+    const int32_t outputPathLength = string_get_length_excl_null_terminator( pOutputPath );
+    const int32_t filePrefixLength = string_get_length_excl_null_terminator( pFilePrefix );
+
+    //FK: +2 for file extension (.c/.h) +1 for null terminator
+    char* pHeaderFileName = string_allocator_allocate( pStringAllocator, outputPathLength + filePrefixLength + classNameLength + 2 + 1 );
+    char* pSourceFileName = string_allocator_allocate( pStringAllocator, outputPathLength + filePrefixLength + classNameLength + 2 + 1 );
+
+    sprintf( pHeaderFileName, "%s%s%s.h", pOutputPath, pFilePrefix, className.pNameLower );
+    sprintf( pSourceFileName, "%s%s%s.c", pOutputPath, pFilePrefix, className.pNameLower );
+
+    FILE* pSourceFileHandle = pParameter->fopen( pSourceFileName, "w" );
+    FILE* pHeaderFileHandle = pParameter->fopen( pHeaderFileName, "w" );
+
+    if( pSourceFileHandle == NULL )
+    {
+        printf_stderr( "[error] Couldn't open '%s' for writing.\n", pSourceFileName );
+        return 0u;
+    }
+
+    if( pHeaderFileName == NULL )
+    {
+        printf_stderr( "[error] Couldn't open '%s' for writing.\n", pHeaderFileName );
+        return 0u;
+    }
+
+    file_write_c_header_prefix( pHeaderFileHandle, &className );
+    file_write_c_source_prefix( pSourceFileHandle, pHeaderFileName, &className );
+
+    c_ocoa_source_code_generator_input codeGenInput;
+    codeGenInput.pHeaderFileHandle      = pHeaderFileHandle;
+    codeGenInput.pSourceFileHandle      = pSourceFileHandle;
+    codeGenInput.pStringAllocator       = pStringAllocator;
+    codeGenInput.pTypeDict              = pTypeDict;
+    codeGenInput.pFunctionCollection    = pFunctionCollection;
+    codeGenInput.pClassName             = &className;
+    c_ocoa_create_source_code_for_objc_method_collection( &c_ocoa_class_method_collection, &codeGenInput );
+    
+    file_write_c_header_suffix( pHeaderFileHandle );
+    
+    pParameter->fclose( pHeaderFileHandle );
+    pParameter->fclose( pSourceFileHandle );
+
+    return 1u;
+};
+
+int c_ocoa_create_classes_api( const c_ocoa_code_generator_parameter* pCodeGeneratorParameter, c_ocoa_code_gen_context* pContext )
+{
+    const int totalClassCount = objc_getClassList( NULL, 0 );
+    const size_t totalClassBufferSizeInBytes = totalClassCount * sizeof( Class );
+    Class* ppClasses = ( Class* )malloc( totalClassBufferSizeInBytes );
+    if( ppClasses == NULL )
+    {
+        printf_stderr( "Out of memory - Couldn't allocate %.3fkB.", (float)totalClassBufferSizeInBytes/1024.f );
+        return 2;
+    }
+    
+    objc_getClassList(ppClasses, totalClassCount);
+    
+    const uint32_t maxClasses = totalClassCount;
+    for( uint32_t classIndex = 0u; classIndex < maxClasses; ++classIndex )
+    {
+        Class pClass = ppClasses[ classIndex ];
+        const char* pClassName = class_getName( pClass );
+        const int32_t classNameLength = string_get_length_incl_null_terminator( pClassName );
+
+        c_ocoa_create_source_code_for_objc_class( pCodeGeneratorParameter, &pContext->typeDict, &pContext->functionCollection, &pContext->stringAllocator, pClass, pClassName, classNameLength );
+        string_allocator_reset( &pContext->stringAllocator );
+    }
+
+    free( ppClasses );
+
+    FILE* pTypesFileHandle = pCodeGeneratorParameter->fopen( "c_ocoa_types.h", "w" );
+    if( pTypesFileHandle == NULL )
+    {
+        printf_stderr( "Could not open '%s' for writing.", "c_ocoa_types.h" );
+        return 0;
+    }
+
+    objc_type_dict_resolve_struct_types( &pContext->typeDict, pTypesFileHandle );
+    
+    pCodeGeneratorParameter->fflush( pTypesFileHandle );
+    pCodeGeneratorParameter->fclose( pTypesFileHandle );
+    
+    return 0;
+}
+
+
 boolean8_t objc_function_collection_contains_function( const c_ocoa_objc_function_collection* pFunctionCollection, const c_ocoa_objc_class_name* pClassName, const char* pFunctionName, const int32_t functionNameLength )
 {
     //FK: Skip the 'classname_' part of the function name (to save an allocation in the calling code)
@@ -1205,16 +1743,6 @@ boolean8_t objc_function_collection_contains_function( const c_ocoa_objc_functio
     }
 
     return 0;
-}
-
-void memory_copy_non_overlapping( void* pDestination, const void* pSource, const size_t sizeInBytes )
-{
-    memcpy(pDestination, pSource, sizeInBytes);
-}
-
-void objc_function_collection_reset( c_ocoa_objc_function_collection* pFunctionCollection )
-{
-    pFunctionCollection->size = 0u;
 }
 
 void objc_function_collection_resize( c_ocoa_objc_function_collection* pFunctionCollection )
@@ -1413,67 +1941,6 @@ void cfunction_write_declaration( FILE* pResultFileHandle, const c_ocoa_objc_fun
     fflush( pResultFileHandle );
 }
 
-void file_write_generated_comment( FILE* pFileHandle )
-{
-    fprintf( pFileHandle, "/*\n" );
-    fprintf( pFileHandle, "\tThis file has been automatically generated by the shimmer industries c-ocoa API generator\n" );
-    fprintf( pFileHandle, "\tThus, manual changes to this file will be lost if the file is re-generated.\n" );
-    fprintf( pFileHandle, "*/\n\n" );
-}
-
-void file_write_c_type_header_prefix( FILE* pTypesFileHandle )
-{
-    file_write_generated_comment( pTypesFileHandle );
-    fprintf( pTypesFileHandle, "#ifndef C_OCOA_TYPES_HEADER\n");
-    fprintf( pTypesFileHandle, "#define C_OCOA_TYPES_HEADER\n\n");
-    fprintf( pTypesFileHandle, "#include <stdbool.h>\n\n");
-    fprintf( pTypesFileHandle, "typedef void*\tnsobject_t;\n" );
-    fprintf( pTypesFileHandle, "typedef void*\tnsselector_t;\n" );
-    fprintf( pTypesFileHandle, "typedef void*\tnsclass_t;\n\n" );
-}
-
-void file_write_c_type_header_suffix( FILE* pTypesFileHandle )
-{
-    fprintf( pTypesFileHandle, "#endif" );
-}
-
-void file_write_c_header_prefix( FILE* pHeaderFileHandle, const c_ocoa_objc_class_name* pClassName )
-{
-    file_write_generated_comment( pHeaderFileHandle );
-
-    //FK: Header guard
-    fprintf( pHeaderFileHandle, "#ifndef SHIMMER_C_OCOA_%s_HEADER\n#define SHIMMER_C_OCOA_%s_HEADER\n\n", pClassName->pNameUpper, pClassName->pNameUpper );
-    fprintf( pHeaderFileHandle, "typedef void*\t%s_t;\n", pClassName->pNameLower );
-    fprintf( pHeaderFileHandle, "#include \"c_ocoa_types.h\"\n\n");
-}
-
-void file_write_c_header_suffix( FILE* pHeaderFileHandle )
-{
-    //FK: End of header guard
-    fprintf( pHeaderFileHandle, "#endif");
-}
-
-void file_write_c_source_prefix( FILE* pSourceFileHandle, const char* pHeaderFileName, const c_ocoa_objc_class_name* pClassName) 
-{
-    file_write_generated_comment( pSourceFileHandle );
-    fprintf( pSourceFileHandle, "#if defined(__OBJC__) && __has_feature(objc_arc)\n" );
-    fprintf( pSourceFileHandle, "#define ARC_AVAILABLE\n" );
-    fprintf( pSourceFileHandle, "#endif\n\n" );
-
-    fprintf( pSourceFileHandle, "// ABI is a bit different between platforms\n" );
-    fprintf( pSourceFileHandle, "#ifdef __arm64__\n" );
-    fprintf( pSourceFileHandle, "#define abi_objc_msgSend_stret objc_msgSend\n" );
-    fprintf( pSourceFileHandle, "#else\n" );
-    fprintf( pSourceFileHandle, "#define abi_objc_msgSend_stret objc_msgSend_stret\n" );
-    fprintf( pSourceFileHandle, "#endif\n" );
-    fprintf( pSourceFileHandle, "#ifdef __i386__\n" );
-    fprintf( pSourceFileHandle, "#define abi_objc_msgSend_fpret objc_msgSend_fpret\n" );
-    fprintf( pSourceFileHandle, "#else\n" );
-    fprintf( pSourceFileHandle, "#define abi_objc_msgSend_fpret objc_msgSend\n" );
-    fprintf( pSourceFileHandle, "#endif\n\n" );
-    fprintf( pSourceFileHandle, "#include \"%s\"\n\n", pHeaderFileName );
-}
-
 const char* objc_find_msgsend_call( const c_ocoa_objc_function_resolve_result* pFunctionResolveResult )
 {
     //FK: This is sort of handwavy after some trial & error
@@ -1570,7 +2037,7 @@ boolean8_t objc_create_class_name( c_ocoa_objc_class_name* pOutClassName, const 
     pOutClassName->pNameLower   = string_allocate_copy_lower( pClassNameStart, classNameLength );
     pOutClassName->pNameUpper   = string_allocator_copy_upper( pClassNameStart, classNameLength );
 
-    if( pOutClassName->pName == NULL || pOutClassName->pNameLower == NULL )
+    if( pOutClassName->pName == NULL || pOutClassName->pNameLower == NULL || pOutClassName->pNameUpper == NULL )
     {
         free( pOutClassName->pName );
         free( pOutClassName->pNameUpper );
@@ -1581,230 +2048,33 @@ boolean8_t objc_create_class_name( c_ocoa_objc_class_name* pOutClassName, const 
     return 1;
 }
 
-#if 0
-void parseTestFile( c_ocoa_objc_conversion_arguments* pParseArguments, const char* pFileContentBuffer, size_t fileContentBufferSizeInBytes )
-{
-    const size_t dictTypeSizeInBytes = 1024*1024;
-    const size_t dictFunctionSizeInBytes = 1024*1024*20;
-
-    c_ocoa_objc_type_dictionary typeDict;
-    objc_type_dict_create( &typeDict, dictTypeSizeInBytes, dictFunctionSizeInBytes );
-
-    c_ocoa_objc_function_collection functionCollection;
-    objc_function_collection_create( &functionCollection );
-
-    const char* pClassNameEnd = string_find_next_char_position( pFileContentBuffer, ':' );
-    const char* pClassNameStart = whitespace_find_prev( pFileContentBuffer, pClassNameEnd );
-
-    const int32_t classNameLength = cast_size_to_int32( pClassNameEnd - pClassNameStart );
-    pFileContentBuffer = newline_find_next( pFileContentBuffer ) + 1;
-
-    typedef enum
-    {
-        EatWhitespace = 0,
-        EatUntilNewLine,
-        ParseReturnType,
-        ParseArgumenType,
-        ParseFunctionName
-    } State;
-
-    const uint32_t stringAllocatorSizeInBytes = 1024u*32u; //FK: 32KiB
-    c_ocoa_string_allocator c_ocoa_string_allocator;
-    if( !string_allocator_create( &c_ocoa_string_allocator, stringAllocatorSizeInBytes ) )
-    {
-        printf_stderr( "[error] Couldn't allocate %.3fKiB of memory for string allocation.\n", (float)stringAllocatorSizeInBytes/1024.f );
-        return;
-    }
-
-    c_ocoa_objc_class_name className;
-    if( !objc_create_class_name( &className, pClassNameStart, classNameLength ) )
-    {
-        printf_stderr( "[error] Couldn't allocate %d byte of memory for creating classname.\n", classNameLength * 2 );
-        return;
-    }
-
-    file_write_c_header_prefix( pParseArguments->pHeaderFileHandle, &className );
-    file_write_c_source_prefix( pParseArguments->pSourceFileHandle, pParseArguments->pHeaderFileName );
-
-    c_ocoa_parse_result c_ocoa_parse_result = {};
-    const uint8_t ArgumentsToSkip = 2;
-    uint8_t argumentCount = 0u;
-    State state = ParseReturnType;
-    State previousState = ParseReturnType;
-    while( *pFileContentBuffer != 0 )
-    {
-        switch( state )
-        {
-            case EatWhitespace:
-            {
-                if( !char_is_white_space( *pFileContentBuffer ) )
-                {
-                    if( previousState == ParseArgumenType ||
-                        previousState == ParseFunctionName )
-                    {
-                        state = ParseArgumenType;
-                    }                    
-                    else if( previousState == ParseReturnType )
-                    {
-                        state = ParseFunctionName;
-                    }
-                    break;
-                }
-                
-                ++pFileContentBuffer;
-                break;
-            }
-
-            case EatUntilNewLine:
-            {
-                if( *pFileContentBuffer == '\n' )
-                {
-                    c_ocoa_objc_function_resolve_result functionResolveResult;
-                    const c_ocoa_convert_result c_ocoa_convert_result = objc_parse_result_convert_to_function_definition( &c_ocoa_string_allocator, &functionResolveResult, &functionCollection, &typeDict, &c_ocoa_parse_result, &className );
-                    switch( c_ocoa_convert_result )
-                    {
-                        case ConvertResult_OutOfMemory:
-                            printf_stderr("[error] Out of memory while trying to parse function of class '%s'!\n", className.pName );
-                            break;
-
-                        case ConvertResult_UnknownArgumentType:
-                            printf_stderr("[error] Skipping function '%s' because of unknown argument type.\n", c_ocoa_parse_result.pFunctionName );
-                            break;
-
-                        case ConvertResult_UnknownReturnType:
-                            printf_stderr("[error] Skipping function '%s' because of unknown argument type.\n", c_ocoa_parse_result.pFunctionName );
-                            break;
-
-                        case ConvertResult_AlreadyKnown:
-                        case ConvertResult_InvalidFunctionName:
-                            //FK: Add log here?
-                            break;
-
-                        case ConvertResult_Success:
-                            cfunction_write_declaration( pParseArguments->pHeaderFileHandle, &functionResolveResult );
-                            file_write_c_function_implementation( pParseArguments->pSourceFileHandle, &functionResolveResult, &className );
-                            break;
-                    }
-
-                    string_allocator_reset( &c_ocoa_string_allocator );
-                    
-                    ++pFileContentBuffer;
-                    state = ParseReturnType;
-                    break;
-                }
-
-                ++pFileContentBuffer;
-                break;
-            }
-
-            case ParseFunctionName:
-            {
-                const char* pFunctionNameStart      = pFileContentBuffer;
-                const char* pNextWhiteSpacePosition = string_find_next_char_position( pFunctionNameStart, ' ' );
-                const char* pNextColonPosition      = string_find_next_char_position( pFunctionNameStart, ':' );
-
-                //FK: Ignore function name extension naming optional arguments
-                //    eg: nextEventMatchingMask:untilDate:inMode:dequeue:
-                int32_t functionNameLength = cast_size_to_int32( pNextWhiteSpacePosition - pFunctionNameStart );
-                if( pNextColonPosition < pNextWhiteSpacePosition )
-                {
-                    functionNameLength = cast_size_to_int32( pNextColonPosition - pFunctionNameStart );
-                }
-            
-                c_ocoa_parse_result.pFunctionName = string_allocator_get_current_base( &c_ocoa_string_allocator );
-                if( function_name_ends_with_colon( pFunctionNameStart, functionNameLength ) )
-                {
-                    --functionNameLength;
-                }
-
-                const int32_t numCharactersWritten = sprintf( c_ocoa_parse_result.pFunctionName, "%.*s", functionNameLength, pFunctionNameStart );
-                c_ocoa_parse_result.functionNameLength = numCharactersWritten;
-                
-                string_allocator_decrement_capacity( &c_ocoa_string_allocator, numCharactersWritten + 1 );
-
-                pFileContentBuffer += ( pNextWhiteSpacePosition - pFunctionNameStart );
-                state = EatWhitespace;
-                
-                break;
-            }
-
-            case ParseReturnType:
-            {
-                const char* pReturnTypeStart = pFileContentBuffer;
-                const char* pReturnTypeEnd   = whitespace_find_next( pReturnTypeStart );
-                const int32_t typeLength = cast_size_to_int32( pReturnTypeEnd - pReturnTypeStart );
-
-                c_ocoa_parse_result.pReturnType = string_allocator_get_current_base( &c_ocoa_string_allocator );
-
-                const int32_t numCharactersWritten = sprintf( c_ocoa_parse_result.pReturnType, "%.*s", typeLength, pReturnTypeStart );
-                c_ocoa_parse_result.returnTypeLength = numCharactersWritten;
-                
-                string_allocator_decrement_capacity( &c_ocoa_string_allocator, numCharactersWritten + 1 );
-
-                pFileContentBuffer += typeLength;
-                state = EatWhitespace;
-
-                break;
-            }
-            case ParseArgumenType:
-            {
-                const char* pArgumentsStart = pFileContentBuffer;
-                const char* pArgumentsEnd = newline_find_next( pArgumentsStart );
-                const int32_t argumentLength = cast_size_to_int32( pArgumentsEnd - pArgumentsStart );
-               
-                c_ocoa_parse_result.pArguments = string_allocator_get_current_base( &c_ocoa_string_allocator );
-
-                const int32_t numCharactersWritten = sprintf( c_ocoa_parse_result.pArguments, "%.*s", argumentLength, pArgumentsStart );
-                c_ocoa_parse_result.argumentLength = numCharactersWritten;
-
-                string_allocator_decrement_capacity( &c_ocoa_string_allocator, numCharactersWritten + 1 );
-
-                state = EatUntilNewLine;
-                pFileContentBuffer += argumentLength;
-
-                break;
-            }
-
-            default:
-                code_path_invalid();
-                break;
-        }
-
-        if( state != EatWhitespace )
-        {
-            previousState = state;
-        }
-    }
-
-    file_write_c_header_suffix( pParseArguments->pHeaderFileHandle );
-}
-#endif
-
 void file_write_c_type_forward_declarations( FILE* pTypesFileHandle, c_ocoa_objc_type_dictionary* pTypeDict )
 {
     fprintf( pTypesFileHandle, "// Forward declarations:\n" );
     for( uint32_t typeEntryIndex = 0u; typeEntryIndex < pTypeDict->typeEntryCapacity; ++typeEntryIndex )
     {
-        const c_ocoa_objc_type_dictionary_entry* pEntry = pTypeDict->pTypeEntries + typeEntryIndex;
-        if( pEntry->isNew )
+        const c_ocoa_objc_type_dictionary_entry* pEntry = pTypeDict->ppTypeEntries[typeEntryIndex];
+        while( pEntry != NULL )
         {
-            continue;
-        }
+            const c_ocoa_objc_type_resolve_result* pResolveResult = &pEntry->resolveResult;
+            if( !pResolveResult->isReference )
+            {
+                goto loop_end;
+            }
 
-        const c_ocoa_objc_type_resolve_result* pResolveResult = &pEntry->resolveResult;
-        if( !pResolveResult->isReference )
-        {
-            continue;
-        }
+            if( pResolveResult->isBaseType )
+            {
+                goto loop_end;
+            }
 
-        if( pResolveResult->isBaseType )
-        {
-            continue;
+            const int32_t resolvedTypeLength = pResolveResult->resolvedTypeLength;
+            fprintf( pTypesFileHandle, "struct _%.*s_;\n", resolvedTypeLength, pResolveResult->pResolvedType );
+            fprintf( pTypesFileHandle, "typedef struct _%.*s_ %.*s;\n", resolvedTypeLength, pResolveResult->pResolvedType, resolvedTypeLength, pResolveResult->pResolvedType  );
+            
+        loop_end:
+            pEntry = (c_ocoa_objc_type_dictionary_entry*)pEntry->pNext;
         }
-
-        const int32_t resolvedTypeLength = pResolveResult->resolvedTypeLength; //FK: -1 to not include '*' (since this is a reference type...)
-        fprintf( pTypesFileHandle, "struct _%.*s_;\n", resolvedTypeLength, pResolveResult->pResolvedType );
-        fprintf( pTypesFileHandle, "typedef struct _%.*s_ %.*s;\n", resolvedTypeLength, pResolveResult->pResolvedType, resolvedTypeLength, pResolveResult->pResolvedType  );
+ 
     }
 
     fprintf( pTypesFileHandle, "\n" );
@@ -1898,29 +2168,30 @@ void file_write_c_type_struct_definitions( FILE* pTypesFileHandle, c_ocoa_objc_t
 {
     for( uint32_t typeEntryIndex = 0u; typeEntryIndex < pTypeDict->typeEntryCapacity; ++typeEntryIndex )
     {
-        c_ocoa_objc_type_dictionary_entry* pEntry = pTypeDict->pTypeEntries + typeEntryIndex;
-        if( pEntry->isNew )
+        c_ocoa_objc_type_dictionary_entry* pEntry = pTypeDict->ppTypeEntries[typeEntryIndex];
+        while( pEntry != NULL )
         {
-            continue;
-        }
+            if( pEntry->declarationWasWritten )
+            {
+                goto loop_end;
+            }
 
-        if( pEntry->declarationWasWritten )
-        {
-            continue;
-        }
+            const c_ocoa_objc_type_resolve_result* pResolveResult = &pEntry->resolveResult;
+            if( pResolveResult->isReference )
+            {
+                goto loop_end;
+            }
 
-        const c_ocoa_objc_type_resolve_result* pResolveResult = &pEntry->resolveResult;
-        if( pResolveResult->isReference )
-        {
-            continue;
-        }
+            if( pResolveResult->isBaseType )
+            {
+                goto loop_end;
+            }
 
-        if( pResolveResult->isBaseType )
-        {
-            continue;
+            file_write_c_type_single_type_struct_definition( pTypesFileHandle, pEntry, pTypeDict, pResolveResult );
+            
+        loop_end:
+            pEntry = (c_ocoa_objc_type_dictionary_entry*)pEntry->pNext;
         }
-
-        file_write_c_type_single_type_struct_definition( pTypesFileHandle, pEntry, pTypeDict, pResolveResult );
     }
 }
 
@@ -1934,6 +2205,30 @@ void objc_type_dict_resolve_struct_types( c_ocoa_objc_type_dictionary* pTypeDict
 
     //FK: Now write struct types:
     file_write_c_type_header_suffix( pTypesFileHandle );
+}
+
+boolean8_t c_ocoa_create_code_gen_context( c_ocoa_code_gen_context* pCodeGenContext )
+{
+    if( !objc_type_dict_create( &pCodeGenContext->typeDict ) )
+    {
+        printf_stderr( "[error] Out of memory while trying to create objective c type dictionary." );
+        return 0;
+    }
+
+    if( !objc_function_collection_create( &pCodeGenContext->functionCollection ) )
+    {
+        printf_stderr( "[error] Out of memory while trying to create objective c function collection." );
+        return 0;
+    }
+
+    const size_t stringAllocatorSizeInBytes = 1024*1024; //FK: 1 MiB, quite a lot for a string allocator but better be safe than sorry
+    if( !string_allocator_create( &pCodeGenContext->stringAllocator, stringAllocatorSizeInBytes ) )
+    {
+        printf_stderr( "Out of memory while trying to create string allocator of size %.3fKiB.", (float)stringAllocatorSizeInBytes/1024.f );
+        return 0;
+    }
+    
+    return 1;
 }
 
 #endif //C_OCOA_GENERATOR_HEADER
