@@ -1,6 +1,7 @@
 #ifndef C_OCOA_GENERATOR_HEADER
 #define C_OCOA_GENERATOR_HEADER
-#define C_OCOA_GENERATOR_VERSION 1
+#define C_OCOA_GENERATOR_MAJOR_VERSION 1
+#define C_OCOA_GENERATOR_MINOR_VERSION 0
 
 #include <stdint.h>
 #include <stdio.h>
@@ -528,6 +529,7 @@ boolean8_t string_name_matches_filter( const char* restrict_modifier pName, cons
 
 void print_help(void)
 {
+    printf("C OCOA CODE GENERATOR VERSION %d.%d\n", C_OCOA_GENERATOR_MAJOR_VERSION, C_OCOA_GENERATOR_MINOR_VERSION);
     printf("Usage: c_ocoa_generator [OPTIONS] [FILTER]\n\n");
     printf("OPTIONS are:\n");
     printf("-o {path}    set output path (output directory)\n");
