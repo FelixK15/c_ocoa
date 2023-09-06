@@ -23,6 +23,7 @@ The project has additional support for these options:
 ```
     -o <output>     | Specifies where to write the generated C files. Default: Working Directory
     -p <prefix>     | Specifies a prefix that should be added to the name of the generated C files. Default: No prefix
+    -t              | Enables the export of all objc types that are used by the exported classes into `c_ocoa_types.h`
 ```
 
 eg: This will generate the C API for classes that start with `CG`. The generated C files will be written to the `~/c_ocoa/output/` directory and all generated files will be prefixed with `awesome_company_`.

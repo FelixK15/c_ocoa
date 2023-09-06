@@ -83,6 +83,7 @@ typedef int(*fflush_fn)(FILE* pStream);
 
 typedef struct
 {
+    boolean8_t  exportTypes;
     const char* pOutputPath;
     const char* pPrefix;
     const char* pClassNameFilter;
@@ -203,7 +204,7 @@ c_ocoa_convert_result objc_parse_result_convert_to_function_definition( c_ocoa_s
 void file_write_c_function_implementation( FILE* pSourceFileHandle, const c_ocoa_objc_function_resolve_result* pFunctionResolveResult, const c_ocoa_objc_class_name* pClassName );
 void cfunction_write_declaration( FILE* pResultFileHandle, const c_ocoa_objc_function_resolve_result* pFunctionDefinition );
 boolean8_t objc_create_class_name( c_ocoa_objc_class_name* pOutClassName, const char* pClassNameStart, const int32_t classNameLength );
-void objc_type_dict_resolve_struct_types( c_ocoa_objc_type_dictionary* pTypeDict, FILE* pTypesFileHandle );
+void objc_type_dict_resolve_struct_types( c_ocoa_objc_type_dictionary* pTypeDict, FILE* pTypesFileHandle, boolean8_t exportTypes );
 
 
 void string_allocator_reset( c_ocoa_string_allocator* pStringAllocator )
@@ -535,6 +536,7 @@ void print_help(void)
     printf("-o {path}    set output path (output directory)\n");
     printf("-p {prefix}  set prefix for output source files\n");
     printf("-h           print this help text\n\n");
+    printf("-t           export all objc types (write all objc structs into c_ocoa_types.h)\n\n");
     printf("FILTER is:\n");
     printf("A filter for the class name to be exported. Supports wildcard.\n\n");
     printf("eg: 'c_ocoa_generator NS*'  - export all classes that start with 'NS'.\n");
@@ -562,6 +564,11 @@ void evaluate_code_generator_argv_arguments( int argc, const char** argv, c_ocoa
                 case 'h':
                     print_help();
                     exit(0);
+                break;
+
+                case 't':
+                    pOutArguments->exportTypes = true;
+                    ++i;
                 break;
             }
         }
@@ -1713,7 +1720,7 @@ int c_ocoa_create_classes_api( const c_ocoa_code_generator_parameter* pCodeGener
         return 0;
     }
 
-    objc_type_dict_resolve_struct_types( &pContext->typeDict, pTypesFileHandle );
+    objc_type_dict_resolve_struct_types( &pContext->typeDict, pTypesFileHandle, pCodeGeneratorParameter->exportTypes );
     
     pCodeGeneratorParameter->fflush( pTypesFileHandle );
     pCodeGeneratorParameter->fclose( pTypesFileHandle );
@@ -2197,16 +2204,20 @@ void file_write_c_type_struct_definitions( FILE* pTypesFileHandle, c_ocoa_objc_t
     }
 }
 
-void objc_type_dict_resolve_struct_types( c_ocoa_objc_type_dictionary* pTypeDict, FILE* pTypesFileHandle )
+void objc_type_dict_resolve_struct_types( c_ocoa_objc_type_dictionary* pTypeDict, FILE* pTypesFileHandle, boolean8_t exportTypes )
 {
     //FK: Write struct references first:
     file_write_c_type_header_prefix( pTypesFileHandle );
 
     file_write_c_type_forward_declarations( pTypesFileHandle, pTypeDict );
-    file_write_c_type_struct_definitions( pTypesFileHandle, pTypeDict );
 
-    //FK: Now write struct types:
-    file_write_c_type_header_suffix( pTypesFileHandle );
+    if( exportTypes )
+    {
+        file_write_c_type_struct_definitions( pTypesFileHandle, pTypeDict );
+
+        //FK: Now write struct types:
+        file_write_c_type_header_suffix( pTypesFileHandle );
+    }
 }
 
 boolean8_t c_ocoa_create_code_gen_context( c_ocoa_code_gen_context* pCodeGenContext )
